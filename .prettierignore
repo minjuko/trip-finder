@@ -1,5 +1,4 @@
-{
-  "semi": true,
-  "singleQuote": false,
-  "trailingComma": "all"
-}
+.next
+node_modules
+coverage
+playwright-report
