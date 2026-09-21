@@ -5,6 +5,10 @@ import { bookmarksSchema } from "./schema";
 export const BOOKMARKS_STORAGE_KEY =
   "trip-finder:bookmarks";
 
+// 변경: Bookmark Client Component들이 공유하는 동일 document 변경 event
+export const BOOKMARKS_CHANGE_EVENT =
+  "bookmarkschange";
+
 export const parseBookmarks = (
   value: string | null,
 ): Bookmark[] => {
@@ -16,7 +20,7 @@ export const parseBookmarks = (
     const parsed: unknown =
       JSON.parse(value);
 
-    // 변경: JSON 문법뿐 아니라 Bookmark 배열의 runtime 구조까지 검증
+    // JSON 문법뿐 아니라 Bookmark 배열의 runtime 구조까지 검증
     const result =
       bookmarksSchema.safeParse(parsed);
 
@@ -26,7 +30,7 @@ export const parseBookmarks = (
 
     return result.data;
   } catch {
-    // 변경: 깨진 JSON이 localStorage에 있어도 앱 전체가 중단되지 않도록 복구
+    // 깨진 JSON이 localStorage에 있어도 앱 전체가 중단되지 않도록 복구
     return [];
   }
 };
@@ -50,7 +54,7 @@ export const writeBookmarks = (
     return;
   }
 
-  // 변경: 저장 직전에도 Domain 구조를 검증하여
+  // 저장 직전에도 Domain 구조를 검증하여
   // 잘못된 값을 persistent storage에 기록하지 않음
   const validated =
     bookmarksSchema.parse(bookmarks);
@@ -74,7 +78,7 @@ export const addBookmark = (
   bookmarks: Bookmark[],
   bookmark: Bookmark,
 ): Bookmark[] => {
-  // 변경: 동일 콘텐츠 중복 저장 방지
+  // 동일 콘텐츠 중복 저장 방지
   if (
     isBookmarked(
       bookmarks,
