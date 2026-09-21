@@ -67,3 +67,8 @@ export interface PaginatedResult<T> {
   pageSize: number;
   totalCount: number;
 }
+
+export interface RegionOption {
+  code: string;
+  name: string;
+}
