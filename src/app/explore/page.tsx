@@ -1,24 +1,35 @@
+import { ExploreClassificationFilter } from "@/components/search/ExploreClassificationFilter";
+import { ExploreRegionFilter } from "@/components/search/ExploreRegionFilter";
+import { ExploreSearch } from "@/components/search/ExploreSearch";
 import { TourList } from "@/components/tour/TourList";
 import { getExploreData } from "@/lib/search/explore-data";
 import {
   parseExploreQuery,
   type ExploreSearchParams,
 } from "@/lib/search/explore-query";
+import { getClassifications } from "@/lib/tour-api/classification";
+import { getRegions } from "@/lib/tour-api/region";
 
 interface ExplorePageProps {
-  // 변경: Next.js App Router의 비동기 searchParams를 명시적으로 처리
   searchParams: Promise<ExploreSearchParams>;
 }
 
 const ExplorePage = async ({
   searchParams,
 }: ExplorePageProps) => {
-  // 변경: URL 입력을 먼저 애플리케이션 Query Model로 정규화
   const rawSearchParams = await searchParams;
   const query = parseExploreQuery(rawSearchParams);
 
-  // 변경: Server Component에서 TourAPI 데이터 조회
-  const { contents } = await getExploreData(query);
+  // 변경: 콘텐츠, 지역, 대분류는 서로 독립적이므로 병렬 조회
+  const [
+    regions,
+    depth1Options,
+    { contents },
+  ] = await Promise.all([
+    getRegions(),
+    getClassifications(),
+    getExploreData(query),
+  ]);
 
   return (
     <main>
@@ -30,7 +41,24 @@ const ExplorePage = async ({
         </p>
       </header>
 
-      {/* 변경: 현재 조회 결과 수를 화면과 보조기술에 전달 */}
+      <ExploreSearch
+        initialKeyword={query.keyword}
+      />
+
+      <ExploreRegionFilter
+        regions={regions}
+        initialRegion={query.region}
+        initialDistrict={query.district}
+      />
+
+      {/* 변경: 대분류는 서버에서 전달하고 하위 분류만 동적 조회 */}
+      <ExploreClassificationFilter
+        depth1Options={depth1Options}
+        initialDepth1={query.category1}
+        initialDepth2={query.category2}
+        initialDepth3={query.category3}
+      />
+
       <p aria-live="polite">
         총 {contents.totalCount.toLocaleString("ko-KR")}개의
         관광 콘텐츠
