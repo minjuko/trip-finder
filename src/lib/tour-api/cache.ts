@@ -10,6 +10,11 @@ export const TOUR_API_CACHE = {
   CONTENT_LIST: {
     revalidate: 60 * 10,
   },
+
+  // 변경: 개별 관광 콘텐츠 상세정보는 1시간 재검증
+  CONTENT_DETAIL: {
+    revalidate: 60 * 60,
+  },
 } as const;
 
 export type TourApiCacheOptions =
