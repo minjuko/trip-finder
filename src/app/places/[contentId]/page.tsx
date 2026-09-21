@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { BookmarkButton } from "@/components/bookmark/BookmarkButton";
 import { TourDetailGallery } from "@/components/tour/TourDetailGallery";
 import { TourDetailInformation } from "@/components/tour/TourDetailInformation";
 import { TourDetailOverview } from "@/components/tour/TourDetailOverview";
@@ -18,7 +19,7 @@ export const generateMetadata = async ({
 }: PlaceDetailPageProps): Promise<Metadata> => {
   const { contentId } = await params;
 
-  // 변경: 상세 데이터 기반 동적 metadata 생성
+  // 상세 데이터 기반 동적 metadata 생성
   const detail =
     await getTourDetail(contentId);
 
@@ -42,7 +43,7 @@ const PlaceDetailPage = async ({
 }: PlaceDetailPageProps) => {
   const { contentId } = await params;
 
-  // 변경: 상세 데이터 orchestration을 Server Component에서 호출
+  // 상세 데이터 orchestration을 Server Component에서 호출
   const detail =
     await getTourDetail(contentId);
 
@@ -61,7 +62,6 @@ const PlaceDetailPage = async ({
 
   return (
     <main className="mx-auto w-full max-w-7xl px-6 py-10 lg:px-8">
-      {/* 변경: Explore로 돌아갈 수 있는 단순 breadcrumb */}
       <nav
         aria-label="Breadcrumb"
         className="mb-6"
@@ -87,7 +87,6 @@ const PlaceDetailPage = async ({
         </ol>
       </nav>
 
-      {/* 변경: 상세 페이지 핵심 제목/주소 영역 */}
       <header className="mb-8">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="min-w-0">
@@ -106,24 +105,30 @@ const PlaceDetailPage = async ({
             ) : null}
           </div>
 
-          {/* 변경: Bookmark Client Component가 들어갈 위치를 유지하면서
-              현재 구현된 homepage action만 제공 */}
-          {detail.homepage ? (
-            <a
-              href={detail.homepage}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex w-fit shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
-            >
-              홈페이지 방문
-              <span
-                aria-hidden="true"
-                className="ml-1.5"
+          {/* 변경: Server Component 내부에서
+              bookmark interaction만 Client Component로 격리 */}
+          <div className="flex flex-wrap gap-3">
+            <BookmarkButton
+              content={detail}
+            />
+
+            {detail.homepage ? (
+              <a
+                href={detail.homepage}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex w-fit shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
               >
-                ↗
-              </span>
-            </a>
-          ) : null}
+                홈페이지 방문
+                <span
+                  aria-hidden="true"
+                  className="ml-1.5"
+                >
+                  ↗
+                </span>
+              </a>
+            ) : null}
+          </div>
         </div>
       </header>
 
