@@ -3,12 +3,11 @@ import type {
   TourContent,
 } from "@/types/tour";
 
+import { TOUR_API_CACHE } from "./cache";
 import { requestTourApi } from "./client";
 import { createTourApiError } from "./errors";
 import { normalizeTourListResponse } from "./normalizers/tour-content";
 import { tourListResponseSchema } from "./schemas/list";
-
-import { TOUR_API_CACHE } from "./cache";
 
 interface GetAreaBasedListParams {
   regionCode?: string;
@@ -72,6 +71,8 @@ export const getAreaBasedList = async ({
 
   const rawData = await requestTourApi("areaBasedList2", {
     params,
+    // 변경: 관광 콘텐츠 목록은 10분 재검증
+    cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
   });
 
   const parsed = tourListResponseSchema.parse(rawData);
