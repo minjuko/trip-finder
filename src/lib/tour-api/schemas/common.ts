@@ -12,9 +12,12 @@ export const createTourApiResponseSchema = <T extends z.ZodType>(
     response: z.object({
       header: tourApiHeaderSchema,
       body: z.object({
-        items: z.object({
-          item: z.array(itemSchema),
-        }),
+        items: z.union([
+          z.object({
+            item: z.array(itemSchema),
+          }),
+          z.literal(""),
+        ]),
         numOfRows: z.number(),
         pageNo: z.number(),
         totalCount: z.number(),
