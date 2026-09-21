@@ -7,7 +7,7 @@ import {
   parseExploreQuery,
   type ExploreSearchParams,
 } from "@/lib/search/explore-query";
-import { getClassifications } from "@/lib/tour-api/classification";
+import { getClassificationOptions } from "@/lib/tour-api/classification";
 import { getRegions } from "@/lib/tour-api/region";
 import { ExplorePagination } from "@/components/search/ExplorePagination";
 
@@ -21,7 +21,7 @@ const ExplorePage = async ({ searchParams }: ExplorePageProps) => {
 
   const [regions, depth1Options, { contents }] = await Promise.all([
     getRegions(),
-    getClassifications(),
+    getClassificationOptions(),
     getExploreData(query),
   ]);
 

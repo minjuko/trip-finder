@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { getClassifications } from "@/lib/tour-api/classification";
+import { getClassificationOptions } from "@/lib/tour-api/classification";
 
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
@@ -25,7 +25,7 @@ export const GET = async (request: NextRequest) => {
   }
 
   const classifications =
-    await getClassifications({
+    await getClassificationOptions({
       depth1Code,
       depth2Code,
     });
