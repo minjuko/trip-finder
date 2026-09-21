@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { areaBasedListFixture } from "./__fixtures__/area-based-list";
 import { getAreaBasedList } from "./area-based-list";
+import { TOUR_API_CACHE } from "./cache";
 import { requestTourApi } from "./client";
 
 // 변경: 실제 TourAPI를 호출하지 않고 wrapper가 구성하는 요청을 검증
@@ -33,6 +34,8 @@ describe("getAreaBasedList", () => {
           numOfRows: 12,
           arrange: "A",
         },
+        // 변경: 목록 API 캐시 정책 계약 검증
+        cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
       },
     );
   });
@@ -57,6 +60,7 @@ describe("getAreaBasedList", () => {
           lDongSignguCd: "110",
           contentTypeId: "12",
         },
+        cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
       },
     );
   });
@@ -80,6 +84,7 @@ describe("getAreaBasedList", () => {
           lclsSystm2: "NA02",
           lclsSystm3: "NA020900",
         },
+        cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
       },
     );
   });
