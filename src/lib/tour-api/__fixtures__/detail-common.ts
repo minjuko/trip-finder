@@ -1,4 +1,6 @@
-export const detailCommonFixture = {
+import type { TourDetailCommonResponseDto } from "../schemas/detail-common";
+
+export const detailCommonFixture: TourDetailCommonResponseDto = {
   response: {
     header: {
       resultCode: "0000",
@@ -32,15 +34,13 @@ export const detailCommonFixture = {
             cat1: "A01",
             cat2: "A0101",
             cat3: "A01011300",
-            addr1:
-              "전남광주통합특별시 신안군 흑산면 가거도길 38-2",
+            addr1: "전남광주통합특별시 신안군 흑산면 가거도길 38-2",
             addr2: "",
             zipcode: "58866",
             mapx: "125.1263860145",
             mapy: "34.0520609879",
             mlevel: "6",
-            overview:
-              "가거도 상세 설명",
+            overview: "가거도 상세 설명",
           },
         ],
       },
@@ -51,7 +51,7 @@ export const detailCommonFixture = {
   },
 };
 
-export const emptyDetailCommonFixture = {
+export const emptyDetailCommonFixture: TourDetailCommonResponseDto = {
   response: {
     header: {
       resultCode: "0000",

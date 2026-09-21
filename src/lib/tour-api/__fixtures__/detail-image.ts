@@ -1,4 +1,6 @@
-export const detailImageFixture = {
+import type { TourDetailImageResponseDto } from "../schemas/detail-image";
+
+export const detailImageFixture: TourDetailImageResponseDto = {
   response: {
     header: {
       resultCode: "0000",
@@ -26,7 +28,7 @@ export const detailImageFixture = {
   },
 };
 
-export const emptyDetailImageFixture = {
+export const emptyDetailImageFixture: TourDetailImageResponseDto = {
   response: {
     header: {
       resultCode: "0000",
