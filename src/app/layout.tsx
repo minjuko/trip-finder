@@ -3,6 +3,7 @@ import {
   Geist,
   Geist_Mono,
 } from "next/font/google";
+import type { ReactNode } from "react";
 
 import { Header } from "@/components/layout/Header";
 
@@ -27,9 +28,13 @@ export const metadata: Metadata = {
     "지역, 카테고리, 키워드로 국내 관광 콘텐츠를 탐색하고 저장하는 서비스",
 };
 
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
 export default function RootLayout({
   children,
-}: LayoutProps<"/">) {
+}: RootLayoutProps) {
   return (
     // 변경: 한국어 서비스의 document language 명시
     <html
