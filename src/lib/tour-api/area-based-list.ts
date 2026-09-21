@@ -8,6 +8,8 @@ import { createTourApiError } from "./errors";
 import { normalizeTourListResponse } from "./normalizers/tour-content";
 import { tourListResponseSchema } from "./schemas/list";
 
+import { TOUR_API_CACHE } from "./cache";
+
 interface GetAreaBasedListParams {
   regionCode?: string;
   districtCode?: string;
