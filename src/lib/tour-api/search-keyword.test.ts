@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { areaBasedListFixture } from "./__fixtures__/area-based-list";
+import { TOUR_API_CACHE } from "./cache";
 import { requestTourApi } from "./client";
 import { searchKeyword } from "./search-keyword";
 
@@ -36,6 +37,8 @@ describe("searchKeyword", () => {
           numOfRows: 12,
           arrange: "A",
         },
+        // 변경: 검색 API 캐시 정책 계약 검증
+        cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
       },
     );
   });
@@ -62,6 +65,7 @@ describe("searchKeyword", () => {
           lDongSignguCd: "110",
           contentTypeId: "12",
         },
+        cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
       },
     );
   });
@@ -87,6 +91,7 @@ describe("searchKeyword", () => {
           lclsSystm2: "NA02",
           lclsSystm3: "NA020900",
         },
+        cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
       },
     );
   });
