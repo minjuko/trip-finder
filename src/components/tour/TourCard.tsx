@@ -34,7 +34,7 @@ export const TourCard = ({
             // 변경: API에 이미지가 없는 콘텐츠의 fallback 유지
             <div
               aria-hidden="true"
-              className="flex h-full items-center justify-center text-sm text-slate-400"
+              className="flex h-full items-center justify-center text-sm text-slate-600"
             >
               이미지 없음
             </div>
