@@ -3,6 +3,7 @@ import type {
   TourContent,
 } from "@/types/tour";
 
+import { TOUR_API_CACHE } from "./cache";
 import { requestTourApi } from "./client";
 import { createTourApiError } from "./errors";
 import { normalizeTourListResponse } from "./normalizers/tour-content";
@@ -79,6 +80,8 @@ export const searchKeyword = async ({
 
   const rawData = await requestTourApi("searchKeyword2", {
     params,
+    // 변경: 동일 검색 조건 결과는 10분 재검증
+    cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
   });
 
   const parsed = tourListResponseSchema.parse(rawData);
