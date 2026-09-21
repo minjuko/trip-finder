@@ -1,12 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import {
   useCallback,
   useSyncExternalStore,
 } from "react";
-import Link from "next/link";
 
 import {
+  BOOKMARKS_CHANGE_EVENT,
+  BOOKMARKS_STORAGE_KEY,
   readBookmarks,
   removeBookmark,
   writeBookmarks,
@@ -15,10 +17,7 @@ import type { Bookmark } from "@/types/tour";
 
 import { BookmarkCard } from "./BookmarkCard";
 
-const BOOKMARKS_CHANGE_EVENT =
-  "bookmarkschange";
-
-// 변경: BookmarkButton과 동일한 storage/custom event 계약 사용
+// BookmarkButton과 동일한 storage/custom event 계약 사용
 const subscribeToBookmarks = (
   onChange: () => void,
 ) => {
@@ -26,6 +25,7 @@ const subscribeToBookmarks = (
     "storage",
     onChange,
   );
+
   window.addEventListener(
     BOOKMARKS_CHANGE_EVENT,
     onChange,
@@ -36,6 +36,7 @@ const subscribeToBookmarks = (
       "storage",
       onChange,
     );
+
     window.removeEventListener(
       BOOKMARKS_CHANGE_EVENT,
       onChange,
@@ -43,12 +44,10 @@ const subscribeToBookmarks = (
   };
 };
 
-// 변경: localStorage 문자열을 snapshot으로 사용.
-// 같은 저장 상태에서는 동일 primitive 값이므로
-// useSyncExternalStore snapshot 안정성을 유지
+// 변경: storage key도 bookmarks storage module의 단일 계약 사용
 const getBookmarksSnapshot = () =>
   window.localStorage.getItem(
-    "trip-finder:bookmarks",
+    BOOKMARKS_STORAGE_KEY,
   ) ?? "";
 
 const getServerBookmarksSnapshot = () =>
@@ -62,7 +61,6 @@ export const BookmarkList = () => {
       getServerBookmarksSnapshot,
     );
 
-  // 변경: storage의 Zod validation 경계를 그대로 재사용
   const bookmarks: Bookmark[] =
     storedValue === ""
       ? []
@@ -81,8 +79,6 @@ export const BookmarkList = () => {
 
       writeBookmarks(nextBookmarks);
 
-      // 변경: 같은 document에서는 native storage event가 발생하지 않으므로
-      // custom event로 즉시 UI 동기화
       window.dispatchEvent(
         new Event(
           BOOKMARKS_CHANGE_EVENT,
@@ -102,7 +98,8 @@ export const BookmarkList = () => {
 
           <p className="mt-2 text-sm leading-6 text-slate-500">
             관심 있는 여행지를 저장하면
-            이곳에서 다시 확인할 수 있습니다.
+            이곳에서 다시 확인할 수
+            있습니다.
           </p>
 
           <Link
@@ -117,16 +114,23 @@ export const BookmarkList = () => {
   }
 
   return (
-    // 변경: Explore와 동일한 Desktop-first 카드 밀도 유지
     <ul className="grid grid-cols-1 gap-x-5 gap-y-7 md:grid-cols-2 xl:grid-cols-3">
-      {bookmarks.map((bookmark) => (
-        <li key={bookmark.contentId}>
-          <BookmarkCard
-            bookmark={bookmark}
-            onRemove={handleRemove}
-          />
-        </li>
-      ))}
+      {bookmarks.map(
+        (bookmark) => (
+          <li
+            key={
+              bookmark.contentId
+            }
+          >
+            <BookmarkCard
+              bookmark={bookmark}
+              onRemove={
+                handleRemove
+              }
+            />
+          </li>
+        ),
+      )}
     </ul>
   );
 };
