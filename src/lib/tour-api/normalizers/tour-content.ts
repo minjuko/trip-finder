@@ -90,8 +90,13 @@ export const normalizeTourListResponse = (
 ): PaginatedResult<TourContent> => {
   const { body } = data.response;
 
+  const items =
+    body.items === ""
+      ? []
+      : body.items.item.map(normalizeTourListItem);
+
   return {
-    items: body.items.item.map(normalizeTourListItem),
+    items,
     page: body.pageNo,
     pageSize: body.numOfRows,
     totalCount: body.totalCount,

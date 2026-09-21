@@ -4,8 +4,7 @@ import { env } from "@/lib/env";
 
 import { TourApiError } from "./errors";
 
-const TOUR_API_BASE_URL =
-  "https://apis.data.go.kr/B551011/KorService2";
+const TOUR_API_BASE_URL = "https://apis.data.go.kr/B551011/KorService2";
 
 const DEFAULT_TIMEOUT_MS = 10_000;
 
@@ -28,15 +27,6 @@ export const requestTourApi = async (
   for (const [key, value] of Object.entries(options.params ?? {})) {
     url.searchParams.set(key, String(value));
   }
-/* 오류 해결용 콘솔*/
-console.log({
-  origin: url.origin,
-  pathname: url.pathname,
-  pageNo: url.searchParams.get("pageNo"),
-  numOfRows: url.searchParams.get("numOfRows"),
-  contentTypeId: url.searchParams.get("contentTypeId"),
-  hasServiceKey: Boolean(url.searchParams.get("serviceKey")),
-});
 
   const timeoutSignal = AbortSignal.timeout(DEFAULT_TIMEOUT_MS);
 
@@ -51,26 +41,30 @@ console.log({
       signal,
     });
   } catch (error) {
-    if (
-      error instanceof DOMException &&
-      error.name === "TimeoutError"
-    ) {
-      throw new TourApiError(
-        "TIMEOUT",
-        "TourAPI request timed out",
-      );
+    if (error instanceof DOMException && error.name === "TimeoutError") {
+      throw new TourApiError("TIMEOUT", "TourAPI request timed out");
     }
 
-    throw new TourApiError(
-      "UNKNOWN",
-      "Failed to request TourAPI",
-    );
+    throw new TourApiError("UNKNOWN", "Failed to request TourAPI");
   }
 
   if (!response.ok) {
+    const responseBody = (await response.text()).trim().slice(0, 300);
+    const errorType =
+      response.status === 401 || response.status === 403
+        ? "UNAUTHORIZED"
+        : response.status === 429
+          ? "RATE_LIMITED"
+          : "SERVER_ERROR";
+
     throw new TourApiError(
-      "SERVER_ERROR",
-      `TourAPI HTTP request failed with status ${response.status}`,
+      errorType,
+      [
+        `TourAPI HTTP request failed with status ${response.status}`,
+        responseBody && `Response: ${responseBody}`,
+      ]
+        .filter(Boolean)
+        .join(". "),
     );
   }
 
