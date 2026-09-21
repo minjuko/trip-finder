@@ -15,7 +15,8 @@ const SUPPORTED_CONTENT_TYPE_IDS = [
 type SupportedContentTypeId =
   (typeof SUPPORTED_CONTENT_TYPE_IDS)[number];
 
-const isSupportedContentTypeId = (
+// 변경: orchestration 계층에서도 지원 여부를 판단할 수 있도록 export
+export const isSupportedDetailIntroContentTypeId = (
   value: string,
 ): value is SupportedContentTypeId =>
   SUPPORTED_CONTENT_TYPE_IDS.some(
@@ -52,9 +53,9 @@ export const getTourDetailIntro = async ({
     );
   }
 
-  // 변경: 현재 MVP에서 실제 응답 계약을 검증한 contentType만 허용
+  // 현재 MVP에서 실제 응답 계약을 검증한 contentType만 허용
   if (
-    !isSupportedContentTypeId(
+    !isSupportedDetailIntroContentTypeId(
       normalizedContentTypeId,
     )
   ) {
@@ -63,7 +64,7 @@ export const getTourDetailIntro = async ({
     );
   }
 
-  // 변경: 실제 GW API 검증 결과에 따라
+  // 실제 GW API 검증 결과에 따라
   // contentId + contentTypeId만 전달
   const rawData = await requestTourApi(
     "detailIntro2",
@@ -103,7 +104,7 @@ export const getTourDetailIntro = async ({
     return [];
   }
 
-  // 변경: 요청한 contentType과 실제 응답의 contentType 불일치 방어
+  // 요청한 contentType과 실제 응답의 contentType 불일치 방어
   if (
     item.contenttypeid !==
     normalizedContentTypeId
