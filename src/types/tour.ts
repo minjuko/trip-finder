@@ -72,3 +72,8 @@ export interface RegionOption {
   code: string;
   name: string;
 }
+
+export interface ClassificationOption {
+  code: string;
+  name: string;
+}
