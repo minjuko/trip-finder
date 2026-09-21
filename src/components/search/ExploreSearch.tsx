@@ -9,16 +9,12 @@ interface ExploreSearchProps {
 
 export const ExploreSearch = ({ initialKeyword }: ExploreSearchProps) => {
   const router = useRouter();
-
-  // 변경: 입력 중인 값만 Client Component의 local state로 관리
   const [keyword, setKeyword] = useState(initialKeyword ?? "");
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // 변경: 현재 URL의 기존 지역/분류 조건을 보존
     const params = new URLSearchParams(window.location.search);
-
     const normalizedKeyword = keyword.trim();
 
     if (normalizedKeyword) {
@@ -27,19 +23,24 @@ export const ExploreSearch = ({ initialKeyword }: ExploreSearchProps) => {
       params.delete("keyword");
     }
 
-    // 변경: 검색 조건이 변경되면 첫 페이지부터 다시 조회
     params.delete("page");
 
     const queryString = params.toString();
-
     router.push(queryString ? `/explore?${queryString}` : "/explore");
   };
 
   return (
-    <form role="search" aria-label="관광 콘텐츠 검색" onSubmit={handleSubmit}>
-      <label htmlFor="explore-keyword">여행지 검색</label>
+    <form
+      role="search"
+      aria-label="관광 콘텐츠 검색"
+      onSubmit={handleSubmit}
+      className="max-w-3xl"
+    >
+      <label htmlFor="explore-keyword" className="sr-only">
+        여행지 검색
+      </label>
 
-      <div>
+      <div className="flex gap-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-sm transition focus-within:border-teal-300 focus-within:shadow-md">
         <input
           id="explore-keyword"
           name="keyword"
@@ -47,9 +48,15 @@ export const ExploreSearch = ({ initialKeyword }: ExploreSearchProps) => {
           value={keyword}
           onChange={(event) => setKeyword(event.target.value)}
           placeholder="여행지나 관광 콘텐츠를 검색해보세요"
+          className="min-w-0 flex-1 rounded-xl px-4 py-3 text-base text-slate-950 outline-none placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-brand/20"
         />
 
-        <button type="submit">검색</button>
+        <button
+          type="submit"
+          className="inline-flex shrink-0 items-center justify-center rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+        >
+          검색
+        </button>
       </div>
     </form>
   );

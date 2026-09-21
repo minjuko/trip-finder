@@ -60,9 +60,9 @@ export default function Home() {
   return (
     <main>
       {/* 변경: 서비스의 목적과 검색 진입점을 제공하는 Hero */}
-      <section className="border-b border-slate-200 bg-slate-50">
+      <section className="relative overflow-hidden border-b border-teal-100 bg-gradient-to-b from-brand-soft via-white to-white">
         <div className="mx-auto w-full max-w-7xl px-6 py-20 text-center sm:py-24 lg:px-8 lg:py-28">
-          <p className="mb-4 text-sm font-semibold tracking-wide text-slate-500">
+          <p className="mb-4 text-sm font-semibold tracking-[0.18em] text-brand">
             EXPLORE KOREA
           </p>
 
@@ -130,7 +130,7 @@ export default function Home() {
               <li key={region.code}>
                 <Link
                   href={`/explore?region=${region.code}`}
-                  className="flex min-h-24 items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 text-center text-sm font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
+                  className="flex min-h-24 items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 text-center text-sm font-semibold text-slate-800 transition hover:-translate-y-1 hover:border-teal-200 hover:text-brand-strong hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                 >
                   {region.name}
                 </Link>
@@ -172,7 +172,7 @@ export default function Home() {
                 >
                   <Link
                     href={`/explore?category1=${category.code}`}
-                    className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
+                    className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-1 hover:border-teal-200 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                   >
                     <span className="font-semibold text-slate-900">
                       {category.name}
@@ -180,7 +180,7 @@ export default function Home() {
 
                     <span
                       aria-hidden="true"
-                      className="text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-slate-700"
+                      className="text-slate-400 transition group-hover:translate-x-1 group-hover:text-brand"
                     >
                       →
                     </span>
