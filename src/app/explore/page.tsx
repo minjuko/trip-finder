@@ -1,3 +1,4 @@
+import { ExploreActiveFilters } from "@/components/search/ExploreActiveFilters";
 import { ExploreClassificationFilter } from "@/components/search/ExploreClassificationFilter";
 import { ExplorePagination } from "@/components/search/ExplorePagination";
 import { ExploreRegionFilter } from "@/components/search/ExploreRegionFilter";
@@ -143,6 +144,8 @@ const ExplorePage = async ({
               {contents.page}페이지
             </p>
           </div>
+
+          <ExploreActiveFilters query={query} />
 
           <TourList
             contents={contents.items}

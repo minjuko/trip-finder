@@ -16,32 +16,35 @@ export const TourDetailInformation = ({
       aria-labelledby="tour-information-title"
       className="border-t border-slate-200 pt-10"
     >
-      <h2
-        id="tour-information-title"
-        className="text-2xl font-bold tracking-tight text-slate-950"
-      >
-        이용 정보
-      </h2>
+      <div className="max-w-2xl">
+        <p className="mb-2 text-xs font-semibold tracking-wider text-brand">
+          INFORMATION
+        </p>
+        <h2
+          id="tour-information-title"
+          className="text-2xl font-bold tracking-tight text-slate-950"
+        >
+          이용 정보
+        </h2>
+        <p className="mt-2 text-sm leading-6 text-slate-500">
+          방문 전에 필요한 주요 이용 정보를 확인하세요.
+        </p>
+      </div>
 
-      {/* 변경: contentType별 API 필드가 아닌
-          공통 InformationItem Domain만 렌더링 */}
-      <dl className="mt-6 grid gap-x-8 gap-y-0 sm:grid-cols-2">
-        {information.map(
-          ({ key, label, value }) => (
-            <div
-              key={key}
-              className="grid grid-cols-[120px_minmax(0,1fr)] gap-4 border-b border-slate-100 py-4"
-            >
-              <dt className="text-sm font-medium text-slate-500">
-                {label}
-              </dt>
-
-              <dd className="min-w-0 whitespace-pre-line break-words text-sm leading-6 text-slate-900">
-                {value}
-              </dd>
-            </div>
-          ),
-        )}
+      <dl className="mt-6 grid gap-3 sm:grid-cols-2">
+        {information.map(({ key, label, value }) => (
+          <div
+            key={key}
+            className="rounded-2xl border border-slate-200 bg-surface-subtle p-5"
+          >
+            <dt className="text-xs font-semibold text-slate-500">
+              {label}
+            </dt>
+            <dd className="mt-2 min-w-0 whitespace-pre-line break-words text-sm font-medium leading-6 text-slate-900">
+              {value}
+            </dd>
+          </div>
+        ))}
       </dl>
     </section>
   );
