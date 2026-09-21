@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+} from "next/font/google";
+
+import { Header } from "@/components/layout/Header";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,13 +27,23 @@ export const metadata: Metadata = {
     "지역, 카테고리, 키워드로 국내 관광 콘텐츠를 탐색하고 저장하는 서비스",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: LayoutProps<"/">) {
   return (
+    // 변경: 한국어 서비스의 document language 명시
     <html
-      lang="en"
+      lang="ko"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        {/* 변경: 모든 route에서 공유하는 Server Component Header */}
+        <Header />
+
+        <div className="flex-1">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
