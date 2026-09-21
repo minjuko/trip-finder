@@ -7,28 +7,31 @@ interface TourListProps {
 }
 
 export const TourList = ({ contents }: TourListProps) => {
-  // 변경: API 정상 응답이지만 검색 결과가 없는 상태를 별도로 표현
   if (contents.length === 0) {
     return (
-      <section aria-labelledby="tour-results-heading">
-        <h2 id="tour-results-heading">검색 결과</h2>
-        <p>조건에 맞는 관광 콘텐츠가 없습니다.</p>
-      </section>
+      // 변경: 명확한 empty state
+      <div className="flex min-h-72 items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-6 text-center">
+        <div>
+          <p className="font-semibold text-slate-900">
+            조건에 맞는 관광 콘텐츠가 없습니다.
+          </p>
+
+          <p className="mt-2 text-sm text-slate-500">
+            검색어나 필터 조건을 변경해보세요.
+          </p>
+        </div>
+      </div>
     );
   }
 
   return (
-    <section aria-labelledby="tour-results-heading">
-      <h2 id="tour-results-heading">검색 결과</h2>
-
-      {/* 변경: 관광 콘텐츠 collection을 의미론적인 목록으로 표현 */}
-      <ul>
-        {contents.map((content) => (
-          <li key={content.id}>
-            <TourCard content={content} />
-          </li>
-        ))}
-      </ul>
-    </section>
+    // 변경: Desktop 3-column 결과 grid
+    <ul className="grid grid-cols-1 gap-x-5 gap-y-7 md:grid-cols-2 xl:grid-cols-3">
+      {contents.map((content) => (
+        <li key={content.id}>
+          <TourCard content={content} />
+        </li>
+      ))}
+    </ul>
   );
 };

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import type { TourContent } from "@/types/tour";
@@ -6,33 +7,48 @@ interface TourCardProps {
   content: TourContent;
 }
 
-export const TourCard = ({ content }: TourCardProps) => {
-  const address = content.address?.primary ?? "주소 정보 없음";
+export const TourCard = ({
+  content,
+}: TourCardProps) => {
+  const address =
+    content.address?.primary ?? "주소 정보 없음";
 
   return (
-    // 변경: 상세 페이지로 이동 가능한 관광 콘텐츠 카드
-    <article>
+    <article className="h-full">
       <Link
         href={`/places/${content.id}`}
         aria-label={`${content.title} 상세정보 보기`}
+        className="group block h-full overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
       >
-        {content.thumbnail ? (
-          // 변경: 외부 이미지 도메인 설정 전까지 native img로 최소 렌더링
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={content.thumbnail.url}
-            alt=""
-            width={400}
-            height={225}
-          />
-        ) : (
-          // 변경: 이미지가 없는 데이터의 명시적인 fallback
-          <div aria-hidden="true">이미지 없음</div>
-        )}
+        <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+          {content.thumbnail ? (
+            // 변경: native img → Next.js Image
+            <Image
+              src={content.thumbnail.url}
+              alt=""
+              fill
+              sizes="(min-width: 1280px) 280px, (min-width: 768px) 50vw, 100vw"
+              className="object-cover transition duration-300 group-hover:scale-[1.02]"
+            />
+          ) : (
+            // 변경: API에 이미지가 없는 콘텐츠의 fallback 유지
+            <div
+              aria-hidden="true"
+              className="flex h-full items-center justify-center text-sm text-slate-400"
+            >
+              이미지 없음
+            </div>
+          )}
+        </div>
 
-        <div>
-          <h2>{content.title}</h2>
-          <p>{address}</p>
+        <div className="p-4">
+          <h3 className="line-clamp-2 text-base font-semibold leading-6 text-slate-950">
+            {content.title}
+          </h3>
+
+          <p className="mt-2 line-clamp-2 text-sm leading-5 text-slate-500">
+            {address}
+          </p>
         </div>
       </Link>
     </article>

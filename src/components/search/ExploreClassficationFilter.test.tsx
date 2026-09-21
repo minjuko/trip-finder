@@ -1,16 +1,5 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
-import {
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from "vitest";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { ExploreClassificationFilter } from "./ExploreClassificationFilter";
 
@@ -37,11 +26,7 @@ describe("ExploreClassificationFilter", () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-    window.history.replaceState(
-      {},
-      "",
-      "/explore",
-    );
+    window.history.replaceState({}, "", "/explore");
 
     vi.stubGlobal(
       "fetch",
@@ -86,43 +71,26 @@ describe("ExploreClassificationFilter", () => {
       />,
     );
 
-    fireEvent.change(
-      screen.getByLabelText("대분류"),
-      {
-        target: {
-          value: "VE",
-        },
+    fireEvent.change(screen.getByLabelText("대분류"), {
+      target: {
+        value: "VE",
       },
-    );
+    });
 
-    const destination =
-      push.mock.calls[0][0] as string;
+    const destination = push.mock.calls[0][0] as string;
 
-    const url = new URL(
-      destination,
-      "http://localhost",
-    );
+    const url = new URL(destination, "http://localhost");
 
-    expect(
-      url.searchParams.get("category1"),
-    ).toBe("VE");
+    expect(url.searchParams.get("category1")).toBe("VE");
 
-    expect(
-      url.searchParams.has("category2"),
-    ).toBe(false);
+    expect(url.searchParams.has("category2")).toBe(false);
 
-    expect(
-      url.searchParams.has("category3"),
-    ).toBe(false);
+    expect(url.searchParams.has("category3")).toBe(false);
 
-    expect(
-      url.searchParams.has("page"),
-    ).toBe(false);
+    expect(url.searchParams.has("page")).toBe(false);
 
     // 변경: unrelated filter 보존
-    expect(
-      url.searchParams.get("region"),
-    ).toBe("11");
+    expect(url.searchParams.get("region")).toBe("11");
   });
 
   it("loads depth2 options from the selected depth1", async () => {
@@ -188,8 +156,7 @@ describe("ExploreClassificationFilter", () => {
       />,
     );
 
-    const depth2Select =
-      screen.getByLabelText("중분류");
+    const depth2Select = screen.getByLabelText("중분류");
 
     await waitFor(() => {
       expect(depth2Select).not.toBeDisabled();
@@ -201,33 +168,19 @@ describe("ExploreClassificationFilter", () => {
       },
     });
 
-    const destination =
-      push.mock.calls[0][0] as string;
+    const destination = push.mock.calls[0][0] as string;
 
-    const url = new URL(
-      destination,
-      "http://localhost",
-    );
+    const url = new URL(destination, "http://localhost");
 
-    expect(
-      url.searchParams.get("category1"),
-    ).toBe("NA");
+    expect(url.searchParams.get("category1")).toBe("NA");
 
-    expect(
-      url.searchParams.get("category2"),
-    ).toBe("NA02");
+    expect(url.searchParams.get("category2")).toBe("NA02");
 
-    expect(
-      url.searchParams.has("category3"),
-    ).toBe(false);
+    expect(url.searchParams.has("category3")).toBe(false);
 
-    expect(
-      url.searchParams.has("page"),
-    ).toBe(false);
+    expect(url.searchParams.has("page")).toBe(false);
 
-    expect(
-      url.searchParams.get("keyword"),
-    ).toBe("해수욕장");
+    expect(url.searchParams.get("keyword")).toBe("해수욕장");
   });
 
   // 변경: 기존 1·2단계가 있으면 2단계와 3단계를 각각 조회
@@ -311,8 +264,7 @@ describe("ExploreClassificationFilter", () => {
       />,
     );
 
-    const depth3Select =
-      screen.getByLabelText("소분류");
+    const depth3Select = screen.getByLabelText("소분류");
 
     await waitFor(() => {
       expect(depth3Select).not.toBeDisabled();
@@ -324,32 +276,18 @@ describe("ExploreClassificationFilter", () => {
       },
     });
 
-    const destination =
-      push.mock.calls[0][0] as string;
+    const destination = push.mock.calls[0][0] as string;
 
-    const url = new URL(
-      destination,
-      "http://localhost",
-    );
+    const url = new URL(destination, "http://localhost");
 
-    expect(
-      url.searchParams.get("category1"),
-    ).toBe("NA");
+    expect(url.searchParams.get("category1")).toBe("NA");
 
-    expect(
-      url.searchParams.get("category2"),
-    ).toBe("NA02");
+    expect(url.searchParams.get("category2")).toBe("NA02");
 
-    expect(
-      url.searchParams.get("category3"),
-    ).toBe("NA020900");
+    expect(url.searchParams.get("category3")).toBe("NA020900");
 
-    expect(
-      url.searchParams.get("region"),
-    ).toBe("11");
+    expect(url.searchParams.get("region")).toBe("11");
 
-    expect(
-      url.searchParams.has("page"),
-    ).toBe(false);
+    expect(url.searchParams.has("page")).toBe(false);
   });
 });
