@@ -1,16 +1,5 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
-import {
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from "vitest";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { ExploreRegionFilter } from "./ExploreRegionFilter";
 
@@ -37,11 +26,7 @@ describe("ExploreRegionFilter", () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-    window.history.replaceState(
-      {},
-      "",
-      "/explore",
-    );
+    window.history.replaceState({}, "", "/explore");
 
     vi.stubGlobal(
       "fetch",
@@ -90,41 +75,26 @@ describe("ExploreRegionFilter", () => {
       />,
     );
 
-    fireEvent.change(
-      screen.getByLabelText("시·도"),
-      {
-        target: {
-          value: "11",
-        },
+    fireEvent.change(screen.getByLabelText("시·도"), {
+      target: {
+        value: "11",
       },
-    );
+    });
 
     expect(push).toHaveBeenCalledOnce();
 
-    const destination =
-      push.mock.calls[0][0] as string;
+    const destination = push.mock.calls[0][0] as string;
 
-    const url = new URL(
-      destination,
-      "http://localhost",
-    );
+    const url = new URL(destination, "http://localhost");
 
-    expect(
-      url.searchParams.get("region"),
-    ).toBe("11");
+    expect(url.searchParams.get("region")).toBe("11");
 
-    expect(
-      url.searchParams.has("district"),
-    ).toBe(false);
+    expect(url.searchParams.has("district")).toBe(false);
 
-    expect(
-      url.searchParams.has("page"),
-    ).toBe(false);
+    expect(url.searchParams.has("page")).toBe(false);
 
     // 변경: 지역과 무관한 검색 조건은 보존
-    expect(
-      url.searchParams.get("keyword"),
-    ).toBe("경복궁");
+    expect(url.searchParams.get("keyword")).toBe("경복궁");
   });
 
   it("removes the region when all regions are selected", () => {
@@ -142,34 +112,21 @@ describe("ExploreRegionFilter", () => {
       />,
     );
 
-    fireEvent.change(
-      screen.getByLabelText("시·도"),
-      {
-        target: {
-          value: "",
-        },
+    fireEvent.change(screen.getByLabelText("시·도"), {
+      target: {
+        value: "",
       },
-    );
+    });
 
-    const destination =
-      push.mock.calls[0][0] as string;
+    const destination = push.mock.calls[0][0] as string;
 
-    const url = new URL(
-      destination,
-      "http://localhost",
-    );
+    const url = new URL(destination, "http://localhost");
 
-    expect(
-      url.searchParams.has("region"),
-    ).toBe(false);
+    expect(url.searchParams.has("region")).toBe(false);
 
-    expect(
-      url.searchParams.has("district"),
-    ).toBe(false);
+    expect(url.searchParams.has("district")).toBe(false);
 
-    expect(
-      url.searchParams.has("page"),
-    ).toBe(false);
+    expect(url.searchParams.has("page")).toBe(false);
   });
 
   // 변경: initialRegion이 있으면 내부 API를 통해 시군구 조회
@@ -244,45 +201,29 @@ describe("ExploreRegionFilter", () => {
       />,
     );
 
-    const districtSelect =
-      screen.getByLabelText("시·군·구");
+    const districtSelect = screen.getByLabelText("시·군·구");
 
     await waitFor(() => {
       expect(districtSelect).not.toBeDisabled();
     });
 
-    fireEvent.change(
-      districtSelect,
-      {
-        target: {
-          value: "110",
-        },
+    fireEvent.change(districtSelect, {
+      target: {
+        value: "110",
       },
-    );
+    });
 
-    const destination =
-      push.mock.calls[0][0] as string;
+    const destination = push.mock.calls[0][0] as string;
 
-    const url = new URL(
-      destination,
-      "http://localhost",
-    );
+    const url = new URL(destination, "http://localhost");
 
-    expect(
-      url.searchParams.get("region"),
-    ).toBe("11");
+    expect(url.searchParams.get("region")).toBe("11");
 
-    expect(
-      url.searchParams.get("district"),
-    ).toBe("110");
+    expect(url.searchParams.get("district")).toBe("110");
 
-    expect(
-      url.searchParams.get("keyword"),
-    ).toBe("경복궁");
+    expect(url.searchParams.get("keyword")).toBe("경복궁");
 
-    expect(
-      url.searchParams.has("page"),
-    ).toBe(false);
+    expect(url.searchParams.has("page")).toBe(false);
   });
 
   it("shows an error when district loading fails", async () => {
@@ -298,9 +239,7 @@ describe("ExploreRegionFilter", () => {
       />,
     );
 
-    expect(
-      await screen.findByRole("alert"),
-    ).toHaveTextContent(
+    expect(await screen.findByRole("alert")).toHaveTextContent(
       "시·군·구 정보를 불러오지 못했습니다.",
     );
   });

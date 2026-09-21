@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  type ChangeEvent,
-  useEffect,
-  useState,
-} from "react";
+import { type ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import type { ClassificationOption } from "@/types/tour";
@@ -25,31 +21,23 @@ export const ExploreClassificationFilter = ({
   const router = useRouter();
 
   // 변경: URL의 상위 분류에 종속되는 option만 Client state로 관리
-  const [depth2Options, setDepth2Options] = useState<
-    ClassificationOption[]
-  >([]);
+  const [depth2Options, setDepth2Options] = useState<ClassificationOption[]>(
+    [],
+  );
 
-  const [depth3Options, setDepth3Options] = useState<
-    ClassificationOption[]
-  >([]);
+  const [depth3Options, setDepth3Options] = useState<ClassificationOption[]>(
+    [],
+  );
 
-  const [isLoadingDepth2, setIsLoadingDepth2] =
-    useState(false);
+  const [isLoadingDepth2, setIsLoadingDepth2] = useState(false);
 
-  const [isLoadingDepth3, setIsLoadingDepth3] =
-    useState(false);
+  const [isLoadingDepth3, setIsLoadingDepth3] = useState(false);
 
-  const [depth2LoadFailed, setDepth2LoadFailed] =
-    useState(false);
+  const [depth2LoadFailed, setDepth2LoadFailed] = useState(false);
 
-  const [depth3LoadFailed, setDepth3LoadFailed] =
-    useState(false);
-  const [depth2Source, setDepth2Source] = useState<
-    string | null
-  >(null);
-  const [depth3Source, setDepth3Source] = useState<
-    string | null
-  >(null);
+  const [depth3LoadFailed, setDepth3LoadFailed] = useState(false);
+  const [depth2Source, setDepth2Source] = useState<string | null>(null);
+  const [depth3Source, setDepth3Source] = useState<string | null>(null);
 
   // 변경: 1단계 선택 시 2단계 option 조회
   useEffect(() => {
@@ -76,21 +64,15 @@ export const ExploreClassificationFilter = ({
         );
 
         if (!response.ok) {
-          throw new Error(
-            "Failed to load depth2 classifications",
-          );
+          throw new Error("Failed to load depth2 classifications");
         }
 
-        const data =
-          (await response.json()) as ClassificationOption[];
+        const data = (await response.json()) as ClassificationOption[];
 
         setDepth2Options(data);
         setDepth2Source(initialDepth1);
       } catch (error) {
-        if (
-          error instanceof DOMException &&
-          error.name === "AbortError"
-        ) {
+        if (error instanceof DOMException && error.name === "AbortError") {
           return;
         }
 
@@ -137,31 +119,21 @@ export const ExploreClassificationFilter = ({
         );
 
         if (!response.ok) {
-          throw new Error(
-            "Failed to load depth3 classifications",
-          );
+          throw new Error("Failed to load depth3 classifications");
         }
 
-        const data =
-          (await response.json()) as ClassificationOption[];
+        const data = (await response.json()) as ClassificationOption[];
 
         setDepth3Options(data);
-        setDepth3Source(
-          `${initialDepth1}:${initialDepth2}`,
-        );
+        setDepth3Source(`${initialDepth1}:${initialDepth2}`);
       } catch (error) {
-        if (
-          error instanceof DOMException &&
-          error.name === "AbortError"
-        ) {
+        if (error instanceof DOMException && error.name === "AbortError") {
           return;
         }
 
         setDepth3Options([]);
         setDepth3LoadFailed(true);
-        setDepth3Source(
-          `${initialDepth1}:${initialDepth2}`,
-        );
+        setDepth3Source(`${initialDepth1}:${initialDepth2}`);
       } finally {
         if (!controller.signal.aborted) {
           setIsLoadingDepth3(false);
@@ -179,38 +151,23 @@ export const ExploreClassificationFilter = ({
   const visibleDepth2Options =
     depth2Source === initialDepth1 ? depth2Options : [];
   const visibleDepth2LoadFailed =
-    depth2Source === initialDepth1
-      ? depth2LoadFailed
-      : false;
+    depth2Source === initialDepth1 ? depth2LoadFailed : false;
   const depth3Key =
-    initialDepth1 && initialDepth2
-      ? `${initialDepth1}:${initialDepth2}`
-      : null;
-  const visibleDepth3Options =
-    depth3Source === depth3Key ? depth3Options : [];
+    initialDepth1 && initialDepth2 ? `${initialDepth1}:${initialDepth2}` : null;
+  const visibleDepth3Options = depth3Source === depth3Key ? depth3Options : [];
   const visibleDepth3LoadFailed =
     depth3Source === depth3Key ? depth3LoadFailed : false;
 
-  const navigateWithParams = (
-    params: URLSearchParams,
-  ) => {
+  const navigateWithParams = (params: URLSearchParams) => {
     const queryString = params.toString();
 
-    router.push(
-      queryString
-        ? `/explore?${queryString}`
-        : "/explore",
-    );
+    router.push(queryString ? `/explore?${queryString}` : "/explore");
   };
 
-  const handleDepth1Change = (
-    event: ChangeEvent<HTMLSelectElement>,
-  ) => {
+  const handleDepth1Change = (event: ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
 
-    const params = new URLSearchParams(
-      window.location.search,
-    );
+    const params = new URLSearchParams(window.location.search);
 
     if (value) {
       params.set("category1", value);
@@ -226,14 +183,10 @@ export const ExploreClassificationFilter = ({
     navigateWithParams(params);
   };
 
-  const handleDepth2Change = (
-    event: ChangeEvent<HTMLSelectElement>,
-  ) => {
+  const handleDepth2Change = (event: ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
 
-    const params = new URLSearchParams(
-      window.location.search,
-    );
+    const params = new URLSearchParams(window.location.search);
 
     if (value) {
       params.set("category2", value);
@@ -248,14 +201,10 @@ export const ExploreClassificationFilter = ({
     navigateWithParams(params);
   };
 
-  const handleDepth3Change = (
-    event: ChangeEvent<HTMLSelectElement>,
-  ) => {
+  const handleDepth3Change = (event: ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
 
-    const params = new URLSearchParams(
-      window.location.search,
-    );
+    const params = new URLSearchParams(window.location.search);
 
     if (value) {
       params.set("category3", value);
@@ -270,106 +219,108 @@ export const ExploreClassificationFilter = ({
 
   return (
     <fieldset>
-      <legend>카테고리</legend>
+      {/* 변경: sidebar용 카테고리 필터 */}
+      <legend className="mb-3 text-sm font-semibold text-slate-900">
+        카테고리
+      </legend>
 
-      <div>
-        <label htmlFor="explore-category1">
-          대분류
-        </label>
+      <div className="space-y-4">
+        <div>
+          <label
+            htmlFor="explore-category1"
+            className="mb-1.5 block text-xs font-medium text-slate-600"
+          >
+            대분류
+          </label>
 
-        <select
-          id="explore-category1"
-          value={initialDepth1 ?? ""}
-          onChange={handleDepth1Change}
-        >
-          <option value="">전체 카테고리</option>
+          <select
+            id="explore-category1"
+            value={initialDepth1 ?? ""}
+            onChange={handleDepth1Change}
+            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-slate-950 focus:ring-2 focus:ring-slate-950/10"
+          >
+            <option value="">전체 카테고리</option>
 
-          {depth1Options.map((option) => (
-            <option
-              key={option.code}
-              value={option.code}
-            >
-              {option.name}
+            {depth1Options.map((option) => (
+              <option key={option.code} value={option.code}>
+                {option.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label
+            htmlFor="explore-category2"
+            className="mb-1.5 block text-xs font-medium text-slate-600"
+          >
+            중분류
+          </label>
+
+          <select
+            id="explore-category2"
+            value={initialDepth2 ?? ""}
+            onChange={handleDepth2Change}
+            disabled={
+              !initialDepth1 || isLoadingDepth2 || visibleDepth2LoadFailed
+            }
+            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-slate-950 focus:ring-2 focus:ring-slate-950/10 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400"
+          >
+            <option value="">
+              {isLoadingDepth2 ? "불러오는 중..." : "전체 중분류"}
             </option>
-          ))}
-        </select>
-      </div>
 
-      <div>
-        <label htmlFor="explore-category2">
-          중분류
-        </label>
+            {visibleDepth2Options.map((option) => (
+              <option key={option.code} value={option.code}>
+                {option.name}
+              </option>
+            ))}
+          </select>
 
-        <select
-          id="explore-category2"
-          value={initialDepth2 ?? ""}
-          onChange={handleDepth2Change}
-          disabled={
-            !initialDepth1 ||
-            isLoadingDepth2 ||
-            visibleDepth2LoadFailed
-          }
-        >
-          <option value="">
-            {isLoadingDepth2
-              ? "불러오는 중..."
-              : "전체 중분류"}
-          </option>
+          {visibleDepth2LoadFailed ? (
+            <p role="alert" className="mt-2 text-xs text-red-600">
+              중분류 정보를 불러오지 못했습니다.
+            </p>
+          ) : null}
+        </div>
 
-          {visibleDepth2Options.map((option) => (
-            <option
-              key={option.code}
-              value={option.code}
-            >
-              {option.name}
+        <div>
+          <label
+            htmlFor="explore-category3"
+            className="mb-1.5 block text-xs font-medium text-slate-600"
+          >
+            소분류
+          </label>
+
+          <select
+            id="explore-category3"
+            value={initialDepth3 ?? ""}
+            onChange={handleDepth3Change}
+            disabled={
+              !initialDepth1 ||
+              !initialDepth2 ||
+              isLoadingDepth3 ||
+              visibleDepth3LoadFailed
+            }
+            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-slate-950 focus:ring-2 focus:ring-slate-950/10 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400"
+          >
+            <option value="">
+              {isLoadingDepth3 ? "불러오는 중..." : "전체 소분류"}
             </option>
-          ))}
-        </select>
 
-        {visibleDepth2LoadFailed ? (
-          <p role="alert">
-            중분류 정보를 불러오지 못했습니다.
-          </p>
-        ) : null}
-      </div>
+            {visibleDepth3Options.map((option) => (
+              <option key={option.code} value={option.code}>
+                {option.name}
+              </option>
+            ))}
+          </select>
 
-      <div>
-        <label htmlFor="explore-category3">
-          소분류
-        </label>
-
-        <select
-          id="explore-category3"
-          value={initialDepth3 ?? ""}
-          onChange={handleDepth3Change}
-          disabled={
-            !initialDepth1 ||
-            !initialDepth2 ||
-            isLoadingDepth3 ||
-            visibleDepth3LoadFailed
-          }
-        >
-          <option value="">
-            {isLoadingDepth3
-              ? "불러오는 중..."
-              : "전체 소분류"}
-          </option>
-
-          {visibleDepth3Options.map((option) => (
-            <option
-              key={option.code}
-              value={option.code}
-            >
-              {option.name}
-            </option>
-          ))}
-        </select>
-
-        {visibleDepth3LoadFailed ? (
-          <p role="alert">
-            소분류 정보를 불러오지 못했습니다.
-          </p>
-        ) : null}
+          {visibleDepth3LoadFailed ? (
+            <p role="alert" className="mt-2 text-xs text-red-600">
+              소분류 정보를 불러오지 못했습니다.
+            </p>
+          ) : null}
+        </div>
       </div>
     </fieldset>
   );

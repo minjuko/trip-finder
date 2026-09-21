@@ -42,34 +42,22 @@ describe("TourList", () => {
       />,
     );
 
-    expect(
-      screen.getByRole("list"),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("list")).toBeInTheDocument();
 
-    expect(
-      screen.getAllByRole("listitem"),
-    ).toHaveLength(2);
+    expect(screen.getAllByRole("listitem")).toHaveLength(2);
 
-    expect(
-      screen.getByText("경복궁"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("경복궁")).toBeInTheDocument();
 
-    expect(
-      screen.getByText("창덕궁"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("창덕궁")).toBeInTheDocument();
   });
 
   it("renders an explicit empty state", () => {
     render(<TourList contents={[]} />);
 
     expect(
-      screen.getByText(
-        "조건에 맞는 관광 콘텐츠가 없습니다.",
-      ),
+      screen.getByText("조건에 맞는 관광 콘텐츠가 없습니다."),
     ).toBeInTheDocument();
 
-    expect(
-      screen.queryByRole("list"),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole("list")).not.toBeInTheDocument();
   });
 });

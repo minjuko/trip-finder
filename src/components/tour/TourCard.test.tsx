@@ -55,10 +55,7 @@ describe("TourCard", () => {
       screen.getByRole("link", {
         name: "경복궁 상세정보 보기",
       }),
-    ).toHaveAttribute(
-      "href",
-      "/places/126508",
-    );
+    ).toHaveAttribute("href", "/places/126508");
   });
 
   it("renders a fallback when the thumbnail is missing", () => {
@@ -71,9 +68,7 @@ describe("TourCard", () => {
       />,
     );
 
-    expect(
-      screen.getByText("이미지 없음"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("이미지 없음")).toBeInTheDocument();
   });
 
   it("renders a fallback when the address is missing", () => {
@@ -86,8 +81,6 @@ describe("TourCard", () => {
       />,
     );
 
-    expect(
-      screen.getByText("주소 정보 없음"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("주소 정보 없음")).toBeInTheDocument();
   });
 });
