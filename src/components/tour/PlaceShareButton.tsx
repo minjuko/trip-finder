@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";\n\nimport { Icon } from "@/components/ui/Icon";
+import { useState } from "react";
+
+import { Icon } from "@/components/ui/Icon";
 
 interface PlaceShareButtonProps {
   title: string;
