@@ -4,11 +4,13 @@ import "leaflet/dist/leaflet.css";
 
 import L from "leaflet";
 import Link from "next/link";
+import { useEffect } from "react";
 import {
   MapContainer,
   Marker,
   Popup,
   TileLayer,
+  useMap,
 } from "react-leaflet";
 
 import type { TourContent } from "@/types/tour";
@@ -24,6 +26,39 @@ const markerIcon = L.divIcon({
   iconAnchor: [12, 12],
   popupAnchor: [0, -14],
 });
+
+const MapViewport = ({
+  contents,
+}: {
+  contents: TourContent[];
+}) => {
+  const map = useMap();
+
+  useEffect(() => {
+    const coordinates = contents.flatMap((content) =>
+      content.coordinates ? [content.coordinates] : [],
+    );
+
+    if (coordinates.length === 1) {
+      map.setView(
+        [coordinates[0].latitude, coordinates[0].longitude],
+        13,
+      );
+      return;
+    }
+
+    const bounds = L.latLngBounds(
+      coordinates.map(({ latitude, longitude }) => [latitude, longitude]),
+    );
+
+    map.fitBounds(bounds, {
+      padding: [32, 32],
+      maxZoom: 13,
+    });
+  }, [contents, map]);
+
+  return null;
+};
 
 export const ExploreMap = ({ contents }: ExploreMapProps) => {
   const mappedContents = contents.filter(
@@ -60,6 +95,7 @@ export const ExploreMap = ({ contents }: ExploreMapProps) => {
         className="h-[28rem] w-full sm:h-[38rem]"
         aria-label="검색 결과 지도"
       >
+        <MapViewport contents={mappedContents} />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
