@@ -7,7 +7,7 @@ import { Icon, type IconName } from "@/components/ui/Icon";
 export const metadata: Metadata = {
   title: "국내 여행지 탐색",
   description:
-    "지역과 취향에 맞는 국내 관광 콘텐츠를 발견하고 저장해보세요.",
+    "지역과 취향에 맞는 국내 여행지를 탐색하고 관심 장소를 저장해 보세요.",
 };
 
 const REGION_LINKS = [
@@ -99,7 +99,7 @@ export default function Home() {
             </p>
 
             <h1 className="max-w-2xl text-4xl font-bold leading-[1.12] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-6xl">
-              국내 여행지를 한곳에서 <span className="text-brand">발견</span>해보세요.
+              국내 여행지를 한 곳에서 <span className="text-brand">발견</span>해보세요.
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-7 text-ink-muted sm:text-lg">
@@ -113,9 +113,8 @@ export default function Home() {
               href="/explore"
               className="font-semibold text-slate-700 underline decoration-slate-300 underline-offset-4 transition hover:text-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4"
             >
-              전체 여행지 탐색하기
+              전체 여행지 보기
             </Link>
-              <span className="text-slate-400">필터링 · 저장 · 재탐색</span>
             </div>
           </div>
 
@@ -128,10 +127,10 @@ export default function Home() {
                   <Icon name="compass" size={19} className="grid size-10 place-items-center rounded-full border border-white/20 p-2" />
                 </div>
                 <div>
-                  <p className="text-sm text-sky-100">가을 여행 추천</p>
+                  <p className="text-sm text-sky-100">계절 여행 추천</p>
                   <h2 className="mt-2 text-4xl font-semibold tracking-[-0.05em]">이번 계절의<br />여행지를 찾아보세요</h2>
                   <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur">
-                    <Icon name="bookmark" size={14} /> 관심 여행지를 저장해 보세요
+                    <Icon name="bookmark" size={14} /> 마음에 드는 여행지를 저장해 보세요
                   </p>
                   <nav aria-label="계절 추천 여행지" className="mt-7 grid gap-2">
                     {SEASONAL_RECOMMENDATIONS.map((recommendation) => (

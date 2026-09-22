@@ -61,13 +61,13 @@ export const HomeSearch = () => {
               event.target.value,
             )
           }
-          placeholder="여행지나 관광 콘텐츠를 검색해보세요"
-          className="min-w-0 flex-1 rounded-xl px-4 py-3 text-base text-slate-950 outline-none placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-slate-950"
+          placeholder="여행지 이름을 검색해 보세요"
+          className="min-w-0 flex-1 rounded-xl px-4 py-3 text-base text-slate-950 outline-none placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-brand"
         />
 
         <button
           type="submit"
-          className="inline-flex shrink-0 items-center justify-center rounded-xl bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
+          className="inline-flex shrink-0 items-center justify-center rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         >
           검색
         </button>

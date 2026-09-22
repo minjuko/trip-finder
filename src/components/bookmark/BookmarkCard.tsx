@@ -18,7 +18,7 @@ export const BookmarkCard = ({
     <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-lg hover:shadow-slate-200/50">
       <Link
         href={`/places/${bookmark.contentId}`}
-        aria-label={`${bookmark.title} 상세정보 보기`}
+        aria-label={`${bookmark.title} 상세 정보 보기`}
         className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand"
       >
         <div className="relative aspect-[4/3] overflow-hidden bg-surface-subtle">

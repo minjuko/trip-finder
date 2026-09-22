@@ -98,15 +98,14 @@ export const BookmarkList = () => {
 
           <p className="mt-2 text-sm leading-6 text-slate-500">
             관심 있는 여행지를 저장하면
-            이곳에서 다시 확인할 수
-            있습니다.
+            여기에서 다시 확인할 수 있습니다.
           </p>
 
           <Link
             href="/explore"
             className="mt-6 inline-flex items-center justify-center rounded-xl bg-brand px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           >
-            여행지 탐색하기
+            여행지 둘러보기
           </Link>
         </div>
       </div>
@@ -123,7 +122,7 @@ export const BookmarkList = () => {
           href="/explore"
           className="text-sm font-semibold text-brand transition hover:text-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         >
-          여행지 더 찾기 →
+          여행지 더 보기 →
         </Link>
       </div>
 

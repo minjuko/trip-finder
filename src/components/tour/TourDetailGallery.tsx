@@ -78,7 +78,7 @@ export const TourDetailGallery = ({
   if (!primaryImage) {
     return (
       <div className="flex aspect-[16/7] items-center justify-center rounded-3xl bg-surface-subtle text-sm text-slate-600">
-        이미지 정보가 없습니다.
+        등록된 이미지가 없습니다.
       </div>
     );
   }
