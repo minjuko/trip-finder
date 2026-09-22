@@ -120,7 +120,7 @@ export default function Home() {
           </div>
 
           <div aria-label="빠른 여행지 탐색" className="relative mx-auto hidden w-full max-w-md lg:block">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-sky-600 via-cyan-700 to-teal-700 p-6 text-white shadow-2xl shadow-sky-900/15">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-sky-600 via-sky-700 to-blue-800 p-6 text-white shadow-2xl shadow-sky-900/15">
               <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.12)_1px,transparent_1px)] [background-size:34px_34px]" />
               <div className="relative flex h-full flex-col justify-between">
                 <div className="flex items-start justify-between">
@@ -186,7 +186,7 @@ export default function Home() {
                     className="group flex min-h-20 items-center justify-between rounded-2xl border border-line bg-white px-4 py-3.5 text-left transition hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-lg hover:shadow-slate-200/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                   >
                     <span className="text-sm font-bold text-slate-900">{region.name}</span>
-                    <Icon name="arrow-right" size={16} className="text-slate-400 transition group-hover:translate-x-1 group-hover:text-brand" />
+                    <Icon name="arrow-right" size={16} className="text-slate-500 transition group-hover:translate-x-1 group-hover:text-brand" />
                 </Link>
               </li>
             ),
@@ -227,7 +227,7 @@ export default function Home() {
 
                     <span
                       aria-hidden="true"
-                      className="text-slate-400 transition group-hover:translate-x-1 group-hover:text-brand"
+                      className="text-slate-500 transition group-hover:translate-x-1 group-hover:text-brand"
                     >
                       <Icon name="arrow-right" size={17} />
                     </span>
