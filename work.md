@@ -44,11 +44,9 @@ Next.js·TypeScript·공공 API·접근성·검색 노출·테스트 역량을 �
 - 최신 정렬 UI 기준 Playwright E2E 8개 통과
 - 브라우저 콘솔 오류 없음 확인
 
-## 배포 전 남은 작업
+## 최종 검수 남은 작업
 
 - 최신 UI 변경사항 기준 모바일/데스크톱 실기기 시각 QA
-- Vercel 재배포 후 외부 API·웹폰트·지도·이미지 도메인 확인
 - 배포 환경에서 Lighthouse/axe 재검사
-- 필요 시 선택 기능 검토: 주변 관광지(locationBasedList2), 행사(searchFestival2), 숙박(searchStay2), 반려동물(detailPetTour2)
 
-현재 핵심 기능 구현은 완료 상태이며, 위 항목은 배포 품질 확인과 선택적 확장 작업이다.
+현재 핵심 기능 구현과 Vercel 배포는 완료 상태이며, 남은 항목은 최신 UI 기준 배포 품질과 문서 수치를 확정하기 위한 최종 검수 작업이다.

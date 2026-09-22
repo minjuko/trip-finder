@@ -219,7 +219,7 @@ Vitest와 React Testing Library로 다음 영역을 검증합니다.
 
 Playwright E2E는 **실제 TourAPI를 사용하는 로컬 integration test**로 구성했습니다.
 
-현재 E2E 7건은 다음 흐름을 검증합니다.
+현재 E2E 8건은 다음 흐름을 검증합니다.
 
 - Home 키워드 검색 → Explore
 - Home 지역 진입 → Explore 필터 상태
@@ -358,7 +358,7 @@ TripFinder는 한국관광공사 **국문 관광정보 서비스(TourAPI)**를 �
 - TypeScript strict typecheck
 - ESLint
 - Vitest unit/component tests
-- Playwright core E2E 7건
+- Playwright core E2E 8건
 - axe automated accessibility checks
 - Next.js production build
 - GitHub Actions CI

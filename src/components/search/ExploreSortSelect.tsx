@@ -1,10 +1,4 @@
-interface ExploreSortSelectProps {
-  sort: "relevance" | "title";
-}
-
-export const ExploreSortSelect = ({
-  sort: _sort,
-}: ExploreSortSelectProps) => {
+export const ExploreSortSelect = () => {
   return (
     <span
       aria-label="검색 결과 정렬: 가나다순"
