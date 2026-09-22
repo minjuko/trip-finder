@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
-import {
-  Geist,
-  Geist_Mono,
-} from "next/font/google";
+import { Geist_Mono, Noto_Sans_KR } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { Header } from "@/components/layout/Header";
 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const notoSansKr = Noto_Sans_KR({
+  variable: "--font-noto-sans-kr",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
