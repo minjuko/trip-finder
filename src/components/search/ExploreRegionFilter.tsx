@@ -169,7 +169,7 @@ export const ExploreRegionFilter = ({
               !initialRegion || isLoadingDistricts || visibleDistrictLoadFailed
             }
             // 변경: disabled 상태를 시각적으로 구분
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-slate-950 focus:ring-2 focus:ring-slate-950/10 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400"
+            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-slate-950 focus:ring-2 focus:ring-slate-950/10 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-700"
           >
             <option value="">
               {isLoadingDistricts ? "불러오는 중..." : "전체 시·군·구"}

@@ -44,7 +44,7 @@ export const TourDetailGallery = ({
           src={primaryImage}
           alt={`${title} 대표 이미지`}
           fill
-          priority
+          loading="eager"
           sizes="(min-width: 768px) 66vw, 100vw"
           className="object-cover"
         />
