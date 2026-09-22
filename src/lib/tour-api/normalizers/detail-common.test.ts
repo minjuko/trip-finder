@@ -127,4 +127,14 @@ describe("normalizeTourDetailCommonItem", () => {
         .homepage,
     ).toBeNull();
   });
+
+  it("rejects unsafe protocols extracted from homepage HTML", () => {
+    const item = getFixtureItem();
+
+    item.homepage = '<a href="javascript:alert(1)">홈페이지</a>';
+
+    expect(
+      normalizeTourDetailCommonItem(item).homepage,
+    ).toBeNull();
+  });
 });
