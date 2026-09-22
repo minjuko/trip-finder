@@ -26,15 +26,31 @@ const ExplorePage = async ({
     rawSearchParams,
   );
 
-  const [
-    regions,
-    depth1Options,
-    { contents },
-  ] = await Promise.all([
-    getRegions(),
-    getClassificationOptions(),
-    getExploreData(query),
-  ]);
+  const [regionsResult, depth1Result, exploreResult] =
+    await Promise.allSettled([
+      getRegions(),
+      getClassificationOptions(),
+      getExploreData(query),
+    ]);
+
+  // Filter metadata is optional. Keep the result view usable when a code
+  // endpoint is temporarily unavailable; the selected query still renders.
+  const regions =
+    regionsResult.status === "fulfilled"
+      ? regionsResult.value
+      : [];
+  const depth1Options =
+    depth1Result.status === "fulfilled"
+      ? depth1Result.value
+      : [];
+
+  // Search results are the primary page content. Preserve the existing error
+  // boundary behavior when the primary request fails.
+  if (exploreResult.status === "rejected") {
+    throw exploreResult.reason;
+  }
+
+  const { contents } = exploreResult.value;
 
   return (
     <main className="mx-auto w-full max-w-7xl px-6 py-10 lg:px-8">

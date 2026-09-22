@@ -38,11 +38,22 @@ export const getTourDetail = async (
         })
       : Promise.resolve([]);
 
-  const [information, images] =
-    await Promise.all([
+  // Intro/image are optional enrichments. A failure in either endpoint should
+  // not hide the common detail data that was already loaded successfully.
+  const [informationResult, imagesResult] =
+    await Promise.allSettled([
       informationPromise,
       getTourDetailImages(common.id),
     ]);
+
+  const information =
+    informationResult.status === "fulfilled"
+      ? informationResult.value
+      : [];
+  const images =
+    imagesResult.status === "fulfilled"
+      ? imagesResult.value
+      : [];
 
   return {
     ...common,

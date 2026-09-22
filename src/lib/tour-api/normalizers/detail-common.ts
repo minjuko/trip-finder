@@ -33,7 +33,7 @@ const normalizeHomepage = (
   );
 
   if (hrefMatch?.[1]) {
-    return hrefMatch[1].trim();
+    return normalizeExternalUrl(hrefMatch[1]);
   }
 
   // 변경: API가 향후 일반 URL을 반환하는 경우도 보존
@@ -41,7 +41,7 @@ const normalizeHomepage = (
     normalized.startsWith("http://") ||
     normalized.startsWith("https://")
   ) {
-    return normalized;
+    return normalizeExternalUrl(normalized);
   }
 
   return null;
@@ -136,4 +136,20 @@ export const normalizeTourDetailCommonItem = (
 
     overview: emptyToNull(item.overview),
   };
+};
+
+const normalizeExternalUrl = (
+  value: string,
+): string | null => {
+  try {
+    const url = new URL(value.trim());
+
+    if (url.protocol !== "http:" && url.protocol !== "https:") {
+      return null;
+    }
+
+    return url.toString();
+  } catch {
+    return null;
+  }
 };

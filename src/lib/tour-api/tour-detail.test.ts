@@ -257,32 +257,32 @@ describe("getTourDetail", () => {
     );
   });
 
-  // 하위 상세 API 오류를 숨기지 않고 호출 계층으로 전달
-  it("propagates an intro request failure", async () => {
+  // 선택적 intro API가 실패해도 공통 상세는 표시
+  it("keeps common detail when intro request fails", async () => {
     mockedGetTourDetailIntro.mockRejectedValue(
       new Error(
         "detailIntro request failed",
       ),
     );
 
-    await expect(
-      getTourDetail("127480"),
-    ).rejects.toThrow(
-      "detailIntro request failed",
-    );
+    await expect(getTourDetail("127480")).resolves.toMatchObject({
+      ...commonFixture,
+      information: [],
+      images: imagesFixture,
+    });
   });
 
-  it("propagates an image request failure", async () => {
+  it("keeps common detail when image request fails", async () => {
     mockedGetTourDetailImages.mockRejectedValue(
       new Error(
         "detailImage request failed",
       ),
     );
 
-    await expect(
-      getTourDetail("127480"),
-    ).rejects.toThrow(
-      "detailImage request failed",
-    );
+    await expect(getTourDetail("127480")).resolves.toMatchObject({
+      ...commonFixture,
+      information: informationFixture,
+      images: [],
+    });
   });
 });
