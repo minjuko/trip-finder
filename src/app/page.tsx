@@ -99,7 +99,8 @@ export default function Home() {
             </p>
 
             <h1 className="max-w-2xl text-4xl font-bold leading-[1.12] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-6xl">
-              다음 여행지를 <span className="text-brand">발견해 보세요.</span>
+              <span className="lg:block">다음 여행지를</span>{" "}
+              <span className="text-brand">발견해 보세요.</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-7 text-ink-muted sm:text-lg">
