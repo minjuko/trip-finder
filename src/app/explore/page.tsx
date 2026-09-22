@@ -192,7 +192,7 @@ const ExplorePage = async ({
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
-              <ExploreSortSelect sort={query.sort} />
+              <ExploreSortSelect />
               <p className="rounded-full bg-brand-soft px-3 py-1.5 text-xs font-semibold text-brand-strong">
                 {contents.page}페이지
               </p>
