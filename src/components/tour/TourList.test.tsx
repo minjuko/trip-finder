@@ -55,7 +55,7 @@ describe("TourList", () => {
     render(<TourList contents={[]} />);
 
     expect(
-      screen.getByText("조건에 맞는 관광 콘텐츠가 없습니다."),
+      screen.getByText("조건에 맞는 여행지가 없습니다."),
     ).toBeInTheDocument();
 
     expect(screen.queryByRole("list")).not.toBeInTheDocument();
