@@ -29,7 +29,6 @@ export const TourCard = ({
     <article className="relative h-full">
       <Link
         href={`/places/${content.id}`}
-        aria-label={`${content.title} 상세정보 보기`}
         className={`${layout === "list" ? "flex flex-col sm:flex-row" : "block"} group h-full overflow-hidden rounded-3xl border border-line bg-white transition duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-xl hover:shadow-slate-200/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2`}
       >
         <div className={`${layout === "list" ? "aspect-[4/3] sm:h-44 sm:w-64 sm:shrink-0 sm:aspect-auto" : "aspect-[4/3]"} relative overflow-hidden bg-surface-subtle`}>
