@@ -49,6 +49,8 @@ Next.js·TypeScript·공공 API·접근성·검색 노출·테스트 역량을 �
 ## 최종 검수 남은 작업
 
 - 최신 UI 변경사항 기준 모바일/데스크톱 실기기 시각 QA
-- 배포 환경에서 Lighthouse/axe 재검사
+- 최신 UI 기준 Playwright 8개 시나리오·axe 재검사
+- 배포 환경 Lighthouse Mobile 재측정 및 Paperlogy 웹폰트 비용 확인
+- 최신 측정값 확정 후 README·Notion 성능 수치 동기화
 
 현재 핵심 기능 구현과 Vercel 배포는 완료 상태이며, 남은 항목은 최신 UI 기준 배포 품질과 문서 수치를 확정하기 위한 최종 검수 작업이다.

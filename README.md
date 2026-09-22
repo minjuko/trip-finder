@@ -219,7 +219,7 @@ Vitest와 React Testing Library로 다음 영역을 검증합니다.
 
 Playwright E2E는 **실제 TourAPI를 사용하는 로컬 integration test**로 구성했습니다.
 
-현재 E2E 8건은 다음 흐름을 검증합니다.
+현재 E2E 시나리오는 총 8건입니다. 핵심 흐름과 접근성 검증은 다음과 같습니다.
 
 - Home 키워드 검색 → Explore
 - Home 지역 진입 → Explore 필터 상태
@@ -248,7 +248,7 @@ Clean CI 환경에서는 로컬의 Next.js 생성 타입에 가려져 있던 Roo
 
 ## Performance & Accessibility
 
-Vercel Production 환경에서 Chrome Lighthouse Mobile을 측정했습니다.
+Vercel Production 환경에서 Chrome Lighthouse Mobile을 측정했습니다. 아래 값은 현재 UI·Paperlogy 웹폰트 개편 전 기준이며, 최신 화면의 최종 성능 수치로 사용하지 않습니다.
 
 | Page | Performance | Accessibility | Best Practices | SEO | LCP | TBT | CLS |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
