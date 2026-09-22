@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import type {
   TourContentDetail,
@@ -36,12 +36,41 @@ export const TourDetailGallery = ({
     })),
   ].filter((image): image is { url: string; alt: string } => Boolean(image.url));
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const lastFocusedElementRef = useRef<HTMLElement | null>(null);
+
+  const openImage = (index: number) => {
+    lastFocusedElementRef.current =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
+    setSelectedImage(index);
+  };
+
+  const closeImage = () => {
+    setSelectedImage(null);
+    window.setTimeout(() => {
+      lastFocusedElementRef.current?.focus();
+    }, 0);
+  };
 
   useEffect(() => {
     if (selectedImage === null) return;
+
+    closeButtonRef.current?.focus();
+
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setSelectedImage(null);
+      if (event.key === "Escape") {
+        closeImage();
+        return;
+      }
+
+      if (event.key === "Tab") {
+        event.preventDefault();
+        closeButtonRef.current?.focus();
+      }
     };
+
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedImage]);
@@ -61,7 +90,7 @@ export const TourDetailGallery = ({
     >
       <button
         type="button"
-        onClick={() => setSelectedImage(0)}
+        onClick={() => openImage(0)}
         aria-label={`${title} 대표 이미지 크게 보기`}
         className="group relative aspect-[4/3] overflow-hidden bg-slate-100 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset md:aspect-auto md:min-h-[460px]"
       >
@@ -84,7 +113,7 @@ export const TourDetailGallery = ({
               <button
                 type="button"
                 key={image.id}
-                onClick={() => setSelectedImage(index + 1)}
+                onClick={() => openImage(index + 1)}
                 aria-label={`${title} 추가 이미지 ${index + 1} 크게 보기`}
                 className="group relative aspect-[4/3] overflow-hidden bg-slate-100 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset md:aspect-auto md:min-h-0"
               >
@@ -113,12 +142,13 @@ export const TourDetailGallery = ({
           aria-modal="true"
           aria-label={`${title} 이미지 크게 보기`}
           className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 p-5"
-          onClick={() => setSelectedImage(null)}
+          onClick={closeImage}
         >
           <button
             type="button"
             aria-label="이미지 닫기"
-            onClick={() => setSelectedImage(null)}
+            onClick={closeImage}
+            ref={closeButtonRef}
             className="absolute right-5 top-5 grid size-10 place-items-center rounded-full bg-white/15 text-xl text-white transition hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             ×
