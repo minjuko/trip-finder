@@ -1,6 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";\n\nimport { Icon, type IconName } from "@/components/ui/Icon";
+import { useRouter } from "next/navigation";
+
+import { Icon, type IconName } from "@/components/ui/Icon";
 
 interface ExploreViewToggleProps {
   view: "grid" | "list" | "map";
