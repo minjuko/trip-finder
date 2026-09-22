@@ -46,6 +46,7 @@ const createQuery = (
   keyword: null,
   page: 1,
   view: "grid",
+  sort: "relevance",
   ...overrides,
 });
 

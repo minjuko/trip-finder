@@ -10,6 +10,7 @@ const exploreSearchParamsSchema = z.object({
   keyword: z.string().optional(),
   page: z.string().optional(),
   view: z.string().optional(),
+  sort: z.string().optional(),
 });
 
 // 변경: URL parsing 이후 사용하는 Explore Query Model
@@ -22,6 +23,7 @@ export interface ExploreQuery {
   keyword: string | null;
   page: number;
   view: "grid" | "list";
+  sort: "relevance" | "title";
 }
 
 export type ExploreSearchParams = Record<
@@ -82,6 +84,7 @@ export const parseExploreQuery = (
     keyword: getSingleValue(searchParams.keyword),
     page: getSingleValue(searchParams.page),
     view: getSingleValue(searchParams.view),
+    sort: getSingleValue(searchParams.sort),
   };
 
   const parsed = exploreSearchParamsSchema.parse(candidate);
@@ -111,5 +114,6 @@ export const parseExploreQuery = (
     keyword: normalizeOptionalString(parsed.keyword),
     page: normalizePage(parsed.page),
     view: parsed.view === "list" ? "list" : "grid",
+    sort: parsed.sort === "title" ? "title" : "relevance",
   };
 };

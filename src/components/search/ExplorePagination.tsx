@@ -45,6 +45,10 @@ const getExploreHref = (
     params.set("view", "list");
   }
 
+  if (query.sort === "title") {
+    params.set("sort", "title");
+  }
+
   if (page > 1) {
     params.set("page", String(page));
   }

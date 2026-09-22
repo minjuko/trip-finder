@@ -13,6 +13,7 @@ describe("parseExploreQuery", () => {
       keyword: null,
       page: 1,
       view: "grid",
+      sort: "relevance",
     });
   });
 
@@ -36,6 +37,7 @@ describe("parseExploreQuery", () => {
       keyword: "한강",
       page: 3,
       view: "grid",
+      sort: "relevance",
     });
   });
 
@@ -58,6 +60,7 @@ describe("parseExploreQuery", () => {
       keyword: "한강",
       page: 1,
       view: "grid",
+      sort: "relevance",
     });
   });
 
@@ -80,6 +83,7 @@ describe("parseExploreQuery", () => {
       keyword: null,
       page: 1,
       view: "grid",
+      sort: "relevance",
     });
   });
 
@@ -108,6 +112,11 @@ describe("parseExploreQuery", () => {
   it("accepts the list view and falls back to grid for invalid values", () => {
     expect(parseExploreQuery({ view: "list" }).view).toBe("list");
     expect(parseExploreQuery({ view: "table" }).view).toBe("grid");
+  });
+
+  it("accepts title sorting and falls back to relevance for invalid values", () => {
+    expect(parseExploreQuery({ sort: "title" }).sort).toBe("title");
+    expect(parseExploreQuery({ sort: "unknown" }).sort).toBe("relevance");
   });
 
   it("ignores district when region is missing", () => {
@@ -163,6 +172,7 @@ describe("parseExploreQuery", () => {
       keyword: "서울",
       page: 2,
       view: "grid",
+      sort: "relevance",
     });
   });
 
