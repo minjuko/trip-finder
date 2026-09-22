@@ -4,6 +4,7 @@ import { ExploreClassificationFilter } from "@/components/search/ExploreClassifi
 import { ExplorePagination } from "@/components/search/ExplorePagination";
 import { ExploreRegionFilter } from "@/components/search/ExploreRegionFilter";
 import { ExploreSearch } from "@/components/search/ExploreSearch";
+import { ExploreViewToggle } from "@/components/search/ExploreViewToggle";
 import { TourList } from "@/components/tour/TourList";
 import { getExploreData } from "@/lib/search/explore-data";
 import {
@@ -173,15 +174,19 @@ const ExplorePage = async ({
               </p>
             </div>
 
-            <p className="shrink-0 rounded-full bg-surface-subtle px-3 py-1.5 text-xs font-semibold text-slate-600">
-              PAGE {contents.page}
-            </p>
+            <div className="flex items-center gap-3">
+              <p className="rounded-full bg-surface-subtle px-3 py-1.5 text-xs font-semibold text-slate-600">
+                PAGE {contents.page}
+              </p>
+              <ExploreViewToggle view={query.view} />
+            </div>
           </div>
 
           <ExploreActiveFilters query={query} />
 
           <TourList
             contents={contents.items}
+            view={query.view}
           />
 
           <ExplorePagination

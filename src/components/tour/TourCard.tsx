@@ -7,11 +7,13 @@ import type { TourContent } from "@/types/tour";
 interface TourCardProps {
   content: TourContent;
   isAboveFold?: boolean;
+  layout?: "grid" | "list";
 }
 
 export const TourCard = ({
   content,
   isAboveFold = false,
+  layout = "grid",
 }: TourCardProps) => {
   const address = content.address?.primary ?? "주소 정보 없음";
   const regionLabel = content.region
@@ -26,16 +28,16 @@ export const TourCard = ({
       <Link
         href={`/places/${content.id}`}
         aria-label={`${content.title} 상세정보 보기`}
-        className="group block h-full overflow-hidden rounded-3xl border border-line bg-white transition duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-xl hover:shadow-slate-200/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+        className={`${layout === "list" ? "flex flex-col sm:flex-row" : "block"} group h-full overflow-hidden rounded-3xl border border-line bg-white transition duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-xl hover:shadow-slate-200/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2`}
       >
-        <div className="relative aspect-[4/3] overflow-hidden bg-surface-subtle">
+        <div className={`${layout === "list" ? "aspect-[4/3] sm:h-44 sm:w-64 sm:shrink-0 sm:aspect-auto" : "aspect-[4/3]"} relative overflow-hidden bg-surface-subtle`}>
           {content.thumbnail ? (
             <Image
               src={content.thumbnail.url}
               alt=""
               fill
               loading={isAboveFold ? "eager" : "lazy"}
-              sizes="(min-width: 1280px) 280px, (min-width: 768px) 50vw, 100vw"
+              sizes={layout === "list" ? "(min-width: 640px) 256px, 100vw" : "(min-width: 1280px) 280px, (min-width: 768px) 50vw, 100vw"}
               className="object-cover transition duration-500 group-hover:scale-[1.04]"
             />
           ) : (
@@ -54,7 +56,7 @@ export const TourCard = ({
           ) : null}
         </div>
 
-        <div className="p-5 sm:p-6">
+        <div className="min-w-0 p-5 sm:p-6">
           {categoryLabel ? (
             <p className="mb-2 text-xs font-bold tracking-wide text-brand">
               {categoryLabel}
