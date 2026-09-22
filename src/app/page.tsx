@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import { HomeSearch } from "@/components/search/HomeSearch";\nimport { Icon, type IconName } from "@/components/ui/Icon";
+import { HomeSearch } from "@/components/search/HomeSearch";
+import { Icon, type IconName } from "@/components/ui/Icon";
 
 export const metadata: Metadata = {
   title: "국내 여행지 탐색",
