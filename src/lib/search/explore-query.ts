@@ -22,7 +22,7 @@ export interface ExploreQuery {
   category3: string | null;
   keyword: string | null;
   page: number;
-  view: "grid" | "list";
+  view: "grid" | "list" | "map";
   sort: "relevance" | "title";
 }
 
@@ -113,7 +113,10 @@ export const parseExploreQuery = (
     category3,
     keyword: normalizeOptionalString(parsed.keyword),
     page: normalizePage(parsed.page),
-    view: parsed.view === "list" ? "list" : "grid",
+    view:
+      parsed.view === "list" || parsed.view === "map"
+        ? parsed.view
+        : "grid",
     sort: parsed.sort === "title" ? "title" : "relevance",
   };
 };

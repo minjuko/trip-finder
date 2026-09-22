@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 
 interface ExploreViewToggleProps {
-  view: "grid" | "list";
+  view: "grid" | "list" | "map";
 }
 
 export const ExploreViewToggle = ({
@@ -11,7 +11,7 @@ export const ExploreViewToggle = ({
 }: ExploreViewToggleProps) => {
   const router = useRouter();
 
-  const changeView = (nextView: "grid" | "list") => {
+  const changeView = (nextView: "grid" | "list" | "map") => {
     const params = new URLSearchParams(window.location.search);
     if (nextView === "grid") {
       params.delete("view");
@@ -25,16 +25,24 @@ export const ExploreViewToggle = ({
 
   return (
     <div className="inline-flex rounded-xl border border-line bg-white p-1 shadow-sm" aria-label="결과 보기 방식">
-      {(["grid", "list"] as const).map((option) => (
+      {(["grid", "list", "map"] as const).map((option) => (
         <button
           key={option}
           type="button"
           aria-pressed={view === option}
-          aria-label={option === "grid" ? "카드형으로 보기" : "목록형으로 보기"}
+          aria-label={
+            option === "grid"
+              ? "카드형으로 보기"
+              : option === "list"
+                ? "목록형으로 보기"
+                : "지도로 보기"
+          }
           onClick={() => changeView(option)}
           className={`grid size-9 place-items-center rounded-lg text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${view === option ? "bg-slate-950 text-white" : "text-slate-500 hover:bg-surface-subtle hover:text-slate-900"}`}
         >
-          <span aria-hidden="true">{option === "grid" ? "▦" : "☰"}</span>
+          <span aria-hidden="true">
+            {option === "grid" ? "▦" : option === "list" ? "☰" : "⌖"}
+          </span>
         </button>
       ))}
     </div>
