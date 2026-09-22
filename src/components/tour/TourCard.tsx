@@ -45,14 +45,13 @@ export const TourCard = ({
           ) : (
             <div
               aria-label="대표 이미지 준비 중"
-              className="relative flex h-full items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_20%_20%,#dbeafe_0,transparent_38%),linear-gradient(135deg,#e0f2fe,#f8fafc)] text-slate-500"
+              className="flex h-full items-center justify-center bg-surface-subtle text-slate-500"
             >
-              <div aria-hidden="true" className="absolute -right-8 -top-8 size-32 rounded-full border-[18px] border-white/70" />
-              <div className="relative grid place-items-center gap-2 text-center">
-                <span className="grid size-12 place-items-center rounded-2xl bg-white/80 text-brand shadow-sm">
-                  <Icon name="compass" size={24} />
+              <div className="grid place-items-center gap-2 text-center">
+                <span className="grid size-10 place-items-center rounded-xl bg-brand-soft text-brand">
+                  <Icon name="compass" size={20} />
                 </span>
-                <span className="text-xs font-semibold text-slate-500">여행지 미리보기</span>
+                <span className="text-xs font-medium text-slate-600">등록된 이미지가 없습니다</span>
                 <span className="sr-only">이미지 없음</span>
               </div>
             </div>
