@@ -1,4 +1,6 @@
-import Link from "next/link";\n\nimport { Icon } from "@/components/ui/Icon";
+import Link from "next/link";
+
+import { Icon } from "@/components/ui/Icon";
 
 export const Header = () => {
   return (
