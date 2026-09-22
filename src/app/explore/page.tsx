@@ -4,6 +4,7 @@ import { ExploreClassificationFilter } from "@/components/search/ExploreClassifi
 import { ExplorePagination } from "@/components/search/ExplorePagination";
 import { ExploreRegionFilter } from "@/components/search/ExploreRegionFilter";
 import { ExploreSearch } from "@/components/search/ExploreSearch";
+import { ExploreSortSelect } from "@/components/search/ExploreSortSelect";
 import { ExploreViewToggle } from "@/components/search/ExploreViewToggle";
 import { TourList } from "@/components/tour/TourList";
 import { getExploreData } from "@/lib/search/explore-data";
@@ -59,6 +60,12 @@ const ExplorePage = async ({
   }
 
   const { contents } = exploreResult.value;
+  const visibleContents =
+    query.sort === "title"
+      ? [...contents.items].sort((a, b) =>
+          a.title.localeCompare(b.title, "ko"),
+        )
+      : contents.items;
   const activeFilterCount = [
     query.keyword,
     query.region,
@@ -174,7 +181,8 @@ const ExplorePage = async ({
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <ExploreSortSelect sort={query.sort} />
               <p className="rounded-full bg-surface-subtle px-3 py-1.5 text-xs font-semibold text-slate-600">
                 PAGE {contents.page}
               </p>
@@ -185,7 +193,7 @@ const ExplorePage = async ({
           <ExploreActiveFilters query={query} />
 
           <TourList
-            contents={contents.items}
+            contents={visibleContents}
             view={query.view}
           />
 

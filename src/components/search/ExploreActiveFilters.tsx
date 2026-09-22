@@ -22,6 +22,7 @@ const buildHref = (
     ["keyword", query.keyword],
     ["page", query.page],
     ["view", query.view],
+    ["sort", query.sort],
   ];
 
   entries.forEach(([key, value]) => {
