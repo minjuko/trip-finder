@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { getClassificationOptions } from "@/lib/tour-api/classification";
+import { classificationOptionResponseSchema } from "@/lib/search/option-schemas";
 
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
@@ -30,5 +31,7 @@ export const GET = async (request: NextRequest) => {
       depth2Code,
     });
 
-  return NextResponse.json(classifications);
+  return NextResponse.json(
+    classificationOptionResponseSchema.parse(classifications),
+  );
 };

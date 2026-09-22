@@ -4,6 +4,7 @@ import { type ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import type { ClassificationOption } from "@/types/tour";
+import { classificationOptionResponseSchema } from "@/lib/search/option-schemas";
 
 interface ExploreClassificationFilterProps {
   depth1Options: ClassificationOption[];
@@ -67,7 +68,9 @@ export const ExploreClassificationFilter = ({
           throw new Error("Failed to load depth2 classifications");
         }
 
-        const data = (await response.json()) as ClassificationOption[];
+        const data = classificationOptionResponseSchema.parse(
+          await response.json(),
+        ) as ClassificationOption[];
 
         setDepth2Options(data);
         setDepth2Source(initialDepth1);
