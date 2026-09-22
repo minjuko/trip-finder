@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { BookmarkButton } from "@/components/bookmark/BookmarkButton";
 import { PlaceShareButton } from "@/components/tour/PlaceShareButton";
+import { CopyAddressButton } from "@/components/tour/CopyAddressButton";
 import { TourDetailGallery } from "@/components/tour/TourDetailGallery";
 import { TourDetailInformation } from "@/components/tour/TourDetailInformation";
 import { TourDetailOverview } from "@/components/tour/TourDetailOverview";
@@ -102,6 +103,7 @@ const PlaceDetailPage = async ({
             {address ? (
               <p className="mt-3 text-base leading-7 text-slate-600">
                 {address}
+                <CopyAddressButton address={address} />
               </p>
             ) : null}
           </div>
