@@ -14,32 +14,34 @@ const REGION_LINKS = [
   {
     code: "11",
     name: "서울특별시",
-    note: "도시의 결을 따라",
   },
   {
     code: "26",
     name: "부산광역시",
-    note: "바다와 골목 사이",
   },
+  { code: "27", name: "대구광역시" },
   {
     code: "28",
     name: "인천광역시",
-    note: "새로운 장면을 찾아",
   },
+  { code: "29", name: "광주광역시" },
+  { code: "30", name: "대전광역시" },
+  { code: "31", name: "울산광역시" },
+  { code: "36", name: "세종특별자치시" },
   {
     code: "41",
     name: "경기도",
-    note: "도심 가까운 여유",
   },
+  { code: "42", name: "강원특별자치도" },
+  { code: "43", name: "충청북도" },
+  { code: "44", name: "충청남도" },
+  { code: "45", name: "전북특별자치도" },
+  { code: "46", name: "전라남도" },
+  { code: "47", name: "경상북도" },
+  { code: "48", name: "경상남도" },
   {
     code: "50",
     name: "제주특별자치도",
-    note: "느리게 걷는 섬",
-  },
-  {
-    code: "51",
-    name: "강원특별자치도",
-    note: "숲과 바람을 만나는",
   },
 ] as const;
 
@@ -76,26 +78,32 @@ const CATEGORY_LINKS = [
   },
 ] as const;
 
+const SEASONAL_RECOMMENDATIONS = [
+  { region: "강원 속초", title: "설악산", keyword: "설악산" },
+  { region: "경북 경주", title: "첨성대 · 황리단길", keyword: "경주" },
+  { region: "전북 정읍", title: "내장산", keyword: "내장산" },
+  { region: "전남 순천", title: "순천만습지", keyword: "순천만습지" },
+] as const;
+
 export default function Home() {
   return (
     <main>
       {/* 변경: 서비스의 목적과 검색 진입점을 제공하는 Hero */}
-      <section className="relative overflow-hidden border-b border-line bg-[radial-gradient(circle_at_15%_20%,#dbeafe_0,transparent_34%),linear-gradient(135deg,#eff6ff_0%,#f8fbff_56%,#eef6ff_100%)]">
+      <section className="relative overflow-hidden border-b border-line bg-[radial-gradient(circle_at_15%_20%,#e0f2fe_0,transparent_34%),linear-gradient(135deg,#f0f9ff_0%,#fbfdff_56%,#f0fdfa_100%)]">
         <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-10 size-80 rounded-full border-[36px] border-white/50 blur-[1px] sm:size-[30rem]" />
         <div className="relative mx-auto grid w-full max-w-7xl items-center gap-14 px-5 py-16 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
           <div>
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-white/70 px-3 py-1.5 text-xs font-bold tracking-[0.16em] text-brand">
-              <span className="size-1.5 rounded-full bg-brand" /> EXPLORE KOREA
+            <p className="mb-5 inline-flex items-center gap-2 text-brand">
+              <span className="size-1.5 rounded-full bg-brand" />
+              <span className="tripfinder-wordmark">TRIPFINDER</span>
             </p>
 
-            <h1 className="max-w-2xl text-4xl font-bold leading-[1.08] tracking-[-0.05em] text-slate-950 sm:text-6xl lg:text-[4.5rem]">
-              국내 여행지를
-              <br />한곳에서 <span className="text-brand">발견</span>해보세요.
+            <h1 className="max-w-2xl text-4xl font-bold leading-[1.12] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-6xl">
+              국내 여행지를 한곳에서 <span className="text-brand">발견</span>해보세요.
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-7 text-ink-muted sm:text-lg">
-              오늘의 기분과 가고 싶은 지역을 따라,
-              아직 만나지 못한 여행의 장면을 찾아보세요.
+              지역과 관심사에 맞는 국내 관광지를 찾아보세요.
             </p>
 
             <HomeSearch />
@@ -107,31 +115,42 @@ export default function Home() {
             >
               전체 여행지 탐색하기
             </Link>
-              <span className="text-slate-400">필터 · 저장 · 다시 찾기</span>
+              <span className="text-slate-400">필터링 · 저장 · 재탐색</span>
             </div>
           </div>
 
-          <div aria-label="여행 영감을 보여주는 장식 영역" className="relative mx-auto hidden w-full max-w-md lg:block">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#0c4a6e] p-6 text-white shadow-2xl shadow-brand/20">
+          <div aria-label="빠른 여행지 탐색" className="relative mx-auto hidden w-full max-w-md lg:block">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-sky-600 via-cyan-700 to-teal-700 p-6 text-white shadow-2xl shadow-sky-900/15">
               <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.12)_1px,transparent_1px)] [background-size:34px_34px]" />
               <div className="relative flex h-full flex-col justify-between">
                 <div className="flex items-start justify-between">
-                  <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-medium backdrop-blur">YOUR NEXT PLACE</span>
-                  <span className="grid size-10 place-items-center rounded-full border border-white/20 text-lg">↗</span>
+              <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-medium backdrop-blur">빠른 탐색</span>
+                  <Icon name="compass" size={19} className="grid size-10 place-items-center rounded-full border border-white/20 p-2" />
                 </div>
                 <div>
-                  <p className="text-sm text-sky-100">지금 떠오르는 곳</p>
-                  <p className="mt-2 text-4xl font-semibold tracking-[-0.05em]">바다를<br />따라 걷는 하루</p>
-                  <div className="mt-6 flex items-center gap-2 text-sm text-sky-100"><span className="size-2 rounded-full bg-sky-200" /> 전국의 관광 콘텐츠를 탐색해보세요</div>
+                  <p className="text-sm text-sky-100">가을 여행 추천</p>
+                  <h2 className="mt-2 text-4xl font-semibold tracking-[-0.05em]">이번 계절의<br />여행지를 찾아보세요</h2>
+                  <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur">
+                    <Icon name="bookmark" size={14} /> 관심 여행지를 저장해 보세요
+                  </p>
+                  <nav aria-label="계절 추천 여행지" className="mt-7 grid gap-2">
+                    {SEASONAL_RECOMMENDATIONS.map((recommendation) => (
+                      <Link
+                        key={recommendation.title}
+                        href={`/explore?keyword=${encodeURIComponent(recommendation.keyword)}`}
+                        className="group flex items-center justify-between rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-semibold text-white backdrop-blur transition hover:border-white/40 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-sky-700"
+                      >
+                        <span><span className="mr-2 text-xs font-medium text-sky-100">{recommendation.region}</span>{recommendation.title}</span>
+                        <Icon name="arrow-right" size={16} className="transition group-hover:translate-x-1" />
+                      </Link>
+                    ))}
+                  </nav>
                 </div>
               </div>
             </div>
-            <div className="absolute -bottom-5 -left-8 rounded-2xl border border-white/80 bg-white px-4 py-3 shadow-xl">
-              <p className="text-[10px] font-bold tracking-widest text-slate-600">TRIP NOTE</p>
-              <p className="mt-1 text-sm font-semibold text-slate-800">저장해두면 다시 만날 수 있어요</p>
-            </div>
           </div>
         </div>
+
       </section>
 
       {/* 변경: 실제 법정동 코드 기반 지역 탐색 진입점 */}
@@ -141,10 +160,6 @@ export default function Home() {
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="mb-2 text-xs font-bold tracking-[0.16em] text-brand">
-              REGION
-            </p>
-
             <h2
               id="region-heading"
               className="text-3xl font-bold tracking-[-0.04em] text-slate-950"
@@ -152,30 +167,26 @@ export default function Home() {
               지역으로 탐색
             </h2>
 
-            <p className="mt-2 text-sm leading-6 text-slate-600">
-              원하는 지역을 선택해
-              관광 콘텐츠를 확인하세요.
-            </p>
           </div>
 
           <Link
             href="/explore"
-            className="w-fit text-sm font-semibold text-slate-600 transition hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-4"
+            className="group inline-flex w-fit items-center text-sm font-semibold text-slate-600 transition hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-4"
           >
-            전체 지역 보기 →
+            전체 지역 보기 <Icon name="arrow-right" size={16} className="ml-1 inline transition group-hover:translate-x-1" />
           </Link>
         </div>
 
-        <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+        <ul className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {REGION_LINKS.map(
             (region) => (
               <li key={region.code}>
                 <Link
                   href={`/explore?region=${region.code}`}
-                    className="group flex min-h-28 flex-col justify-between rounded-2xl border border-line bg-white p-4 text-left transition hover:-translate-y-1 hover:border-brand/30 hover:shadow-lg hover:shadow-slate-200/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                    className="group flex min-h-20 items-center justify-between rounded-2xl border border-line bg-white px-4 py-3.5 text-left transition hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-lg hover:shadow-slate-200/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                   >
-                    <span className="text-xs font-medium text-slate-600">0{REGION_LINKS.indexOf(region) + 1}</span>
-                    <span><span className="block text-sm font-bold text-slate-900">{region.name}</span><span className="mt-1 block text-xs text-slate-500 transition group-hover:text-brand">{region.note}</span></span>
+                    <span className="text-sm font-bold text-slate-900">{region.name}</span>
+                    <Icon name="arrow-right" size={16} className="text-slate-400 transition group-hover:translate-x-1 group-hover:text-brand" />
                 </Link>
               </li>
             ),
@@ -190,10 +201,6 @@ export default function Home() {
       >
         <div className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-8">
           <div>
-            <p className="mb-2 text-xs font-bold tracking-[0.16em] text-brand">
-              CATEGORY
-            </p>
-
             <h2
               id="category-heading"
             className="text-3xl font-bold tracking-[-0.04em] text-slate-950"
@@ -201,13 +208,9 @@ export default function Home() {
               카테고리로 탐색
             </h2>
 
-            <p className="mt-2 text-sm leading-6 text-slate-600">
-              관심 있는 여행 유형에서
-              탐색을 시작하세요.
-            </p>
           </div>
 
-          <ul className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {CATEGORY_LINKS.map(
               (category) => (
                 <li
@@ -226,7 +229,7 @@ export default function Home() {
                       aria-hidden="true"
                       className="text-slate-400 transition group-hover:translate-x-1 group-hover:text-brand"
                     >
-                      →
+                      <Icon name="arrow-right" size={17} />
                     </span>
                   </Link>
                 </li>

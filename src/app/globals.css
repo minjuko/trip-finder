@@ -1,15 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fbff;
-  --foreground: #172033;
-  --surface-subtle: #f0f7ff;
+  --background: #fbfdff;
+  --foreground: #1e293b;
+  --surface-subtle: #f3f8fc;
   --brand: #0369a1;
   --brand-strong: #075985;
   --brand-soft: #e0f2fe;
-  --ink-muted: #526072;
-  --line: #cbd5e1;
+  --ink-muted: #64748b;
+  --line: #d7e2ec;
 }
+
+/* 다른 폰트 테스트 시 아래 src URL 9개만 교체하세요. */
+@font-face { font-family: "Paperlogy"; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2") format("woff2"); font-weight: 100; font-display: swap; }
+@font-face { font-family: "Paperlogy"; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2") format("woff2"); font-weight: 200; font-display: swap; }
+@font-face { font-family: "Paperlogy"; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Paperlogy"; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Paperlogy"; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Paperlogy"; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Paperlogy"; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Paperlogy"; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2") format("woff2"); font-weight: 800; font-display: swap; }
+@font-face { font-family: "Paperlogy"; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2") format("woff2"); font-weight: 900; font-display: swap; }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -20,7 +32,8 @@
   --color-brand-soft: var(--brand-soft);
   --color-ink-muted: var(--ink-muted);
   --color-line: var(--line);
-  --font-sans: var(--font-noto-sans-kr);
+  --font-sans: "Paperlogy", "Apple SD Gothic Neo", Arial, sans-serif;
+  --font-display: "Paperlogy", "Apple SD Gothic Neo", Arial, sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
@@ -32,8 +45,22 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-noto-sans-kr), "Apple SD Gothic Neo", Arial, sans-serif;
+  font-family: "Paperlogy", "Apple SD Gothic Neo", Arial, sans-serif;
   letter-spacing: -0.012em;
+}
+
+/* 서비스명과 페이지 상단 라벨은 헤더 워드마크와 같은 리듬으로 통일합니다. */
+.tripfinder-wordmark {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+/* 제목과 UI는 같은 서체의 웨이트 차이로 계층을 만들고, 본문도 동일한 서체로 통일합니다. */
+:where(h1, h2, h3, h4, h5, h6, header, nav, button, label, summary, dt) {
+  font-family: var(--font-display);
 }
 
 ::selection {
@@ -57,5 +84,5 @@ body {
 }
 
 .leaflet-popup-content-wrapper { border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 14px 34px rgb(15 23 42 / 16%); }
-.leaflet-popup-content { margin: 16px; font-family: var(--font-noto-sans-kr), "Apple SD Gothic Neo", Arial, sans-serif; }
+.leaflet-popup-content { margin: 16px; font-family: "Paperlogy", "Apple SD Gothic Neo", Arial, sans-serif; }
 .leaflet-popup-tip { box-shadow: 2px 2px 4px rgb(15 23 42 / 8%); }
