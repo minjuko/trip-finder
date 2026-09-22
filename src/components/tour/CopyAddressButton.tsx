@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";\n\nimport { Icon } from "@/components/ui/Icon";
+import { useState } from "react";
+
+import { Icon } from "@/components/ui/Icon";
 
 interface CopyAddressButtonProps {
   address: string;
@@ -26,7 +28,8 @@ export const CopyAddressButton = ({ address }: CopyAddressButtonProps) => {
       aria-label="주소 복사"
       className="ml-2 inline-flex rounded-md px-1.5 py-1 text-xs font-semibold text-brand transition hover:bg-brand-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
     >
-      <Icon name={copied ? "check" : "copy"} size={14} className="mr-1" />\n      {copied ? "복사됨" : "주소 복사"}
+      <Icon name={copied ? "check" : "copy"} size={14} className="mr-1" />
+      {copied ? "복사됨" : "주소 복사"}
     </button>
   );
 };
