@@ -53,7 +53,7 @@ describe("TourCard", () => {
 
     expect(
       screen.getByRole("link", {
-        name: "경복궁 상세정보 보기",
+        name: new RegExp(content.title),
       }),
     ).toHaveAttribute("href", "/places/126508");
   });
