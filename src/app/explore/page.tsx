@@ -30,6 +30,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/explore",
   },
+  openGraph: {
+    url: "/explore",
+  },
 };
 
 const ExplorePage = async ({
