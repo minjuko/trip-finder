@@ -1,15 +1,18 @@
 import type { TourContent } from "@/types/tour";
+import Link from "next/link";
 
 import { TourCard } from "./TourCard";
 
 interface TourListProps {
   contents: TourContent[];
   view?: "grid" | "list";
+  emptyActionHref?: string;
 }
 
 export const TourList = ({
   contents,
   view = "grid",
+  emptyActionHref,
 }: TourListProps) => {
   if (contents.length === 0) {
     return (
@@ -23,6 +26,14 @@ export const TourList = ({
           <p className="mt-2 text-sm text-slate-500">
             검색어나 필터 조건을 변경해보세요.
           </p>
+          {emptyActionHref ? (
+            <Link
+              href={emptyActionHref}
+              className="mt-5 inline-flex items-center justify-center rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+            >
+              필터 전체 초기화
+            </Link>
+          ) : null}
         </div>
       </div>
     );

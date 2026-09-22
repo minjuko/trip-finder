@@ -3,6 +3,8 @@ import Link from "next/link";
 
 import { CATEGORY_LABELS, REGION_LABELS } from "@/constants/tour-labels";
 import type { TourContent } from "@/types/tour";
+import { BookmarkButton } from "@/components/bookmark/BookmarkButton";
+import { Icon } from "@/components/ui/Icon";
 
 interface TourCardProps {
   content: TourContent;
@@ -24,7 +26,7 @@ export const TourCard = ({
     : null;
 
   return (
-    <article className="h-full">
+    <article className="relative h-full">
       <Link
         href={`/places/${content.id}`}
         aria-label={`${content.title} 상세정보 보기`}
@@ -42,10 +44,17 @@ export const TourCard = ({
             />
           ) : (
             <div
-              aria-hidden="true"
-              className="flex h-full items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 text-sm font-medium text-slate-600"
+              aria-label="대표 이미지 준비 중"
+              className="relative flex h-full items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_20%_20%,#dbeafe_0,transparent_38%),linear-gradient(135deg,#e0f2fe,#f8fafc)] text-slate-500"
             >
-              이미지 없음
+              <div aria-hidden="true" className="absolute -right-8 -top-8 size-32 rounded-full border-[18px] border-white/70" />
+              <div className="relative grid place-items-center gap-2 text-center">
+                <span className="grid size-12 place-items-center rounded-2xl bg-white/80 text-brand shadow-sm">
+                  <Icon name="compass" size={24} />
+                </span>
+                <span className="text-xs font-semibold text-slate-500">여행지 미리보기</span>
+                <span className="sr-only">이미지 없음</span>
+              </div>
             </div>
           )}
 
@@ -72,6 +81,10 @@ export const TourCard = ({
           </p>
         </div>
       </Link>
+
+      <div className="absolute right-3 top-3 z-10">
+        <BookmarkButton content={content} compact />
+      </div>
     </article>
   );
 };

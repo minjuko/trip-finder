@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 import { Icon } from "@/components/ui/Icon";
 
@@ -14,11 +14,13 @@ import {
 } from "@/lib/bookmarks/storage";
 import type {
   Bookmark,
+  TourContent,
   TourContentDetail,
 } from "@/types/tour";
 
 interface BookmarkButtonProps {
-  content: TourContentDetail;
+  content: TourContent | TourContentDetail;
+  compact?: boolean;
 }
 
 const subscribeToBookmarks = (
@@ -52,7 +54,7 @@ const getServerInitializedSnapshot = () =>
   false;
 
 const createBookmark = (
-  content: TourContentDetail,
+  content: TourContent | TourContentDetail,
 ): Bookmark => ({
   contentId: content.id,
   contentTypeId:
@@ -77,7 +79,9 @@ const createBookmark = (
 
 export const BookmarkButton = ({
   content,
+  compact = false,
 }: BookmarkButtonProps) => {
+  const [feedback, setFeedback] = useState<string | null>(null);
   // Server render와 첫 Client render를 동일하게 유지
   const initialized =
     useSyncExternalStore(
@@ -120,6 +124,9 @@ export const BookmarkButton = ({
         ),
       );
 
+      setFeedback("저장을 취소했어요");
+      window.setTimeout(() => setFeedback(null), 2200);
+
       return;
     }
 
@@ -135,29 +142,37 @@ export const BookmarkButton = ({
         BOOKMARKS_CHANGE_EVENT,
       ),
     );
+
+    setFeedback("여행지를 저장했어요");
+    window.setTimeout(() => setFeedback(null), 2200);
   };
 
   return (
-    <button
-      type="button"
-      onClick={handleClick}
-      disabled={!initialized}
-      aria-pressed={bookmarked}
-      aria-label={
-        bookmarked
-          ? `${content.title} 저장 취소`
-          : `${content.title} 저장`
-      }
-      className="inline-flex w-fit shrink-0 items-center justify-center rounded-xl bg-brand px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-    >
-      <span
-        aria-hidden="true"
-        className="mr-2"
+    <>
+      <button
+        type="button"
+        onClick={handleClick}
+        disabled={!initialized}
+        aria-pressed={bookmarked}
+        aria-label={
+          bookmarked
+            ? `${content.title} 저장 취소`
+            : `${content.title} 저장`
+        }
+        className={`inline-flex shrink-0 items-center justify-center rounded-xl bg-brand text-sm font-semibold text-white transition hover:bg-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${compact ? "px-3 py-2" : "w-fit px-4 py-2.5"}`}
       >
-        {bookmarked ? "★" : "☆"}
-      </span>
-
-      {bookmarked ? "저장됨" : "저장"}
-    </button>
+        <Icon name="bookmark" size={compact ? 15 : 17} className={compact ? "mr-1.5" : "mr-2"} fill={bookmarked ? "currentColor" : "none"} />
+        {compact ? (bookmarked ? "저장됨" : "저장") : bookmarked ? "저장됨" : "저장"}
+      </button>
+      {feedback ? (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 rounded-full bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white shadow-xl shadow-slate-950/20"
+        >
+          {feedback}
+        </div>
+      ) : null}
+    </>
   );
 };

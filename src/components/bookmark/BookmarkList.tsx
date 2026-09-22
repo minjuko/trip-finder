@@ -114,23 +114,26 @@ export const BookmarkList = () => {
   }
 
   return (
-    <ul className="grid grid-cols-1 gap-x-5 gap-y-7 md:grid-cols-2 xl:grid-cols-3">
-      {bookmarks.map(
-        (bookmark) => (
-          <li
-            key={
-              bookmark.contentId
-            }
-          >
-            <BookmarkCard
-              bookmark={bookmark}
-              onRemove={
-                handleRemove
-              }
-            />
+    <>
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-line bg-white px-4 py-3 shadow-sm shadow-slate-200/30">
+        <p className="text-sm font-semibold text-slate-700" aria-live="polite">
+          저장한 여행지 <span className="text-brand">{bookmarks.length}</span>곳
+        </p>
+        <Link
+          href="/explore"
+          className="text-sm font-semibold text-brand transition hover:text-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+        >
+          여행지 더 찾기 →
+        </Link>
+      </div>
+
+      <ul className="grid grid-cols-1 gap-x-5 gap-y-7 md:grid-cols-2 xl:grid-cols-3">
+        {bookmarks.map((bookmark) => (
+          <li key={bookmark.contentId}>
+            <BookmarkCard bookmark={bookmark} onRemove={handleRemove} />
           </li>
-        ),
-      )}
-    </ul>
+        ))}
+      </ul>
+    </>
   );
 };

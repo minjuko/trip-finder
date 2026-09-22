@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Noto_Sans_KR } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { Header } from "@/components/layout/Header";
 
 import "./globals.css";
-
-const notoSansKr = Noto_Sans_KR({
-  variable: "--font-noto-sans-kr",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -52,10 +46,7 @@ export default function RootLayout({
 }: RootLayoutProps) {
   return (
     // 변경: 한국어 서비스의 document language 명시
-    <html
-      lang="ko"
-      className={`${notoSansKr.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="ko" className={`${geistMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         {/* 변경: 모든 route에서 공유하는 Server Component Header */}
         <Header />
