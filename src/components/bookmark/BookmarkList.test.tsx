@@ -55,7 +55,7 @@ describe("BookmarkList", () => {
 
     expect(
       screen.getByRole("link", {
-        name: "여행지 탐색하기",
+        name: "여행지 둘러보기",
       }),
     ).toHaveAttribute(
       "href",
@@ -88,7 +88,7 @@ describe("BookmarkList", () => {
 
     expect(
       screen.getByRole("link", {
-        name: "가거도 상세정보 보기",
+        name: "가거도 상세 정보 보기",
       }),
     ).toHaveAttribute(
       "href",
