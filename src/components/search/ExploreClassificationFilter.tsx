@@ -164,7 +164,9 @@ export const ExploreClassificationFilter = ({
   const navigateWithParams = (params: URLSearchParams) => {
     const queryString = params.toString();
 
-    router.push(queryString ? `/explore?${queryString}` : "/explore");
+    router.push(queryString ? `/explore?${queryString}` : "/explore", {
+      scroll: false,
+    });
   };
 
   const handleDepth1Change = (event: ChangeEvent<HTMLSelectElement>) => {

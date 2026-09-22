@@ -84,7 +84,9 @@ export const ExploreRegionFilter = ({
   const navigateWithParams = (params: URLSearchParams) => {
     const queryString = params.toString();
 
-    router.push(queryString ? `/explore?${queryString}` : "/explore");
+    router.push(queryString ? `/explore?${queryString}` : "/explore", {
+      scroll: false,
+    });
   };
 
   const handleRegionChange = (event: ChangeEvent<HTMLSelectElement>) => {

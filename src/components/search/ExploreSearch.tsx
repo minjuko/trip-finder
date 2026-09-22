@@ -26,7 +26,9 @@ export const ExploreSearch = ({ initialKeyword }: ExploreSearchProps) => {
     params.delete("page");
 
     const queryString = params.toString();
-    router.push(queryString ? `/explore?${queryString}` : "/explore");
+    router.push(queryString ? `/explore?${queryString}` : "/explore", {
+      scroll: false,
+    });
   };
 
   return (

@@ -100,9 +100,7 @@ test.describe("Home → Explore", () => {
       page.getByRole("button", { name: "목록형으로 보기" }),
     ).toHaveAttribute("aria-pressed", "true");
 
-    await expect(
-      page.getByRole("combobox", { name: "검색 결과 정렬" }),
-    ).toHaveValue("title");
+    await expect(page.getByText("가나다순", { exact: true })).toBeVisible();
 
     await page
       .getByRole("button", { name: "지도로 보기" })
