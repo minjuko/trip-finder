@@ -104,7 +104,7 @@ export const ExploreActiveFilters = ({
           key={filter.key}
           href={filter.href}
           aria-label={`${filter.label} 조건 제거`}
-          className="inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-brand-soft px-3 py-1.5 text-xs font-semibold text-brand transition hover:border-teal-300 hover:bg-teal-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+          className="inline-flex items-center gap-1.5 rounded-full border border-brand/20 bg-brand-soft px-3 py-1.5 text-xs font-semibold text-brand transition hover:border-brand/35 hover:bg-sky-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         >
           {filter.label}
           <span aria-hidden="true">×</span>

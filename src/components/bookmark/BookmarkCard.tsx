@@ -15,13 +15,13 @@ export const BookmarkCard = ({
   onRemove,
 }: BookmarkCardProps) => {
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white">
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-lg hover:shadow-slate-200/50">
       <Link
         href={`/places/${bookmark.contentId}`}
         aria-label={`${bookmark.title} 상세정보 보기`}
-        className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-950"
+        className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand"
       >
-        <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+        <div className="relative aspect-[4/3] overflow-hidden bg-surface-subtle">
           {bookmark.thumbnailUrl ? (
             <Image
               src={bookmark.thumbnailUrl}
@@ -34,7 +34,7 @@ export const BookmarkCard = ({
             // 변경: 저장 당시 이미지가 없었던 콘텐츠 fallback
             <div
               aria-hidden="true"
-              className="flex h-full items-center justify-center text-sm text-slate-400"
+              className="flex h-full items-center justify-center text-sm text-slate-600"
             >
               이미지 없음
             </div>
@@ -60,7 +60,7 @@ export const BookmarkCard = ({
             onRemove(bookmark.contentId)
           }
           aria-label={`${bookmark.title} 저장 취소`}
-          className="inline-flex w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
+          className="inline-flex w-full items-center justify-center rounded-xl border border-line bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-brand/30 hover:bg-brand-soft hover:text-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         >
           저장 취소
         </button>
