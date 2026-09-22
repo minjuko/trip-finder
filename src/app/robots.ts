@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "/sitemap.xml",
+    sitemap: "https://trip-finder-mauve.vercel.app/sitemap.xml",
   };
 }

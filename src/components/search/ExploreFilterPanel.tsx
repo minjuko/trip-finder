@@ -28,7 +28,7 @@ export const ExploreFilterPanel = ({
   }, []);
 
   return (
-    <details ref={detailsRef} open className="group">
+    <details ref={detailsRef} className="group">
       <summary className="flex cursor-pointer list-none items-center justify-between rounded-3xl p-5 text-lg font-bold tracking-tight text-slate-950 outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 lg:hidden">
         <span className="flex items-center gap-2">
           필터

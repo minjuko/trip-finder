@@ -98,6 +98,7 @@ export const TourDetailGallery = ({
           src={primaryImage}
           alt={`${title} 대표 이미지`}
           fill
+          fetchPriority="high"
           loading="eager"
           sizes="(min-width: 768px) 66vw, 100vw"
           className="object-cover transition duration-500 group-hover:scale-[1.02]"
