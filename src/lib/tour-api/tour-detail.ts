@@ -5,6 +5,7 @@ import type {
 
 import { getTourDetailCommon } from "./detail-common";
 import { getTourDetailImages } from "./detail-image";
+import { getTourDetailInfo } from "./detail-info";
 import {
   getTourDetailIntro,
   isSupportedDetailIntroContentTypeId,
@@ -40,10 +41,14 @@ export const getTourDetail = async (
 
   // Intro/image are optional enrichments. A failure in either endpoint should
   // not hide the common detail data that was already loaded successfully.
-  const [informationResult, imagesResult] =
+  const [informationResult, imagesResult, repeatingInformationResult] =
     await Promise.allSettled([
       informationPromise,
       getTourDetailImages(common.id),
+      getTourDetailInfo({
+        contentId: common.id,
+        contentTypeId: common.contentTypeId,
+      }),
     ]);
 
   const information =
@@ -54,10 +59,15 @@ export const getTourDetail = async (
     imagesResult.status === "fulfilled"
       ? imagesResult.value
       : [];
+  const repeatingInformation =
+    repeatingInformationResult.status === "fulfilled"
+      ? repeatingInformationResult.value
+      : [];
 
   return {
     ...common,
     information,
     images,
+    repeatingInformation,
   };
 };

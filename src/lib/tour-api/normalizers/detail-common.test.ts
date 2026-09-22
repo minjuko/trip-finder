@@ -66,6 +66,8 @@ describe("normalizeTourDetailCommonItem", () => {
       homepage:
         "https://tour.shinan.go.kr/home/tour/island_tour/heuksan/place/place_12/page.wscms",
 
+      phone: null,
+
       overview: "가거도 상세 설명",
     });
   });
@@ -98,6 +100,7 @@ describe("normalizeTourDetailCommonItem", () => {
       classification: null,
       coordinates: null,
       homepage: null,
+      phone: null,
       overview: null,
     });
   });
