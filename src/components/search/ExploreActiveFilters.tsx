@@ -96,7 +96,7 @@ export const ExploreActiveFilters = ({
       aria-label="적용된 검색 조건"
     >
       <span className="mr-1 text-xs font-semibold text-slate-500">
-        적용된 조건
+        적용된 조건 {filters.length}개
       </span>
 
       {filters.map((filter) => (

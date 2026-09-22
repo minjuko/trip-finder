@@ -2,6 +2,7 @@ import { ExploreActiveFilters } from "@/components/search/ExploreActiveFilters";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { ExploreClassificationFilter } from "@/components/search/ExploreClassificationFilter";
+import { ExploreFilterPanel } from "@/components/search/ExploreFilterPanel";
 import { ExplorePagination } from "@/components/search/ExplorePagination";
 import { ExploreRegionFilter } from "@/components/search/ExploreRegionFilter";
 import { ExploreSearch } from "@/components/search/ExploreSearch";
@@ -16,6 +17,7 @@ import {
 } from "@/lib/search/explore-query";
 import { getClassificationOptions } from "@/lib/tour-api/classification";
 import { getRegions } from "@/lib/tour-api/region";
+import { REGION_OPTION_LABELS } from "@/constants/tour-labels";
 
 interface ExplorePageProps {
   searchParams: Promise<ExploreSearchParams>;
@@ -48,7 +50,10 @@ const ExplorePage = async ({
   // endpoint is temporarily unavailable; the selected query still renders.
   const regions =
     regionsResult.status === "fulfilled"
-      ? regionsResult.value
+      ? regionsResult.value.map((region) => ({
+          ...region,
+          name: REGION_OPTION_LABELS[region.code] ?? region.name,
+        }))
       : [];
   const depth1Options =
     depth1Result.status === "fulfilled"
@@ -82,12 +87,7 @@ const ExplorePage = async ({
     redirect(queryString ? `/explore?${queryString}` : "/explore");
   }
 
-  const visibleContents =
-    query.sort === "title"
-      ? [...contents.items].sort((a, b) =>
-          a.title.localeCompare(b.title, "ko"),
-        )
-      : contents.items;
+  const visibleContents = contents.items;
   const activeFilterCount = [
     query.keyword,
     query.region,
@@ -100,8 +100,8 @@ const ExplorePage = async ({
   return (
     <main className="mx-auto w-full max-w-7xl px-5 py-10 lg:px-8 lg:py-14">
       <header className="mb-9">
-        <p className="mb-3 text-xs font-bold tracking-[0.16em] text-brand">
-          EXPLORE
+        <p className="tripfinder-wordmark mb-3 text-brand">
+          여행지 찾기
         </p>
 
         <h1 className="text-4xl font-bold tracking-[-0.05em] text-slate-950 sm:text-5xl">
@@ -130,19 +130,7 @@ const ExplorePage = async ({
           className="h-fit rounded-3xl border border-line bg-white shadow-sm shadow-slate-200/40 lg:sticky lg:top-24"
           aria-label="여행지 검색 필터"
         >
-          <details open className="group">
-            <summary className="flex cursor-pointer list-none items-center justify-between rounded-3xl p-5 text-lg font-bold tracking-tight text-slate-950 outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 lg:hidden">
-              <span className="flex items-center gap-2">
-                필터
-                {activeFilterCount > 0 ? (
-                  <span className="grid size-5 place-items-center rounded-full bg-brand text-[11px] font-bold text-white">
-                    {activeFilterCount}
-                  </span>
-                ) : null}
-              </span>
-              <span aria-hidden="true" className="text-xl font-normal text-slate-500 transition group-open:rotate-180">⌄</span>
-            </summary>
-
+          <ExploreFilterPanel activeFilterCount={activeFilterCount}>
             <div className="px-5 pb-6 lg:p-6">
               <div className="mb-5 hidden lg:block">
                 <h2 className="text-lg font-bold tracking-tight text-slate-950">
@@ -172,7 +160,7 @@ const ExplorePage = async ({
                 />
               </div>
             </div>
-          </details>
+          </ExploreFilterPanel>
         </aside>
 
         <section
@@ -220,6 +208,7 @@ const ExplorePage = async ({
             <TourList
               contents={visibleContents}
               view={query.view}
+              emptyActionHref={activeFilterCount > 0 ? "/explore" : undefined}
             />
           )}
 

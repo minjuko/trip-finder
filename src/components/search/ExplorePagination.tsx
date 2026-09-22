@@ -45,8 +45,8 @@ const getExploreHref = (
     params.set("view", query.view);
   }
 
-  if (query.sort === "title") {
-    params.set("sort", "title");
+  if (query.sort !== "relevance") {
+    params.set("sort", query.sort);
   }
 
   if (page > 1) {

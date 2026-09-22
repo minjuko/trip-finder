@@ -22,6 +22,7 @@ interface SearchKeywordParams {
 
   page?: number;
   pageSize?: number;
+  arrange?: "A" | "B";
 }
 
 export const searchKeyword = async ({
@@ -37,6 +38,7 @@ export const searchKeyword = async ({
 
   page = 1,
   pageSize = 12,
+  arrange = "A",
 }: SearchKeywordParams): Promise<
   PaginatedResult<TourContent>
 > => {
@@ -50,7 +52,7 @@ export const searchKeyword = async ({
     keyword: normalizedKeyword,
     pageNo: page,
     numOfRows: pageSize,
-    arrange: "A",
+    arrange,
   };
 
   if (regionCode) {

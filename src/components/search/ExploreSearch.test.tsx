@@ -38,6 +38,7 @@ describe("ExploreSearch", () => {
 
     expect(push).toHaveBeenCalledWith(
       "/explore?keyword=%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5",
+      { scroll: false },
     );
   });
 

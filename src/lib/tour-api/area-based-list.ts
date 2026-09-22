@@ -21,6 +21,7 @@ interface GetAreaBasedListParams {
 
   page?: number;
   pageSize?: number;
+  arrange?: "A" | "B";
 }
 
 export const getAreaBasedList = async ({
@@ -35,13 +36,14 @@ export const getAreaBasedList = async ({
 
   page = 1,
   pageSize = 12,
+  arrange = "A",
 }: GetAreaBasedListParams = {}): Promise<
   PaginatedResult<TourContent>
 > => {
   const params: Record<string, string | number> = {
     pageNo: page,
     numOfRows: pageSize,
-    arrange: "A",
+    arrange,
   };
 
   if (regionCode) {

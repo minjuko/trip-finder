@@ -22,7 +22,9 @@ export const ExploreViewToggle = ({
     }
 
     const queryString = params.toString();
-    router.push(queryString ? `/explore?${queryString}` : "/explore");
+    router.push(queryString ? `/explore?${queryString}` : "/explore", {
+      scroll: false,
+    });
   };
 
   return (
@@ -40,10 +42,11 @@ export const ExploreViewToggle = ({
                 : "지도로 보기"
           }
           onClick={() => changeView(option)}
-          className={`grid size-9 place-items-center rounded-lg text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${view === option ? "bg-brand text-white" : "text-slate-500 hover:bg-surface-subtle hover:text-slate-900"}`}
+          title={option === "grid" ? "카드형으로 보기" : option === "list" ? "목록형으로 보기" : "지도로 보기"}
+          className={`grid size-9 place-items-center rounded-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${view === option ? "bg-brand text-white" : "text-slate-500 hover:bg-surface-subtle hover:text-slate-900"}`}
         >
           <span aria-hidden="true">
-            {option === "grid" ? "▦" : option === "list" ? "☰" : "⌖"}
+            <Icon name={option} size={18} />
           </span>
         </button>
       ))}
