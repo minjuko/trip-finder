@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 import type {
   TourContentDetail,
@@ -25,6 +28,23 @@ export const TourDetailGallery = ({
 
   const secondaryImages =
     images.slice(1, 5);
+  const galleryImages = [
+    { url: primaryImage, alt: `${title} 대표 이미지` },
+    ...secondaryImages.map((image, index) => ({
+      url: image.url,
+      alt: image.alt ?? `${title} 추가 이미지 ${index + 1}`,
+    })),
+  ].filter((image): image is { url: string; alt: string } => Boolean(image.url));
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (selectedImage === null) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedImage(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage]);
 
   if (!primaryImage) {
     return (
@@ -39,25 +59,34 @@ export const TourDetailGallery = ({
       aria-label={`${title} 이미지`}
       className="grid gap-3 overflow-hidden rounded-3xl md:grid-cols-[2fr_1fr]"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 md:aspect-auto md:min-h-[460px]">
+      <button
+        type="button"
+        onClick={() => setSelectedImage(0)}
+        aria-label={`${title} 대표 이미지 크게 보기`}
+        className="group relative aspect-[4/3] overflow-hidden bg-slate-100 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset md:aspect-auto md:min-h-[460px]"
+      >
         <Image
           src={primaryImage}
           alt={`${title} 대표 이미지`}
           fill
           loading="eager"
           sizes="(min-width: 768px) 66vw, 100vw"
-          className="object-cover"
+          className="object-cover transition duration-500 group-hover:scale-[1.02]"
         />
-      </div>
+        <span className="absolute bottom-4 right-4 rounded-full bg-slate-950/75 px-3 py-1.5 text-xs font-semibold text-white opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">크게 보기</span>
+      </button>
 
       {secondaryImages.length > 0 ? (
         <div className="grid grid-cols-2 gap-3 md:grid-cols-1">
           {secondaryImages
             .slice(0, 2)
             .map((image, index) => (
-              <div
+              <button
+                type="button"
                 key={image.id}
-                className="relative aspect-[4/3] overflow-hidden bg-slate-100 md:aspect-auto md:min-h-0"
+                onClick={() => setSelectedImage(index + 1)}
+                aria-label={`${title} 추가 이미지 ${index + 1} 크게 보기`}
+                className="group relative aspect-[4/3] overflow-hidden bg-slate-100 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset md:aspect-auto md:min-h-0"
               >
                 <Image
                   src={image.url}
@@ -67,9 +96,9 @@ export const TourDetailGallery = ({
                   }
                   fill
                   sizes="(min-width: 768px) 33vw, 50vw"
-                  className="object-cover"
+                  className="object-cover transition duration-500 group-hover:scale-[1.02]"
                 />
-              </div>
+              </button>
             ))}
         </div>
       ) : (
@@ -78,6 +107,32 @@ export const TourDetailGallery = ({
           className="hidden bg-slate-100 md:block"
         />
       )}
+      {selectedImage !== null ? (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${title} 이미지 크게 보기`}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 p-5"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            type="button"
+            aria-label="이미지 닫기"
+            onClick={() => setSelectedImage(null)}
+            className="absolute right-5 top-5 grid size-10 place-items-center rounded-full bg-white/15 text-xl text-white transition hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          >
+            ×
+          </button>
+          <Image
+            src={galleryImages[selectedImage].url}
+            alt={galleryImages[selectedImage].alt}
+            width={1600}
+            height={1100}
+            className="max-h-[85vh] w-auto max-w-full object-contain"
+            onClick={(event) => event.stopPropagation()}
+          />
+        </div>
+      ) : null}
     </section>
   );
 };
