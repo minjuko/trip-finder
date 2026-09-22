@@ -1,5 +1,6 @@
 import { ExploreActiveFilters } from "@/components/search/ExploreActiveFilters";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { ExploreClassificationFilter } from "@/components/search/ExploreClassificationFilter";
 import { ExplorePagination } from "@/components/search/ExplorePagination";
 import { ExploreRegionFilter } from "@/components/search/ExploreRegionFilter";
@@ -61,6 +62,26 @@ const ExplorePage = async ({
   }
 
   const { contents } = exploreResult.value;
+  const totalPages = Math.max(
+    1,
+    Math.ceil(contents.totalCount / contents.pageSize),
+  );
+
+  if (query.page > totalPages) {
+    const params = new URLSearchParams();
+    if (query.region) params.set("region", query.region);
+    if (query.district) params.set("district", query.district);
+    if (query.category1) params.set("category1", query.category1);
+    if (query.category2) params.set("category2", query.category2);
+    if (query.category3) params.set("category3", query.category3);
+    if (query.keyword) params.set("keyword", query.keyword);
+    if (query.view !== "grid") params.set("view", query.view);
+    if (query.sort !== "relevance") params.set("sort", query.sort);
+
+    const queryString = params.toString();
+    redirect(queryString ? `/explore?${queryString}` : "/explore");
+  }
+
   const visibleContents =
     query.sort === "title"
       ? [...contents.items].sort((a, b) =>
