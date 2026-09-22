@@ -96,7 +96,7 @@ export const BookmarkList = () => {
             저장한 여행지가 없습니다.
           </p>
 
-          <p className="mt-2 text-sm leading-6 text-slate-500">
+          <p className="mt-2 text-sm leading-6 text-slate-600">
             관심 있는 여행지를 저장하면
             여기에서 다시 확인할 수 있습니다.
           </p>
