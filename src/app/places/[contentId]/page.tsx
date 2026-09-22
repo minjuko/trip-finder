@@ -8,7 +8,7 @@ import { CopyAddressButton } from "@/components/tour/CopyAddressButton";
 import { TourDetailGallery } from "@/components/tour/TourDetailGallery";
 import { TourDetailInformation } from "@/components/tour/TourDetailInformation";
 import { TourDetailOverview } from "@/components/tour/TourDetailOverview";
-import { getTourDetail } from "@/lib/tour-api/tour-detail";
+import { getTourDetail } from "@/lib/tour-api/tour-detail";\nimport { Icon } from "@/components/ui/Icon";
 
 interface PlaceDetailPageProps {
   params: Promise<{

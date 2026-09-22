@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import { HomeSearch } from "@/components/search/HomeSearch";
+import { HomeSearch } from "@/components/search/HomeSearch";\nimport { Icon, type IconName } from "@/components/ui/Icon";
 
 export const metadata: Metadata = {
   title: "국내 여행지 탐색",
@@ -46,32 +46,32 @@ const CATEGORY_LINKS = [
   {
     code: "NA",
     name: "자연관광",
-    icon: "↗",
+    icon: "mountain",
   },
   {
     code: "HS",
     name: "역사관광",
-    icon: "◈",
+    icon: "landmark",
   },
   {
     code: "VE",
     name: "문화관광",
-    icon: "✦",
+    icon: "sparkles",
   },
   {
     code: "EX",
     name: "체험관광",
-    icon: "◎",
+    icon: "compass",
   },
   {
     code: "LS",
     name: "레저스포츠",
-    icon: "△",
+    icon: "waves",
   },
   {
     code: "FD",
     name: "음식",
-    icon: "⌁",
+    icon: "utensils",
   },
 ] as const;
 
@@ -79,7 +79,7 @@ export default function Home() {
   return (
     <main>
       {/* 변경: 서비스의 목적과 검색 진입점을 제공하는 Hero */}
-      <section className="relative overflow-hidden border-b border-line bg-[radial-gradient(circle_at_15%_20%,#dcefe8_0,transparent_32%),linear-gradient(135deg,#f4fbf7_0%,#fbfaf7_55%,#f2eee6_100%)]">
+      <section className="relative overflow-hidden border-b border-line bg-[radial-gradient(circle_at_15%_20%,#dbeafe_0,transparent_34%),linear-gradient(135deg,#eff6ff_0%,#f8fbff_56%,#eef6ff_100%)]">
         <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-10 size-80 rounded-full border-[36px] border-white/50 blur-[1px] sm:size-[30rem]" />
         <div className="relative mx-auto grid w-full max-w-7xl items-center gap-14 px-5 py-16 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
           <div>
@@ -111,7 +111,7 @@ export default function Home() {
           </div>
 
           <div aria-label="여행 영감을 보여주는 장식 영역" className="relative mx-auto hidden w-full max-w-md lg:block">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#183b38] p-6 text-white shadow-2xl shadow-brand/20">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#0c4a6e] p-6 text-white shadow-2xl shadow-brand/20">
               <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.12)_1px,transparent_1px)] [background-size:34px_34px]" />
               <div className="relative flex h-full flex-col justify-between">
                 <div className="flex items-start justify-between">
@@ -119,9 +119,9 @@ export default function Home() {
                   <span className="grid size-10 place-items-center rounded-full border border-white/20 text-lg">↗</span>
                 </div>
                 <div>
-                  <p className="text-sm text-emerald-100/75">지금 떠오르는 곳</p>
+                  <p className="text-sm text-sky-100">지금 떠오르는 곳</p>
                   <p className="mt-2 text-4xl font-semibold tracking-[-0.05em]">바다를<br />따라 걷는 하루</p>
-                  <div className="mt-6 flex items-center gap-2 text-sm text-emerald-100/80"><span className="size-2 rounded-full bg-amber-300" /> 전국의 관광 콘텐츠를 탐색해보세요</div>
+                  <div className="mt-6 flex items-center gap-2 text-sm text-sky-100"><span className="size-2 rounded-full bg-sky-200" /> 전국의 관광 콘텐츠를 탐색해보세요</div>
                 </div>
               </div>
             </div>
@@ -185,7 +185,7 @@ export default function Home() {
       {/* 변경: 실제 관광 분류 대분류 코드 기반 탐색 진입점 */}
       <section
         aria-labelledby="category-heading"
-        className="border-y border-line bg-[#f1f3ef]"
+        className="border-y border-line bg-[#eef6ff]"
       >
         <div className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-8">
           <div>
@@ -217,7 +217,7 @@ export default function Home() {
                     className="group flex items-center justify-between rounded-2xl border border-line bg-white p-5 transition hover:-translate-y-1 hover:border-brand/30 hover:shadow-lg hover:shadow-slate-200/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                   >
                     <span className="flex items-center gap-3 font-semibold text-slate-900">
-                      <span aria-hidden="true" className="grid size-9 place-items-center rounded-xl bg-brand-soft text-lg text-brand">{category.icon}</span>
+                      <span aria-hidden="true" className="grid size-9 place-items-center rounded-xl bg-brand-soft text-lg text-brand"><Icon name={category.icon as IconName} size={19} /></span>
                       {category.name}
                     </span>
 

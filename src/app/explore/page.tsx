@@ -180,7 +180,7 @@ const ExplorePage = async ({
           className="min-w-0"
         >
           {/* 변경: 좁은 화면에서 결과 수와 페이지가 충돌하지 않도록 wrapping */}
-          <div className="mb-5 flex flex-wrap items-end justify-between gap-x-4 gap-y-2">
+          <div className="mb-4 flex flex-wrap items-end justify-between gap-x-4 gap-y-3 rounded-2xl border border-line bg-white p-4 shadow-sm shadow-slate-200/30">
             <div>
               <h2
                 id="explore-results-title"
@@ -205,7 +205,7 @@ const ExplorePage = async ({
 
             <div className="flex flex-wrap items-center gap-3">
               <ExploreSortSelect sort={query.sort} />
-              <p className="rounded-full bg-surface-subtle px-3 py-1.5 text-xs font-semibold text-slate-600">
+              <p className="rounded-full bg-brand-soft px-3 py-1.5 text-xs font-semibold text-brand-strong">
                 PAGE {contents.page}
               </p>
               <ExploreViewToggle view={query.view} />
