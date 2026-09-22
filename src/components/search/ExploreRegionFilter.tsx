@@ -4,6 +4,7 @@ import { type ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import type { RegionOption } from "@/types/tour";
+import { regionOptionResponseSchema } from "@/lib/search/option-schemas";
 
 interface ExploreRegionFilterProps {
   regions: RegionOption[];
@@ -48,7 +49,9 @@ export const ExploreRegionFilter = ({
           throw new Error("Failed to load districts");
         }
 
-        const data = (await response.json()) as RegionOption[];
+        const data = regionOptionResponseSchema.parse(
+          await response.json(),
+        ) as RegionOption[];
 
         setDistricts(data);
         setDistrictSource(initialRegion);

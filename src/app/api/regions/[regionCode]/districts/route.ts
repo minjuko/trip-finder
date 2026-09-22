@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { getRegions } from "@/lib/tour-api/region";
+import { regionOptionResponseSchema } from "@/lib/search/option-schemas";
 
 interface DistrictRouteContext {
   params: Promise<{
@@ -33,5 +34,7 @@ export const GET = async (
     regionCode: normalizedRegionCode,
   });
 
-  return NextResponse.json(districts);
+  return NextResponse.json(
+    regionOptionResponseSchema.parse(districts),
+  );
 };
