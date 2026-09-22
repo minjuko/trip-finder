@@ -34,13 +34,13 @@ export const ExploreSearch = ({ initialKeyword }: ExploreSearchProps) => {
       role="search"
       aria-label="관광 콘텐츠 검색"
       onSubmit={handleSubmit}
-      className="max-w-3xl"
+      className="max-w-4xl"
     >
       <label htmlFor="explore-keyword" className="sr-only">
         여행지 검색
       </label>
 
-      <div className="flex gap-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-sm transition focus-within:border-teal-300 focus-within:shadow-md">
+      <div className="flex gap-2 rounded-2xl border border-line bg-white p-2 shadow-sm shadow-slate-200/40 transition focus-within:border-brand/40 focus-within:shadow-lg focus-within:shadow-brand/10">
         <input
           id="explore-keyword"
           name="keyword"
@@ -53,7 +53,7 @@ export const ExploreSearch = ({ initialKeyword }: ExploreSearchProps) => {
 
         <button
           type="submit"
-          className="inline-flex shrink-0 items-center justify-center rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+          className="inline-flex shrink-0 items-center justify-center rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         >
           검색
         </button>

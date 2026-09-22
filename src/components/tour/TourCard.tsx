@@ -6,9 +6,13 @@ import type { TourContent } from "@/types/tour";
 
 interface TourCardProps {
   content: TourContent;
+  isAboveFold?: boolean;
 }
 
-export const TourCard = ({ content }: TourCardProps) => {
+export const TourCard = ({
+  content,
+  isAboveFold = false,
+}: TourCardProps) => {
   const address = content.address?.primary ?? "주소 정보 없음";
   const regionLabel = content.region
     ? REGION_LABELS[content.region.regionCode]
@@ -22,14 +26,15 @@ export const TourCard = ({ content }: TourCardProps) => {
       <Link
         href={`/places/${content.id}`}
         aria-label={`${content.title} 상세정보 보기`}
-        className="group block h-full overflow-hidden rounded-3xl border border-slate-200 bg-white transition duration-200 hover:-translate-y-1 hover:border-teal-200 hover:shadow-lg hover:shadow-slate-200/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+        className="group block h-full overflow-hidden rounded-3xl border border-line bg-white transition duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-xl hover:shadow-slate-200/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
       >
-        <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+        <div className="relative aspect-[4/3] overflow-hidden bg-surface-subtle">
           {content.thumbnail ? (
             <Image
               src={content.thumbnail.url}
               alt=""
               fill
+              loading={isAboveFold ? "eager" : "lazy"}
               sizes="(min-width: 1280px) 280px, (min-width: 768px) 50vw, 100vw"
               className="object-cover transition duration-500 group-hover:scale-[1.04]"
             />
@@ -43,15 +48,15 @@ export const TourCard = ({ content }: TourCardProps) => {
           )}
 
           {regionLabel ? (
-            <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-xs font-semibold text-slate-800 shadow-sm backdrop-blur">
+            <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-xs font-bold text-slate-800 shadow-sm backdrop-blur">
               {regionLabel}
             </span>
           ) : null}
         </div>
 
-        <div className="p-5">
+        <div className="p-5 sm:p-6">
           {categoryLabel ? (
-            <p className="mb-2 text-xs font-semibold text-brand">
+            <p className="mb-2 text-xs font-bold tracking-wide text-brand">
               {categoryLabel}
             </p>
           ) : null}
