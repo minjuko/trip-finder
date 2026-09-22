@@ -40,8 +40,12 @@ export const generateMetadata = async ({
       detail.overview ??
       detail.address?.primary ??
       `${detail.title} 여행 정보`,
+    alternates: {
+      canonical: `/places/${detail.id}`,
+    },
     openGraph: {
       type: "website",
+      url: `/places/${detail.id}`,
       title: `${detail.title} | TripFinder`,
       description:
         detail.overview ??
@@ -50,6 +54,15 @@ export const generateMetadata = async ({
       images: detail.thumbnail?.url
         ? [{ url: detail.thumbnail.url, alt: detail.title }]
         : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${detail.title} | TripFinder`,
+      description:
+        detail.overview ??
+        detail.address?.primary ??
+        `${detail.title} 여행 정보`,
+      images: detail.thumbnail?.url ? [detail.thumbnail.url] : undefined,
     },
   };
 };

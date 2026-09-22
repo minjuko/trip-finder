@@ -39,7 +39,8 @@ export const TourCard = ({
               alt=""
               fill
               loading={isAboveFold ? "eager" : "lazy"}
-              sizes={layout === "list" ? "(min-width: 640px) 256px, 100vw" : "(min-width: 1280px) 280px, (min-width: 768px) 50vw, 100vw"}
+              fetchPriority={isAboveFold ? "high" : undefined}
+              sizes={layout === "list" ? "(min-width: 640px) 256px, calc(100vw - 40px)" : "(min-width: 1280px) 300px, (min-width: 768px) calc((100vw - 340px) / 2), calc(100vw - 40px)"}
               className="object-cover transition duration-500 group-hover:scale-[1.04]"
             />
           ) : (

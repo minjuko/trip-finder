@@ -27,6 +27,9 @@ export const metadata: Metadata = {
   title: "여행지 탐색",
   description:
     "지역, 카테고리, 키워드로 국내 여행지를 탐색해 보세요.",
+  alternates: {
+    canonical: "/explore",
+  },
 };
 
 const ExplorePage = async ({
