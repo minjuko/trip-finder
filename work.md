@@ -37,9 +37,11 @@ Next.js·TypeScript·공공 API·접근성·검색 노출·테스트 역량을 �
 
 ## 검증 결과
 
+- ESLint 경고 없이 통과
 - TypeScript 타입 검사 통과
 - Vitest 28개 파일, 152개 테스트 통과
 - Next.js 프로덕션 빌드 통과
+- GitHub Actions CI 통과
 - 기존 Playwright 주요 흐름 8개 통과
 - 최신 정렬 UI 기준 Playwright E2E 8개 통과
 - 브라우저 콘솔 오류 없음 확인
