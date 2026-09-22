@@ -8,6 +8,7 @@ import {
 
 import { getTourDetailCommon } from "./detail-common";
 import { getTourDetailImages } from "./detail-image";
+import { getTourDetailInfo } from "./detail-info";
 import {
   getTourDetailIntro,
   isSupportedDetailIntroContentTypeId,
@@ -34,6 +35,10 @@ vi.mock("./detail-image", () => ({
   getTourDetailImages: vi.fn(),
 }));
 
+vi.mock("./detail-info", () => ({
+  getTourDetailInfo: vi.fn(),
+}));
+
 const mockedGetTourDetailCommon =
   vi.mocked(getTourDetailCommon);
 
@@ -42,6 +47,9 @@ const mockedGetTourDetailIntro =
 
 const mockedGetTourDetailImages =
   vi.mocked(getTourDetailImages);
+
+const mockedGetTourDetailInfo =
+  vi.mocked(getTourDetailInfo);
 
 const mockedIsSupportedDetailIntroContentTypeId =
   vi.mocked(
@@ -83,6 +91,8 @@ const commonFixture = {
 
   homepage:
     "https://tour.shinan.go.kr/home/tour/island_tour/heuksan/place/place_12/page.wscms",
+
+  phone: "061-246-5400",
 
   overview: "가거도 상세 설명",
 };
@@ -136,6 +146,8 @@ describe("getTourDetail", () => {
     mockedGetTourDetailImages.mockResolvedValue(
       structuredClone(imagesFixture),
     );
+
+    mockedGetTourDetailInfo.mockResolvedValue([]);
   });
 
   it("combines common, intro, and image data into TourContentDetail", async () => {
@@ -145,6 +157,7 @@ describe("getTourDetail", () => {
       ...commonFixture,
       information: informationFixture,
       images: imagesFixture,
+      repeatingInformation: [],
     });
   });
 
@@ -201,6 +214,7 @@ describe("getTourDetail", () => {
       contentTypeId: "15",
       information: [],
       images: imagesFixture,
+      repeatingInformation: [],
     });
   });
 

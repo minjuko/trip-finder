@@ -45,11 +45,19 @@ export interface InformationItem {
   value: string;
 }
 
+export interface RepeatingInfoItem {
+  id: string;
+  title: string;
+  description: string | null;
+}
+
 export interface TourContentDetail extends TourContent {
   homepage: string | null;
+  phone: string | null;
   overview: string | null;
   images: TourImage[];
   information: InformationItem[];
+  repeatingInformation: RepeatingInfoItem[];
 }
 
 export interface Bookmark {

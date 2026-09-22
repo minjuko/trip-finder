@@ -7,6 +7,7 @@ import type { TourDetailCommonItemDto } from "../schemas/detail-common";
 export interface TourDetailCommon
   extends TourContent {
   homepage: string | null;
+  phone: string | null;
   overview: string | null;
 }
 
@@ -133,6 +134,8 @@ export const normalizeTourDetailCommonItem = (
     homepage: normalizeHomepage(
       item.homepage,
     ),
+
+    phone: emptyToNull(item.tel),
 
     overview: emptyToNull(item.overview),
   };

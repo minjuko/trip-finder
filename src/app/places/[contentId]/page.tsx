@@ -8,8 +8,10 @@ import { CopyAddressButton } from "@/components/tour/CopyAddressButton";
 import { TourDetailGallery } from "@/components/tour/TourDetailGallery";
 import { TourDetailInformation } from "@/components/tour/TourDetailInformation";
 import { TourDetailOverview } from "@/components/tour/TourDetailOverview";
+import { TourDetailRepeatingInformation } from "@/components/tour/TourDetailRepeatingInformation";
 import { getTourDetail } from "@/lib/tour-api/tour-detail";
 import { Icon } from "@/components/ui/Icon";
+import { CATEGORY_LABELS, REGION_LABELS } from "@/constants/tour-labels";
 
 interface PlaceDetailPageProps {
   params: Promise<{
@@ -131,10 +133,6 @@ const PlaceDetailPage = async ({
       <header className="mb-8">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="min-w-0">
-            <p className="mb-2 text-sm font-semibold text-slate-500">
-              PLACE
-            </p>
-
             <h1 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
               {detail.title}
             </h1>
@@ -145,6 +143,27 @@ const PlaceDetailPage = async ({
                 <CopyAddressButton address={address} />
               </p>
             ) : null}
+
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              {detail.region?.regionCode && REGION_LABELS[detail.region.regionCode] ? (
+                <span className="rounded-full bg-brand-soft px-3 py-1.5 text-xs font-semibold text-brand-strong">
+                  {REGION_LABELS[detail.region.regionCode]}
+                </span>
+              ) : null}
+              {detail.classification?.depth1 && CATEGORY_LABELS[detail.classification.depth1] ? (
+                <span className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-semibold text-slate-600">
+                  {CATEGORY_LABELS[detail.classification.depth1]}
+                </span>
+              ) : null}
+              {detail.phone ? (
+                <a
+                  href={`tel:${detail.phone.replace(/[^0-9+]/g, "")}`}
+                  className="inline-flex items-center rounded-full border border-line bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-brand/30 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                >
+                  전화 {detail.phone}
+                </a>
+              ) : null}
+            </div>
           </div>
 
           {/* 변경: Server Component 내부에서
@@ -164,7 +183,7 @@ const PlaceDetailPage = async ({
                 className="inline-flex w-fit shrink-0 items-center justify-center rounded-xl border border-line bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-brand/30 hover:bg-brand-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
               >
                 지도 보기
-                <span aria-hidden="true" className="ml-1.5">↗</span>
+                <Icon name="map-pin" size={16} className="ml-2" />
               </a>
             ) : null}
 
@@ -176,12 +195,7 @@ const PlaceDetailPage = async ({
                 className="inline-flex w-fit shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
               >
                 홈페이지 방문
-                <span
-                  aria-hidden="true"
-                  className="ml-1.5"
-                >
-                  ↗
-                </span>
+                <Icon name="external-link" size={16} className="ml-2" />
               </a>
             ) : null}
           </div>
@@ -203,6 +217,10 @@ const PlaceDetailPage = async ({
           information={
             detail.information
           }
+        />
+
+        <TourDetailRepeatingInformation
+          items={detail.repeatingInformation}
         />
       </div>
     </main>

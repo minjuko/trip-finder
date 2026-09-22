@@ -17,18 +17,12 @@ export const TourDetailInformation = ({
       className="border-t border-slate-200 pt-10"
     >
       <div className="max-w-2xl">
-        <p className="mb-2 text-xs font-semibold tracking-wider text-brand">
-          INFORMATION
-        </p>
         <h2
           id="tour-information-title"
           className="text-2xl font-bold tracking-tight text-slate-950"
         >
           이용 정보
         </h2>
-        <p className="mt-2 text-sm leading-6 text-slate-500">
-          방문 전에 필요한 주요 이용 정보를 확인하세요.
-        </p>
       </div>
 
       <dl className="mt-6 grid gap-3 sm:grid-cols-2">
