@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";\n\nimport { Icon, type IconName } from "@/components/ui/Icon";
 
 interface ExploreViewToggleProps {
   view: "grid" | "list" | "map";
@@ -38,7 +38,7 @@ export const ExploreViewToggle = ({
                 : "지도로 보기"
           }
           onClick={() => changeView(option)}
-          className={`grid size-9 place-items-center rounded-lg text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${view === option ? "bg-slate-950 text-white" : "text-slate-500 hover:bg-surface-subtle hover:text-slate-900"}`}
+          className={`grid size-9 place-items-center rounded-lg text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${view === option ? "bg-brand text-white" : "text-slate-500 hover:bg-surface-subtle hover:text-slate-900"}`}
         >
           <span aria-hidden="true">
             {option === "grid" ? "▦" : option === "list" ? "☰" : "⌖"}

@@ -56,7 +56,7 @@ export default function RootLayout({
     // 변경: 한국어 서비스의 document language 명시
     <html
       lang="ko"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${notoSansKr.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         {/* 변경: 모든 route에서 공유하는 Server Component Header */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState } from "react";\n\nimport { Icon } from "@/components/ui/Icon";
 
 interface PlaceShareButtonProps {
   title: string;
@@ -39,7 +39,7 @@ export const PlaceShareButton = ({
       aria-label={`${title} 링크 공유`}
       className="inline-flex w-fit shrink-0 items-center justify-center rounded-xl border border-line bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-brand/30 hover:bg-brand-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
     >
-      <span aria-hidden="true" className="mr-2 text-base">↗</span>
+      <Icon name="share" size={16} className="mr-2" />
       {status === "copied" ? "링크 복사됨" : "공유"}
     </button>
   );

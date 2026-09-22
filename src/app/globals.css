@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbfaf7;
-  --foreground: #16211f;
-  --surface-subtle: #f2f4f1;
-  --brand: #0f766e;
-  --brand-strong: #0b5b55;
-  --brand-soft: #e8f4ef;
-  --ink-muted: #66736f;
-  --line: #e2e8e4;
+  --background: #f8fbff;
+  --foreground: #172033;
+  --surface-subtle: #f0f7ff;
+  --brand: #0369a1;
+  --brand-strong: #075985;
+  --brand-soft: #e0f2fe;
+  --ink-muted: #526072;
+  --line: #cbd5e1;
 }
 
 @theme inline {
@@ -20,7 +20,7 @@
   --color-brand-soft: var(--brand-soft);
   --color-ink-muted: var(--ink-muted);
   --color-line: var(--line);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-noto-sans-kr);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -32,7 +32,7 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), "Pretendard", "Apple SD Gothic Neo", Arial, sans-serif;
+  font-family: var(--font-noto-sans-kr), "Apple SD Gothic Neo", Arial, sans-serif;
   letter-spacing: -0.012em;
 }
 
@@ -52,6 +52,10 @@ body {
   height: 24px;
   border: 4px solid #ffffff;
   border-radius: 999px;
-  background: #0f766e;
-  box-shadow: 0 3px 12px rgb(15 118 110 / 35%);
+  background: var(--brand);
+  box-shadow: 0 3px 12px rgb(3 105 161 / 35%);
 }
+
+.leaflet-popup-content-wrapper { border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 14px 34px rgb(15 23 42 / 16%); }
+.leaflet-popup-content { margin: 16px; font-family: var(--font-noto-sans-kr), "Apple SD Gothic Neo", Arial, sans-serif; }
+.leaflet-popup-tip { box-shadow: 2px 2px 4px rgb(15 23 42 / 8%); }
