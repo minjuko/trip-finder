@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { BookmarkButton } from "@/components/bookmark/BookmarkButton";
+import { PlaceShareButton } from "@/components/tour/PlaceShareButton";
 import { TourDetailGallery } from "@/components/tour/TourDetailGallery";
 import { TourDetailInformation } from "@/components/tour/TourDetailInformation";
 import { TourDetailOverview } from "@/components/tour/TourDetailOverview";
@@ -111,6 +112,20 @@ const PlaceDetailPage = async ({
             <BookmarkButton
               content={detail}
             />
+
+            <PlaceShareButton title={detail.title} />
+
+            {detail.coordinates ? (
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${detail.coordinates.latitude},${detail.coordinates.longitude}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex w-fit shrink-0 items-center justify-center rounded-xl border border-line bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-brand/30 hover:bg-brand-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+              >
+                지도 보기
+                <span aria-hidden="true" className="ml-1.5">↗</span>
+              </a>
+            ) : null}
 
             {detail.homepage ? (
               <a
