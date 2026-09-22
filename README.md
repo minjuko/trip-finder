@@ -14,6 +14,10 @@
 - **TourAPI server-only 통합**: 서비스 키와 외부 API 호출을 서버에 유지하고 Client Component는 필요한 경우 내부 Route Handler를 통해 데이터 조회
 - **Runtime validation**: TourAPI 응답을 `unknown → Zod → Normalizer → Domain Model` 흐름으로 검증·정규화
 - **URL 기반 탐색 상태**: 지역·시군구·3단계 관광 분류·키워드·페이지를 Search Params로 관리
+- **탐색 결과 제어**: 카드·목록·지도 보기 전환과 관련도·가나다순 정렬 상태를 URL로 유지
+- **지도 탐색**: Leaflet·OpenStreetMap marker와 상세 페이지 연결
+- **상세 경험**: 이미지 확대, 주소 복사, 링크 공유, 좌표 기반 지도 이동
+- **검색 노출**: Open Graph/Twitter metadata, robots.txt, sitemap.xml, 장소 구조화 데이터
 - **외부 저장소 검증**: localStorage 북마크 데이터도 Zod로 검증하고 `useSyncExternalStore`로 UI 상태 동기화
 - **품질 검증**: Vitest·React Testing Library·Playwright·axe-core와 GitHub Actions를 이용해 unit/component/E2E·접근성·CI 검증
 - **Production 검증**: Vercel 배포 후 핵심 사용자 흐름 smoke test와 Lighthouse Mobile 측정
@@ -27,6 +31,8 @@
 - 키워드 검색
 - 12개 단위 페이지네이션
 - 필터·검색·페이지 상태를 URL Search Params에 유지
+- 카드형·목록형·지도형 보기 전환
+- 관련도순·가나다순 정렬
 
 검색어가 있으면 `searchKeyword2`, 없으면 `areaBasedList2`를 사용하며, 지역과 관광 분류 조건은 서버 요청 단계에서 TourAPI에 전달합니다.
 
@@ -38,6 +44,8 @@
 - 콘텐츠 유형별 이용정보
 - 홈페이지 링크
 - 북마크 저장/해제
+- 이미지 확대 보기
+- 주소 복사·링크 공유·지도 보기
 
 `detailIntro2`는 실제 응답 계약을 검증한 다음 콘텐츠 유형에 대해 제공합니다.
 
@@ -67,6 +75,7 @@
 | Validation | Zod 4 |
 | Data | 한국관광공사 국문 관광정보 서비스(TourAPI) |
 | Test | Vitest, React Testing Library, Playwright, axe-core |
+| Map | Leaflet, OpenStreetMap |
 | CI/CD | GitHub Actions, Vercel |
 
 별도의 전역 상태 라이브러리나 클라이언트 데이터 패칭 라이브러리를 추가하지 않고, **Server Component·URL Search Params·브라우저 저장소라는 상태의 성격에 맞는 도구를 사용**했습니다.

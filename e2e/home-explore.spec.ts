@@ -90,4 +90,29 @@ test.describe("Home → Explore", () => {
       }),
     ).toBeVisible();
   });
+
+  test("검색 결과 보기 방식과 정렬 상태를 URL로 유지한다", async ({
+    page,
+  }) => {
+    await page.goto("/explore?region=11&view=list&sort=title");
+
+    await expect(
+      page.getByRole("button", { name: "목록형으로 보기" }),
+    ).toHaveAttribute("aria-pressed", "true");
+
+    await expect(
+      page.getByRole("combobox", { name: "검색 결과 정렬" }),
+    ).toHaveValue("title");
+
+    await page
+      .getByRole("button", { name: "지도로 보기" })
+      .click();
+
+    await expect(page).toHaveURL(
+      /\/explore\?region=11&view=map&sort=title/,
+    );
+    await expect(
+      page.getByRole("region", { name: "검색 결과 지도" }),
+    ).toBeVisible();
+  });
 });
