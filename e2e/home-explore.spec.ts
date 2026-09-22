@@ -12,7 +12,7 @@ test.describe("Home → Explore", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: /국내 여행지를/,
+        name: /다음 여행지를/,
       }),
     ).toBeVisible();
 
