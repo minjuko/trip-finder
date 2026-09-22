@@ -12,11 +12,11 @@ const BookmarksPage = () => {
   return (
     <main className="mx-auto w-full max-w-7xl px-6 py-10 lg:px-8">
       <header className="mb-8">
-        <p className="mb-2 text-sm font-semibold text-slate-500">
-          BOOKMARKS
+        <p className="tripfinder-wordmark mb-3 text-brand">
+          저장한 여행지
         </p>
 
-        <h1 className="text-3xl font-bold tracking-tight text-slate-950">
+        <h1 className="text-4xl font-bold tracking-[-0.05em] text-slate-950 sm:text-5xl">
           저장한 여행지
         </h1>
 

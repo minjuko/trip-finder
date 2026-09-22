@@ -17,7 +17,7 @@ export const TourList = ({
   if (contents.length === 0) {
     return (
       // 변경: 명확한 empty state
-      <div className="flex min-h-72 items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-6 text-center">
+      <div className="flex min-h-72 items-center justify-center rounded-2xl border border-dashed border-line bg-surface-subtle px-6 text-center">
         <div>
           <p className="font-semibold text-slate-900">
             조건에 맞는 관광 콘텐츠가 없습니다.
@@ -29,7 +29,7 @@ export const TourList = ({
           {emptyActionHref ? (
             <Link
               href={emptyActionHref}
-              className="mt-5 inline-flex items-center justify-center rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+              className="mt-5 inline-flex items-center justify-center rounded-xl bg-brand px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
             >
               필터 전체 초기화
             </Link>
