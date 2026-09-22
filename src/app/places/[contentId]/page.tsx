@@ -37,6 +37,17 @@ export const generateMetadata = async ({
       detail.overview ??
       detail.address?.primary ??
       `${detail.title} 관광 정보`,
+    openGraph: {
+      type: "website",
+      title: `${detail.title} | TripFinder`,
+      description:
+        detail.overview ??
+        detail.address?.primary ??
+        `${detail.title} 관광 정보`,
+      images: detail.thumbnail?.url
+        ? [{ url: detail.thumbnail.url, alt: detail.title }]
+        : undefined,
+    },
   };
 };
 
@@ -61,9 +72,36 @@ const PlaceDetailPage = async ({
         .filter(Boolean)
         .join(" ")
     : null;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    name: detail.title,
+    description: detail.overview ?? undefined,
+    url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://trip-finder-mauve.vercel.app"}/places/${detail.id}`,
+    image: detail.thumbnail?.url ?? undefined,
+    address: address
+      ? {
+          "@type": "PostalAddress",
+          streetAddress: address,
+        }
+      : undefined,
+    geo: detail.coordinates
+      ? {
+          "@type": "GeoCoordinates",
+          latitude: detail.coordinates.latitude,
+          longitude: detail.coordinates.longitude,
+        }
+      : undefined,
+  };
 
   return (
     <main className="mx-auto w-full max-w-7xl px-6 py-10 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
       <nav
         aria-label="Breadcrumb"
         className="mb-6"
