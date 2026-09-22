@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-import { Icon, type IconName } from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/Icon";
 
 interface ExploreViewToggleProps {
   view: "grid" | "list" | "map";
