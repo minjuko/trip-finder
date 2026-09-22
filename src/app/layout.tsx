@@ -20,12 +20,29 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      "https://trip-finder-mauve.vercel.app",
+  ),
   title: {
     default: "TripFinder",
     template: "%s | TripFinder",
   },
   description:
     "지역, 카테고리, 키워드로 국내 관광 콘텐츠를 탐색하고 저장하는 서비스",
+  openGraph: {
+    type: "website",
+    siteName: "TripFinder",
+    title: "TripFinder | 국내 여행지 탐색",
+    description:
+      "지역과 취향에 맞는 국내 여행지를 발견하고 저장해보세요.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TripFinder | 국내 여행지 탐색",
+    description:
+      "지역과 취향에 맞는 국내 여행지를 발견하고 저장해보세요.",
+  },
 };
 
 interface RootLayoutProps {
