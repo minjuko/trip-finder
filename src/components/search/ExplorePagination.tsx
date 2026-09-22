@@ -41,8 +41,8 @@ const getExploreHref = (
     params.set("keyword", query.keyword);
   }
 
-  if (query.view === "list") {
-    params.set("view", "list");
+  if (query.view !== "grid") {
+    params.set("view", query.view);
   }
 
   if (query.sort === "title") {
