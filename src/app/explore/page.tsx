@@ -1,4 +1,5 @@
 import { ExploreActiveFilters } from "@/components/search/ExploreActiveFilters";
+import type { Metadata } from "next";
 import { ExploreClassificationFilter } from "@/components/search/ExploreClassificationFilter";
 import { ExplorePagination } from "@/components/search/ExplorePagination";
 import { ExploreRegionFilter } from "@/components/search/ExploreRegionFilter";
@@ -15,6 +16,12 @@ import { getRegions } from "@/lib/tour-api/region";
 interface ExplorePageProps {
   searchParams: Promise<ExploreSearchParams>;
 }
+
+export const metadata: Metadata = {
+  title: "여행지 탐색",
+  description:
+    "지역, 카테고리, 키워드로 국내 여행지를 찾아보세요.",
+};
 
 const ExplorePage = async ({
   searchParams,

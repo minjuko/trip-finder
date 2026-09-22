@@ -1,6 +1,13 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import { HomeSearch } from "@/components/search/HomeSearch";
+
+export const metadata: Metadata = {
+  title: "국내 여행지 탐색",
+  description:
+    "지역과 취향에 맞는 국내 관광 콘텐츠를 발견하고 저장해보세요.",
+};
 
 const REGION_LINKS = [
   {
