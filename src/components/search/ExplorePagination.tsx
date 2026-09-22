@@ -41,6 +41,10 @@ const getExploreHref = (
     params.set("keyword", query.keyword);
   }
 
+  if (query.view === "list") {
+    params.set("view", "list");
+  }
+
   if (page > 1) {
     params.set("page", String(page));
   }

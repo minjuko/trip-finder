@@ -4,9 +4,13 @@ import { TourCard } from "./TourCard";
 
 interface TourListProps {
   contents: TourContent[];
+  view?: "grid" | "list";
 }
 
-export const TourList = ({ contents }: TourListProps) => {
+export const TourList = ({
+  contents,
+  view = "grid",
+}: TourListProps) => {
   if (contents.length === 0) {
     return (
       // 변경: 명확한 empty state
@@ -26,11 +30,18 @@ export const TourList = ({ contents }: TourListProps) => {
 
   return (
     // 변경: Desktop 3-column 결과 grid
-    <ul className="grid grid-cols-1 gap-x-5 gap-y-7 md:grid-cols-2 xl:grid-cols-3">
+    <ul
+      className={
+        view === "list"
+          ? "grid grid-cols-1 gap-4"
+          : "grid grid-cols-1 gap-x-5 gap-y-7 md:grid-cols-2 xl:grid-cols-3"
+      }
+    >
       {contents.map((content, index) => (
         <li key={content.id}>
           <TourCard
             content={content}
+            layout={view}
             // Only the first result is a likely LCP candidate. Keeping the
             // rest lazy avoids turning a 12-card page into eager downloads.
             isAboveFold={index === 0}

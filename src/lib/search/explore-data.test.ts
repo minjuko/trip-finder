@@ -45,6 +45,7 @@ const createQuery = (
 
   keyword: null,
   page: 1,
+  view: "grid",
   ...overrides,
 });
 

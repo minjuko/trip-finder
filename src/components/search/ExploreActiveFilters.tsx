@@ -21,6 +21,7 @@ const buildHref = (
     ["category3", query.category3],
     ["keyword", query.keyword],
     ["page", query.page],
+    ["view", query.view],
   ];
 
   entries.forEach(([key, value]) => {
