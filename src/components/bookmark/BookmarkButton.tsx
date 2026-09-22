@@ -1,6 +1,8 @@
 "use client";
 
-import { useSyncExternalStore } from "react";\n\nimport { Icon } from "@/components/ui/Icon";
+import { useSyncExternalStore } from "react";
+
+import { Icon } from "@/components/ui/Icon";
 
 import {
   addBookmark,
