@@ -30,6 +30,7 @@ export const generateMetadata = async ({
 
   if (!detail) {
     return {
+      description: "TripFinder에서 국내 여행지 정보를 찾아보세요.",
       title: "여행지 정보를 찾을 수 없습니다",
     };
   }
