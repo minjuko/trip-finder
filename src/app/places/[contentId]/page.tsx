@@ -30,7 +30,7 @@ export const generateMetadata = async ({
 
   if (!detail) {
     return {
-      title: "관광 콘텐츠를 찾을 수 없습니다",
+      title: "여행지 정보를 찾을 수 없습니다",
     };
   }
 
@@ -39,14 +39,14 @@ export const generateMetadata = async ({
     description:
       detail.overview ??
       detail.address?.primary ??
-      `${detail.title} 관광 정보`,
+      `${detail.title} 여행 정보`,
     openGraph: {
       type: "website",
       title: `${detail.title} | TripFinder`,
       description:
         detail.overview ??
         detail.address?.primary ??
-        `${detail.title} 관광 정보`,
+        `${detail.title} 여행 정보`,
       images: detail.thumbnail?.url
         ? [{ url: detail.thumbnail.url, alt: detail.title }]
         : undefined,
@@ -106,14 +106,14 @@ const PlaceDetailPage = async ({
         }}
       />
       <nav
-        aria-label="Breadcrumb"
+        aria-label="현재 위치"
         className="mb-6"
       >
         <ol className="flex items-center gap-2 text-sm text-slate-500">
           <li>
             <Link
               href="/explore"
-              className="transition hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
+              className="transition hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
             >
               여행지 탐색
             </Link>
@@ -192,9 +192,9 @@ const PlaceDetailPage = async ({
                 href={detail.homepage}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex w-fit shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
+                className="inline-flex w-fit shrink-0 items-center justify-center rounded-xl border border-line bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-brand-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
               >
-                홈페이지 방문
+                공식 홈페이지
                 <Icon name="external-link" size={16} className="ml-2" />
               </a>
             ) : null}

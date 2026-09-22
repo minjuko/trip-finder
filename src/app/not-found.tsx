@@ -9,12 +9,12 @@ export default function NotFound() {
           페이지를 찾을 수 없습니다.
         </h1>
         <p className="mx-auto mt-4 max-w-lg text-sm leading-6 text-slate-600">
-          주소가 변경되었거나 존재하지 않는 여행지일 수 있습니다.
+          주소가 변경되었거나 여행지 정보가 존재하지 않습니다.
         </p>
         <div className="mt-7 flex flex-wrap justify-center gap-3">
           <Link
             href="/"
-            className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+            className="inline-flex items-center justify-center rounded-xl border border-line bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           >
             홈으로
           </Link>

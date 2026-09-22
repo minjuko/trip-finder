@@ -14,7 +14,7 @@ export default function GlobalError({
           정보를 불러오지 못했습니다.
         </h1>
         <p className="mx-auto mt-4 max-w-lg text-sm leading-6 text-slate-600">
-          일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.
+          일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.
         </p>
         <button
           type="button"

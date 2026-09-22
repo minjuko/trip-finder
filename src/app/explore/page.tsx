@@ -26,7 +26,7 @@ interface ExplorePageProps {
 export const metadata: Metadata = {
   title: "여행지 탐색",
   description:
-    "지역, 카테고리, 키워드로 국내 여행지를 찾아보세요.",
+    "지역, 카테고리, 키워드로 국내 여행지를 탐색해 보세요.",
 };
 
 const ExplorePage = async ({
@@ -110,7 +110,7 @@ const ExplorePage = async ({
 
         <p className="mt-4 max-w-2xl text-base leading-7 text-ink-muted">
           지역과 카테고리를 선택하거나
-          키워드로 국내 관광 콘텐츠를
+          키워드로 국내 여행지를
           찾아보세요.
         </p>
       </header>
@@ -187,14 +187,14 @@ const ExplorePage = async ({
                     "ko-KR",
                   )}
                 </strong>
-                개의 관광 콘텐츠
+                개
               </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
               <ExploreSortSelect sort={query.sort} />
               <p className="rounded-full bg-brand-soft px-3 py-1.5 text-xs font-semibold text-brand-strong">
-                PAGE {contents.page}
+                {contents.page}페이지
               </p>
               <ExploreViewToggle view={query.view} />
             </div>

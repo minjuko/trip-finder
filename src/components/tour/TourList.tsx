@@ -20,11 +20,11 @@ export const TourList = ({
       <div className="flex min-h-72 items-center justify-center rounded-2xl border border-dashed border-line bg-surface-subtle px-6 text-center">
         <div>
           <p className="font-semibold text-slate-900">
-            조건에 맞는 관광 콘텐츠가 없습니다.
+            조건에 맞는 여행지가 없습니다.
           </p>
 
           <p className="mt-2 text-sm text-slate-500">
-            검색어나 필터 조건을 변경해보세요.
+            검색어나 필터를 변경해 보세요.
           </p>
           {emptyActionHref ? (
             <Link
