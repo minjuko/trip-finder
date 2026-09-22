@@ -48,7 +48,11 @@ export const ExploreMap = ({ contents }: ExploreMapProps) => {
   const first = mappedContents[0].coordinates!;
 
   return (
-    <div className="overflow-hidden rounded-3xl border border-line bg-white shadow-sm shadow-slate-200/40">
+    <div
+      role="region"
+      aria-label="검색 결과 지도"
+      className="overflow-hidden rounded-3xl border border-line bg-white shadow-sm shadow-slate-200/40"
+    >
       <MapContainer
         center={[first.latitude, first.longitude]}
         zoom={10}
