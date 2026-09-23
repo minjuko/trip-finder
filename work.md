@@ -39,11 +39,11 @@ Next.js·TypeScript·공공 API·접근성·검색 노출·테스트 역량을 �
 
 - ESLint 경고 없이 통과
 - TypeScript 타입 검사 통과
-- Vitest 28개 파일, 152개 테스트 통과
+- Vitest 29개 파일, 153개 테스트 통과
 - Next.js 프로덕션 빌드 통과
 - GitHub Actions 통합 CI 통과(format · lint · typecheck · Vitest coverage · Playwright E2E · build)
-- Vitest 28개 파일, 152개 테스트 통과
-- Playwright E2E 8개 시나리오 검증
+- Vitest 29개 파일, 153개 테스트 통과
+- Playwright E2E 8개 시나리오 3회 연속 통과 · retry 없음
 - Production Lighthouse Mobile 최종 측정
   - Home: Performance 99 / Accessibility 100 / Best Practices 100 / SEO 100 / LCP 1.7s
   - Explore: Performance 68 / Accessibility 100 / Best Practices 100 / SEO 100 / LCP 6.2s / CLS 0
@@ -54,4 +54,4 @@ Next.js·TypeScript·공공 API·접근성·검색 노출·테스트 역량을 �
 
 핵심 기능, UI/UX, 테스트, 접근성, CI, Production 배포와 Lighthouse 측정까지 완료했다. Explore와 Detail의 Performance는 외부 TourAPI·이미지·네트워크 상태에 따라 변동할 수 있으며, LCP 이미지 discovery와 우선순위 적용은 최종 측정에서 확인했다.
 
-최신 CI는 전체 workflow가 성공했지만 실제 TourAPI를 사용하는 E2E 8개 중 키워드 탐색 1개가 최초 실패 후 retry로 통과했다. 외부 API·네트워크 의존성에 따른 flaky 가능성을 운영상 한계로 기록하고 프로젝트 코드 작업을 마감한다.
+반복 상세정보의 duplicate key는 normalizer에서 안정적인 domain ID를 생성하도록 수정했고, Explore E2E의 API 응답 대기 구간은 TourAPI client의 시간 계약에 맞춰 동기화했다. 수정 후 E2E 8개 시나리오를 3회 연속 retry 없이 통과했으며 duplicate key·console error가 재발하지 않아 프로젝트 코드 작업을 마감한다.

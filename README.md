@@ -19,7 +19,7 @@
 - **상세 경험**: 이미지 확대, 주소 복사, 링크 공유, 좌표 기반 지도 이동
 - **검색 노출**: Open Graph/Twitter metadata, robots.txt, sitemap.xml, 장소 구조화 데이터
 - **외부 저장소 검증**: localStorage 북마크 데이터도 Zod로 검증하고 `useSyncExternalStore`로 UI 상태 동기화
-- **품질 검증**: Vitest·React Testing Library·Playwright·axe-core와 GitHub Actions를 이용해 unit/component/E2E·접근성·CI 검증
+- **품질 검증**: Vitest·React Testing Library·Playwright·axe-core와 GitHub Actions를 이용해 153개 unit/component 테스트와 8개 E2E 시나리오·접근성·CI 검증
 - **Production 검증**: Vercel 배포 후 핵심 사용자 흐름 smoke test와 Lighthouse Mobile 측정
 
 ## 주요 기능
@@ -154,8 +154,9 @@ TourAPI response (unknown)
 - `ldongCode2`가 `{ rnum, code, name }` 형태로 지역 코드 반환
 - 현재 GW API에서 과거 Detail API 예시의 일부 query parameter가 `INVALID_REQUEST_PARAMETER_ERROR` 발생
 - `detailCommon2.homepage`가 plain URL이 아니라 HTML anchor markup으로 반환
+- `detailInfo2`에서 `subcontentid`가 없는 행이 부모 `contentid`를 공유해 반복 상세정보 ID 충돌 발생
 
-이 차이를 schema와 normalizer 계층에서 흡수해 UI에는 일관된 `TourContent`, `TourContentDetail` domain model만 전달합니다.
+이 차이를 schema와 normalizer 계층에서 흡수하고, 반복 상세정보는 부모 ID와 의미 필드를 조합한 안정적인 domain ID로 변환해 UI에는 일관된 `TourContent`, `TourContentDetail` domain model만 전달합니다.
 
 ### Service Key 정규화
 
@@ -228,7 +229,7 @@ Playwright E2E는 **실제 TourAPI를 사용하는 integration test**로 구성�
 
 `@axe-core/playwright` 자동 검사에서 실제로 TourCard 이미지 fallback 텍스트의 색상 대비 문제를 발견했고, 대비를 수정한 뒤 E2E를 다시 통과시켰습니다.
 
-실제 TourAPI E2E를 CI에 포함해 통합 경로까지 자동 검증합니다. 다만 API key·일일 quota·외부 서비스·네트워크 상태에 따라 retry가 발생할 수 있는 trade-off가 있으며, 최신 CI에서도 8개 중 1개가 최초 실패 후 retry로 통과했습니다.
+실제 TourAPI E2E를 CI에 포함해 통합 경로까지 자동 검증합니다. 외부 API 응답을 기다리는 Explore 최종 렌더링 assertion은 TourAPI client의 시간 계약에 맞춰 동기화했으며, 최종 E2E 3회 반복 검증에서 8개 시나리오가 모두 retry 없이 통과했습니다.
 
 ## CI
 
@@ -364,7 +365,7 @@ TripFinder는 한국관광공사 **국문 관광정보 서비스(TourAPI)**를 �
 
 - TypeScript strict typecheck
 - ESLint
-- Vitest unit/component tests
+- Vitest unit/component tests: **29개 파일 / 153개 테스트**
 - Playwright E2E 8개 시나리오
 - axe automated accessibility checks
 - Next.js production build
