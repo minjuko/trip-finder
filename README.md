@@ -217,7 +217,7 @@ Vitest와 React Testing Library로 다음 영역을 검증합니다.
 
 ### E2E / Accessibility
 
-Playwright E2E는 **실제 TourAPI를 사용하는 로컬 integration test**로 구성했습니다.
+Playwright E2E는 **실제 TourAPI를 사용하는 integration test**로 구성했습니다. 최종 단계에서는 GitHub Actions secret으로 service key를 주입해 CI에서도 동일한 E2E를 실행합니다.
 
 현재 E2E 시나리오는 총 8건입니다. 핵심 흐름과 접근성 검증은 다음과 같습니다.
 
@@ -228,35 +228,42 @@ Playwright E2E는 **실제 TourAPI를 사용하는 로컬 integration test**로 
 
 `@axe-core/playwright` 자동 검사에서 실제로 TourCard 이미지 fallback 텍스트의 색상 대비 문제를 발견했고, 대비를 수정한 뒤 E2E를 다시 통과시켰습니다.
 
-실제 TourAPI E2E는 API key·일일 quota·외부 서비스 상태가 CI 신뢰성에 영향을 주지 않도록 CI와 분리했습니다.
+실제 TourAPI E2E를 CI에 포함해 통합 경로까지 자동 검증합니다. 다만 API key·일일 quota·외부 서비스·네트워크 상태에 따라 retry가 발생할 수 있는 trade-off가 있으며, 최신 CI에서도 8개 중 1개가 최초 실패 후 retry로 통과했습니다.
 
 ## CI
 
-GitHub Actions는 `main` push와 pull request에서 deterministic quality gate를 실행합니다.
+GitHub Actions는 `main` push와 pull request에서 formatting부터 실제 TourAPI E2E까지 하나의 quality workflow로 실행합니다.
 
 ```text
 npm ci
+→ Prettier format check
 → ESLint
 → TypeScript typecheck
-→ Vitest unit/component tests
+→ Vitest coverage
+→ Chromium install
+→ Playwright E2E + axe
 → Next.js production build
 ```
 
-CI에서는 실제 TourAPI를 호출하지 않으며 production build에 필요한 placeholder 환경변수만 주입합니다.
+CI에서는 GitHub Actions secret의 TourAPI service key를 사용해 실제 통합 흐름까지 검증합니다.
 
 Clean CI 환경에서는 로컬의 Next.js 생성 타입에 가려져 있던 Root Layout 타입 의존성 문제를 발견했고, 생성된 global 타입 대신 명시적인 `ReactNode` 기반 props 타입으로 수정해 CI를 통과시켰습니다.
 
 ## Performance & Accessibility
 
-Vercel Production 환경에서 Chrome Lighthouse Mobile을 측정했습니다. 아래 값은 현재 UI·Paperlogy 웹폰트 개편 전 기준이며, 최신 화면의 최종 성능 수치로 사용하지 않습니다.
+최종 배포 버전을 Vercel Production에서 Lighthouse 13.5.0 Mobile preset으로 각 페이지 1회 측정했습니다. 외부 TourAPI·이미지 응답과 네트워크 상태에 따라 Performance는 변동할 수 있어 단일 점수와 함께 LCP 원인 및 구조적 개선을 확인했습니다.
 
-| Page | Performance | Accessibility | Best Practices | SEO | LCP | TBT | CLS |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Home | **99** | 100 | 100 | 100 | 2.0s | 80ms | 0 |
-| Explore | **97** | 100 | 100 | 100 | 2.4s | 130ms | 0 |
-| Detail | **92** | 100 | 100 | 100 | 2.1s | 320ms | 0 |
+| Page | Performance | Accessibility | Best Practices | SEO | FCP | LCP | TBT | CLS |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Home | **99** | 100 | 100 | 100 | 1.1s | 1.7s | 100ms | 0.002 |
+| Explore | **68** | 100 | 100 | 100 | 1.0s | 6.2s | 370ms | 0 |
+| Detail | **85** | 100 | 100 | 92 | 1.2s | 3.6s | 250ms | 0 |
 
-Explore에서 이미지 전송량 개선 가능성, Detail에서 TBT 증가와 bfcache 제한을 확인했습니다. LCP·CLS와 전체 결과를 함께 검토해 Lighthouse 점수만을 높이기 위한 추가 복잡성은 도입하지 않고 개선 후보로 기록했습니다.
+Explore의 실제 LCP 요소는 첫 관광지 카드 이미지였습니다. 첫 이미지에 `fetchPriority="high"`와 eager loading을 적용하고 실제 레이아웃에 맞는 responsive `sizes`를 지정했으며, Lighthouse에서 초기 HTML discovery와 우선순위 적용을 확인했습니다. 모바일 필터 초기 상태로 발생하던 레이아웃 이동도 제거해 CLS를 0으로 안정화했습니다.
+
+Detail은 대표 이미지를 LCP 요소로 확인해 우선순위를 지정하고 canonical·Open Graph·Twitter metadata와 fallback description을 보완했습니다. Home은 Performance 99, LCP 1.7초로 충분히 안정적이었습니다.
+
+Explore·Detail에는 unused JavaScript, network dependency tree, render-blocking request 등의 개선 후보가 남아 있습니다. 다만 외부 API·이미지·네트워크에 따른 측정 변동이 크고 LCP discovery 자체는 정상화되어, Lighthouse 점수만을 높이기 위한 추가 구조 복잡성은 도입하지 않았습니다.
 
 ## Project Structure
 
@@ -358,7 +365,7 @@ TripFinder는 한국관광공사 **국문 관광정보 서비스(TourAPI)**를 �
 - TypeScript strict typecheck
 - ESLint
 - Vitest unit/component tests
-- Playwright core E2E 8건
+- Playwright E2E 8개 시나리오
 - axe automated accessibility checks
 - Next.js production build
 - GitHub Actions CI
