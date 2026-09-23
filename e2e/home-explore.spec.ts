@@ -33,7 +33,10 @@ test.describe("Home → Explore", () => {
         level: 1,
         name: "여행지 탐색",
       }),
-    ).toBeVisible();
+      // URL is committed with the loading UI before the Server Component's
+      // TourAPI request finishes. Match the API client's 10-second budget
+      // without increasing timeouts for the rest of the suite.
+    ).toBeVisible({ timeout: 15_000 });
 
     await expect(
       page.getByRole("heading", {
