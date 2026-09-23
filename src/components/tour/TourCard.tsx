@@ -29,9 +29,11 @@ export const TourCard = ({
     <article className="relative h-full">
       <Link
         href={`/places/${content.id}`}
-        className={`${layout === "list" ? "flex flex-col sm:flex-row" : "block"} group h-full overflow-hidden rounded-3xl border border-line bg-white transition duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-xl hover:shadow-slate-200/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2`}
+        className={`${layout === "list" ? "flex flex-col sm:flex-row" : "block"} group h-full overflow-hidden rounded-3xl border border-line bg-white shadow-sm transition duration-300 hover:border-brand/30 hover:shadow-xl hover:shadow-slate-200/70 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-200`}
       >
-        <div className={`${layout === "list" ? "aspect-[4/3] sm:h-44 sm:w-64 sm:shrink-0 sm:aspect-auto" : "aspect-[4/3]"} relative overflow-hidden bg-surface-subtle`}>
+        <div
+          className={`${layout === "list" ? "aspect-[4/3] sm:h-44 sm:w-64 sm:shrink-0 sm:aspect-auto" : "aspect-[4/3]"} relative overflow-hidden bg-surface-subtle`}
+        >
           {content.thumbnail ? (
             <Image
               src={content.thumbnail.url}
@@ -39,7 +41,11 @@ export const TourCard = ({
               fill
               loading={isAboveFold ? "eager" : "lazy"}
               fetchPriority={isAboveFold ? "high" : undefined}
-              sizes={layout === "list" ? "(min-width: 640px) 256px, calc(100vw - 40px)" : "(min-width: 1280px) 300px, (min-width: 768px) calc((100vw - 340px) / 2), calc(100vw - 40px)"}
+              sizes={
+                layout === "list"
+                  ? "(min-width: 640px) 256px, calc(100vw - 40px)"
+                  : "(min-width: 1280px) 300px, (min-width: 768px) calc((100vw - 340px) / 2), calc(100vw - 40px)"
+              }
               className="object-cover transition duration-500 group-hover:scale-[1.04]"
             />
           ) : (
@@ -51,7 +57,9 @@ export const TourCard = ({
                 <span className="grid size-10 place-items-center rounded-xl bg-brand-soft text-brand">
                   <Icon name="compass" size={20} />
                 </span>
-                <span className="text-xs font-medium text-slate-600">등록된 이미지가 없습니다</span>
+                <span className="text-xs font-medium text-slate-600">
+                  등록된 이미지가 없습니다
+                </span>
                 <span className="sr-only">이미지 없음</span>
               </div>
             </div>
@@ -71,7 +79,7 @@ export const TourCard = ({
             </p>
           ) : null}
 
-          <h3 className="line-clamp-2 text-base font-semibold leading-6 text-slate-950 transition group-hover:text-brand-strong">
+          <h3 className="line-clamp-2 text-lg font-semibold leading-7 text-slate-950 transition group-hover:text-brand-strong group-hover:underline group-hover:decoration-sky-300 group-hover:underline-offset-4">
             {content.title}
           </h3>
 

@@ -1,33 +1,21 @@
-import {
-  describe,
-  expect,
-  it,
-} from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { detailCommonFixture } from "../__fixtures__/detail-common";
 import { normalizeTourDetailCommonItem } from "./detail-common";
 
 const getFixtureItem = () => {
-  const { items } =
-    detailCommonFixture.response.body;
+  const { items } = detailCommonFixture.response.body;
 
   if (items === "") {
-    throw new Error(
-      "detailCommonFixture must contain an item",
-    );
+    throw new Error("detailCommonFixture must contain an item");
   }
 
-  return structuredClone(
-    items.item[0],
-  );
+  return structuredClone(items.item[0]);
 };
 
 describe("normalizeTourDetailCommonItem", () => {
   it("normalizes detailCommon2 DTO to the domain model", () => {
-    const result =
-      normalizeTourDetailCommonItem(
-        getFixtureItem(),
-      );
+    const result = normalizeTourDetailCommonItem(getFixtureItem());
 
     expect(result).toEqual({
       id: "127480",
@@ -35,8 +23,7 @@ describe("normalizeTourDetailCommonItem", () => {
       title: "가거도",
 
       address: {
-        primary:
-          "전남광주통합특별시 신안군 흑산면 가거도길 38-2",
+        primary: "전남광주통합특별시 신안군 흑산면 가거도길 38-2",
         detail: null,
         zipCode: "58866",
       },
@@ -91,9 +78,7 @@ describe("normalizeTourDetailCommonItem", () => {
     item.homepage = "";
     item.overview = "";
 
-    expect(
-      normalizeTourDetailCommonItem(item),
-    ).toMatchObject({
+    expect(normalizeTourDetailCommonItem(item)).toMatchObject({
       address: null,
       thumbnail: null,
       region: null,
@@ -108,13 +93,9 @@ describe("normalizeTourDetailCommonItem", () => {
   it("preserves a plain homepage URL", () => {
     const item = getFixtureItem();
 
-    item.homepage =
-      "https://example.com/place";
+    item.homepage = "https://example.com/place";
 
-    expect(
-      normalizeTourDetailCommonItem(item)
-        .homepage,
-    ).toBe(
+    expect(normalizeTourDetailCommonItem(item).homepage).toBe(
       "https://example.com/place",
     );
   });
@@ -122,13 +103,9 @@ describe("normalizeTourDetailCommonItem", () => {
   it("returns null for an unsupported homepage value", () => {
     const item = getFixtureItem();
 
-    item.homepage =
-      "홈페이지 준비 중";
+    item.homepage = "홈페이지 준비 중";
 
-    expect(
-      normalizeTourDetailCommonItem(item)
-        .homepage,
-    ).toBeNull();
+    expect(normalizeTourDetailCommonItem(item).homepage).toBeNull();
   });
 
   it("rejects unsafe protocols extracted from homepage HTML", () => {
@@ -136,8 +113,6 @@ describe("normalizeTourDetailCommonItem", () => {
 
     item.homepage = '<a href="javascript:alert(1)">홈페이지</a>';
 
-    expect(
-      normalizeTourDetailCommonItem(item).homepage,
-    ).toBeNull();
+    expect(normalizeTourDetailCommonItem(item).homepage).toBeNull();
   });
 });

@@ -3,10 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-import type {
-  TourContentDetail,
-  TourImage,
-} from "@/types/tour";
+import type { TourContentDetail, TourImage } from "@/types/tour";
 
 interface TourDetailGalleryProps {
   title: string;
@@ -21,20 +18,18 @@ export const TourDetailGallery = ({
 }: TourDetailGalleryProps) => {
   // 변경: detailImage2가 비어 있어도
   // detailCommon2의 대표 이미지를 gallery fallback으로 사용
-  const primaryImage =
-    images[0]?.url ??
-    thumbnail?.url ??
-    null;
+  const primaryImage = images[0]?.url ?? thumbnail?.url ?? null;
 
-  const secondaryImages =
-    images.slice(1, 5);
+  const secondaryImages = images.slice(1, 5);
   const galleryImages = [
     { url: primaryImage, alt: `${title} 대표 이미지` },
     ...secondaryImages.map((image, index) => ({
       url: image.url,
       alt: image.alt ?? `${title} 추가 이미지 ${index + 1}`,
     })),
-  ].filter((image): image is { url: string; alt: string } => Boolean(image.url));
+  ].filter((image): image is { url: string; alt: string } =>
+    Boolean(image.url),
+  );
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const lastFocusedElementRef = useRef<HTMLElement | null>(null);
@@ -103,39 +98,33 @@ export const TourDetailGallery = ({
           sizes="(min-width: 768px) 66vw, 100vw"
           className="object-cover transition duration-500 group-hover:scale-[1.02]"
         />
-        <span className="absolute bottom-4 right-4 rounded-full bg-slate-950/75 px-3 py-1.5 text-xs font-semibold text-white opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">크게 보기</span>
+        <span className="absolute bottom-4 right-4 rounded-full bg-slate-950/75 px-3 py-1.5 text-xs font-semibold text-white opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
+          크게 보기
+        </span>
       </button>
 
       {secondaryImages.length > 0 ? (
         <div className="grid grid-cols-2 gap-3 md:grid-cols-1">
-          {secondaryImages
-            .slice(0, 2)
-            .map((image, index) => (
-              <button
-                type="button"
-                key={image.id}
-                onClick={() => openImage(index + 1)}
-                aria-label={`${title} 추가 이미지 ${index + 1} 크게 보기`}
-                className="group relative aspect-[4/3] overflow-hidden bg-slate-100 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset md:aspect-auto md:min-h-0"
-              >
-                <Image
-                  src={image.url}
-                  alt={
-                    image.alt ??
-                    `${title} 추가 이미지 ${index + 1}`
-                  }
-                  fill
-                  sizes="(min-width: 768px) 33vw, 50vw"
-                  className="object-cover transition duration-500 group-hover:scale-[1.02]"
-                />
-              </button>
-            ))}
+          {secondaryImages.slice(0, 2).map((image, index) => (
+            <button
+              type="button"
+              key={image.id}
+              onClick={() => openImage(index + 1)}
+              aria-label={`${title} 추가 이미지 ${index + 1} 크게 보기`}
+              className="group relative aspect-[4/3] overflow-hidden bg-slate-100 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset md:aspect-auto md:min-h-0"
+            >
+              <Image
+                src={image.url}
+                alt={image.alt ?? `${title} 추가 이미지 ${index + 1}`}
+                fill
+                sizes="(min-width: 768px) 33vw, 50vw"
+                className="object-cover transition duration-500 group-hover:scale-[1.02]"
+              />
+            </button>
+          ))}
         </div>
       ) : (
-        <div
-          aria-hidden="true"
-          className="hidden bg-slate-100 md:block"
-        />
+        <div aria-hidden="true" className="hidden bg-slate-100 md:block" />
       )}
       {selectedImage !== null ? (
         <div

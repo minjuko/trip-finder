@@ -87,14 +87,7 @@ describe("parseExploreQuery", () => {
     });
   });
 
-  it.each([
-    ["0"],
-    ["-1"],
-    ["1.5"],
-    ["abc"],
-    ["2abc"],
-    [""],
-  ])(
+  it.each([["0"], ["-1"], ["1.5"], ["abc"], ["2abc"], [""]])(
     "falls back to page 1 for invalid page %s",
     (page) => {
       expect(parseExploreQuery({ page }).page).toBe(1);

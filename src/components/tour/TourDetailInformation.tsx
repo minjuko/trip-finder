@@ -31,9 +31,7 @@ export const TourDetailInformation = ({
             key={key}
             className="rounded-2xl border border-slate-200 bg-surface-subtle p-5"
           >
-            <dt className="text-xs font-semibold text-slate-600">
-              {label}
-            </dt>
+            <dt className="text-xs font-semibold text-slate-600">{label}</dt>
             <dd className="mt-2 min-w-0 whitespace-pre-line break-words text-sm font-medium leading-6 text-slate-900">
               {value}
             </dd>

@@ -1,15 +1,5 @@
-import {
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from "vitest";
-import {
-  fireEvent,
-  render,
-  screen,
-} from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import { HomeSearch } from "./HomeSearch";
 
@@ -99,8 +89,6 @@ describe("HomeSearch", () => {
       }),
     );
 
-    expect(pushMock).toHaveBeenCalledWith(
-      "/explore",
-    );
+    expect(pushMock).toHaveBeenCalledWith("/explore");
   });
 });

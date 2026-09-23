@@ -1,23 +1,18 @@
 import { describe, expect, it } from "vitest";
 
-import {
-  districtFixture,
-  regionFixture,
-} from "../__fixtures__/region";
+import { districtFixture, regionFixture } from "../__fixtures__/region";
 import { regionResponseSchema } from "./region";
 
 describe("regionResponseSchema", () => {
   it("validates a valid top-level ldongCode2 response", () => {
-    const result =
-      regionResponseSchema.safeParse(regionFixture);
+    const result = regionResponseSchema.safeParse(regionFixture);
 
     expect(result.success).toBe(true);
   });
 
   // 변경: 동일 schema로 시군구 응답도 검증되는지 확인
   it("validates a valid district ldongCode2 response", () => {
-    const result =
-      regionResponseSchema.safeParse(districtFixture);
+    const result = regionResponseSchema.safeParse(districtFixture);
 
     expect(result.success).toBe(true);
   });
@@ -32,8 +27,7 @@ describe("regionResponseSchema", () => {
 
     item.code = 11;
 
-    const result =
-      regionResponseSchema.safeParse(invalidFixture);
+    const result = regionResponseSchema.safeParse(invalidFixture);
 
     expect(result.success).toBe(false);
   });
@@ -48,8 +42,7 @@ describe("regionResponseSchema", () => {
 
     delete item.name;
 
-    const result =
-      regionResponseSchema.safeParse(invalidFixture);
+    const result = regionResponseSchema.safeParse(invalidFixture);
 
     expect(result.success).toBe(false);
   });

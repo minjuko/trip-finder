@@ -12,25 +12,18 @@ import {
 } from "./classification";
 
 const getFirstClassificationItem = () => {
-  const parsed =
-    classificationResponseSchema.parse(
-      classificationFixture,
-    );
+  const parsed = classificationResponseSchema.parse(classificationFixture);
 
   const { items } = parsed.response.body;
 
   if (items === "") {
-    throw new Error(
-      "Expected a non-empty classification fixture",
-    );
+    throw new Error("Expected a non-empty classification fixture");
   }
 
   const [item] = items.item;
 
   if (!item) {
-    throw new Error(
-      "Expected at least one classification item",
-    );
+    throw new Error("Expected at least one classification item");
   }
 
   return item;
@@ -38,9 +31,7 @@ const getFirstClassificationItem = () => {
 
 describe("normalizeClassificationItem", () => {
   it("converts an lclsSystmCode2 item to the domain model", () => {
-    const result = normalizeClassificationItem(
-      getFirstClassificationItem(),
-    );
+    const result = normalizeClassificationItem(getFirstClassificationItem());
 
     expect(result).toEqual({
       code: "AC",
@@ -66,13 +57,9 @@ describe("normalizeClassificationItem", () => {
 
 describe("normalizeClassificationResponse", () => {
   it("normalizes depth 1 classifications", () => {
-    const parsed =
-      classificationResponseSchema.parse(
-        classificationFixture,
-      );
+    const parsed = classificationResponseSchema.parse(classificationFixture);
 
-    const result =
-      normalizeClassificationResponse(parsed);
+    const result = normalizeClassificationResponse(parsed);
 
     expect(result).toHaveLength(10);
     expect(result[0]).toEqual({
@@ -87,13 +74,11 @@ describe("normalizeClassificationResponse", () => {
 
   // 변경: depth 2도 동일 Domain 타입으로 정규화
   it("normalizes depth 2 classifications", () => {
-    const parsed =
-      classificationResponseSchema.parse(
-        classificationDepth2Fixture,
-      );
+    const parsed = classificationResponseSchema.parse(
+      classificationDepth2Fixture,
+    );
 
-    const result =
-      normalizeClassificationResponse(parsed);
+    const result = normalizeClassificationResponse(parsed);
 
     expect(result).toHaveLength(5);
     expect(result[1]).toEqual({
@@ -104,13 +89,11 @@ describe("normalizeClassificationResponse", () => {
 
   // 변경: depth 3도 동일 Domain 타입으로 정규화
   it("normalizes depth 3 classifications", () => {
-    const parsed =
-      classificationResponseSchema.parse(
-        classificationDepth3Fixture,
-      );
+    const parsed = classificationResponseSchema.parse(
+      classificationDepth3Fixture,
+    );
 
-    const result =
-      normalizeClassificationResponse(parsed);
+    const result = normalizeClassificationResponse(parsed);
 
     expect(result).toHaveLength(9);
     expect(result[0]).toEqual({

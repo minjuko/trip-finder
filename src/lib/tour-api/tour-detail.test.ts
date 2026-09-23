@@ -1,10 +1,4 @@
-import {
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { getTourDetailCommon } from "./detail-common";
 import { getTourDetailImages } from "./detail-image";
@@ -22,13 +16,9 @@ vi.mock("./detail-common", () => ({
 vi.mock("./detail-intro", () => ({
   getTourDetailIntro: vi.fn(),
   // 변경: orchestration의 contentType 분기를 실제 계약과 동일하게 mock
-  isSupportedDetailIntroContentTypeId:
-    vi.fn(
-      (value: string) =>
-        value === "12" ||
-        value === "14" ||
-        value === "39",
-    ),
+  isSupportedDetailIntroContentTypeId: vi.fn(
+    (value: string) => value === "12" || value === "14" || value === "39",
+  ),
 }));
 
 vi.mock("./detail-image", () => ({
@@ -39,22 +29,17 @@ vi.mock("./detail-info", () => ({
   getTourDetailInfo: vi.fn(),
 }));
 
-const mockedGetTourDetailCommon =
-  vi.mocked(getTourDetailCommon);
+const mockedGetTourDetailCommon = vi.mocked(getTourDetailCommon);
 
-const mockedGetTourDetailIntro =
-  vi.mocked(getTourDetailIntro);
+const mockedGetTourDetailIntro = vi.mocked(getTourDetailIntro);
 
-const mockedGetTourDetailImages =
-  vi.mocked(getTourDetailImages);
+const mockedGetTourDetailImages = vi.mocked(getTourDetailImages);
 
-const mockedGetTourDetailInfo =
-  vi.mocked(getTourDetailInfo);
+const mockedGetTourDetailInfo = vi.mocked(getTourDetailInfo);
 
-const mockedIsSupportedDetailIntroContentTypeId =
-  vi.mocked(
-    isSupportedDetailIntroContentTypeId,
-  );
+const mockedIsSupportedDetailIntroContentTypeId = vi.mocked(
+  isSupportedDetailIntroContentTypeId,
+);
 
 const commonFixture = {
   id: "127480",
@@ -62,8 +47,7 @@ const commonFixture = {
   title: "가거도",
 
   address: {
-    primary:
-      "전남광주통합특별시 신안군 흑산면 가거도길 38-2",
+    primary: "전남광주통합특별시 신안군 흑산면 가거도길 38-2",
     detail: null,
     zipCode: "58866",
   },
@@ -127,33 +111,22 @@ describe("getTourDetail", () => {
 
     // 변경: 기본 fixture는 지원 contentType으로 판별
     mockedIsSupportedDetailIntroContentTypeId.mockImplementation(
-      (value: string) =>
-        value === "12" ||
-        value === "14" ||
-        value === "39",
+      (value: string) => value === "12" || value === "14" || value === "39",
     );
 
-    mockedGetTourDetailCommon.mockResolvedValue(
-      structuredClone(commonFixture),
-    );
+    mockedGetTourDetailCommon.mockResolvedValue(structuredClone(commonFixture));
 
     mockedGetTourDetailIntro.mockResolvedValue(
-      structuredClone(
-        informationFixture,
-      ),
+      structuredClone(informationFixture),
     );
 
-    mockedGetTourDetailImages.mockResolvedValue(
-      structuredClone(imagesFixture),
-    );
+    mockedGetTourDetailImages.mockResolvedValue(structuredClone(imagesFixture));
 
     mockedGetTourDetailInfo.mockResolvedValue([]);
   });
 
   it("combines common, intro, and image data into TourContentDetail", async () => {
-    await expect(
-      getTourDetail("127480"),
-    ).resolves.toEqual({
+    await expect(getTourDetail("127480")).resolves.toEqual({
       ...commonFixture,
       information: informationFixture,
       images: imagesFixture,
@@ -164,50 +137,33 @@ describe("getTourDetail", () => {
   it("uses common detail data when requesting intro and images", async () => {
     await getTourDetail("127480");
 
-    expect(
-      mockedGetTourDetailCommon,
-    ).toHaveBeenCalledWith("127480");
+    expect(mockedGetTourDetailCommon).toHaveBeenCalledWith("127480");
 
-    expect(
-      mockedGetTourDetailIntro,
-    ).toHaveBeenCalledWith({
+    expect(mockedGetTourDetailIntro).toHaveBeenCalledWith({
       contentId: "127480",
       contentTypeId: "12",
     });
 
-    expect(
-      mockedGetTourDetailImages,
-    ).toHaveBeenCalledWith(
-      "127480",
-    );
+    expect(mockedGetTourDetailImages).toHaveBeenCalledWith("127480");
   });
 
   // 변경: Intro 계약을 검증하지 않은 contentType도
   // 상세 페이지 자체는 Common + Images로 정상 구성
   it("skips intro for an unsupported contentTypeId", async () => {
     mockedGetTourDetailCommon.mockResolvedValue({
-      ...structuredClone(
-        commonFixture,
-      ),
+      ...structuredClone(commonFixture),
       contentTypeId: "15",
     });
 
-    const result =
-      await getTourDetail("127480");
+    const result = await getTourDetail("127480");
 
-    expect(
-      mockedIsSupportedDetailIntroContentTypeId,
-    ).toHaveBeenCalledWith("15");
-
-    expect(
-      mockedGetTourDetailIntro,
-    ).not.toHaveBeenCalled();
-
-    expect(
-      mockedGetTourDetailImages,
-    ).toHaveBeenCalledWith(
-      "127480",
+    expect(mockedIsSupportedDetailIntroContentTypeId).toHaveBeenCalledWith(
+      "15",
     );
+
+    expect(mockedGetTourDetailIntro).not.toHaveBeenCalled();
+
+    expect(mockedGetTourDetailImages).toHaveBeenCalledWith("127480");
 
     expect(result).toEqual({
       ...commonFixture,
@@ -220,63 +176,41 @@ describe("getTourDetail", () => {
 
   // 존재하지 않는 콘텐츠에서는 추가 API 호출 중단
   it("returns null without requesting intro or images when common detail does not exist", async () => {
-    mockedGetTourDetailCommon.mockResolvedValue(
-      null,
-    );
+    mockedGetTourDetailCommon.mockResolvedValue(null);
 
-    await expect(
-      getTourDetail("999999999"),
-    ).resolves.toBeNull();
+    await expect(getTourDetail("999999999")).resolves.toBeNull();
 
-    expect(
-      mockedGetTourDetailIntro,
-    ).not.toHaveBeenCalled();
+    expect(mockedGetTourDetailIntro).not.toHaveBeenCalled();
 
-    expect(
-      mockedGetTourDetailImages,
-    ).not.toHaveBeenCalled();
+    expect(mockedGetTourDetailImages).not.toHaveBeenCalled();
   });
 
   // intro가 없어도 유효한 상세 Domain 생성
   it("supports detail content without intro information", async () => {
-    mockedGetTourDetailIntro.mockResolvedValue(
-      [],
-    );
+    mockedGetTourDetailIntro.mockResolvedValue([]);
 
-    const result =
-      await getTourDetail("127480");
+    const result = await getTourDetail("127480");
 
-    expect(result?.information).toEqual(
-      [],
-    );
+    expect(result?.information).toEqual([]);
 
-    expect(result?.images).toEqual(
-      imagesFixture,
-    );
+    expect(result?.images).toEqual(imagesFixture);
   });
 
   // 이미지가 없어도 유효한 상세 Domain 생성
   it("supports detail content without images", async () => {
-    mockedGetTourDetailImages.mockResolvedValue(
-      [],
-    );
+    mockedGetTourDetailImages.mockResolvedValue([]);
 
-    const result =
-      await getTourDetail("127480");
+    const result = await getTourDetail("127480");
 
     expect(result?.images).toEqual([]);
 
-    expect(result?.information).toEqual(
-      informationFixture,
-    );
+    expect(result?.information).toEqual(informationFixture);
   });
 
   // 선택적 intro API가 실패해도 공통 상세는 표시
   it("keeps common detail when intro request fails", async () => {
     mockedGetTourDetailIntro.mockRejectedValue(
-      new Error(
-        "detailIntro request failed",
-      ),
+      new Error("detailIntro request failed"),
     );
 
     await expect(getTourDetail("127480")).resolves.toMatchObject({
@@ -288,9 +222,7 @@ describe("getTourDetail", () => {
 
   it("keeps common detail when image request fails", async () => {
     mockedGetTourDetailImages.mockRejectedValue(
-      new Error(
-        "detailImage request failed",
-      ),
+      new Error("detailImage request failed"),
     );
 
     await expect(getTourDetail("127480")).resolves.toMatchObject({

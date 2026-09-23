@@ -28,19 +28,16 @@ describe("searchKeyword", () => {
 
     expect(mockedRequestTourApi).toHaveBeenCalledOnce();
 
-    expect(mockedRequestTourApi).toHaveBeenCalledWith(
-      "searchKeyword2",
-      {
-        params: {
-          keyword: "경복궁",
-          pageNo: 1,
-          numOfRows: 12,
-          arrange: "A",
-        },
-        // 변경: 검색 API 캐시 정책 계약 검증
-        cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
+    expect(mockedRequestTourApi).toHaveBeenCalledWith("searchKeyword2", {
+      params: {
+        keyword: "경복궁",
+        pageNo: 1,
+        numOfRows: 12,
+        arrange: "A",
       },
-    );
+      // 변경: 검색 API 캐시 정책 계약 검증
+      cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
+    });
   });
 
   it("passes region and content type filters", async () => {
@@ -53,21 +50,18 @@ describe("searchKeyword", () => {
       pageSize: 20,
     });
 
-    expect(mockedRequestTourApi).toHaveBeenCalledWith(
-      "searchKeyword2",
-      {
-        params: {
-          keyword: "경복궁",
-          pageNo: 2,
-          numOfRows: 20,
-          arrange: "A",
-          lDongRegnCd: "11",
-          lDongSignguCd: "110",
-          contentTypeId: "12",
-        },
-        cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
+    expect(mockedRequestTourApi).toHaveBeenCalledWith("searchKeyword2", {
+      params: {
+        keyword: "경복궁",
+        pageNo: 2,
+        numOfRows: 20,
+        arrange: "A",
+        lDongRegnCd: "11",
+        lDongSignguCd: "110",
+        contentTypeId: "12",
       },
-    );
+      cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
+    });
   });
 
   // 변경: searchKeyword2에서도 검증한 신분류체계 parameter 계약 고정
@@ -79,21 +73,18 @@ describe("searchKeyword", () => {
       classificationDepth3: "NA020900",
     });
 
-    expect(mockedRequestTourApi).toHaveBeenCalledWith(
-      "searchKeyword2",
-      {
-        params: {
-          keyword: "해수욕장",
-          pageNo: 1,
-          numOfRows: 12,
-          arrange: "A",
-          lclsSystm1: "NA",
-          lclsSystm2: "NA02",
-          lclsSystm3: "NA020900",
-        },
-        cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
+    expect(mockedRequestTourApi).toHaveBeenCalledWith("searchKeyword2", {
+      params: {
+        keyword: "해수욕장",
+        pageNo: 1,
+        numOfRows: 12,
+        arrange: "A",
+        lclsSystm1: "NA",
+        lclsSystm2: "NA02",
+        lclsSystm3: "NA020900",
       },
-    );
+      cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
+    });
   });
 
   // 변경: 공백뿐인 검색어가 외부 API까지 전달되지 않는지 검증

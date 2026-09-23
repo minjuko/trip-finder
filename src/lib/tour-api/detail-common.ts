@@ -10,41 +10,27 @@ import { tourDetailCommonResponseSchema } from "./schemas/detail-common";
 export const getTourDetailCommon = async (
   contentId: string,
 ): Promise<TourDetailCommon | null> => {
-  const normalizedContentId =
-    contentId.trim();
+  const normalizedContentId = contentId.trim();
 
   if (!normalizedContentId) {
-    throw new Error(
-      "contentId is required",
-    );
+    throw new Error("contentId is required");
   }
 
   // 변경: 실제 GW API 검증 결과에 따라
   // contentId만 전달
-  const rawData = await requestTourApi(
-    "detailCommon2",
-    {
-      params: {
-        contentId: normalizedContentId,
-      },
-      cacheOptions:
-        TOUR_API_CACHE.CONTENT_DETAIL,
+  const rawData = await requestTourApi("detailCommon2", {
+    params: {
+      contentId: normalizedContentId,
     },
-  );
+    cacheOptions: TOUR_API_CACHE.CONTENT_DETAIL,
+  });
 
-  const parsed =
-    tourDetailCommonResponseSchema.parse(
-      rawData,
-    );
+  const parsed = tourDetailCommonResponseSchema.parse(rawData);
 
-  const { header, body } =
-    parsed.response;
+  const { header, body } = parsed.response;
 
   if (header.resultCode !== "0000") {
-    throw createTourApiError(
-      header.resultCode,
-      header.resultMsg,
-    );
+    throw createTourApiError(header.resultCode, header.resultMsg);
   }
 
   if (body.items === "") {
@@ -57,7 +43,5 @@ export const getTourDetailCommon = async (
     return null;
   }
 
-  return normalizeTourDetailCommonItem(
-    item,
-  );
+  return normalizeTourDetailCommonItem(item);
 };

@@ -1,10 +1,4 @@
-import {
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
   detailCommonFixture,
@@ -18,8 +12,7 @@ vi.mock("./client", () => ({
   requestTourApi: vi.fn(),
 }));
 
-const mockedRequestTourApi =
-  vi.mocked(requestTourApi);
+const mockedRequestTourApi = vi.mocked(requestTourApi);
 
 describe("getTourDetailCommon", () => {
   beforeEach(() => {
@@ -33,48 +26,32 @@ describe("getTourDetailCommon", () => {
   it("requests detailCommon2 with the normalized contentId", async () => {
     await getTourDetailCommon(" 127480 ");
 
-    expect(
-      mockedRequestTourApi,
-    ).toHaveBeenCalledOnce();
+    expect(mockedRequestTourApi).toHaveBeenCalledOnce();
 
-    expect(
-      mockedRequestTourApi,
-    ).toHaveBeenCalledWith(
-      "detailCommon2",
-      {
-        params: {
-          contentId: "127480",
-        },
-
-        // 변경: 상세정보 캐시 정책 계약 검증
-        cacheOptions:
-          TOUR_API_CACHE.CONTENT_DETAIL,
+    expect(mockedRequestTourApi).toHaveBeenCalledWith("detailCommon2", {
+      params: {
+        contentId: "127480",
       },
-    );
+
+      // 변경: 상세정보 캐시 정책 계약 검증
+      cacheOptions: TOUR_API_CACHE.CONTENT_DETAIL,
+    });
   });
 
   it("returns null when detailCommon2 has no item", async () => {
     mockedRequestTourApi.mockResolvedValue(
-      structuredClone(
-        emptyDetailCommonFixture,
-      ),
+      structuredClone(emptyDetailCommonFixture),
     );
 
-    await expect(
-      getTourDetailCommon("127480"),
-    ).resolves.toBeNull();
+    await expect(getTourDetailCommon("127480")).resolves.toBeNull();
   });
 
   it("rejects an empty contentId before requesting the API", async () => {
-    await expect(
-      getTourDetailCommon("   "),
-    ).rejects.toThrow(
+    await expect(getTourDetailCommon("   ")).rejects.toThrow(
       "contentId is required",
     );
 
-    expect(
-      mockedRequestTourApi,
-    ).not.toHaveBeenCalled();
+    expect(mockedRequestTourApi).not.toHaveBeenCalled();
   });
 
   // 변경: TourAPI resultCode 오류가 정상 결과로 처리되지 않는지 검증
@@ -83,8 +60,7 @@ describe("getTourDetailCommon", () => {
       response: {
         header: {
           resultCode: "10",
-          resultMsg:
-            "INVALID_REQUEST_PARAMETER_ERROR",
+          resultMsg: "INVALID_REQUEST_PARAMETER_ERROR",
         },
         body: {
           items: "",
@@ -95,9 +71,7 @@ describe("getTourDetailCommon", () => {
       },
     });
 
-    await expect(
-      getTourDetailCommon("127480"),
-    ).rejects.toMatchObject({
+    await expect(getTourDetailCommon("127480")).rejects.toMatchObject({
       name: "TourApiError",
       type: "INVALID_REQUEST",
       resultCode: "10",

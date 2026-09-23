@@ -2,10 +2,7 @@ import type { RepeatingInfoItem } from "@/types/tour";
 
 import type { TourDetailInfoItemDto } from "../schemas/detail-info";
 
-const text = (
-  item: TourDetailInfoItemDto,
-  keys: string[],
-): string | null => {
+const text = (item: TourDetailInfoItemDto, keys: string[]): string | null => {
   for (const key of keys) {
     const value = item[key];
     if (typeof value === "string" && value.trim()) {
@@ -44,9 +41,7 @@ export const normalizeTourDetailInfo = (
 
     return [
       {
-        id:
-          text(item, ["subcontentid", "contentid"]) ??
-          `detail-${index}`,
+        id: text(item, ["subcontentid", "contentid"]) ?? `detail-${index}`,
         title: title ?? "추가 정보",
         description,
       },

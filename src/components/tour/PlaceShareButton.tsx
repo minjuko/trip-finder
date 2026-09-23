@@ -8,9 +8,7 @@ interface PlaceShareButtonProps {
   title: string;
 }
 
-export const PlaceShareButton = ({
-  title,
-}: PlaceShareButtonProps) => {
+export const PlaceShareButton = ({ title }: PlaceShareButtonProps) => {
   const [status, setStatus] = useState<"idle" | "copied">("idle");
 
   const handleShare = async () => {

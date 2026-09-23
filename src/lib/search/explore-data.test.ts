@@ -1,10 +1,4 @@
-import {
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { getAreaBasedList } from "../tour-api/area-based-list";
 import { searchKeyword } from "../tour-api/search-keyword";
@@ -19,11 +13,9 @@ vi.mock("../tour-api/search-keyword", () => ({
   searchKeyword: vi.fn(),
 }));
 
-const mockedGetAreaBasedList =
-  vi.mocked(getAreaBasedList);
+const mockedGetAreaBasedList = vi.mocked(getAreaBasedList);
 
-const mockedSearchKeyword =
-  vi.mocked(searchKeyword);
+const mockedSearchKeyword = vi.mocked(searchKeyword);
 
 const emptyResult = {
   items: [],
@@ -32,9 +24,7 @@ const emptyResult = {
   totalCount: 0,
 };
 
-const createQuery = (
-  overrides: Partial<ExploreQuery> = {},
-): ExploreQuery => ({
+const createQuery = (overrides: Partial<ExploreQuery> = {}): ExploreQuery => ({
   region: null,
   district: null,
 

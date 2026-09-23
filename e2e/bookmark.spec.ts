@@ -1,21 +1,14 @@
-import {
-  expect,
-  test,
-} from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test.describe("Bookmark journey", () => {
-  test.beforeEach(async ({
-    context,
-  }) => {
+  test.beforeEach(async ({ context }) => {
     // 변경: 테스트 간 localStorage 상태 격리
     await context.addInitScript(() => {
       window.localStorage.clear();
     });
   });
 
-  test("상세 페이지에서 여행지를 저장하고 다시 제거한다", async ({
-    page,
-  }) => {
+  test("상세 페이지에서 여행지를 저장하고 다시 제거한다", async ({ page }) => {
     // 변경: 실제 검증 완료된 TourAPI contentId 사용
     await page.goto("/places/127480");
 
@@ -26,37 +19,24 @@ test.describe("Bookmark journey", () => {
       }),
     ).toBeVisible();
 
-    const bookmarkButton =
-      page.getByRole("button", {
-        name: /저장/,
-      });
+    const bookmarkButton = page.getByRole("button", {
+      name: /저장/,
+    });
 
-    await expect(
-      bookmarkButton,
-    ).toHaveAttribute(
-      "aria-pressed",
-      "false",
-    );
+    await expect(bookmarkButton).toHaveAttribute("aria-pressed", "false");
 
     await bookmarkButton.click();
 
-    await expect(
-      bookmarkButton,
-    ).toHaveAttribute(
-      "aria-pressed",
-      "true",
-    );
+    await expect(bookmarkButton).toHaveAttribute("aria-pressed", "true");
 
     // 변경: 페이지 이동 후에도 localStorage Bookmark가 유지되는지 검증
     await page
       .getByRole("link", {
-        name: "저장한 여행지",
+        name: "관심 여행지",
       })
       .click();
 
-    await expect(page).toHaveURL(
-      /\/bookmarks$/,
-    );
+    await expect(page).toHaveURL(/\/bookmarks$/);
 
     await expect(
       page.getByRole("heading", {
@@ -68,10 +48,7 @@ test.describe("Bookmark journey", () => {
       page.getByRole("link", {
         name: "가거도 상세 정보 보기",
       }),
-    ).toHaveAttribute(
-      "href",
-      "/places/127480",
-    );
+    ).toHaveAttribute("href", "/places/127480");
 
     await page
       .getByRole("button", {
@@ -79,11 +56,7 @@ test.describe("Bookmark journey", () => {
       })
       .click();
 
-    await expect(
-      page.getByText(
-        "저장한 여행지가 없습니다.",
-      ),
-    ).toBeVisible();
+    await expect(page.getByText("관심 여행지가 없습니다.")).toBeVisible();
 
     await expect(
       page.getByRole("heading", {

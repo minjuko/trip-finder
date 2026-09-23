@@ -1,19 +1,7 @@
-import {
-  beforeEach,
-  describe,
-  expect,
-  it,
-} from "vitest";
-import {
-  fireEvent,
-  render,
-  screen,
-} from "@testing-library/react";
+import { beforeEach, describe, expect, it } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
 
-import {
-  BOOKMARKS_STORAGE_KEY,
-  readBookmarks,
-} from "@/lib/bookmarks/storage";
+import { BOOKMARKS_STORAGE_KEY, readBookmarks } from "@/lib/bookmarks/storage";
 import type { Bookmark } from "@/types/tour";
 
 import { BookmarkList } from "./BookmarkList";
@@ -22,8 +10,7 @@ const bookmarkFixture: Bookmark = {
   contentId: "127480",
   contentTypeId: "12",
   title: "가거도",
-  address:
-    "전남광주통합특별시 신안군 흑산면 가거도길 38-2",
+  address: "전남광주통합특별시 신안군 흑산면 가거도길 38-2",
   thumbnailUrl:
     "http://tong.visitkorea.or.kr/cms/resource/28/3572128_image2_1.jpg",
   savedAt: "2026-09-21T10:00:00.000Z",
@@ -47,29 +34,20 @@ describe("BookmarkList", () => {
   it("renders an empty state when there are no bookmarks", () => {
     render(<BookmarkList />);
 
-    expect(
-      screen.getByText(
-        "저장한 여행지가 없습니다.",
-      ),
-    ).toBeInTheDocument();
+    expect(screen.getByText("관심 여행지가 없습니다.")).toBeInTheDocument();
 
     expect(
       screen.getByRole("link", {
-        name: "여행지 둘러보기",
+        name: "여행지 탐색하기",
       }),
-    ).toHaveAttribute(
-      "href",
-      "/explore",
-    );
+    ).toHaveAttribute("href", "/explore");
   });
 
   // 변경: localStorage의 Bookmark 데이터를 카드로 복원
   it("renders stored bookmarks", () => {
     window.localStorage.setItem(
       BOOKMARKS_STORAGE_KEY,
-      JSON.stringify([
-        bookmarkFixture,
-      ]),
+      JSON.stringify([bookmarkFixture]),
     );
 
     render(<BookmarkList />);
@@ -80,29 +58,20 @@ describe("BookmarkList", () => {
       }),
     ).toBeInTheDocument();
 
-    expect(
-      screen.getByText(
-        bookmarkFixture.address!,
-      ),
-    ).toBeInTheDocument();
+    expect(screen.getByText(bookmarkFixture.address!)).toBeInTheDocument();
 
     expect(
       screen.getByRole("link", {
         name: "가거도 상세 정보 보기",
       }),
-    ).toHaveAttribute(
-      "href",
-      "/places/127480",
-    );
+    ).toHaveAttribute("href", "/places/127480");
   });
 
   // 변경: 저장 취소 시 persistent data와 화면을 함께 갱신
   it("removes a bookmark and renders the empty state immediately", () => {
     window.localStorage.setItem(
       BOOKMARKS_STORAGE_KEY,
-      JSON.stringify([
-        bookmarkFixture,
-      ]),
+      JSON.stringify([bookmarkFixture]),
     );
 
     render(<BookmarkList />);
@@ -113,15 +82,9 @@ describe("BookmarkList", () => {
       }),
     );
 
-    expect(
-      readBookmarks(),
-    ).toEqual([]);
+    expect(readBookmarks()).toEqual([]);
 
-    expect(
-      screen.getByText(
-        "저장한 여행지가 없습니다.",
-      ),
-    ).toBeInTheDocument();
+    expect(screen.getByText("관심 여행지가 없습니다.")).toBeInTheDocument();
 
     expect(
       screen.queryByRole("heading", {
@@ -134,10 +97,7 @@ describe("BookmarkList", () => {
   it("removes only the selected bookmark", () => {
     window.localStorage.setItem(
       BOOKMARKS_STORAGE_KEY,
-      JSON.stringify([
-        bookmarkFixture,
-        bookmarkWithoutImageFixture,
-      ]),
+      JSON.stringify([bookmarkFixture, bookmarkWithoutImageFixture]),
     );
 
     render(<BookmarkList />);
@@ -148,11 +108,7 @@ describe("BookmarkList", () => {
       }),
     );
 
-    expect(
-      readBookmarks(),
-    ).toEqual([
-      bookmarkWithoutImageFixture,
-    ]);
+    expect(readBookmarks()).toEqual([bookmarkWithoutImageFixture]);
 
     expect(
       screen.queryByRole("heading", {
@@ -171,37 +127,22 @@ describe("BookmarkList", () => {
   it("renders fallback content when image and address are missing", () => {
     window.localStorage.setItem(
       BOOKMARKS_STORAGE_KEY,
-      JSON.stringify([
-        bookmarkWithoutImageFixture,
-      ]),
+      JSON.stringify([bookmarkWithoutImageFixture]),
     );
 
     render(<BookmarkList />);
 
-    expect(
-      screen.getByText("이미지 없음"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("이미지 없음")).toBeInTheDocument();
 
-    expect(
-      screen.getByText(
-        "주소 정보 없음",
-      ),
-    ).toBeInTheDocument();
+    expect(screen.getByText("주소 정보 없음")).toBeInTheDocument();
   });
 
   // 변경: 손상된 localStorage 데이터는 empty state로 안전하게 처리
   it("renders the empty state for corrupted stored data", () => {
-    window.localStorage.setItem(
-      BOOKMARKS_STORAGE_KEY,
-      "{invalid-json",
-    );
+    window.localStorage.setItem(BOOKMARKS_STORAGE_KEY, "{invalid-json");
 
     render(<BookmarkList />);
 
-    expect(
-      screen.getByText(
-        "저장한 여행지가 없습니다.",
-      ),
-    ).toBeInTheDocument();
+    expect(screen.getByText("관심 여행지가 없습니다.")).toBeInTheDocument();
   });
 });

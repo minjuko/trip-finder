@@ -40,7 +40,12 @@ export const ExploreFilterPanel = ({
         </span>
         <span className="flex items-center gap-2 text-sm font-medium text-slate-500">
           {activeFilterCount > 0 ? `${activeFilterCount}개 적용` : "조건 선택"}
-          <span aria-hidden="true" className="text-xl font-normal transition group-open:rotate-180">⌄</span>
+          <span
+            aria-hidden="true"
+            className="text-xl font-normal transition group-open:rotate-180"
+          >
+            ⌄
+          </span>
         </span>
       </summary>
 

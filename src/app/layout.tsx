@@ -13,8 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ??
-      "https://trip-finder-mauve.vercel.app",
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://trip-finder-mauve.vercel.app",
   ),
   title: {
     default: "TripFinder",
@@ -30,14 +29,12 @@ export const metadata: Metadata = {
     siteName: "TripFinder",
     url: "/",
     title: "TripFinder | 국내 여행지 탐색",
-    description:
-      "지역과 취향에 맞는 국내 여행지를 발견하고 저장해보세요.",
+    description: "지역과 취향에 맞는 국내 여행지를 발견하고 저장해보세요.",
   },
   twitter: {
     card: "summary_large_image",
     title: "TripFinder | 국내 여행지 탐색",
-    description:
-      "지역과 취향에 맞는 국내 여행지를 발견하고 저장해보세요.",
+    description: "지역과 취향에 맞는 국내 여행지를 발견하고 저장해보세요.",
   },
 };
 
@@ -45,9 +42,7 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-export default function RootLayout({
-  children,
-}: RootLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     // 변경: 한국어 서비스의 document language 명시
     <html lang="ko" className={`${geistMono.variable} h-full antialiased`}>
@@ -55,9 +50,7 @@ export default function RootLayout({
         {/* 변경: 모든 route에서 공유하는 Server Component Header */}
         <Header />
 
-        <div className="flex-1">
-          {children}
-        </div>
+        <div className="flex-1">{children}</div>
       </body>
     </html>
   );

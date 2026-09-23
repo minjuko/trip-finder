@@ -45,10 +45,9 @@ export const tourDetailCommonItemSchema = z.object({
   overview: z.string(),
 });
 
-export const tourDetailCommonResponseSchema =
-  createTourApiResponseSchema(
-    tourDetailCommonItemSchema,
-  );
+export const tourDetailCommonResponseSchema = createTourApiResponseSchema(
+  tourDetailCommonItemSchema,
+);
 
 export type TourDetailCommonItemDto = z.infer<
   typeof tourDetailCommonItemSchema

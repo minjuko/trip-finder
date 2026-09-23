@@ -2,14 +2,10 @@ import { describe, expect, it } from "vitest";
 
 import { regionFixture } from "../__fixtures__/region";
 import { regionResponseSchema } from "../schemas/region";
-import {
-  normalizeRegionItem,
-  normalizeRegionResponse,
-} from "./region";
+import { normalizeRegionItem, normalizeRegionResponse } from "./region";
 
 const getFirstRegionItem = () => {
-  const parsed =
-    regionResponseSchema.parse(regionFixture);
+  const parsed = regionResponseSchema.parse(regionFixture);
 
   const { items } = parsed.response.body;
 
@@ -54,8 +50,7 @@ describe("normalizeRegionItem", () => {
 
 describe("normalizeRegionResponse", () => {
   it("normalizes all region items", () => {
-    const parsed =
-      regionResponseSchema.parse(regionFixture);
+    const parsed = regionResponseSchema.parse(regionFixture);
 
     const result = normalizeRegionResponse(parsed);
 
