@@ -15,8 +15,10 @@ const text = (item: TourDetailInfoItemDto, keys: string[]): string | null => {
 
 export const normalizeTourDetailInfo = (
   items: TourDetailInfoItemDto[],
-): RepeatingInfoItem[] =>
-  items.flatMap((item, index) => {
+): RepeatingInfoItem[] => {
+  const seenIds = new Set<string>();
+
+  return items.flatMap((item) => {
     const title = text(item, [
       "subname",
       "infoname",
@@ -39,11 +41,22 @@ export const normalizeTourDetailInfo = (
       return [];
     }
 
+    const id = [text(item, ["subcontentid", "contentid"]), title, description]
+      .filter((value): value is string => value !== null)
+      .join("|");
+
+    if (seenIds.has(id)) {
+      return [];
+    }
+
+    seenIds.add(id);
+
     return [
       {
-        id: text(item, ["subcontentid", "contentid"]) ?? `detail-${index}`,
+        id,
         title: title ?? "추가 정보",
         description,
       },
     ];
   });
+};
