@@ -3,28 +3,27 @@ import { z } from "zod";
 import { createTourApiResponseSchema } from "./common";
 
 // 변경: contentTypeId 12 관광지의 실제 detailIntro2 응답 계약
-export const touristAttractionIntroItemSchema =
-  z.object({
-    contentid: z.string(),
-    contenttypeid: z.literal("12"),
+export const touristAttractionIntroItemSchema = z.object({
+  contentid: z.string(),
+  contenttypeid: z.literal("12"),
 
-    heritage1: z.string(),
-    heritage2: z.string(),
-    heritage3: z.string(),
+  heritage1: z.string(),
+  heritage2: z.string(),
+  heritage3: z.string(),
 
-    infocenter: z.string(),
-    opendate: z.string(),
-    restdate: z.string(),
-    expguide: z.string(),
-    expagerange: z.string(),
-    accomcount: z.string(),
-    useseason: z.string(),
-    usetime: z.string(),
-    parking: z.string(),
-    chkbabycarriage: z.string(),
-    chkpet: z.string(),
-    chkcreditcard: z.string(),
-  });
+  infocenter: z.string(),
+  opendate: z.string(),
+  restdate: z.string(),
+  expguide: z.string(),
+  expagerange: z.string(),
+  accomcount: z.string(),
+  useseason: z.string(),
+  usetime: z.string(),
+  parking: z.string(),
+  chkbabycarriage: z.string(),
+  chkpet: z.string(),
+  chkcreditcard: z.string(),
+});
 
 // 변경: contentTypeId 14 문화시설의 실제 detailIntro2 응답 계약
 export const cultureIntroItemSchema = z.object({
@@ -76,36 +75,26 @@ export const foodIntroItemSchema = z.object({
 });
 
 // 변경: 현재 MVP에서 지원하는 세 contentType을 discriminated union으로 검증
-export const tourDetailIntroItemSchema =
-  z.discriminatedUnion("contenttypeid", [
-    touristAttractionIntroItemSchema,
-    cultureIntroItemSchema,
-    foodIntroItemSchema,
-  ]);
+export const tourDetailIntroItemSchema = z.discriminatedUnion("contenttypeid", [
+  touristAttractionIntroItemSchema,
+  cultureIntroItemSchema,
+  foodIntroItemSchema,
+]);
 
-export const tourDetailIntroResponseSchema =
-  createTourApiResponseSchema(
-    tourDetailIntroItemSchema,
-  );
+export const tourDetailIntroResponseSchema = createTourApiResponseSchema(
+  tourDetailIntroItemSchema,
+);
 
-export type TouristAttractionIntroItemDto =
-  z.infer<
-    typeof touristAttractionIntroItemSchema
-  >;
-
-export type CultureIntroItemDto = z.infer<
-  typeof cultureIntroItemSchema
+export type TouristAttractionIntroItemDto = z.infer<
+  typeof touristAttractionIntroItemSchema
 >;
 
-export type FoodIntroItemDto = z.infer<
-  typeof foodIntroItemSchema
->;
+export type CultureIntroItemDto = z.infer<typeof cultureIntroItemSchema>;
 
-export type TourDetailIntroItemDto = z.infer<
-  typeof tourDetailIntroItemSchema
->;
+export type FoodIntroItemDto = z.infer<typeof foodIntroItemSchema>;
 
-export type TourDetailIntroResponseDto =
-  z.infer<
-    typeof tourDetailIntroResponseSchema
-  >;
+export type TourDetailIntroItemDto = z.infer<typeof tourDetailIntroItemSchema>;
+
+export type TourDetailIntroResponseDto = z.infer<
+  typeof tourDetailIntroResponseSchema
+>;

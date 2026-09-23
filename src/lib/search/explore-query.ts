@@ -26,10 +26,7 @@ export interface ExploreQuery {
   sort: "relevance" | "title";
 }
 
-export type ExploreSearchParams = Record<
-  string,
-  string | string[] | undefined
->;
+export type ExploreSearchParams = Record<string, string | string[] | undefined>;
 
 const getSingleValue = (
   value: string | string[] | undefined,
@@ -41,17 +38,13 @@ const getSingleValue = (
   return value;
 };
 
-const normalizeOptionalString = (
-  value: string | undefined,
-): string | null => {
+const normalizeOptionalString = (value: string | undefined): string | null => {
   const normalized = value?.trim();
 
   return normalized ? normalized : null;
 };
 
-const normalizePage = (
-  value: string | undefined,
-): number => {
+const normalizePage = (value: string | undefined): number => {
   if (!value) {
     return 1;
   }
@@ -99,24 +92,18 @@ export const parseExploreQuery = (
     : null;
 
   const category3 =
-    category1 && category2
-      ? normalizeOptionalString(parsed.category3)
-      : null;
+    category1 && category2 ? normalizeOptionalString(parsed.category3) : null;
 
   return {
     region,
-    district: region
-      ? normalizeOptionalString(parsed.district)
-      : null,
+    district: region ? normalizeOptionalString(parsed.district) : null,
     category1,
     category2,
     category3,
     keyword: normalizeOptionalString(parsed.keyword),
     page: normalizePage(parsed.page),
     view:
-      parsed.view === "list" || parsed.view === "map"
-        ? parsed.view
-        : "grid",
+      parsed.view === "list" || parsed.view === "map" ? parsed.view : "grid",
     sort: parsed.sort === "title" ? "title" : "relevance",
   };
 };

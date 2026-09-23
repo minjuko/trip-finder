@@ -1,8 +1,4 @@
-import {
-  describe,
-  expect,
-  it,
-} from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
   cultureIntroFixture,
@@ -19,60 +15,41 @@ import { normalizeTourDetailIntroItem } from "./detail-intro";
 // 변경: fixture를 실제 Zod schema로 검증하면서
 // 각 contentType에 맞는 DTO 타입을 유지
 const getTouristAttractionItem = () => {
-  const { items } =
-    touristAttractionIntroFixture.response
-      .body;
+  const { items } = touristAttractionIntroFixture.response.body;
 
   if (items === "") {
-    throw new Error(
-      "touristAttractionIntroFixture must contain an item",
-    );
+    throw new Error("touristAttractionIntroFixture must contain an item");
   }
 
-  return touristAttractionIntroItemSchema.parse(
-    structuredClone(items.item[0]),
-  );
+  return touristAttractionIntroItemSchema.parse(structuredClone(items.item[0]));
 };
 
 const getCultureItem = () => {
-  const { items } =
-    cultureIntroFixture.response.body;
+  const { items } = cultureIntroFixture.response.body;
 
   if (items === "") {
-    throw new Error(
-      "cultureIntroFixture must contain an item",
-    );
+    throw new Error("cultureIntroFixture must contain an item");
   }
 
-  return cultureIntroItemSchema.parse(
-    structuredClone(items.item[0]),
-  );
+  return cultureIntroItemSchema.parse(structuredClone(items.item[0]));
 };
 
 const getFoodItem = () => {
-  const { items } =
-    foodIntroFixture.response.body;
+  const { items } = foodIntroFixture.response.body;
 
   if (items === "") {
-    throw new Error(
-      "foodIntroFixture must contain an item",
-    );
+    throw new Error("foodIntroFixture must contain an item");
   }
 
-  return foodIntroItemSchema.parse(
-    structuredClone(items.item[0]),
-  );
+  return foodIntroItemSchema.parse(structuredClone(items.item[0]));
 };
 
 describe("normalizeTourDetailIntroItem", () => {
   // 변경: contentTypeId 12 관광지 실제 응답 → 공통 InformationItem[]
   it("normalizes tourist attraction information", () => {
-    const item =
-      getTouristAttractionItem();
+    const item = getTouristAttractionItem();
 
-    expect(
-      normalizeTourDetailIntroItem(item),
-    ).toEqual([
+    expect(normalizeTourDetailIntroItem(item)).toEqual([
       {
         key: "infocenter",
         label: "문의 및 안내",
@@ -100,9 +77,7 @@ describe("normalizeTourDetailIntroItem", () => {
   it("normalizes culture information", () => {
     const item = getCultureItem();
 
-    expect(
-      normalizeTourDetailIntroItem(item),
-    ).toEqual([
+    expect(normalizeTourDetailIntroItem(item)).toEqual([
       {
         key: "infocenter",
         label: "문의 및 안내",
@@ -135,9 +110,7 @@ describe("normalizeTourDetailIntroItem", () => {
   it("normalizes food information", () => {
     const item = getFoodItem();
 
-    expect(
-      normalizeTourDetailIntroItem(item),
-    ).toEqual([
+    expect(normalizeTourDetailIntroItem(item)).toEqual([
       {
         key: "infocenter",
         label: "문의 및 안내",
@@ -146,8 +119,7 @@ describe("normalizeTourDetailIntroItem", () => {
       {
         key: "firstmenu",
         label: "대표 메뉴",
-        value:
-          "카이젠모밀 돈까스 세트 / 모듬후라이 정식",
+        value: "카이젠모밀 돈까스 세트 / 모듬후라이 정식",
       },
       {
         key: "treatmenu",
@@ -158,14 +130,12 @@ describe("normalizeTourDetailIntroItem", () => {
       {
         key: "opentime",
         label: "영업 시간",
-        value:
-          "11:00~17:00 (주문 마감 16:00)",
+        value: "11:00~17:00 (주문 마감 16:00)",
       },
       {
         key: "restdate",
         label: "휴무일",
-        value:
-          "매주 일요일, 월요일",
+        value: "매주 일요일, 월요일",
       },
       {
         key: "packing",
@@ -187,17 +157,14 @@ describe("normalizeTourDetailIntroItem", () => {
 
   // 변경: API의 빈 문자열 필드는 UI 정보 목록에서 제거
   it("omits empty information values", () => {
-    const item =
-      getTouristAttractionItem();
+    const item = getTouristAttractionItem();
 
     item.infocenter = "";
     item.restdate = "";
     item.expagerange = "";
     item.usetime = "";
 
-    expect(
-      normalizeTourDetailIntroItem(item),
-    ).toEqual([]);
+    expect(normalizeTourDetailIntroItem(item)).toEqual([]);
   });
 
   it("trims information values", () => {
@@ -205,14 +172,9 @@ describe("normalizeTourDetailIntroItem", () => {
 
     item.usefee = "  1인 5,000원  ";
 
-    const result =
-      normalizeTourDetailIntroItem(item);
+    const result = normalizeTourDetailIntroItem(item);
 
-    expect(
-      result.find(
-        ({ key }) => key === "usefee",
-      ),
-    ).toEqual({
+    expect(result.find(({ key }) => key === "usefee")).toEqual({
       key: "usefee",
       label: "이용 요금",
       value: "1인 5,000원",

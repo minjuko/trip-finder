@@ -1,8 +1,4 @@
-import {
-  describe,
-  expect,
-  it,
-} from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
   detailImageFixture,
@@ -14,27 +10,18 @@ import {
 } from "./detail-image";
 
 const getFixtureItem = () => {
-  const { items } =
-    detailImageFixture.response.body;
+  const { items } = detailImageFixture.response.body;
 
   if (items === "") {
-    throw new Error(
-      "detailImageFixture must contain an item",
-    );
+    throw new Error("detailImageFixture must contain an item");
   }
 
-  return structuredClone(
-    items.item[0],
-  );
+  return structuredClone(items.item[0]);
 };
 
 describe("normalizeTourDetailImageItem", () => {
   it("normalizes detailImage2 DTO to TourImage", () => {
-    expect(
-      normalizeTourDetailImageItem(
-        getFixtureItem(),
-      ),
-    ).toEqual({
+    expect(normalizeTourDetailImageItem(getFixtureItem())).toEqual({
       id: "3572129_3",
       url: "http://tong.visitkorea.or.kr/cms/resource/29/3572129_image2_1.jpg",
       thumbnailUrl:
@@ -51,9 +38,7 @@ describe("normalizeTourDetailImageItem", () => {
     item.imgname = "";
     item.cpyrhtDivCd = "";
 
-    expect(
-      normalizeTourDetailImageItem(item),
-    ).toMatchObject({
+    expect(normalizeTourDetailImageItem(item)).toMatchObject({
       thumbnailUrl: null,
       alt: null,
       copyrightType: null,
@@ -66,12 +51,9 @@ describe("normalizeTourDetailImageItem", () => {
 
     item.serialnum = "";
 
-    const result =
-      normalizeTourDetailImageItem(item);
+    const result = normalizeTourDetailImageItem(item);
 
-    expect(result?.id).toBe(
-      item.originimgurl,
-    );
+    expect(result?.id).toBe(item.originimgurl);
   });
 
   // 변경: 원본 이미지 URL 없는 잘못된 이미지 DTO 제외
@@ -80,18 +62,14 @@ describe("normalizeTourDetailImageItem", () => {
 
     item.originimgurl = "";
 
-    expect(
-      normalizeTourDetailImageItem(item),
-    ).toBeNull();
+    expect(normalizeTourDetailImageItem(item)).toBeNull();
   });
 });
 
 describe("normalizeTourDetailImageResponse", () => {
   it("normalizes an empty TourAPI image response to an empty array", () => {
-    expect(
-      normalizeTourDetailImageResponse(
-        emptyDetailImageFixture,
-      ),
-    ).toEqual([]);
+    expect(normalizeTourDetailImageResponse(emptyDetailImageFixture)).toEqual(
+      [],
+    );
   });
 });

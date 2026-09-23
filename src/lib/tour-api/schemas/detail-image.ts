@@ -12,14 +12,11 @@ export const tourDetailImageItemSchema = z.object({
   serialnum: z.string(),
 });
 
-export const tourDetailImageResponseSchema =
-  createTourApiResponseSchema(
-    tourDetailImageItemSchema,
-  );
+export const tourDetailImageResponseSchema = createTourApiResponseSchema(
+  tourDetailImageItemSchema,
+);
 
-export type TourDetailImageItemDto = z.infer<
-  typeof tourDetailImageItemSchema
->;
+export type TourDetailImageItemDto = z.infer<typeof tourDetailImageItemSchema>;
 
 export type TourDetailImageResponseDto = z.infer<
   typeof tourDetailImageResponseSchema

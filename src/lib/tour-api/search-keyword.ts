@@ -1,7 +1,4 @@
-import type {
-  PaginatedResult,
-  TourContent,
-} from "@/types/tour";
+import type { PaginatedResult, TourContent } from "@/types/tour";
 
 import { TOUR_API_CACHE } from "./cache";
 import { requestTourApi } from "./client";
@@ -39,9 +36,7 @@ export const searchKeyword = async ({
   page = 1,
   pageSize = 12,
   arrange = "A",
-}: SearchKeywordParams): Promise<
-  PaginatedResult<TourContent>
-> => {
+}: SearchKeywordParams): Promise<PaginatedResult<TourContent>> => {
   const normalizedKeyword = keyword.trim();
 
   if (!normalizedKeyword) {
@@ -90,10 +85,7 @@ export const searchKeyword = async ({
   const { header } = parsed.response;
 
   if (header.resultCode !== "0000") {
-    throw createTourApiError(
-      header.resultCode,
-      header.resultMsg,
-    );
+    throw createTourApiError(header.resultCode, header.resultMsg);
   }
 
   return normalizeTourListResponse(parsed);

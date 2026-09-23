@@ -8,12 +8,11 @@ export const classificationItemSchema = z.object({
   rnum: z.number(),
 });
 
-export const classificationResponseSchema =
-  createTourApiResponseSchema(classificationItemSchema);
+export const classificationResponseSchema = createTourApiResponseSchema(
+  classificationItemSchema,
+);
 
-export type ClassificationItemDto = z.infer<
-  typeof classificationItemSchema
->;
+export type ClassificationItemDto = z.infer<typeof classificationItemSchema>;
 
 export type ClassificationResponseDto = z.infer<
   typeof classificationResponseSchema

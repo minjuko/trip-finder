@@ -25,8 +25,7 @@ interface ExplorePageProps {
 
 export const metadata: Metadata = {
   title: "여행지 탐색",
-  description:
-    "지역, 카테고리, 키워드로 국내 여행지를 탐색해 보세요.",
+  description: "지역, 카테고리, 키워드로 국내 여행지를 탐색해 보세요.",
   alternates: {
     canonical: "/explore",
   },
@@ -35,22 +34,14 @@ export const metadata: Metadata = {
   },
 };
 
-const ExplorePage = async ({
-  searchParams,
-}: ExplorePageProps) => {
-  const rawSearchParams =
-    await searchParams;
+const ExplorePage = async ({ searchParams }: ExplorePageProps) => {
+  const rawSearchParams = await searchParams;
 
-  const query = parseExploreQuery(
-    rawSearchParams,
+  const query = parseExploreQuery(rawSearchParams);
+
+  const [regionsResult, depth1Result, exploreResult] = await Promise.allSettled(
+    [getRegions(), getClassificationOptions(), getExploreData(query)],
   );
-
-  const [regionsResult, depth1Result, exploreResult] =
-    await Promise.allSettled([
-      getRegions(),
-      getClassificationOptions(),
-      getExploreData(query),
-    ]);
 
   // Filter metadata is optional. Keep the result view usable when a code
   // endpoint is temporarily unavailable; the selected query still renders.
@@ -62,9 +53,7 @@ const ExplorePage = async ({
         }))
       : [];
   const depth1Options =
-    depth1Result.status === "fulfilled"
-      ? depth1Result.value
-      : [];
+    depth1Result.status === "fulfilled" ? depth1Result.value : [];
 
   // Search results are the primary page content. Preserve the existing error
   // boundary behavior when the primary request fails.
@@ -106,27 +95,19 @@ const ExplorePage = async ({
   return (
     <main className="mx-auto w-full max-w-7xl px-5 py-10 lg:px-8 lg:py-14">
       <header className="mb-9">
-        <p className="tripfinder-wordmark mb-3 text-brand">
-          여행지 찾기
-        </p>
+        <p className="tripfinder-wordmark mb-3 text-brand">여행지 찾기</p>
 
         <h1 className="text-4xl font-bold tracking-[-0.05em] text-slate-950 sm:text-5xl">
           여행지 탐색
         </h1>
 
         <p className="mt-4 max-w-2xl text-base leading-7 text-ink-muted">
-          지역과 카테고리를 선택하거나
-          키워드로 국내 여행지를
-          찾아보세요.
+          지역과 카테고리를 선택하거나 키워드로 국내 여행지를 찾아보세요.
         </p>
       </header>
 
       <div className="mb-10">
-        <ExploreSearch
-          initialKeyword={
-            query.keyword
-          }
-        />
+        <ExploreSearch initialKeyword={query.keyword} />
       </div>
 
       {/* 변경: 작은 화면에서는 filter → result 순서,
@@ -169,10 +150,7 @@ const ExplorePage = async ({
           </ExploreFilterPanel>
         </aside>
 
-        <section
-          aria-labelledby="explore-results-title"
-          className="min-w-0"
-        >
+        <section aria-labelledby="explore-results-title" className="min-w-0">
           {/* 변경: 좁은 화면에서 결과 수와 페이지가 충돌하지 않도록 wrapping */}
           <div className="mb-4 flex flex-wrap items-end justify-between gap-x-4 gap-y-3 rounded-2xl border border-line bg-white p-4 shadow-sm shadow-slate-200/30">
             <div>
@@ -183,15 +161,10 @@ const ExplorePage = async ({
                 검색 결과
               </h2>
 
-              <p
-                className="mt-1 text-sm text-ink-muted"
-                aria-live="polite"
-              >
+              <p className="mt-1 text-sm text-ink-muted" aria-live="polite">
                 총{" "}
                 <strong className="font-semibold text-slate-900">
-                  {contents.totalCount.toLocaleString(
-                    "ko-KR",
-                  )}
+                  {contents.totalCount.toLocaleString("ko-KR")}
                 </strong>
                 개
               </p>
@@ -220,12 +193,8 @@ const ExplorePage = async ({
 
           <ExplorePagination
             query={query}
-            totalCount={
-              contents.totalCount
-            }
-            pageSize={
-              contents.pageSize
-            }
+            totalCount={contents.totalCount}
+            pageSize={contents.pageSize}
           />
         </section>
       </div>

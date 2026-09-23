@@ -43,9 +43,7 @@ const buildHref = (
   return queryString ? `/explore?${queryString}` : "/explore";
 };
 
-export const ExploreActiveFilters = ({
-  query,
-}: ExploreActiveFiltersProps) => {
+export const ExploreActiveFilters = ({ query }: ExploreActiveFiltersProps) => {
   const filters = [
     query.keyword
       ? {
@@ -59,21 +57,15 @@ export const ExploreActiveFilters = ({
           key: "region",
           label: query.district
             ? `${REGION_LABELS[query.region] ?? "지역"} · 시군구`
-            : REGION_LABELS[query.region] ?? "지역",
+            : (REGION_LABELS[query.region] ?? "지역"),
           href: buildHref(query, ["region", "district"]),
         }
       : null,
     query.category1
       ? {
           key: "category",
-          label:
-            CATEGORY_LABELS[query.category1] ??
-            "카테고리",
-          href: buildHref(query, [
-            "category1",
-            "category2",
-            "category3",
-          ]),
+          label: CATEGORY_LABELS[query.category1] ?? "카테고리",
+          href: buildHref(query, ["category1", "category2", "category3"]),
         }
       : null,
   ].filter(

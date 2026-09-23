@@ -4,44 +4,34 @@ import type { TourDetailCommonItemDto } from "../schemas/detail-common";
 
 // 변경: detailCommon2 정규화 결과.
 // detailIntro/detailImage 결합 전 중간 Domain 데이터로 사용
-export interface TourDetailCommon
-  extends TourContent {
+export interface TourDetailCommon extends TourContent {
   homepage: string | null;
   phone: string | null;
   overview: string | null;
 }
 
-const emptyToNull = (
-  value: string,
-): string | null => {
+const emptyToNull = (value: string): string | null => {
   const trimmed = value.trim();
 
   return trimmed.length > 0 ? trimmed : null;
 };
 
 // 변경: TourAPI homepage HTML 문자열에서 href만 추출
-const normalizeHomepage = (
-  value: string,
-): string | null => {
+const normalizeHomepage = (value: string): string | null => {
   const normalized = emptyToNull(value);
 
   if (!normalized) {
     return null;
   }
 
-  const hrefMatch = normalized.match(
-    /href=["']([^"']+)["']/i,
-  );
+  const hrefMatch = normalized.match(/href=["']([^"']+)["']/i);
 
   if (hrefMatch?.[1]) {
     return normalizeExternalUrl(hrefMatch[1]);
   }
 
   // 변경: API가 향후 일반 URL을 반환하는 경우도 보존
-  if (
-    normalized.startsWith("http://") ||
-    normalized.startsWith("https://")
-  ) {
+  if (normalized.startsWith("http://") || normalized.startsWith("https://")) {
     return normalizeExternalUrl(normalized);
   }
 
@@ -55,29 +45,15 @@ export const normalizeTourDetailCommonItem = (
   const detailAddress = emptyToNull(item.addr2);
   const zipCode = emptyToNull(item.zipcode);
 
-  const thumbnailUrl = emptyToNull(
-    item.firstimage,
-  );
-  const copyrightType = emptyToNull(
-    item.cpyrhtDivCd,
-  );
+  const thumbnailUrl = emptyToNull(item.firstimage);
+  const copyrightType = emptyToNull(item.cpyrhtDivCd);
 
-  const regionCode = emptyToNull(
-    item.lDongRegnCd,
-  );
-  const districtCode = emptyToNull(
-    item.lDongSignguCd,
-  );
+  const regionCode = emptyToNull(item.lDongRegnCd);
+  const districtCode = emptyToNull(item.lDongSignguCd);
 
-  const classificationDepth1 = emptyToNull(
-    item.lclsSystm1,
-  );
-  const classificationDepth2 = emptyToNull(
-    item.lclsSystm2,
-  );
-  const classificationDepth3 = emptyToNull(
-    item.lclsSystm3,
-  );
+  const classificationDepth1 = emptyToNull(item.lclsSystm1);
+  const classificationDepth2 = emptyToNull(item.lclsSystm2);
+  const classificationDepth3 = emptyToNull(item.lclsSystm3);
 
   const longitude = Number(item.mapx);
   const latitude = Number(item.mapy);
@@ -131,9 +107,7 @@ export const normalizeTourDetailCommonItem = (
         }
       : null,
 
-    homepage: normalizeHomepage(
-      item.homepage,
-    ),
+    homepage: normalizeHomepage(item.homepage),
 
     phone: emptyToNull(item.tel),
 
@@ -141,9 +115,7 @@ export const normalizeTourDetailCommonItem = (
   };
 };
 
-const normalizeExternalUrl = (
-  value: string,
-): string | null => {
+const normalizeExternalUrl = (value: string): string | null => {
   try {
     const url = new URL(value.trim());
 

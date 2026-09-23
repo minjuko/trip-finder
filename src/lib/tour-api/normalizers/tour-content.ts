@@ -1,12 +1,6 @@
-import type {
-  PaginatedResult,
-  TourContent,
-} from "@/types/tour";
+import type { PaginatedResult, TourContent } from "@/types/tour";
 
-import type {
-  TourListItemDto,
-  TourListResponseDto,
-} from "../schemas/list";
+import type { TourListItemDto, TourListResponseDto } from "../schemas/list";
 
 const emptyToNull = (value: string): string | null => {
   const trimmed = value.trim();
@@ -14,9 +8,7 @@ const emptyToNull = (value: string): string | null => {
   return trimmed.length > 0 ? trimmed : null;
 };
 
-export const normalizeTourListItem = (
-  item: TourListItemDto,
-): TourContent => {
+export const normalizeTourListItem = (item: TourListItemDto): TourContent => {
   const primaryAddress = emptyToNull(item.addr1);
   const detailAddress = emptyToNull(item.addr2);
   const zipCode = emptyToNull(item.zipcode);
@@ -91,9 +83,7 @@ export const normalizeTourListResponse = (
   const { body } = data.response;
 
   const items =
-    body.items === ""
-      ? []
-      : body.items.item.map(normalizeTourListItem);
+    body.items === "" ? [] : body.items.item.map(normalizeTourListItem);
 
   return {
     items,

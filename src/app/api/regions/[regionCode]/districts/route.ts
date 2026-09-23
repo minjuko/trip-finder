@@ -34,7 +34,5 @@ export const GET = async (
     regionCode: normalizedRegionCode,
   });
 
-  return NextResponse.json(
-    regionOptionResponseSchema.parse(districts),
-  );
+  return NextResponse.json(regionOptionResponseSchema.parse(districts));
 };

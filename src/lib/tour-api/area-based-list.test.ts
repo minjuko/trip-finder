@@ -26,18 +26,15 @@ describe("getAreaBasedList", () => {
 
     expect(mockedRequestTourApi).toHaveBeenCalledOnce();
 
-    expect(mockedRequestTourApi).toHaveBeenCalledWith(
-      "areaBasedList2",
-      {
-        params: {
-          pageNo: 1,
-          numOfRows: 12,
-          arrange: "A",
-        },
-        // 변경: 목록 API 캐시 정책 계약 검증
-        cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
+    expect(mockedRequestTourApi).toHaveBeenCalledWith("areaBasedList2", {
+      params: {
+        pageNo: 1,
+        numOfRows: 12,
+        arrange: "A",
       },
-    );
+      // 변경: 목록 API 캐시 정책 계약 검증
+      cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
+    });
   });
 
   it("passes region and content type filters", async () => {
@@ -49,20 +46,17 @@ describe("getAreaBasedList", () => {
       pageSize: 20,
     });
 
-    expect(mockedRequestTourApi).toHaveBeenCalledWith(
-      "areaBasedList2",
-      {
-        params: {
-          pageNo: 2,
-          numOfRows: 20,
-          arrange: "A",
-          lDongRegnCd: "11",
-          lDongSignguCd: "110",
-          contentTypeId: "12",
-        },
-        cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
+    expect(mockedRequestTourApi).toHaveBeenCalledWith("areaBasedList2", {
+      params: {
+        pageNo: 2,
+        numOfRows: 20,
+        arrange: "A",
+        lDongRegnCd: "11",
+        lDongSignguCd: "110",
+        contentTypeId: "12",
       },
-    );
+      cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
+    });
   });
 
   // 변경: 실 API에서 검증한 신분류체계 1~3단계 parameter 계약 고정
@@ -73,19 +67,16 @@ describe("getAreaBasedList", () => {
       classificationDepth3: "NA020900",
     });
 
-    expect(mockedRequestTourApi).toHaveBeenCalledWith(
-      "areaBasedList2",
-      {
-        params: {
-          pageNo: 1,
-          numOfRows: 12,
-          arrange: "A",
-          lclsSystm1: "NA",
-          lclsSystm2: "NA02",
-          lclsSystm3: "NA020900",
-        },
-        cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
+    expect(mockedRequestTourApi).toHaveBeenCalledWith("areaBasedList2", {
+      params: {
+        pageNo: 1,
+        numOfRows: 12,
+        arrange: "A",
+        lclsSystm1: "NA",
+        lclsSystm2: "NA02",
+        lclsSystm3: "NA020900",
       },
-    );
+      cacheOptions: TOUR_API_CACHE.CONTENT_LIST,
+    });
   });
 });

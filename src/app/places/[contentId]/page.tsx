@@ -25,8 +25,7 @@ export const generateMetadata = async ({
   const { contentId } = await params;
 
   // 상세 데이터 기반 동적 metadata 생성
-  const detail =
-    await getTourDetail(contentId);
+  const detail = await getTourDetail(contentId);
 
   if (!detail) {
     return {
@@ -38,9 +37,7 @@ export const generateMetadata = async ({
   return {
     title: detail.title,
     description:
-      detail.overview ??
-      detail.address?.primary ??
-      `${detail.title} 여행 정보`,
+      detail.overview ?? detail.address?.primary ?? `${detail.title} 여행 정보`,
     alternates: {
       canonical: `/places/${detail.id}`,
     },
@@ -68,26 +65,18 @@ export const generateMetadata = async ({
   };
 };
 
-const PlaceDetailPage = async ({
-  params,
-}: PlaceDetailPageProps) => {
+const PlaceDetailPage = async ({ params }: PlaceDetailPageProps) => {
   const { contentId } = await params;
 
   // 상세 데이터 orchestration을 Server Component에서 호출
-  const detail =
-    await getTourDetail(contentId);
+  const detail = await getTourDetail(contentId);
 
   if (!detail) {
     notFound();
   }
 
   const address = detail.address
-    ? [
-        detail.address.primary,
-        detail.address.detail,
-      ]
-        .filter(Boolean)
-        .join(" ")
+    ? [detail.address.primary, detail.address.detail].filter(Boolean).join(" ")
     : null;
   const structuredData = {
     "@context": "https://schema.org",
@@ -119,10 +108,7 @@ const PlaceDetailPage = async ({
           __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
         }}
       />
-      <nav
-        aria-label="현재 위치"
-        className="mb-6"
-      >
+      <nav aria-label="현재 위치" className="mb-6">
         <ol className="flex items-center gap-2 text-sm text-slate-500">
           <li>
             <Link
@@ -135,10 +121,7 @@ const PlaceDetailPage = async ({
 
           <li aria-hidden="true">/</li>
 
-          <li
-            aria-current="page"
-            className="truncate text-slate-700"
-          >
+          <li aria-current="page" className="truncate text-slate-700">
             {detail.title}
           </li>
         </ol>
@@ -159,12 +142,14 @@ const PlaceDetailPage = async ({
             ) : null}
 
             <div className="mt-4 flex flex-wrap items-center gap-2">
-              {detail.region?.regionCode && REGION_LABELS[detail.region.regionCode] ? (
+              {detail.region?.regionCode &&
+              REGION_LABELS[detail.region.regionCode] ? (
                 <span className="rounded-full bg-brand-soft px-3 py-1.5 text-xs font-semibold text-brand-strong">
                   {REGION_LABELS[detail.region.regionCode]}
                 </span>
               ) : null}
-              {detail.classification?.depth1 && CATEGORY_LABELS[detail.classification.depth1] ? (
+              {detail.classification?.depth1 &&
+              CATEGORY_LABELS[detail.classification.depth1] ? (
                 <span className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-semibold text-slate-600">
                   {CATEGORY_LABELS[detail.classification.depth1]}
                 </span>
@@ -183,9 +168,7 @@ const PlaceDetailPage = async ({
           {/* 변경: Server Component 내부에서
               bookmark interaction만 Client Component로 격리 */}
           <div className="flex flex-wrap gap-3">
-            <BookmarkButton
-              content={detail}
-            />
+            <BookmarkButton content={detail} />
 
             <PlaceShareButton title={detail.title} />
 
@@ -223,19 +206,11 @@ const PlaceDetailPage = async ({
       />
 
       <div className="mx-auto mt-12 max-w-5xl space-y-10">
-        <TourDetailOverview
-          overview={detail.overview}
-        />
+        <TourDetailOverview overview={detail.overview} />
 
-        <TourDetailInformation
-          information={
-            detail.information
-          }
-        />
+        <TourDetailInformation information={detail.information} />
 
-        <TourDetailRepeatingInformation
-          items={detail.repeatingInformation}
-        />
+        <TourDetailRepeatingInformation items={detail.repeatingInformation} />
       </div>
     </main>
   );

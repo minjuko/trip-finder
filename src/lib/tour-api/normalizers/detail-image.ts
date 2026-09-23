@@ -5,9 +5,7 @@ import type {
   TourDetailImageResponseDto,
 } from "../schemas/detail-image";
 
-const emptyToNull = (
-  value: string,
-): string | null => {
+const emptyToNull = (value: string): string | null => {
   const trimmed = value.trim();
 
   return trimmed.length > 0 ? trimmed : null;
@@ -16,9 +14,7 @@ const emptyToNull = (
 export const normalizeTourDetailImageItem = (
   item: TourDetailImageItemDto,
 ): TourImage | null => {
-  const url = emptyToNull(
-    item.originimgurl,
-  );
+  const url = emptyToNull(item.originimgurl);
 
   // 변경: 원본 이미지 URL이 없으면
   // 유효한 TourImage로 취급하지 않음
@@ -27,17 +23,11 @@ export const normalizeTourDetailImageItem = (
   }
 
   return {
-    id:
-      emptyToNull(item.serialnum) ??
-      url,
+    id: emptyToNull(item.serialnum) ?? url,
     url,
-    thumbnailUrl: emptyToNull(
-      item.smallimageurl,
-    ),
+    thumbnailUrl: emptyToNull(item.smallimageurl),
     alt: emptyToNull(item.imgname),
-    copyrightType: emptyToNull(
-      item.cpyrhtDivCd,
-    ),
+    copyrightType: emptyToNull(item.cpyrhtDivCd),
   };
 };
 
@@ -51,8 +41,7 @@ export const normalizeTourDetailImageResponse = (
   }
 
   return items.item.flatMap((item) => {
-    const image =
-      normalizeTourDetailImageItem(item);
+    const image = normalizeTourDetailImageItem(item);
 
     return image ? [image] : [];
   });

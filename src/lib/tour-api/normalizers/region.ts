@@ -1,13 +1,8 @@
 import type { RegionOption } from "@/types/tour";
 
-import type {
-  RegionItemDto,
-  RegionResponseDto,
-} from "../schemas/region";
+import type { RegionItemDto, RegionResponseDto } from "../schemas/region";
 
-export const normalizeRegionItem = (
-  item: RegionItemDto,
-): RegionOption => ({
+export const normalizeRegionItem = (item: RegionItemDto): RegionOption => ({
   // 변경: 외부 API의 code/name을 Domain 모델로 변환
   code: item.code.trim(),
   name: item.name.trim(),

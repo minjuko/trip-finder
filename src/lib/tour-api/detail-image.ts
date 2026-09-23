@@ -9,43 +9,28 @@ import { tourDetailImageResponseSchema } from "./schemas/detail-image";
 export const getTourDetailImages = async (
   contentId: string,
 ): Promise<TourImage[]> => {
-  const normalizedContentId =
-    contentId.trim();
+  const normalizedContentId = contentId.trim();
 
   if (!normalizedContentId) {
-    throw new Error(
-      "contentId is required",
-    );
+    throw new Error("contentId is required");
   }
 
   // 변경: 실제 GW API 검증 결과에 따라
   // contentId만 전달
-  const rawData = await requestTourApi(
-    "detailImage2",
-    {
-      params: {
-        contentId: normalizedContentId,
-      },
-      cacheOptions:
-        TOUR_API_CACHE.CONTENT_DETAIL,
+  const rawData = await requestTourApi("detailImage2", {
+    params: {
+      contentId: normalizedContentId,
     },
-  );
+    cacheOptions: TOUR_API_CACHE.CONTENT_DETAIL,
+  });
 
-  const parsed =
-    tourDetailImageResponseSchema.parse(
-      rawData,
-    );
+  const parsed = tourDetailImageResponseSchema.parse(rawData);
 
   const { header } = parsed.response;
 
   if (header.resultCode !== "0000") {
-    throw createTourApiError(
-      header.resultCode,
-      header.resultMsg,
-    );
+    throw createTourApiError(header.resultCode, header.resultMsg);
   }
 
-  return normalizeTourDetailImageResponse(
-    parsed,
-  );
+  return normalizeTourDetailImageResponse(parsed);
 };

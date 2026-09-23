@@ -11,8 +11,7 @@ import {
 } from "./tour-content";
 
 const getFirstItem = () => {
-  const parsed =
-    tourListResponseSchema.parse(areaBasedListFixture);
+  const parsed = tourListResponseSchema.parse(areaBasedListFixture);
 
   const { items } = parsed.response.body;
 
@@ -110,8 +109,7 @@ describe("normalizeTourListItem", () => {
 
 describe("normalizeTourListResponse", () => {
   it("normalizes items and pagination metadata", () => {
-    const parsed =
-      tourListResponseSchema.parse(areaBasedListFixture);
+    const parsed = tourListResponseSchema.parse(areaBasedListFixture);
 
     const result = normalizeTourListResponse(parsed);
 
@@ -122,8 +120,7 @@ describe("normalizeTourListResponse", () => {
   });
 
   it("normalizes an empty TourAPI response to an empty item list", () => {
-    const parsed =
-      tourListResponseSchema.parse(emptyTourListFixture);
+    const parsed = tourListResponseSchema.parse(emptyTourListFixture);
 
     const result = normalizeTourListResponse(parsed);
 

@@ -2,9 +2,7 @@ interface TourDetailOverviewProps {
   overview: string | null;
 }
 
-export const TourDetailOverview = ({
-  overview,
-}: TourDetailOverviewProps) => {
+export const TourDetailOverview = ({ overview }: TourDetailOverviewProps) => {
   if (!overview) {
     return null;
   }

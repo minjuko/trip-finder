@@ -11,6 +11,4 @@ export const bookmarkSchema = z.object({
   savedAt: z.string().min(1),
 });
 
-export const bookmarksSchema = z.array(
-  bookmarkSchema,
-);
+export const bookmarksSchema = z.array(bookmarkSchema);

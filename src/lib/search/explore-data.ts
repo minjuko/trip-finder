@@ -1,7 +1,4 @@
-import type {
-  PaginatedResult,
-  TourContent,
-} from "@/types/tour";
+import type { PaginatedResult, TourContent } from "@/types/tour";
 
 import { getAreaBasedList } from "../tour-api/area-based-list";
 import { searchKeyword } from "../tour-api/search-keyword";
