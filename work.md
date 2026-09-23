@@ -41,16 +41,17 @@ Next.js·TypeScript·공공 API·접근성·검색 노출·테스트 역량을 �
 - TypeScript 타입 검사 통과
 - Vitest 28개 파일, 152개 테스트 통과
 - Next.js 프로덕션 빌드 통과
-- GitHub Actions CI 통과
-- 기존 Playwright 주요 흐름 8개 통과
-- 최신 정렬 UI 기준 Playwright E2E 8개 통과
-- 브라우저 콘솔 오류 없음 확인
+- GitHub Actions 통합 CI 통과(format · lint · typecheck · Vitest coverage · Playwright E2E · build)
+- Vitest 28개 파일, 152개 테스트 통과
+- Playwright E2E 8개 시나리오 검증
+- Production Lighthouse Mobile 최종 측정
+  - Home: Performance 99 / Accessibility 100 / Best Practices 100 / SEO 100 / LCP 1.7s
+  - Explore: Performance 68 / Accessibility 100 / Best Practices 100 / SEO 100 / LCP 6.2s / CLS 0
+  - Detail: Performance 85 / Accessibility 100 / Best Practices 100 / SEO 92 / LCP 3.6s / CLS 0
+- Vercel Production 최종 배포 완료
 
-## 최종 검수 남은 작업
+## 마감 상태
 
-- 최신 UI 변경사항 기준 모바일/데스크톱 실기기 시각 QA
-- 최신 UI 기준 Playwright 8개 시나리오·axe 재검사
-- 배포 환경 Lighthouse Mobile 재측정 및 Paperlogy 웹폰트 비용 확인
-- 최신 측정값 확정 후 README·Notion 성능 수치 동기화
+핵심 기능, UI/UX, 테스트, 접근성, CI, Production 배포와 Lighthouse 측정까지 완료했다. Explore와 Detail의 Performance는 외부 TourAPI·이미지·네트워크 상태에 따라 변동할 수 있으며, LCP 이미지 discovery와 우선순위 적용은 최종 측정에서 확인했다.
 
-현재 핵심 기능 구현과 Vercel 배포는 완료 상태이며, 남은 항목은 최신 UI 기준 배포 품질과 문서 수치를 확정하기 위한 최종 검수 작업이다.
+최신 CI는 전체 workflow가 성공했지만 실제 TourAPI를 사용하는 E2E 8개 중 키워드 탐색 1개가 최초 실패 후 retry로 통과했다. 외부 API·네트워크 의존성에 따른 flaky 가능성을 운영상 한계로 기록하고 프로젝트 코드 작업을 마감한다.
