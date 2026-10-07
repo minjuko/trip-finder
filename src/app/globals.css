@@ -104,7 +104,9 @@
   --color-card-border: var(--card-border);
   --font-sans: "Paperlogy", "Apple SD Gothic Neo", Arial, sans-serif;
   --font-display: "Paperlogy", "Apple SD Gothic Neo", Arial, sans-serif;
-  --font-mono: var(--font-geist-mono);
+  --font-mono:
+    ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 }
 
 html {
