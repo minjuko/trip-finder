@@ -1,8 +1,8 @@
 # TripFinder
 
-공공 관광 데이터를 활용해 **지역·카테고리·키워드로 국내 관광 콘텐츠를 탐색하고, 상세 정보를 확인하거나 관심 장소를 저장할 수 있는 반응형 웹서비스**입니다.
+공공 관광 데이터를 활용해 **지역·카테고리·키워드로 국내 여행지를 탐색하고, 상세 정보를 확인하거나 관심 여행지로 저장하는 반응형 웹서비스**입니다.
 
-기존 React SPA에서 경험한 클라이언트 중심 상태 관리와 API 연동을 넘어, **Next.js App Router의 Server Component를 기본 경계로 두고 서버/클라이언트 책임, 외부 API runtime validation, 캐시 정책, URL 기반 검색 상태, 테스트·접근성·CI까지 직접 설계하고 검증한 개인 프로젝트**입니다.
+Next.js App Router에서 서버와 클라이언트의 역할을 나누고, 외부 API 응답 검증·URL 기반 상태 관리·테스트와 CI까지 설계한 개인 프로젝트입니다.
 
 - **Production**: https://trip-finder-mauve.vercel.app/
 - **Portfolio**: https://app.notion.com/p/3e2622cea8638106bf2ce92c1a25543e
@@ -32,382 +32,83 @@
     <td width="50%" valign="top">
       <img src="docs/images/bookmarks-desktop.png" alt="저장한 여행지 목록 화면" />
       <br />
-      <sub>관심 여행지 — 브라우저 저장소에 보관한 여행지를 다시 확인하고 삭제합니다.</sub>
+      <sub>관심 여행지 — 브라우저에 저장한 여행지를 다시 확인하고 삭제합니다.</sub>
     </td>
   </tr>
 </table>
 
-## 핵심 구현
+## 핵심 역량
 
-- **Server / Client Component 경계**: Home·Explore·Detail은 Server Component 중심으로 구성하고, 종속 필터와 Bookmark처럼 브라우저 상호작용이 필요한 영역만 Client Component로 분리
-- **TourAPI server-only 통합**: 서비스 키와 외부 API 호출을 서버에 유지하고 Client Component는 필요한 경우 내부 Route Handler를 통해 데이터 조회
-- **Runtime validation**: TourAPI 응답을 `unknown → Zod → Normalizer → Domain Model` 흐름으로 검증·정규화
-- **URL 기반 탐색 상태**: 지역·시군구·3단계 관광 분류·키워드·페이지를 Search Params로 관리
-- **탐색 결과 제어**: 카드·목록·지도 보기 전환과 관련도·가나다순 정렬 상태를 URL로 유지
-- **지도 탐색**: Leaflet·OpenStreetMap marker와 상세 페이지 연결
-- **상세 경험**: 이미지 확대, 주소 복사, 링크 공유, 좌표 기반 지도 이동
-- **검색 노출**: Open Graph/Twitter metadata, robots.txt, sitemap.xml, 장소 구조화 데이터
-- **외부 저장소 검증**: localStorage 북마크 데이터도 Zod로 검증하고 `useSyncExternalStore`로 UI 상태 동기화
-- **품질 검증**: Vitest·React Testing Library·Playwright·axe-core와 GitHub Actions를 이용해 153개 unit/component 테스트와 8개 E2E 시나리오·접근성·CI 검증
-- **Production 검증**: Vercel 배포 후 핵심 사용자 흐름 smoke test와 Lighthouse Mobile 측정
+| 주제                     | 구현                                                                                                                                   |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **Server / Client 경계** | Home·Explore·Detail은 Server Component 중심으로 렌더링하고, 종속 필터·북마크처럼 브라우저 상태가 필요한 부분만 Client Component로 분리 |
+| **외부 API 데이터 처리** | TourAPI 응답을 `unknown → Zod → Normalizer → Domain Model → UI`로 검증·정규화해 화면과 외부 DTO를 분리                                 |
+| **상태 설계**            | 검색·필터·정렬·페이지를 URL Search Params로 관리해 새로고침·직접 접근에서도 탐색 조건을 복원                                           |
+| **품질 보증**            | Vitest·React Testing Library·Playwright·axe-core·GitHub Actions로 unit/component·E2E·접근성을 검증                                     |
 
 ## 주요 기능
 
-### 여행지 탐색
+- **여행지 탐색**: 지역 → 시군구, 관광 분류 1 → 2 → 3단계 종속 필터, 키워드 검색, 정렬·페이지네이션, 카드·목록·지도 보기 전환
+- **상세 정보**: 이미지 갤러리·확대, 개요·유형별 정보, 주소 복사, 링크 공유, 지도·공식 홈페이지 이동
+- **관심 여행지**: localStorage 기반 저장·삭제, 손상된 저장 데이터 복구, 목록과 버튼의 실시간 상태 동기화
+- **검색 노출·접근성**: metadata, robots.txt, sitemap.xml, 장소 구조화 데이터와 키보드 조작 가능한 이미지 모달 제공
 
-- 지역 → 시군구 기반 탐색
-- 관광 분류 1 → 2 → 3단계 종속 필터
-- 키워드 검색
-- 12개 단위 페이지네이션
-- 필터·검색·페이지 상태를 URL Search Params에 유지
-- 카드형·목록형·지도형 보기 전환
-- 관련도순·가나다순 정렬
-
-검색어가 있으면 `searchKeyword2`, 없으면 `areaBasedList2`를 사용하며, 지역과 관광 분류 조건은 서버 요청 단계에서 TourAPI에 전달합니다.
-
-### 상세 정보
-
-- 기본정보와 주소
-- 이미지 갤러리
-- 개요
-- 콘텐츠 유형별 이용정보
-- 홈페이지 링크
-- 북마크 저장/해제
-- 이미지 확대 보기
-- 주소 복사·링크 공유·지도 보기
-
-`detailIntro2`는 실제 응답 계약을 검증한 다음 콘텐츠 유형에 대해 제공합니다.
-
-| contentTypeId | 유형 |
-| --- | --- |
-| 12 | 관광지 |
-| 14 | 문화시설 |
-| 39 | 음식점 |
-
-그 외 콘텐츠 유형은 상세 페이지 자체를 실패시키지 않고 공통정보와 이미지를 제공하며, 유형별 이용정보만 생략합니다.
-
-### 북마크
-
-- localStorage 기반 저장/삭제
-- 저장 데이터 Zod runtime validation
-- 손상된 JSON 또는 잘못된 구조는 빈 목록으로 복구
-- `storage` event + 같은 document의 custom event로 변경 알림
-- `useSyncExternalStore`를 사용해 BookmarkButton과 BookmarkList 상태 동기화
-
-## Tech Stack
-
-| 구분 | 기술 |
-| --- | --- |
-| Framework | Next.js 16.3.5 (App Router) |
-| UI | React 19.2.8, Tailwind CSS 4 |
-| Language | TypeScript 5 (strict) |
-| Validation | Zod 4 |
-| Data | 한국관광공사 국문 관광정보 서비스(TourAPI) |
-| Test | Vitest, React Testing Library, Playwright, axe-core |
-| Map | Leaflet, OpenStreetMap |
-| CI/CD | GitHub Actions, Vercel |
-
-별도의 전역 상태 라이브러리나 클라이언트 데이터 패칭 라이브러리를 추가하지 않고, **Server Component·URL Search Params·브라우저 저장소라는 상태의 성격에 맞는 도구를 사용**했습니다.
-
-## Architecture
-
-```text
-Browser
-  │
-  ├─ URL Search Params
-  │
-  ▼
-Next.js App Router
-  │
-  ├─ Server Components ──────────────┐
-  │                                  │
-  ├─ Route Handlers                  │ server-only
-  │   └─ 종속 필터 option 조회       │
-  │                                  ▼
-  │                            TourAPI Client
-  │                                  │
-  │                                  ▼
-  │                         External DTO (unknown)
-  │                                  │
-  │                                  ▼
-  │                            Zod Validation
-  │                                  │
-  │                                  ▼
-  │                              Normalizer
-  │                                  │
-  │                                  ▼
-  └──────────────────────────── Domain Model
-                                     │
-                                     ▼
-                               UI Rendering
-
-Client Components
-  ├─ 종속 지역/분류 필터
-  └─ Bookmark interaction ── localStorage
-```
-
-### Server / Client 경계
-
-| 영역 | 경계 | 역할 |
-| --- | --- | --- |
-| Home | Server Component | 탐색 진입점 렌더링 |
-| Explore | Server Component 중심 | Search Params 해석, TourAPI 조회, 결과 렌더링 |
-| Detail | Server Component | 상세 orchestration, metadata, 렌더링 |
-| 지역·분류 필터 | Client Component | 선택 변경 및 종속 option 조회 |
-| BookmarkButton | Client Component | localStorage 저장/해제 |
-| BookmarkList | Client Component | 브라우저 저장소 구독 및 목록 렌더링 |
-
-TourAPI 호출 모듈과 환경변수 모듈에는 `server-only` 경계를 두어 서비스 키가 클라이언트 번들로 전달되지 않도록 했습니다.
-
-## 외부 API 데이터 경계
-
-TourAPI 응답을 화면에서 직접 사용하지 않습니다.
+## 설계와 문제 해결
 
 ```text
 TourAPI response (unknown)
         ↓
-     Zod schema
+   Zod schema validation
         ↓
- External DTO validation
+      Normalizer
         ↓
-     Normalizer
+     Domain model
         ↓
-    Domain Model
-        ↓
-        UI
+         UI
 ```
 
-실제 API를 호출하며 다음과 같은 응답 계약 차이를 확인했습니다.
+| 문제                                                      | 해결                                                                          |
+| --------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| TourAPI 서비스 키가 이중 인코딩되어 403 응답              | 환경변수 경계에서 키를 정규화하고 URL 인코딩은 `URLSearchParams`에 일임       |
+| 빈 목록의 `items: ""`, 상세정보 ID 중복 등 응답 계약 차이 | Schema와 normalizer에서 예외 응답을 흡수하고 안정적인 domain ID를 생성        |
+| 북마크 변경이 화면마다 즉시 반영되지 않음                 | 저장 데이터를 Zod로 검증하고 `useSyncExternalStore`로 버튼·목록 상태를 동기화 |
 
-- 목록 결과가 없을 때 `items: ""` 반환
-- `ldongCode2`가 `{ rnum, code, name }` 형태로 지역 코드 반환
-- 현재 GW API에서 과거 Detail API 예시의 일부 query parameter가 `INVALID_REQUEST_PARAMETER_ERROR` 발생
-- `detailCommon2.homepage`가 plain URL이 아니라 HTML anchor markup으로 반환
-- `detailInfo2`에서 `subcontentid`가 없는 행이 부모 `contentid`를 공유해 반복 상세정보 ID 충돌 발생
+## Tech Stack
 
-이 차이를 schema와 normalizer 계층에서 흡수하고, 반복 상세정보는 부모 ID와 의미 필드를 조합한 안정적인 domain ID로 변환해 UI에는 일관된 `TourContent`, `TourContentDetail` domain model만 전달합니다.
-
-### Service Key 정규화
-
-data.go.kr에서 제공하는 인코딩된 서비스 키를 `URLSearchParams`에 그대로 추가하면 이미 인코딩된 값이 다시 인코딩될 수 있습니다.
-
-```text
-%2F → %252F
-```
-
-환경변수 경계에서 서비스 키를 먼저 정규화하고 URL 인코딩은 `URLSearchParams`에 맡겨 인코딩 키와 디코딩 키 입력을 동일하게 처리합니다.
-
-## URL Search Params
-
-Explore의 검색 상태는 별도 전역 store 대신 URL을 source of truth로 사용합니다.
-
-```text
-/explore
-  ?region=
-  &district=
-  &category1=
-  &category2=
-  &category3=
-  &keyword=
-  &page=
-```
-
-상위 지역이나 분류가 없으면 종속된 하위 값을 제거하고, 유효하지 않은 page 값은 1로 정규화합니다. 검색 조건이 URL에 남기 때문에 직접 접근과 새로고침에서도 동일한 탐색 상태를 복원할 수 있습니다.
-
-## Cache / Revalidation
-
-TourAPI 데이터의 변경 특성에 따라 server-side fetch의 revalidation 시간을 구분했습니다.
-
-| 데이터 | Revalidation |
-| --- | ---: |
-| 지역·분류 코드 | 24시간 |
-| 목록·검색 결과 | 10분 |
-| 상세정보 | 1시간 |
-
-변경 빈도가 낮은 코드 데이터와 관광 콘텐츠에 동일한 정책을 적용하지 않고, **데이터 최신성과 외부 API 호출량 사이의 균형**을 기준으로 정책을 분리했습니다.
-
-## Test & Quality
-
-### Unit / Component
-
-Vitest와 React Testing Library로 다음 영역을 검증합니다.
-
-- TourAPI schema와 normalizer
-- 지역·관광 분류 응답 변환
-- 목록·키워드 검색 wrapper의 query 전달
-- 상세 common / intro / image 응답 처리
-- 상세정보 orchestration
-- Explore query parsing 및 data orchestration
-- 지역·3단계 관광 분류 필터
-- 검색과 페이지네이션
-- Tour card/list
-- Bookmark parsing, 저장, 삭제 및 UI 동기화
-
-외부 API fixture도 해당 endpoint의 Zod schema로 파싱해 fixture 자체와 runtime contract의 불일치를 방지합니다.
-
-### E2E / Accessibility
-
-Playwright E2E는 **실제 TourAPI를 사용하는 integration test**로 구성했습니다. 최종 단계에서는 GitHub Actions secret으로 service key를 주입해 CI에서도 동일한 E2E를 실행합니다.
-
-현재 E2E 시나리오는 총 8건입니다. 핵심 흐름과 접근성 검증은 다음과 같습니다.
-
-- Home 키워드 검색 → Explore
-- Home 지역 진입 → Explore 필터 상태
-- Detail → Bookmark 저장 → Bookmarks → 삭제
-- Home / Explore / Detail / Bookmarks의 serious·critical 접근성 위반 검사
-
-`@axe-core/playwright` 자동 검사에서 실제로 TourCard 이미지 fallback 텍스트의 색상 대비 문제를 발견했고, 대비를 수정한 뒤 E2E를 다시 통과시켰습니다.
-
-실제 TourAPI E2E를 CI에 포함해 통합 경로까지 자동 검증합니다. 외부 API 응답을 기다리는 Explore 최종 렌더링 assertion은 TourAPI client의 시간 계약에 맞춰 동기화했으며, 최종 E2E 3회 반복 검증에서 8개 시나리오가 모두 retry 없이 통과했습니다.
-
-## CI
-
-GitHub Actions는 `main` push와 pull request에서 formatting부터 실제 TourAPI E2E까지 하나의 quality workflow로 실행합니다.
-
-```text
-npm ci
-→ Prettier format check
-→ ESLint
-→ TypeScript typecheck
-→ Vitest coverage
-→ Chromium install
-→ Playwright E2E + axe
-→ Next.js production build
-```
-
-CI에서는 GitHub Actions secret의 TourAPI service key를 사용해 실제 통합 흐름까지 검증합니다.
-
-Clean CI 환경에서는 로컬의 Next.js 생성 타입에 가려져 있던 Root Layout 타입 의존성 문제를 발견했고, 생성된 global 타입 대신 명시적인 `ReactNode` 기반 props 타입으로 수정해 CI를 통과시켰습니다.
-
-## Performance & Accessibility
-
-최종 배포 버전을 Vercel Production에서 Lighthouse 13.5.0 Mobile preset으로 각 페이지 1회 측정했습니다. 외부 TourAPI·이미지 응답과 네트워크 상태에 따라 Performance는 변동할 수 있어 단일 점수와 함께 LCP 원인 및 구조적 개선을 확인했습니다.
-
-| Page | Performance | Accessibility | Best Practices | SEO | FCP | LCP | TBT | CLS |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Home | **99** | 100 | 100 | 100 | 1.1s | 1.7s | 100ms | 0.002 |
-| Explore | **68** | 100 | 100 | 100 | 1.0s | 6.2s | 370ms | 0 |
-| Detail | **85** | 100 | 100 | 92 | 1.2s | 3.6s | 250ms | 0 |
-
-Explore의 실제 LCP 요소는 첫 관광지 카드 이미지였습니다. 첫 이미지에 `fetchPriority="high"`와 eager loading을 적용하고 실제 레이아웃에 맞는 responsive `sizes`를 지정했으며, Lighthouse에서 초기 HTML discovery와 우선순위 적용을 확인했습니다. 모바일 필터 초기 상태로 발생하던 레이아웃 이동도 제거해 CLS를 0으로 안정화했습니다.
-
-Detail은 대표 이미지를 LCP 요소로 확인해 우선순위를 지정하고 canonical·Open Graph·Twitter metadata와 fallback description을 보완했습니다. Home은 Performance 99, LCP 1.7초로 충분히 안정적이었습니다.
-
-Explore·Detail에는 unused JavaScript, network dependency tree, render-blocking request 등의 개선 후보가 남아 있습니다. 다만 외부 API·이미지·네트워크에 따른 측정 변동이 크고 LCP discovery 자체는 정상화되어, Lighthouse 점수만을 높이기 위한 추가 구조 복잡성은 도입하지 않았습니다.
-
-## Project Structure
-
-```text
-src/
-├── app/
-│   ├── api/                    # 종속 필터용 Route Handlers
-│   ├── bookmarks/
-│   ├── explore/
-│   └── places/[contentId]/
-├── components/
-│   ├── bookmark/
-│   ├── layout/
-│   ├── search/
-│   └── tour/
-├── lib/
-│   ├── bookmarks/              # schema / localStorage
-│   ├── search/                 # query parsing / explore orchestration
-│   └── tour-api/
-│       ├── __fixtures__/
-│       ├── normalizers/
-│       └── schemas/
-├── test/
-└── types/
-e2e/
-├── accessibility.spec.ts
-├── bookmark.spec.ts
-└── home-explore.spec.ts
-```
-
-## Getting Started
-
-### 환경
-
-CI와 최종 검증은 **Node.js 22** 환경을 기준으로 수행했습니다.
-
-### 설치
-
-```bash
-npm install
-```
-
-### 환경변수
-
-프로젝트 루트에 `.env.local`을 만들고 data.go.kr에서 발급받은 TourAPI 서비스 키를 설정합니다.
-
-```bash
-TOUR_API_SERVICE_KEY=your_service_key
-```
-
-### 개발 서버
-
-```bash
-npm run dev
-```
-
-기본 개발 주소는 `http://localhost:3000`입니다.
-
-## Scripts
-
-```bash
-npm run dev          # 개발 서버
-npm run build        # production build
-npm run start        # production server
-npm run lint         # ESLint
-npm run typecheck    # TypeScript strict typecheck
-npm run test         # Vitest
-npm run test:watch   # Vitest watch
-npm run test:e2e     # Playwright
-npm run test:e2e:ui  # Playwright UI
-```
-
-Playwright 최초 실행 전 Chromium이 설치되어 있지 않다면 다음 명령이 필요합니다.
-
-```bash
-npx playwright install chromium
-```
-
-실제 TourAPI를 사용하는 E2E 실행에는 유효한 `TOUR_API_SERVICE_KEY`가 필요합니다.
-
-## Data Source
-
-TripFinder는 한국관광공사 **국문 관광정보 서비스(TourAPI)**를 사용합니다.
-
-| Endpoint | 용도 |
-| --- | --- |
-| `ldongCode2` | 지역·시군구 코드 |
-| `lclsSystmCode2` | 관광 분류 체계 |
-| `areaBasedList2` | 조건 기반 관광 콘텐츠 목록 |
-| `searchKeyword2` | 키워드 검색 |
-| `detailCommon2` | 상세 기본정보 |
-| `detailIntro2` | 콘텐츠 유형별 이용정보 |
-| `detailImage2` | 상세 이미지 |
+| 구분     | 기술                                                                        |
+| -------- | --------------------------------------------------------------------------- |
+| Frontend | Next.js 16.3.5, React 19.2.8, TypeScript 5 (strict), Tailwind CSS 4         |
+| Data     | 한국관광공사 TourAPI, Zod 4, Leaflet, OpenStreetMap                         |
+| Quality  | Vitest, React Testing Library, Playwright, axe-core, GitHub Actions, Vercel |
 
 ## Verification
 
-최종 검증 범위:
+| 항목              | 결과                                                                                                |
+| ----------------- | --------------------------------------------------------------------------------------------------- |
+| Unit / Component  | Vitest **29개 파일 / 153개 테스트** 통과                                                            |
+| E2E / 접근성      | Playwright 핵심 흐름 **8개 시나리오**와 axe 자동 검사 통과                                          |
+| 정적 검사·배포    | ESLint, TypeScript strict, Next.js production build, GitHub Actions CI, Vercel Production 검증 완료 |
+| Lighthouse Mobile | Home **99** / Explore **68** / Detail **85** Performance, Accessibility 전 페이지 **100**           |
 
-- TypeScript strict typecheck
-- ESLint
-- Vitest unit/component tests: **29개 파일 / 153개 테스트**
-- Playwright E2E 8개 시나리오
-- axe automated accessibility checks
-- Next.js production build
-- GitHub Actions CI
-- Vercel Production smoke test
-- `npm audit`: **0 vulnerabilities**
-- Production Lighthouse Mobile 측정
+## Getting Started
 
-의존성 최종 점검에서는 `npm audit` 0건을 확인했으며, 검증된 프로젝트 조합을 유지하기 위해 완성 시점의 major dependency upgrade는 별도로 진행하지 않았습니다.
+```bash
+npm install
 
-## Documentation
+# .env.local
+TOUR_API_SERVICE_KEY=your_service_key
 
-구현 과정에서 확인한 TourAPI 응답 계약, Server/Client Component 경계, cache 전략, 테스트 설계, CI 문제 해결과 성능 측정 과정은 포트폴리오와 상세 기술문서에 정리했습니다.
+npm run dev
+```
 
-- **Portfolio**: https://app.notion.com/p/3e2622cea8638106bf2ce92c1a25543e
-- **Technical Document**: https://app.notion.com/p/3e2622cea863810581c9dc081a76bcdf
+| Script              | 설명                         |
+| ------------------- | ---------------------------- |
+| `npm run lint`      | ESLint 검사                  |
+| `npm run typecheck` | TypeScript strict 검사       |
+| `npm run test`      | Vitest unit/component 테스트 |
+| `npm run test:e2e`  | Playwright E2E 테스트        |
+| `npm run build`     | Next.js production build     |
+
+> 실제 TourAPI를 사용하는 E2E에는 유효한 `TOUR_API_SERVICE_KEY`가 필요합니다.
+
+상세한 TourAPI 응답 계약, 캐시 전략, 테스트 설계와 성능 측정 과정은 [Technical Document](https://app.notion.com/p/3e2622cea863810581c9dc081a76bcdf)에 정리했습니다.
