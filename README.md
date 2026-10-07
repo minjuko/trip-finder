@@ -73,7 +73,7 @@ TourAPI response (unknown)
 | 빈 목록의 `items: ""`, 상세정보 ID 중복 등 응답 계약 차이 | Schema와 normalizer에서 예외 응답을 흡수하고 안정적인 domain ID를 생성        |
 | 북마크 변경이 화면마다 즉시 반영되지 않음                 | 저장 데이터를 Zod로 검증하고 `useSyncExternalStore`로 버튼·목록 상태를 동기화 |
 
-## Tech Stack
+## 기술 스택
 
 | 구분     | 기술                                                                        |
 | -------- | --------------------------------------------------------------------------- |
@@ -81,7 +81,7 @@ TourAPI response (unknown)
 | Data     | 한국관광공사 TourAPI, Zod 4, Leaflet, OpenStreetMap                         |
 | Quality  | Vitest, React Testing Library, Playwright, axe-core, GitHub Actions, Vercel |
 
-## Verification
+## 검증 결과
 
 | 항목              | 결과                                                                                                |
 | ----------------- | --------------------------------------------------------------------------------------------------- |
@@ -90,7 +90,7 @@ TourAPI response (unknown)
 | 정적 검사·배포    | ESLint, TypeScript strict, Next.js production build, GitHub Actions CI, Vercel Production 검증 완료 |
 | Lighthouse Mobile | Home **99** / Explore **68** / Detail **85** Performance, Accessibility 전 페이지 **100**           |
 
-## Getting Started
+## 로컬 실행
 
 ```bash
 npm install
