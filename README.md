@@ -8,6 +8,35 @@
 - **Portfolio**: https://app.notion.com/p/3e2622cea8638106bf2ce92c1a25543e
 - **Technical Document**: https://app.notion.com/p/3e2622cea863810581c9dc081a76bcdf
 
+## 화면
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="docs/images/home-desktop.png" alt="TripFinder 홈 화면" />
+      <br />
+      <sub>홈 — 키워드 검색과 빠른 탐색으로 여행지 탐색을 시작합니다.</sub>
+    </td>
+    <td width="50%" valign="top">
+      <img src="docs/images/explore-search-desktop.png" alt="지역과 키워드가 적용된 여행지 탐색 결과" />
+      <br />
+      <sub>탐색 — 키워드·지역 필터와 URL 기반 조건으로 결과를 조회합니다.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="docs/images/detail-desktop.png" alt="경복궁 여행지 상세 화면" />
+      <br />
+      <sub>상세 — 이미지, 주소, 저장·공유·지도 이동을 한 화면에서 제공합니다.</sub>
+    </td>
+    <td width="50%" valign="top">
+      <img src="docs/images/bookmarks-desktop.png" alt="저장한 여행지 목록 화면" />
+      <br />
+      <sub>관심 여행지 — 브라우저 저장소에 보관한 여행지를 다시 확인하고 삭제합니다.</sub>
+    </td>
+  </tr>
+</table>
+
 ## 핵심 구현
 
 - **Server / Client Component 경계**: Home·Explore·Detail은 Server Component 중심으로 구성하고, 종속 필터와 Bookmark처럼 브라우저 상호작용이 필요한 영역만 Client Component로 분리
