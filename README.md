@@ -44,7 +44,20 @@ Next.js App Router에서 서버와 클라이언트의 역할을 나누고, 외�
 | **Server / Client 경계** | Home·Explore·Detail은 Server Component 중심으로 렌더링하고, 종속 필터·북마크처럼 브라우저 상태가 필요한 부분만 Client Component로 분리 |
 | **외부 API 데이터 처리** | TourAPI 응답을 `unknown → Zod → Normalizer → Domain Model → UI`로 검증·정규화해 화면과 외부 DTO를 분리                                 |
 | **상태 설계**            | 검색·필터·정렬·페이지를 URL Search Params로 관리해 새로고침·직접 접근에서도 탐색 조건을 복원                                           |
+| **외부 API 안정성**      | 요청 10초 제한, 응답 오류 분류, 데이터 성격별 재검증 주기를 적용해 외부 API 실패와 과도한 호출을 관리                                  |
 | **품질 보증**            | Vitest·React Testing Library·Playwright·axe-core·GitHub Actions로 unit/component·E2E·접근성을 검증                                     |
+
+## 외부 API 캐시·오류 처리
+
+TourAPI 요청은 공통 client에서 10초 제한을 적용하고, 인증 오류(401·403)·요청 제한(429)·서버 오류를 구분합니다. 화면에서 재시도 여부를 판단할 수 있도록 오류 유형을 분리했습니다.
+
+| 데이터 | 정책 | 이유 |
+| --- | --- | --- |
+| 지역·관광 분류 코드 | 24시간 재검증 | 변경 빈도가 낮은 기준 데이터 |
+| 여행지 목록·검색 결과 | 10분 재검증 | 탐색 결과의 최신성과 API 호출량 균형 |
+| 여행지 상세 정보 | 1시간 재검증 | 상세 정보의 변경 빈도와 응답 비용 고려 |
+
+`no-store`와 재검증 설정이 한 요청에 함께 적용되지 않도록 공통 요청 모듈에서 분기합니다. 응답은 화면에 전달하기 전에 Zod 검증과 정규화를 거칩니다.
 
 ## 주요 기능
 
