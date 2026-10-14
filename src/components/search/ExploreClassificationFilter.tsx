@@ -244,7 +244,7 @@ export const ExploreClassificationFilter = ({
             id="explore-category1"
             value={initialDepth1 ?? ""}
             onChange={handleDepth1Change}
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20"
+            className="min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20"
           >
             <option value="">전체 카테고리</option>
 
@@ -271,7 +271,7 @@ export const ExploreClassificationFilter = ({
             disabled={
               !initialDepth1 || isLoadingDepth2 || visibleDepth2LoadFailed
             }
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-700"
+            className="min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-700"
           >
             <option value="">
               {isLoadingDepth2 ? "불러오는 중..." : "전체 중분류"}
@@ -309,7 +309,7 @@ export const ExploreClassificationFilter = ({
               isLoadingDepth3 ||
               visibleDepth3LoadFailed
             }
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-700"
+            className="min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-700"
           >
             <option value="">
               {isLoadingDepth3 ? "불러오는 중..." : "전체 소분류"}

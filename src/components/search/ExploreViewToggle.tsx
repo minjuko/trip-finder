@@ -50,7 +50,7 @@ export const ExploreViewToggle = ({ view }: ExploreViewToggleProps) => {
                 ? "목록형으로 보기"
                 : "지도로 보기"
           }
-          className={`grid size-9 place-items-center rounded-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${view === option ? "bg-brand text-white" : "text-slate-500 hover:bg-surface-subtle hover:text-slate-900"}`}
+          className={`grid size-11 place-items-center rounded-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${view === option ? "bg-brand text-white" : "text-slate-500 hover:bg-surface-subtle hover:text-slate-900"}`}
         >
           <span aria-hidden="true">
             <Icon name={option} size={18} />
