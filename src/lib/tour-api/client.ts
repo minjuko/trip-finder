@@ -21,6 +21,12 @@ export const requestTourApi = async (
   endpoint: string,
   options: TourApiRequestOptions = {},
 ): Promise<unknown> => {
+  if (process.env.TOUR_API_E2E_FIXTURES === "true") {
+    const { getE2eTourApiFixture } = await import("./e2e-fixtures");
+
+    return getE2eTourApiFixture(endpoint, options.params);
+  }
+
   const url = new URL(`${TOUR_API_BASE_URL}/${endpoint}`);
 
   url.searchParams.set("serviceKey", env.TOUR_API_SERVICE_KEY);

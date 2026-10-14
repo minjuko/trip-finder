@@ -48,6 +48,8 @@ jobs:
 
       - name: End-to-end tests
         run: npm run test:e2e
+        env:
+          TOUR_API_E2E_FIXTURES: "true"
 
       - name: Production build
         run: npm run build
