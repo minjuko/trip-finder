@@ -99,15 +99,17 @@ TourAPI response (unknown)
 | 항목              | 결과                                                                                                |
 | ----------------- | --------------------------------------------------------------------------------------------------- |
 | Unit / Component  | Vitest **30개 파일 / 154개 테스트** 통과                                                            |
-| E2E / 접근성      | Playwright **12개 시나리오**(고정 fixture 기반)와 axe 자동 검사 통과                                          |
+| E2E / 접근성      | Playwright **12개 시나리오**(고정 fixture 기반) 및 axe 검사 통과 |
 | 정적 검사·배포    | ESLint, TypeScript strict, Next.js production build, GitHub Actions CI, Vercel Production 검증 완료 |
 | Lighthouse Mobile | 기존 기록: Home **99** / Explore **68** / Detail **85**. Explore 별도 반복 측정 중앙값 **66 → 69** (동일 로컬 production 조건)           |
 
 ## 모바일·성능 개선
 
-- 모바일 탐색·저장·이미지 모달을 390px·768px·1440px에서 검증하고, 터치 영역 최소 44px·모달 배경 스크롤 잠금과 키보드 포커스 복원을 보완했습니다.
-- Explore에서 폰트 중복과 카드 보기의 불필요한 지도 라이브러리 로딩을 줄였습니다. 동일 로컬 production 조건에서 전후 각 3회 측정한 중앙값 기준 **LCP 7,161→5,318ms(-25.7%)**, **FCP 4,100→3,286ms(-19.9%)**, **전송량 -29.5%**였습니다. **TBT는 12→248ms로 악화**되어 추가 분석 대상으로 남겼습니다.
-- [모바일·접근성 검증](docs/mobile-accessibility-audit-2026.md) · [Explore 성능 측정](docs/explore-performance-audit-2026.md)
+- **모바일 접근성:** 세 가지 화면 크기에서 탐색 흐름을 검증하고, 터치 영역(최소 44px)과 이미지 모달의 배경 스크롤·키보드 포커스를 개선했습니다.
+- **리소스 최적화:** 중복 폰트 파일을 정리하고, 지도 보기에서만 Leaflet을 로드하도록 변경했습니다.
+- **측정 결과:** 동일한 로컬 production 환경에서 전후 각 3회 측정한 중앙값 기준, LCP **7,161→5,318ms(-25.7%)**, FCP **4,100→3,286ms(-19.9%)**, 전송량 **29.5% 감소**. 반면 TBT는 **12→248ms로 증가**해 추가 분석이 필요합니다.
+
+자세한 검증 방법은 [모바일·접근성 문서](docs/mobile-accessibility-audit-2026.md)와 [Explore 성능 측정 문서](docs/explore-performance-audit-2026.md)를 참고하세요.
 
 ## 로컬 실행
 
