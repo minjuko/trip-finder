@@ -29,7 +29,7 @@ export const Header = () => {
         <Link
           href="/"
           aria-label="TripFinder 홈"
-          className="group inline-flex min-w-0 items-center gap-2.5 text-lg font-bold tracking-tight text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 sm:text-xl"
+          className="group inline-flex min-h-11 min-w-0 items-center gap-2.5 text-lg font-bold tracking-tight text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 sm:text-xl"
         >
           <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-brand text-white shadow-sm shadow-sky-900/15 transition group-hover:rotate-6 sm:size-10">
             <Icon name="compass" size={21} />
@@ -93,19 +93,19 @@ export const Header = () => {
             </span>
             <a
               href="#region-heading"
-              className="shrink-0 rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-brand/30 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              className="inline-flex min-h-11 shrink-0 items-center rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-brand/30 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               지역별
             </a>
             <a
               href="#category-heading"
-              className="shrink-0 rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-brand/30 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              className="inline-flex min-h-11 shrink-0 items-center rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-brand/30 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               테마별
             </a>
             <Link
               href="/bookmarks"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-brand/30 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-brand/30 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
               <Icon name="bookmark" size={15} />
               관심 여행지

@@ -52,6 +52,8 @@ export const TourDetailGallery = ({
   useEffect(() => {
     if (selectedImage === null) return;
 
+    const previousBodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     closeButtonRef.current?.focus();
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -67,7 +69,10 @@ export const TourDetailGallery = ({
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousBodyOverflow;
+    };
   }, [selectedImage]);
 
   if (!primaryImage) {
@@ -139,7 +144,7 @@ export const TourDetailGallery = ({
             aria-label="이미지 닫기"
             onClick={closeImage}
             ref={closeButtonRef}
-            className="absolute right-5 top-5 grid size-10 place-items-center rounded-full bg-white/15 text-xl text-white transition hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute right-5 top-5 grid size-11 place-items-center rounded-full bg-white/15 text-xl text-white transition hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             ×
           </button>

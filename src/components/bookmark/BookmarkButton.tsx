@@ -106,7 +106,7 @@ export const BookmarkButton = ({
         aria-label={
           bookmarked ? `${content.title} 저장 취소` : `${content.title} 저장`
         }
-        className={`inline-flex shrink-0 items-center justify-center rounded-xl bg-brand text-sm font-semibold text-white transition hover:bg-brand-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-200 disabled:cursor-not-allowed disabled:bg-brand-strong ${compact ? "px-3 py-2" : "w-fit px-4 py-2.5"}`}
+        className={`inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl bg-brand text-sm font-semibold text-white transition hover:bg-brand-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-200 disabled:cursor-not-allowed disabled:bg-brand-strong ${compact ? "px-3 py-2" : "w-fit px-4 py-2.5"}`}
       >
         <Icon
           name="bookmark"
