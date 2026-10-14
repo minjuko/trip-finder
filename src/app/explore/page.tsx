@@ -8,7 +8,7 @@ import { ExploreRegionFilter } from "@/components/search/ExploreRegionFilter";
 import { ExploreSearch } from "@/components/search/ExploreSearch";
 import { ExploreSortSelect } from "@/components/search/ExploreSortSelect";
 import { ExploreViewToggle } from "@/components/search/ExploreViewToggle";
-import { ExploreMap } from "@/components/search/ExploreMap";
+import { ExploreMapLoader } from "@/components/search/ExploreMapLoader";
 import { TourList } from "@/components/tour/TourList";
 import { getExploreData } from "@/lib/search/explore-data";
 import {
@@ -182,7 +182,7 @@ const ExplorePage = async ({ searchParams }: ExplorePageProps) => {
           <ExploreActiveFilters query={query} />
 
           {query.view === "map" ? (
-            <ExploreMap contents={visibleContents} />
+            <ExploreMapLoader contents={visibleContents} />
           ) : (
             <TourList
               contents={visibleContents}
