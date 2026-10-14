@@ -6,7 +6,7 @@
 - 대상: Next.js 16.3.5 App Router, React 19.2.8, TypeScript 5
 - 브라우저: Chromium(Playwright), 로컬 Chrome 실화면 확인
 - 화면 크기: 모바일 390×844, 태블릿 768×1024, 데스크톱 1440×900
-- 데이터: 기존 E2E는 `.env.local`의 실제 TourAPI 연동을 사용했다. Vitest의 API 계층 테스트는 fixture와 mock을 사용해 외부 네트워크와 분리했다.
+- 데이터: 최초 검증 당시 E2E는 실제 TourAPI 연동을 사용했다. 이후 CI 안정화를 위해 E2E에서 고정 fixture를 사용하도록 변경했다. 현재 CI의 E2E 통과는 실제 TourAPI의 가용성·복구를 검증하지 않는다.
 - 변경 전 기준선: Git 작업 트리 clean, Vitest 29파일·153개 및 Playwright 8개 통과
 
 ## 2. 화면 크기별 검증 결과
@@ -45,7 +45,7 @@ DOM 수동 검토에서 이미지 모달의 `role="dialog"`, `aria-modal`, 닫�
 | 상태 | 검증 결과 |
 | --- | --- |
 | Loading | 탐색/상세 `loading.tsx`가 `aria-busy`와 상태 이름을 제공 |
-| Success | 실제 TourAPI 검색·상세 E2E 통과 |
+| Success | 초기 로컬 검증에서 실제 TourAPI 검색·상세 흐름을 확인. 현재 CI는 고정 fixture 기반 |
 | Empty | 빈 TourAPI 목록은 normalizer에서 빈 배열로 처리되고 `TourList`, 관심 여행지 목록은 명시적 empty UI 제공 |
 | Error | HTTP 오류·TourAPI resultCode 오류·필터 옵션 실패가 기존 mock 테스트에서 오류로 분리됨. App Router 오류 경계는 다시 시도 버튼 제공 |
 
@@ -77,7 +77,7 @@ DOM 수동 검토에서 이미지 모달의 `role="dialog"`, `aria-modal`, 닫�
 - 추가: Vitest 1파일·1개, Playwright 1파일·4개
 - 최종: Vitest 30파일·154개, Playwright 12개
 
-`TourDetailGallery.test.tsx`는 포커스 이동·Tab 유지·Escape 닫기·포커스 복원·배경 스크롤 잠금을 mock 이미지로 검증한다. `mobile-flow.spec.ts`는 세 화면 크기와 실제 TourAPI 기반 모바일 검색·상세·저장/해제·복귀 흐름을 검증한다.
+`TourDetailGallery.test.tsx`는 포커스 이동·Tab 유지·Escape 닫기·포커스 복원·배경 스크롤 잠금을 mock 이미지로 검증한다. `mobile-flow.spec.ts`는 세 화면 크기와 모바일 검색·상세·저장/해제·복귀 흐름을 검증한다. 현재 CI에서는 고정 fixture를 사용한다.
 
 ## 9. 최종 검증 결과
 
@@ -94,5 +94,5 @@ DOM 수동 검토에서 이미지 모달의 `role="dialog"`, `aria-modal`, 닫�
 
 - TourAPI 장애 후 같은 요청이 정상화되는 실제 외부 서비스 복구 과정은 의도적으로 장애를 주입하지 않았다.
 - iOS Safari 및 Android 실기기의 브라우저 UI·화면 회전·보조기기 조합은 검증 범위에 포함하지 않았다.
-- `npm run format:check`는 이번 작업 전부터 `src/app/globals.css`, `src/app/layout.tsx` 두 파일의 포맷 차이로 실패한다. 기존 변경 보존 원칙에 따라 본 작업에서 일괄 포맷하지 않았다.
+- 최초 감사 당시 `format:check`는 기존 파일의 포맷 차이로 실패했으나, 후속 정리에서 해결되어 CI #51에서 포맷 검사가 통과했다.
 - 코드와 회귀 테스트: `36ad43e` (`fix: 모바일 탐색 흐름과 접근성 개선`)
