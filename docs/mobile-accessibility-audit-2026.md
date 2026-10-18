@@ -3,7 +3,7 @@
 ## 1. 검증 환경
 
 - 검증일: 2026-10-14 (Asia/Seoul)
-- 대상: Next.js 16.3.5 App Router, React 19.2.8, TypeScript 5
+- 대상: Next.js 16.4.2 App Router, React 19.2.8, TypeScript 5
 - 브라우저: Chromium(Playwright), 로컬 Chrome 실화면 확인
 - 화면 크기: 모바일 390×844, 태블릿 768×1024, 데스크톱 1440×900
 - 데이터: 최초 검증 당시 E2E는 실제 TourAPI 연동을 사용했다. 이후 CI 안정화를 위해 E2E에서 고정 fixture를 사용하도록 변경했다. 현재 CI의 E2E 통과는 실제 TourAPI의 가용성·복구를 검증하지 않는다.
