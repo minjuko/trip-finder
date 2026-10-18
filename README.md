@@ -1,5 +1,7 @@
 # TripFinder
 
+[![CI](https://github.com/minjuko/trip-finder/actions/workflows/ci.yml/badge.svg)](https://github.com/minjuko/trip-finder/actions/workflows/ci.yml)
+
 공공 관광 데이터를 활용해 **지역·카테고리·키워드로 국내 여행지를 탐색하고, 상세 정보를 확인하거나 관심 여행지로 저장하는 반응형 웹서비스**입니다.
 
 Next.js App Router에서 서버와 클라이언트의 역할을 나누고, 외부 API 응답 검증·URL 기반 상태 관리·테스트와 CI까지 설계한 개인 프로젝트입니다.
