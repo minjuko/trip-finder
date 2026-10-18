@@ -30,7 +30,7 @@ Next.js App Router에서 서버와 클라이언트의 역할을 나누고, 외�
       <sub>상세 — 이미지, 주소, 저장·공유·지도 이동을 한 화면에서 제공합니다.</sub>
     </td>
     <td width="50%" valign="top">
-      <img src="docs/images/04-bookmarks-desktkop.png" alt="저장한 여행지 목록 화면" />
+      <img src="docs/images/04-bookmarks-desktop.png" alt="저장한 여행지 목록 화면" />
       <br />
       <sub>관심 여행지 — 브라우저에 저장한 여행지를 다시 확인하고 삭제합니다.</sub>
     </td>
