@@ -90,7 +90,7 @@ TourAPI response (unknown)
 
 | 구분     | 기술                                                                        |
 | -------- | --------------------------------------------------------------------------- |
-| Frontend | Next.js 16.3.5, React 19.2.8, TypeScript 5 (strict), Tailwind CSS 4         |
+| Frontend | Next.js 16.4.2, React 19.2.8, TypeScript 5 (strict), Tailwind CSS 4         |
 | Data     | 한국관광공사 TourAPI, Zod 4, Leaflet, OpenStreetMap                         |
 | Quality  | Vitest, React Testing Library, Playwright, axe-core, GitHub Actions, Vercel |
 
@@ -101,6 +101,7 @@ TourAPI response (unknown)
 | Unit / Component  | Vitest **30개 파일 / 154개 테스트** 통과                                                            |
 | E2E / 접근성      | Playwright **12개 시나리오**(고정 fixture 기반) 및 axe 검사 통과 |
 | 정적 검사·배포    | ESLint, TypeScript strict, Next.js production build, GitHub Actions CI, Vercel Production 검증 완료 |
+| 운영 의존성 보안  | `npm audit --omit=dev` 취약점 0건 (2026-10-18) |
 | Lighthouse Mobile | 기존 기록: Home **99** / Explore **68** / Detail **85**. Explore 별도 반복 측정 중앙값 **66 → 69** (동일 로컬 production 조건)           |
 
 ## 모바일·성능 개선
