@@ -72,14 +72,27 @@ Next.js App Router의 렌더링 경계, TourAPI 데이터 검증, URL 기반 검
 
 자세한 API 계약·캐시 정책·문제 해결 과정은 [상세 기술문서](https://app.notion.com/p/3e2622cea863810581c9dc081a76bcdf)에서 확인할 수 있습니다.
 
-## 실행 방법
+## 트러블슈팅
+
+### TourAPI 응답 차이로 인한 데이터 처리 오류
+
+- **문제:** 일부 관광정보 응답에서 빈 목록 형식이나 상세 항목 식별자가 예상과 달라 화면 처리 및 React Key 충돌이 발생했습니다.
+- **원인:** 외부 API 응답 구조를 그대로 사용하면서 누락된 하위 식별자에 부모 ID를 대입해 서로 다른 항목의 Key가 중복됐습니다.
+- **해결:** Zod 검증과 정규화 계층에서 예외 응답을 처리하고 항목별 안정적인 식별자를 생성하도록 변경했습니다.
+- **검증:** 응답 변형과 중복 식별자 사례를 회귀 테스트에 반영했습니다.
+
+[상세 기술문서](https://app.notion.com/p/3e2622cea863810581c9dc081a76bcdf)
+
+## 시작하기 (Getting Started)
+
+`.env.local`에 `TOUR_API_SERVICE_KEY`를 설정한 뒤 실행합니다.
+
+```dotenv
+TOUR_API_SERVICE_KEY=your_service_key
+```
 
 ```bash
 npm install
-
-# .env.local
-TOUR_API_SERVICE_KEY=your_service_key
-
 npm run dev
 ```
 
@@ -91,7 +104,7 @@ npm run dev
 | `npm run test:e2e`  | Playwright E2E 테스트        |
 | `npm run build`     | Next.js production build     |
 
-## 테스트 및 검증
+## 테스트 및 코드 품질
 
 | 항목              | 결과                                                                                                |
 | ----------------- | --------------------------------------------------------------------------------------------------- |
@@ -100,7 +113,7 @@ npm run dev
 | 정적 검사·배포    | ESLint, TypeScript strict, Next.js production build, GitHub Actions CI, Vercel Production 검증 완료 |
 | 운영 의존성 보안  | `npm audit --omit=dev` 취약점 0건 |
 
-## 관련 문서
+## 산출물 및 관련 문서
 
 - [포트폴리오](https://app.notion.com/p/3e2622cea8638106bf2ce92c1a25543e) · [기술문서](https://app.notion.com/p/3e2622cea863810581c9dc081a76bcdf)
 - [모바일·접근성 검증](docs/mobile-accessibility-audit-2026.md) · [성능 측정](docs/explore-performance-audit-2026.md)
