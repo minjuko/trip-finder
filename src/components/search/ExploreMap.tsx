@@ -94,6 +94,7 @@ export const ExploreMap = ({ contents }: ExploreMapProps) => {
               key={content.id}
               position={[coordinates.latitude, coordinates.longitude]}
               icon={markerIcon}
+              title={content.title}
             >
               <Popup>
                 <div className="min-w-40">

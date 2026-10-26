@@ -25,7 +25,7 @@ const ExploreSortSelect = ({ sort, imageOnly }: ExploreSortSelectProps) => {
       aria-label="검색 결과 정렬 및 이미지 필터"
       className="flex flex-wrap items-center gap-3"
     >
-      <label className="flex items-center gap-2 text-sm font-medium text-slate-700">
+      <label className="flex min-h-11 items-center gap-2 text-sm font-medium text-slate-700">
         <span>정렬 기준</span>
         <select
           key={sort}
@@ -43,7 +43,7 @@ const ExploreSortSelect = ({ sort, imageOnly }: ExploreSortSelectProps) => {
         </select>
       </label>
 
-      <label className="flex items-center gap-2 text-sm font-medium text-slate-700">
+      <label className="flex min-h-11 items-center gap-2 text-sm font-medium text-slate-700">
         <input
           key={String(imageOnly)}
           type="checkbox"

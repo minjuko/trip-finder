@@ -113,7 +113,7 @@ const PlaceDetailPage = async ({ params }: PlaceDetailPageProps) => {
           <li>
             <Link
               href="/explore"
-              className="transition hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+              className="inline-flex min-h-11 items-center transition hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
             >
               여행지 탐색
             </Link>

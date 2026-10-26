@@ -107,7 +107,7 @@ export const ExploreActiveFilters = ({ query }: ExploreActiveFiltersProps) => {
           key={filter.key}
           href={filter.href}
           aria-label={`${filter.label} 조건 제거`}
-          className="inline-flex items-center gap-1.5 rounded-full border border-brand/20 bg-brand-soft px-3 py-1.5 text-xs font-semibold text-brand transition hover:border-brand/35 hover:bg-sky-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+          className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-brand/20 bg-brand-soft px-3 py-1.5 text-xs font-semibold text-brand transition hover:border-brand/35 hover:bg-sky-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         >
           {filter.label}
           <span aria-hidden="true">×</span>
@@ -116,7 +116,7 @@ export const ExploreActiveFilters = ({ query }: ExploreActiveFiltersProps) => {
 
       <Link
         href="/explore"
-        className="ml-1 text-xs font-semibold text-slate-500 underline decoration-slate-300 underline-offset-4 transition hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+        className="ml-1 inline-flex min-h-11 items-center px-2 text-xs font-semibold text-slate-500 underline decoration-slate-300 underline-offset-4 transition hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
       >
         전체 초기화
       </Link>
