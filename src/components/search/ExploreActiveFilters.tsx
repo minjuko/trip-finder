@@ -37,6 +37,10 @@ const buildHref = (
     params.set(key, String(value));
   });
 
+  if (query.imageOnly && !remove.includes("imageOnly")) {
+    params.set("imageOnly", "1");
+  }
+
   params.delete("page");
 
   const queryString = params.toString();
@@ -66,6 +70,13 @@ export const ExploreActiveFilters = ({ query }: ExploreActiveFiltersProps) => {
           key: "category",
           label: CATEGORY_LABELS[query.category1] ?? "카테고리",
           href: buildHref(query, ["category1", "category2", "category3"]),
+        }
+      : null,
+    query.imageOnly
+      ? {
+          key: "imageOnly",
+          label: "대표 이미지 있음",
+          href: buildHref(query, ["imageOnly"]),
         }
       : null,
   ].filter(

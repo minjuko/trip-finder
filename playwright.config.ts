@@ -37,7 +37,12 @@ export default defineConfig({
   webServer: {
     command: "npm run dev",
     url: "http://127.0.0.1:3000",
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 120_000,
+    env: {
+      TOUR_API_E2E_FIXTURES: "true",
+      TOUR_API_SERVICE_KEY: "fixture-only-not-a-real-key",
+      NEXT_TELEMETRY_DISABLED: "1",
+    },
   },
 });

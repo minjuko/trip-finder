@@ -1,5 +1,5 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 test.describe("Accessibility", () => {
   test("홈 페이지에 자동 탐지 가능한 심각한 접근성 위반이 없다", async ({

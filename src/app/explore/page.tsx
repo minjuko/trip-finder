@@ -76,7 +76,8 @@ const ExplorePage = async ({ searchParams }: ExplorePageProps) => {
     if (query.category3) params.set("category3", query.category3);
     if (query.keyword) params.set("keyword", query.keyword);
     if (query.view !== "grid") params.set("view", query.view);
-    if (query.sort !== "relevance") params.set("sort", query.sort);
+    if (query.sort !== "title") params.set("sort", query.sort);
+    if (query.imageOnly) params.set("imageOnly", "1");
 
     const queryString = params.toString();
     redirect(queryString ? `/explore?${queryString}` : "/explore");
@@ -90,6 +91,7 @@ const ExplorePage = async ({ searchParams }: ExplorePageProps) => {
     query.category1,
     query.category2,
     query.category3,
+    query.imageOnly,
   ].filter(Boolean).length;
 
   return (
@@ -171,7 +173,7 @@ const ExplorePage = async ({ searchParams }: ExplorePageProps) => {
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
-              <ExploreSortSelect />
+              <ExploreSortSelect {...query} />
               <p className="rounded-full bg-brand-soft px-3 py-1.5 text-xs font-semibold text-brand-strong">
                 {contents.page}페이지
               </p>
