@@ -14,7 +14,8 @@ const createQuery = (overrides: Partial<ExploreQuery> = {}): ExploreQuery => ({
   keyword: null,
   page: 1,
   view: "grid",
-  sort: "relevance",
+  sort: "title",
+  imageOnly: false,
   ...overrides,
 });
 
@@ -56,6 +57,8 @@ describe("ExplorePagination", () => {
           category2: "NA02",
           category3: "NA020900",
           keyword: "해수욕장",
+          sort: "modified",
+          imageOnly: true,
           page: 2,
         })}
         totalCount={100}
@@ -84,6 +87,8 @@ describe("ExplorePagination", () => {
     expect(url.searchParams.get("category3")).toBe("NA020900");
 
     expect(url.searchParams.get("keyword")).toBe("해수욕장");
+    expect(url.searchParams.get("sort")).toBe("modified");
+    expect(url.searchParams.get("imageOnly")).toBe("1");
 
     expect(url.searchParams.get("page")).toBe("3");
   });

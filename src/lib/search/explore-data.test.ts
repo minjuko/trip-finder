@@ -36,7 +36,8 @@ const createQuery = (overrides: Partial<ExploreQuery> = {}): ExploreQuery => ({
   keyword: null,
   page: 1,
   view: "grid",
-  sort: "relevance",
+  sort: "title",
+  imageOnly: false,
   ...overrides,
 });
 
@@ -67,6 +68,7 @@ describe("getExploreData", () => {
       classificationDepth3: undefined,
       page: 2,
       pageSize: 12,
+      arrange: "A",
     });
 
     expect(mockedSearchKeyword).not.toHaveBeenCalled();
@@ -93,6 +95,7 @@ describe("getExploreData", () => {
       classificationDepth3: undefined,
       page: 3,
       pageSize: 12,
+      arrange: "A",
     });
 
     expect(mockedGetAreaBasedList).not.toHaveBeenCalled();
@@ -116,6 +119,7 @@ describe("getExploreData", () => {
       classificationDepth3: "NA020900",
       page: 1,
       pageSize: 12,
+      arrange: "A",
     });
   });
 
@@ -139,6 +143,7 @@ describe("getExploreData", () => {
       classificationDepth3: "NA020900",
       page: 1,
       pageSize: 12,
+      arrange: "A",
     });
   });
 
@@ -158,6 +163,7 @@ describe("getExploreData", () => {
       classificationDepth3: undefined,
       page: 1,
       pageSize: 12,
+      arrange: "A",
     });
   });
 
@@ -180,5 +186,19 @@ describe("getExploreData", () => {
     ).resolves.toEqual({
       contents: result,
     });
+  });
+
+  it("maps sort and image-only options for both API endpoints", async () => {
+    await getExploreData(createQuery({ sort: "created", imageOnly: true }));
+    expect(mockedGetAreaBasedList).toHaveBeenLastCalledWith(
+      expect.objectContaining({ arrange: "R" }),
+    );
+
+    await getExploreData(
+      createQuery({ keyword: "관광", sort: "modified", imageOnly: true }),
+    );
+    expect(mockedSearchKeyword).toHaveBeenLastCalledWith(
+      expect.objectContaining({ arrange: "Q" }),
+    );
   });
 });

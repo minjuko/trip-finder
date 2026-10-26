@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 test.describe("Home → Explore", () => {
   test("키워드로 관광 콘텐츠를 탐색한다", async ({ page }) => {
@@ -81,7 +81,7 @@ test.describe("Home → Explore", () => {
       page.getByRole("button", { name: "목록형으로 보기" }),
     ).toHaveAttribute("aria-pressed", "true");
 
-    await expect(page.getByText("가나다순", { exact: true })).toBeVisible();
+    await expect(page.getByLabel("정렬 기준")).toHaveValue("title");
 
     await page.getByRole("button", { name: "지도로 보기" }).click();
 
@@ -89,5 +89,76 @@ test.describe("Home → Explore", () => {
     await expect(
       page.getByRole("region", { name: "검색 결과 지도" }),
     ).toBeVisible();
+  });
+
+  test("정렬 URL 복원, 이미지 필터, 페이지 경계와 뒤로 가기를 유지한다", async ({
+    page,
+  }) => {
+    await page.goto(
+      "/explore?region=12&district=870&category1=NA&category2=NA02&category3=NA020500&keyword=Tour&view=list&sort=created&page=2",
+    );
+
+    await expect(page.getByLabel("정렬 기준")).toHaveValue("created");
+    await expect(page.getByText("2페이지", { exact: true })).toBeVisible();
+
+    await page.getByLabel("정렬 기준").selectOption("modified");
+    await expect(page).toHaveURL(/sort=modified/);
+    await expect(page).not.toHaveURL(/page=/);
+    await expect(page).toHaveURL(/region=12/);
+    await expect(page).toHaveURL(/district=870/);
+    await expect(page).toHaveURL(/category1=NA/);
+    await expect(page).toHaveURL(/keyword=Tour/);
+    await expect(page).toHaveURL(/view=list/);
+    await expect(page.getByText("1페이지", { exact: true })).toBeVisible();
+
+    await page.reload();
+    await expect(page.getByLabel("정렬 기준")).toHaveValue("modified");
+    await expect(page.getByText("1페이지", { exact: true })).toBeVisible();
+
+    await page
+      .getByRole("checkbox", { name: "대표 이미지가 있는 결과만" })
+      .check();
+
+    await expect(page).toHaveURL(/imageOnly=1/);
+    await expect(page).not.toHaveURL(/page=/);
+    await expect(page.getByText("1페이지", { exact: true })).toBeVisible();
+    const firstPagePlaceHrefs = await page
+      .locator('a[href^="/places/"]')
+      .evaluateAll((links) => links.map((link) => link.getAttribute("href")));
+    expect(firstPagePlaceHrefs).toHaveLength(12);
+    await expect(page.getByRole("link", { name: "다음" })).toHaveAttribute(
+      "href",
+      /imageOnly=1.*page=2/,
+    );
+
+    await page.getByRole("link", { name: "다음" }).click();
+    await expect(page).toHaveURL(/page=2/);
+    await expect(page.getByText("2페이지", { exact: true })).toBeVisible();
+    const secondPagePlaceHrefs = await page
+      .locator('a[href^="/places/"]')
+      .evaluateAll((links) => links.map((link) => link.getAttribute("href")));
+    expect(secondPagePlaceHrefs).toHaveLength(7);
+    expect(
+      firstPagePlaceHrefs.filter((href) => secondPagePlaceHrefs.includes(href)),
+    ).toHaveLength(0);
+
+    await page.goBack();
+    await expect(page).not.toHaveURL(/page=/);
+    await expect(page.getByText("1페이지", { exact: true })).toBeVisible();
+    await expect(
+      page.getByRole("checkbox", { name: "대표 이미지가 있는 결과만" }),
+    ).toBeChecked();
+
+    await page.goBack();
+    await expect(page).toHaveURL(/sort=modified/);
+    await expect(page).not.toHaveURL(/page=/);
+    await expect(
+      page.getByRole("checkbox", { name: "대표 이미지가 있는 결과만" }),
+    ).not.toBeChecked();
+
+    await page.goBack();
+    await expect(page).toHaveURL(/page=2/);
+    await expect(page).toHaveURL(/sort=created/);
+    await expect(page.getByLabel("정렬 기준")).toHaveValue("created");
   });
 });

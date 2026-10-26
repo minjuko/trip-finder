@@ -13,7 +13,8 @@ describe("parseExploreQuery", () => {
       keyword: null,
       page: 1,
       view: "grid",
-      sort: "relevance",
+      sort: "title",
+      imageOnly: false,
     });
   });
 
@@ -37,7 +38,8 @@ describe("parseExploreQuery", () => {
       keyword: "한강",
       page: 3,
       view: "grid",
-      sort: "relevance",
+      sort: "title",
+      imageOnly: false,
     });
   });
 
@@ -60,7 +62,8 @@ describe("parseExploreQuery", () => {
       keyword: "한강",
       page: 1,
       view: "grid",
-      sort: "relevance",
+      sort: "title",
+      imageOnly: false,
     });
   });
 
@@ -83,7 +86,8 @@ describe("parseExploreQuery", () => {
       keyword: null,
       page: 1,
       view: "grid",
-      sort: "relevance",
+      sort: "title",
+      imageOnly: false,
     });
   });
 
@@ -107,9 +111,21 @@ describe("parseExploreQuery", () => {
     expect(parseExploreQuery({ view: "table" }).view).toBe("grid");
   });
 
-  it("accepts title sorting and falls back to relevance for invalid values", () => {
-    expect(parseExploreQuery({ sort: "title" }).sort).toBe("title");
-    expect(parseExploreQuery({ sort: "unknown" }).sort).toBe("relevance");
+  it.each(["title", "modified", "created"] as const)(
+    "accepts %s sorting",
+    (sort) => {
+      expect(parseExploreQuery({ sort }).sort).toBe(sort);
+    },
+  );
+
+  it("defaults invalid sorting to title and parses the image-only flag", () => {
+    expect(
+      parseExploreQuery({ sort: "popular", imageOnly: "1" }),
+    ).toMatchObject({
+      sort: "title",
+      imageOnly: true,
+    });
+    expect(parseExploreQuery({ imageOnly: "true" }).imageOnly).toBe(false);
   });
 
   it("ignores district when region is missing", () => {
@@ -165,7 +181,8 @@ describe("parseExploreQuery", () => {
       keyword: "서울",
       page: 2,
       view: "grid",
-      sort: "relevance",
+      sort: "title",
+      imageOnly: false,
     });
   });
 

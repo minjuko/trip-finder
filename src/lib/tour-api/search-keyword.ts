@@ -5,6 +5,7 @@ import { requestTourApi } from "./client";
 import { createTourApiError } from "./errors";
 import { normalizeTourListResponse } from "./normalizers/tour-content";
 import { tourListResponseSchema } from "./schemas/list";
+import type { TourListArrange } from "./list-arrange";
 
 interface SearchKeywordParams {
   keyword: string;
@@ -19,7 +20,7 @@ interface SearchKeywordParams {
 
   page?: number;
   pageSize?: number;
-  arrange?: "A" | "B";
+  arrange?: TourListArrange;
 }
 
 export const searchKeyword = async ({

@@ -40,8 +40,12 @@ const getExploreHref = (query: ExploreQuery, page: number): string => {
     params.set("view", query.view);
   }
 
-  if (query.sort !== "relevance") {
+  if (query.sort !== "title") {
     params.set("sort", query.sort);
+  }
+
+  if (query.imageOnly) {
+    params.set("imageOnly", "1");
   }
 
   if (page > 1) {

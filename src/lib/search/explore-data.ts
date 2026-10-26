@@ -2,6 +2,7 @@ import type { PaginatedResult, TourContent } from "@/types/tour";
 
 import { getAreaBasedList } from "../tour-api/area-based-list";
 import { searchKeyword } from "../tour-api/search-keyword";
+import { getExploreArrange } from "./explore-sort";
 import type { ExploreQuery } from "./explore-query";
 
 const EXPLORE_PAGE_SIZE = 12;
@@ -22,6 +23,7 @@ export const getExploreData = async (
     classificationDepth3: query.category3 ?? undefined,
     page: query.page,
     pageSize: EXPLORE_PAGE_SIZE,
+    arrange: getExploreArrange(query.sort, query.imageOnly),
   };
 
   const contents = query.keyword

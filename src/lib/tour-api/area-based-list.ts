@@ -5,6 +5,7 @@ import { requestTourApi } from "./client";
 import { createTourApiError } from "./errors";
 import { normalizeTourListResponse } from "./normalizers/tour-content";
 import { tourListResponseSchema } from "./schemas/list";
+import type { TourListArrange } from "./list-arrange";
 
 interface GetAreaBasedListParams {
   regionCode?: string;
@@ -18,7 +19,7 @@ interface GetAreaBasedListParams {
 
   page?: number;
   pageSize?: number;
-  arrange?: "A" | "B";
+  arrange?: TourListArrange;
 }
 
 export const getAreaBasedList = async ({

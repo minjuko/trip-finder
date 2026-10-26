@@ -11,6 +11,7 @@ const exploreSearchParamsSchema = z.object({
   page: z.string().optional(),
   view: z.string().optional(),
   sort: z.string().optional(),
+  imageOnly: z.string().optional(),
 });
 
 // 변경: URL parsing 이후 사용하는 Explore Query Model
@@ -23,7 +24,8 @@ export interface ExploreQuery {
   keyword: string | null;
   page: number;
   view: "grid" | "list" | "map";
-  sort: "relevance" | "title";
+  sort: "title" | "modified" | "created";
+  imageOnly: boolean;
 }
 
 export type ExploreSearchParams = Record<string, string | string[] | undefined>;
@@ -78,6 +80,7 @@ export const parseExploreQuery = (
     page: getSingleValue(searchParams.page),
     view: getSingleValue(searchParams.view),
     sort: getSingleValue(searchParams.sort),
+    imageOnly: getSingleValue(searchParams.imageOnly),
   };
 
   const parsed = exploreSearchParamsSchema.parse(candidate);
@@ -104,6 +107,10 @@ export const parseExploreQuery = (
     page: normalizePage(parsed.page),
     view:
       parsed.view === "list" || parsed.view === "map" ? parsed.view : "grid",
-    sort: parsed.sort === "title" ? "title" : "relevance",
+    sort:
+      parsed.sort === "modified" || parsed.sort === "created"
+        ? parsed.sort
+        : "title",
+    imageOnly: parsed.imageOnly === "1",
   };
 };
