@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      TOUR_API_SERVICE_KEY: ${{ secrets.TOUR_API_SERVICE_KEY }}
       NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
 
     steps:
@@ -53,3 +52,6 @@ jobs:
 
       - name: Production build
         run: npm run build
+        env:
+          TOUR_API_E2E_FIXTURES: "true"
+          TOUR_API_SERVICE_KEY: fixture-only-not-a-real-key
