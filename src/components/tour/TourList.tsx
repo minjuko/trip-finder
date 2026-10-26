@@ -23,7 +23,7 @@ export const TourList = ({
             조건에 맞는 여행지가 없습니다.
           </p>
 
-          <p className="mt-2 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-slate-600">
             검색어나 필터를 변경해 보세요.
           </p>
           {emptyActionHref ? (

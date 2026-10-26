@@ -20,7 +20,22 @@ const getExploreListFixture = (
   arrange: string | number | undefined,
   pageNo: string | number | undefined,
   numOfRows: string | number | undefined,
+  keyword: string | number | undefined,
 ) => {
+  if (keyword === "__no_results__") {
+    return {
+      response: {
+        header: { resultCode: "0000", resultMsg: "OK" },
+        body: {
+          items: "",
+          numOfRows: Number(numOfRows) || 12,
+          pageNo: Number(pageNo) || 1,
+          totalCount: 0,
+        },
+      },
+    };
+  }
+
   const source = areaBasedListFixture.response.body.items.item[0];
   const allItems = Array.from({ length: 25 }, (_, index) => {
     const date = new Date(Date.UTC(2020 + index, index % 12, index + 1));
@@ -90,6 +105,7 @@ export const getE2eTourApiFixture = (
         params.arrange,
         params.pageNo,
         params.numOfRows,
+        params.keyword,
       );
     case "ldongCode2":
       return params.lDongRegnCd ? districtFixture : regionFixture;
