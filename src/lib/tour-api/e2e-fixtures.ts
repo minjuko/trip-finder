@@ -35,7 +35,12 @@ const getExploreListFixture = (
       title: `Tour Fixture ${String(index + 1).padStart(2, "0")}`,
       createdtime: dateValue,
       modifiedtime: dateValue,
-      firstimage: index % 4 === 3 ? "" : source.firstimage,
+      firstimage:
+        index % 4 === 3
+          ? ""
+          : process.env.TOUR_API_PERF_FIXTURES === "true"
+            ? "/performance-fixtures/tour-card.jpg"
+            : source.firstimage,
     };
   });
 
