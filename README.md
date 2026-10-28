@@ -65,14 +65,6 @@
 - 검색 조건을 URL로 관리하고 TourAPI 정렬 조건에 연결해 직접 접근과 새로고침에서도 조건을 복원합니다.
 - 인증·호출 제한·서버 오류를 구분하고 데이터 성격에 맞춰 캐시와 재검증 정책을 적용합니다.
 
-## 테스트 및 검증
-
-TourAPI 상세 응답에서 하위 항목 식별자가 누락되거나 빈 목록의 형식이 달라지는 사례를 정규화 계층에서 처리하고 회귀 테스트로 보강했습니다.
-
-Vitest 166개와 Playwright Chromium 20개 테스트를 통과했으며, format·lint·typecheck·build를 GitHub Actions에서 검증했습니다. [최종 CI 실행 내역](https://github.com/minjuko/trip-finder/actions/workflows/ci.yml)을 확인할 수 있습니다. E2E는 TourAPI 실호출이 아닌 fixture 기반입니다.
-
-로컬 Lighthouse 실험에서 LCP와 전송량이 감소했지만 TBT는 악화됐습니다. 측정 조건과 한계는 [성능 분석 문서](docs/explore-performance-audit-2026.md)에 기록했습니다.
-
 ## 실행 방법
 
 일반 실행에는 `.env.local`에 발급받은 `TOUR_API_SERVICE_KEY`가 필요합니다. 키를 저장소에 커밋하지 마세요.
@@ -95,6 +87,14 @@ npm run dev
 | `npm run test:e2e`      | Playwright E2E           |
 | `npm run build`         | Next.js production build |
 
+
+## 테스트 및 검증
+
+TourAPI 상세 응답에서 하위 항목 식별자가 누락되거나 빈 목록의 형식이 달라지는 사례를 정규화 계층에서 처리하고 회귀 테스트로 보강했습니다.
+
+Vitest 166개와 Playwright Chromium 20개 테스트를 통과했으며, format·lint·typecheck·build를 GitHub Actions에서 검증했습니다. [최종 CI 실행 내역](https://github.com/minjuko/trip-finder/actions/workflows/ci.yml)을 확인할 수 있습니다. E2E는 TourAPI 실호출이 아닌 fixture 기반입니다.
+
+로컬 Lighthouse 실험에서 LCP와 전송량이 감소했지만 TBT는 악화됐습니다. 측정 조건과 한계는 [성능 분석 문서](docs/explore-performance-audit-2026.md)에 기록했습니다.
 
 ## 관련 문서
 
