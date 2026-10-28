@@ -58,7 +58,7 @@
 | 데이터·지도 | 한국관광공사 TourAPI, Zod 4, Leaflet, OpenStreetMap                            |
 | 검증        | Vitest, React Testing Library, Playwright, axe-core, GitHub Actions            |
 
-## 담당 역할 및 핵심 구현
+## 핵심 구현 및 기술적 의사결정
 
 - 서버 렌더링 화면과 검색·필터·저장처럼 상호작용이 필요한 클라이언트 화면을 나눴습니다.
 - TourAPI 응답을 검증·정규화해 외부 응답 형식과 화면에서 쓰는 데이터를 분리했습니다.
@@ -87,12 +87,9 @@ npm run dev
 | `npm run test:e2e`      | Playwright E2E           |
 | `npm run build`         | Next.js production build |
 
-
 ## 테스트 및 검증
 
-TourAPI 상세 응답에서 하위 항목 식별자가 누락되거나 빈 목록의 형식이 달라지는 사례를 정규화 계층에서 처리하고 회귀 테스트로 보강했습니다.
-
-Vitest 166개와 Playwright Chromium 20개 테스트를 통과했으며, format·lint·typecheck·build를 GitHub Actions에서 검증했습니다. [최종 CI 실행 내역](https://github.com/minjuko/trip-finder/actions/workflows/ci.yml)을 확인할 수 있습니다. E2E는 TourAPI 실호출이 아닌 fixture 기반입니다.
+Vitest 166개, Playwright Chromium 20개 테스트와 format·lint·typecheck·build를 검증했습니다. [GitHub Actions](https://github.com/minjuko/trip-finder/actions/workflows/ci.yml) · E2E는 TourAPI 실호출이 아닌 fixture 기반입니다.
 
 로컬 Lighthouse 실험에서 LCP와 전송량이 감소했지만 TBT는 악화됐습니다. 측정 조건과 한계는 [성능 분석 문서](docs/explore-performance-audit-2026.md)에 기록했습니다.
 
