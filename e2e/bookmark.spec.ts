@@ -2,9 +2,16 @@ import { expect, test } from "./fixtures";
 
 test.describe("Bookmark journey", () => {
   test.beforeEach(async ({ context }) => {
-    // 변경: 테스트 간 localStorage 상태 격리
+    // 변경: 테스트 간 localStorage를 분리하되 같은 탭의 새로고침은 유지
     await context.addInitScript(() => {
+      const initializedKey = "trip-finder:e2e-storage-initialized";
+
+      if (window.localStorage.getItem(initializedKey) === "true") {
+        return;
+      }
+
       window.localStorage.clear();
+      window.localStorage.setItem(initializedKey, "true");
     });
   });
 
@@ -63,5 +70,68 @@ test.describe("Bookmark journey", () => {
         name: "가거도",
       }),
     ).toHaveCount(0);
+  });
+
+  test("북마크 변경이 열린 두 탭 사이에서 동기화되고 새로고침 후에도 유지된다", async ({
+    context,
+    page,
+  }) => {
+    const pageA = page;
+    const pageB = await context.newPage();
+
+    await pageB.route("**/*", async (route) => {
+      const url = new URL(route.request().url());
+
+      if (url.origin !== "http://127.0.0.1:3000") {
+        await route.abort();
+        return;
+      }
+
+      if (url.pathname === "/_next/image") {
+        await route.fulfill({
+          status: 200,
+          contentType: "image/svg+xml",
+          body: '<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1" />',
+        });
+        return;
+      }
+
+      await route.continue();
+    });
+
+    await Promise.all([pageA.goto("/places/127480"), pageB.goto("/bookmarks")]);
+
+    const bookmarkButtonA = pageA.getByRole("button", {
+      name: /가거도 저장/,
+    });
+
+    await expect(bookmarkButtonA).toHaveAttribute("aria-pressed", "false");
+    await expect(pageB.getByText("관심 여행지가 없습니다.")).toBeVisible();
+
+    await bookmarkButtonA.click();
+
+    await expect(bookmarkButtonA).toHaveAttribute("aria-pressed", "true");
+    await expect(
+      pageB.getByRole("heading", {
+        name: "가거도",
+      }),
+    ).toBeVisible();
+
+    await pageA.reload();
+
+    await expect(bookmarkButtonA).toHaveAttribute("aria-pressed", "true");
+
+    await pageB
+      .getByRole("button", {
+        name: "가거도 저장 취소",
+      })
+      .click();
+
+    await expect(pageB.getByText("관심 여행지가 없습니다.")).toBeVisible();
+    await expect(bookmarkButtonA).toHaveAttribute("aria-pressed", "false");
+
+    await pageA.reload();
+
+    await expect(bookmarkButtonA).toHaveAttribute("aria-pressed", "false");
   });
 });
