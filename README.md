@@ -89,7 +89,7 @@ npm run dev
 
 ## 테스트 및 검증
 
-Vitest 166개, Playwright Chromium 20개 테스트와 format·lint·typecheck·build를 검증했습니다. [GitHub Actions](https://github.com/minjuko/trip-finder/actions/workflows/ci.yml) · E2E는 TourAPI 실호출이 아닌 fixture 기반입니다.
+Vitest 166개, Playwright Chromium 21개 테스트와 format·lint·typecheck·build를 검증했습니다. [GitHub Actions](https://github.com/minjuko/trip-finder/actions/workflows/ci.yml) · E2E는 Chromium 단일 worker에서 TourAPI 실호출이 아닌 fixture 기반으로 검증합니다.
 
 로컬 Lighthouse 실험에서 LCP와 전송량이 감소했지만 TBT는 악화됐습니다. 측정 조건과 한계는 [성능 분석 문서](docs/explore-performance-audit-2026.md)에 기록했습니다.
 
