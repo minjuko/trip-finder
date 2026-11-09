@@ -93,8 +93,11 @@ Vitest 166개, Playwright Chromium 21개 테스트와 format·lint·typecheck·b
 
 로컬 Lighthouse 실험에서 LCP와 전송량이 감소했지만 TBT는 악화됐습니다. 측정 조건과 한계는 [성능 분석 문서](docs/explore-performance-audit-2026.md)에 기록했습니다.
 
+동일한 production fixture에서 eager preload와 현재 지연 로딩을 각각 5회 비교했습니다. 카드 보기의 4초 내 JS 전송 중앙값은 233,465 bytes에서 187,864 bytes로 줄었고, 지도 45,535-byte 청크 요청은 5/5회에서 0/5회로 바뀌었습니다. 이 실험에서 LCP 개선은 확인되지 않았습니다. [측정 환경·원본 결과·한계](docs/map-lazy-loading-validation.md)
+
 ## 관련 문서
 
 - [모바일·접근성 감사](docs/mobile-accessibility-audit-2026.md)
 - [Explore Lighthouse 과거 실험 기록](docs/explore-performance-audit-2026.md)
+- [지도 지연 로딩 반복 측정](docs/map-lazy-loading-validation.md)
 - [TF08 로컬 이미지 fixture 측정 방법](docs/tf08-local-image-performance-fixture.md)

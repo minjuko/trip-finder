@@ -1,0 +1,1095 @@
+﻿{
+    "generatedAt":  "2026-11-09T05:46:33.193Z",
+    "variant":  "lazy",
+    "browser":  "153.0.8010.12",
+    "viewport":  {
+                     "width":  412,
+                     "height":  823,
+                     "deviceScaleFactor":  1.75
+                 },
+    "conditions":  {
+                       "cache":  "disabled per run",
+                       "network":  "150ms RTT, 1,638.4Kbps down, 675Kbps up",
+                       "cpu":  "4x slowdown",
+                       "externalRequests":  "aborted",
+                       "stableResourceWindowAfterLoad":  "4 seconds"
+                   },
+    "results":  [
+                    {
+                        "variant":  "lazy",
+                        "view":  "grid",
+                        "run":  1,
+                        "navigationMs":  1895,
+                        "mapReadyMs":  null,
+                        "interactionMs":  null,
+                        "lcp":  {
+                                    "startTime":  1544,
+                                    "tagName":  "IMG",
+                                    "id":  "",
+                                    "className":  "object-cover transition duration-500 group-hover:scale-[1.04]"
+                                },
+                        "lcpMs":  1544,
+                        "fcpMs":  1544,
+                        "ttfbMs":  311.39999985694885,
+                        "javaScriptTransferWithinCollectionWindowBytes":  187864,
+                        "javaScriptTransferByLcpBytes":  112461,
+                        "mapChunks":  [
+
+                                      ],
+                        "javaScriptResourcesWithinCollectionWindow":  [
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1ckvzn7sfprko.js",
+                                                                              "startTime":  371.7999999523163,
+                                                                              "responseEnd":  658.2999999523163,
+                                                                              "transferSize":  2335,
+                                                                              "encodedBodySize":  2035
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2r4s4h5xul1n-.js",
+                                                                              "startTime":  372.39999985694885,
+                                                                              "responseEnd":  798.6999998092651,
+                                                                              "transferSize":  7924,
+                                                                              "encodedBodySize":  7624
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2gvu8dyrhibpa.js",
+                                                                              "startTime":  373.5,
+                                                                              "responseEnd":  1594.5999999046326,
+                                                                              "transferSize":  72199,
+                                                                              "encodedBodySize":  71899
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2e268anpfvdoc.js",
+                                                                              "startTime":  374.5,
+                                                                              "responseEnd":  1391,
+                                                                              "transferSize":  46667,
+                                                                              "encodedBodySize":  46367
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+                                                                              "startTime":  375.09999990463257,
+                                                                              "responseEnd":  876.6999998092651,
+                                                                              "transferSize":  4240,
+                                                                              "encodedBodySize":  3940
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0ybgom5vvgouc.js",
+                                                                              "startTime":  375.69999980926514,
+                                                                              "responseEnd":  1126.7999999523163,
+                                                                              "transferSize":  8828,
+                                                                              "encodedBodySize":  8528
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3t3ump29bvn01.js",
+                                                                              "startTime":  376.09999990463257,
+                                                                              "responseEnd":  971,
+                                                                              "transferSize":  941,
+                                                                              "encodedBodySize":  641
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1y5ddekuenn5e.js",
+                                                                              "startTime":  376.69999980926514,
+                                                                              "responseEnd":  1095.0999999046326,
+                                                                              "transferSize":  5787,
+                                                                              "encodedBodySize":  5487
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0d60akptozgk2.js",
+                                                                              "startTime":  377,
+                                                                              "responseEnd":  1532.5999999046326,
+                                                                              "transferSize":  35739,
+                                                                              "encodedBodySize":  35439
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3jwjf313_72lp.js",
+                                                                              "startTime":  2420.399999856949,
+                                                                              "responseEnd":  2604.399999856949,
+                                                                              "transferSize":  2065,
+                                                                              "encodedBodySize":  1765
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/05ac_r6pkd5vj.js",
+                                                                              "startTime":  2435.7999999523163,
+                                                                              "responseEnd":  2619.5999999046326,
+                                                                              "transferSize":  1139,
+                                                                              "encodedBodySize":  839
+                                                                          }
+                                                                      ]
+                    },
+                    {
+                        "variant":  "lazy",
+                        "view":  "grid",
+                        "run":  2,
+                        "navigationMs":  1810,
+                        "mapReadyMs":  null,
+                        "interactionMs":  null,
+                        "lcp":  {
+                                    "startTime":  1448,
+                                    "tagName":  "IMG",
+                                    "id":  "",
+                                    "className":  "object-cover transition duration-500 group-hover:scale-[1.04]"
+                                },
+                        "lcpMs":  1448,
+                        "fcpMs":  820,
+                        "ttfbMs":  25.299999952316284,
+                        "javaScriptTransferWithinCollectionWindowBytes":  187864,
+                        "javaScriptTransferByLcpBytes":  184660,
+                        "mapChunks":  [
+
+                                      ],
+                        "javaScriptResourcesWithinCollectionWindow":  [
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1ckvzn7sfprko.js",
+                                                                              "startTime":  214.79999995231628,
+                                                                              "responseEnd":  476.09999990463257,
+                                                                              "transferSize":  2335,
+                                                                              "encodedBodySize":  2035
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2r4s4h5xul1n-.js",
+                                                                              "startTime":  215.09999990463257,
+                                                                              "responseEnd":  616.0999999046326,
+                                                                              "transferSize":  7924,
+                                                                              "encodedBodySize":  7624
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2gvu8dyrhibpa.js",
+                                                                              "startTime":  215.59999990463257,
+                                                                              "responseEnd":  1418.5,
+                                                                              "transferSize":  72199,
+                                                                              "encodedBodySize":  71899
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2e268anpfvdoc.js",
+                                                                              "startTime":  216.09999990463257,
+                                                                              "responseEnd":  1243.7999999523163,
+                                                                              "transferSize":  46667,
+                                                                              "encodedBodySize":  46367
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+                                                                              "startTime":  216.5,
+                                                                              "responseEnd":  711,
+                                                                              "transferSize":  4240,
+                                                                              "encodedBodySize":  3940
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0ybgom5vvgouc.js",
+                                                                              "startTime":  217,
+                                                                              "responseEnd":  946.2999999523163,
+                                                                              "transferSize":  8828,
+                                                                              "encodedBodySize":  8528
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3t3ump29bvn01.js",
+                                                                              "startTime":  217.39999985694885,
+                                                                              "responseEnd":  814.0999999046326,
+                                                                              "transferSize":  941,
+                                                                              "encodedBodySize":  641
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1y5ddekuenn5e.js",
+                                                                              "startTime":  217.79999995231628,
+                                                                              "responseEnd":  915,
+                                                                              "transferSize":  5787,
+                                                                              "encodedBodySize":  5487
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0d60akptozgk2.js",
+                                                                              "startTime":  218,
+                                                                              "responseEnd":  1370.8999998569489,
+                                                                              "transferSize":  35739,
+                                                                              "encodedBodySize":  35439
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3jwjf313_72lp.js",
+                                                                              "startTime":  2381.7999999523163,
+                                                                              "responseEnd":  2574.5,
+                                                                              "transferSize":  2065,
+                                                                              "encodedBodySize":  1765
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/05ac_r6pkd5vj.js",
+                                                                              "startTime":  2410.2000000476837,
+                                                                              "responseEnd":  2590,
+                                                                              "transferSize":  1139,
+                                                                              "encodedBodySize":  839
+                                                                          }
+                                                                      ]
+                    },
+                    {
+                        "variant":  "lazy",
+                        "view":  "grid",
+                        "run":  3,
+                        "navigationMs":  1943,
+                        "mapReadyMs":  null,
+                        "interactionMs":  null,
+                        "lcp":  {
+                                    "startTime":  1536,
+                                    "tagName":  "IMG",
+                                    "id":  "",
+                                    "className":  "object-cover transition duration-500 group-hover:scale-[1.04]"
+                                },
+                        "lcpMs":  1536,
+                        "fcpMs":  808,
+                        "ttfbMs":  34.39999985694885,
+                        "javaScriptTransferWithinCollectionWindowBytes":  187864,
+                        "javaScriptTransferByLcpBytes":  184660,
+                        "mapChunks":  [
+
+                                      ],
+                        "javaScriptResourcesWithinCollectionWindow":  [
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1ckvzn7sfprko.js",
+                                                                              "startTime":  211.79999995231628,
+                                                                              "responseEnd":  479.5,
+                                                                              "transferSize":  2335,
+                                                                              "encodedBodySize":  2035
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2r4s4h5xul1n-.js",
+                                                                              "startTime":  212.79999995231628,
+                                                                              "responseEnd":  620.5999999046326,
+                                                                              "transferSize":  7924,
+                                                                              "encodedBodySize":  7624
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2gvu8dyrhibpa.js",
+                                                                              "startTime":  213.69999980926514,
+                                                                              "responseEnd":  1417.8999998569489,
+                                                                              "transferSize":  72199,
+                                                                              "encodedBodySize":  71899
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2e268anpfvdoc.js",
+                                                                              "startTime":  214.69999980926514,
+                                                                              "responseEnd":  1229.6999998092651,
+                                                                              "transferSize":  46667,
+                                                                              "encodedBodySize":  46367
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+                                                                              "startTime":  215.29999995231628,
+                                                                              "responseEnd":  699,
+                                                                              "transferSize":  4240,
+                                                                              "encodedBodySize":  3940
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0ybgom5vvgouc.js",
+                                                                              "startTime":  216.09999990463257,
+                                                                              "responseEnd":  949.7999999523163,
+                                                                              "transferSize":  8828,
+                                                                              "encodedBodySize":  8528
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3t3ump29bvn01.js",
+                                                                              "startTime":  216.59999990463257,
+                                                                              "responseEnd":  809.5999999046326,
+                                                                              "transferSize":  941,
+                                                                              "encodedBodySize":  641
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1y5ddekuenn5e.js",
+                                                                              "startTime":  216.89999985694885,
+                                                                              "responseEnd":  903.5,
+                                                                              "transferSize":  5787,
+                                                                              "encodedBodySize":  5487
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0d60akptozgk2.js",
+                                                                              "startTime":  217.5,
+                                                                              "responseEnd":  1354.3999998569489,
+                                                                              "transferSize":  35739,
+                                                                              "encodedBodySize":  35439
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3jwjf313_72lp.js",
+                                                                              "startTime":  2638.5999999046326,
+                                                                              "responseEnd":  2829.699999809265,
+                                                                              "transferSize":  2065,
+                                                                              "encodedBodySize":  1765
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/05ac_r6pkd5vj.js",
+                                                                              "startTime":  2667.199999809265,
+                                                                              "responseEnd":  2861,
+                                                                              "transferSize":  1139,
+                                                                              "encodedBodySize":  839
+                                                                          }
+                                                                      ]
+                    },
+                    {
+                        "variant":  "lazy",
+                        "view":  "grid",
+                        "run":  4,
+                        "navigationMs":  1850,
+                        "mapReadyMs":  null,
+                        "interactionMs":  null,
+                        "lcp":  {
+                                    "startTime":  1500,
+                                    "tagName":  "IMG",
+                                    "id":  "",
+                                    "className":  "object-cover transition duration-500 group-hover:scale-[1.04]"
+                                },
+                        "lcpMs":  1500,
+                        "fcpMs":  808,
+                        "ttfbMs":  42.10000014305115,
+                        "javaScriptTransferWithinCollectionWindowBytes":  187864,
+                        "javaScriptTransferByLcpBytes":  184660,
+                        "mapChunks":  [
+
+                                      ],
+                        "javaScriptResourcesWithinCollectionWindow":  [
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1ckvzn7sfprko.js",
+                                                                              "startTime":  205.09999990463257,
+                                                                              "responseEnd":  458.39999985694885,
+                                                                              "transferSize":  2335,
+                                                                              "encodedBodySize":  2035
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2r4s4h5xul1n-.js",
+                                                                              "startTime":  205.69999980926514,
+                                                                              "responseEnd":  613.5999999046326,
+                                                                              "transferSize":  7924,
+                                                                              "encodedBodySize":  7624
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2gvu8dyrhibpa.js",
+                                                                              "startTime":  206,
+                                                                              "responseEnd":  1409.6999998092651,
+                                                                              "transferSize":  72199,
+                                                                              "encodedBodySize":  71899
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2e268anpfvdoc.js",
+                                                                              "startTime":  206.69999980926514,
+                                                                              "responseEnd":  1237.2999999523163,
+                                                                              "transferSize":  46667,
+                                                                              "encodedBodySize":  46367
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+                                                                              "startTime":  207.29999995231628,
+                                                                              "responseEnd":  706.0999999046326,
+                                                                              "transferSize":  4240,
+                                                                              "encodedBodySize":  3940
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0ybgom5vvgouc.js",
+                                                                              "startTime":  208.19999980926514,
+                                                                              "responseEnd":  925.3999998569489,
+                                                                              "transferSize":  8828,
+                                                                              "encodedBodySize":  8528
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3t3ump29bvn01.js",
+                                                                              "startTime":  208.89999985694885,
+                                                                              "responseEnd":  817.3999998569489,
+                                                                              "transferSize":  941,
+                                                                              "encodedBodySize":  641
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1y5ddekuenn5e.js",
+                                                                              "startTime":  209.69999980926514,
+                                                                              "responseEnd":  925.5999999046326,
+                                                                              "transferSize":  5787,
+                                                                              "encodedBodySize":  5487
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0d60akptozgk2.js",
+                                                                              "startTime":  210.39999985694885,
+                                                                              "responseEnd":  1347.8999998569489,
+                                                                              "transferSize":  35739,
+                                                                              "encodedBodySize":  35439
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/05ac_r6pkd5vj.js",
+                                                                              "startTime":  2397,
+                                                                              "responseEnd":  2595.2999999523163,
+                                                                              "transferSize":  1139,
+                                                                              "encodedBodySize":  839
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3jwjf313_72lp.js",
+                                                                              "startTime":  2418.5999999046326,
+                                                                              "responseEnd":  2610.199999809265,
+                                                                              "transferSize":  2065,
+                                                                              "encodedBodySize":  1765
+                                                                          }
+                                                                      ]
+                    },
+                    {
+                        "variant":  "lazy",
+                        "view":  "grid",
+                        "run":  5,
+                        "navigationMs":  1764,
+                        "mapReadyMs":  null,
+                        "interactionMs":  null,
+                        "lcp":  {
+                                    "startTime":  1464,
+                                    "tagName":  "IMG",
+                                    "id":  "",
+                                    "className":  "object-cover transition duration-500 group-hover:scale-[1.04]"
+                                },
+                        "lcpMs":  1464,
+                        "fcpMs":  816,
+                        "ttfbMs":  17.90000009536743,
+                        "javaScriptTransferWithinCollectionWindowBytes":  187864,
+                        "javaScriptTransferByLcpBytes":  184660,
+                        "mapChunks":  [
+
+                                      ],
+                        "javaScriptResourcesWithinCollectionWindow":  [
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1ckvzn7sfprko.js",
+                                                                              "startTime":  207.30000019073486,
+                                                                              "responseEnd":  458.30000019073486,
+                                                                              "transferSize":  2335,
+                                                                              "encodedBodySize":  2035
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2r4s4h5xul1n-.js",
+                                                                              "startTime":  208.5,
+                                                                              "responseEnd":  614.8000001907349,
+                                                                              "transferSize":  7924,
+                                                                              "encodedBodySize":  7624
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2gvu8dyrhibpa.js",
+                                                                              "startTime":  208.90000009536743,
+                                                                              "responseEnd":  1412.3000001907349,
+                                                                              "transferSize":  72199,
+                                                                              "encodedBodySize":  71899
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2e268anpfvdoc.js",
+                                                                              "startTime":  209.10000014305115,
+                                                                              "responseEnd":  1222.8000001907349,
+                                                                              "transferSize":  46667,
+                                                                              "encodedBodySize":  46367
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+                                                                              "startTime":  209.5,
+                                                                              "responseEnd":  708.5,
+                                                                              "transferSize":  4240,
+                                                                              "encodedBodySize":  3940
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0ybgom5vvgouc.js",
+                                                                              "startTime":  209.80000019073486,
+                                                                              "responseEnd":  926.8000001907349,
+                                                                              "transferSize":  8828,
+                                                                              "encodedBodySize":  8528
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3t3ump29bvn01.js",
+                                                                              "startTime":  210.90000009536743,
+                                                                              "responseEnd":  802.2000000476837,
+                                                                              "transferSize":  941,
+                                                                              "encodedBodySize":  641
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1y5ddekuenn5e.js",
+                                                                              "startTime":  212.30000019073486,
+                                                                              "responseEnd":  941.9000000953674,
+                                                                              "transferSize":  5787,
+                                                                              "encodedBodySize":  5487
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0d60akptozgk2.js",
+                                                                              "startTime":  212.70000004768372,
+                                                                              "responseEnd":  1348.9000000953674,
+                                                                              "transferSize":  35739,
+                                                                              "encodedBodySize":  35439
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3jwjf313_72lp.js",
+                                                                              "startTime":  2348,
+                                                                              "responseEnd":  2548.600000143051,
+                                                                              "transferSize":  2065,
+                                                                              "encodedBodySize":  1765
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/05ac_r6pkd5vj.js",
+                                                                              "startTime":  2377.300000190735,
+                                                                              "responseEnd":  2564.100000143051,
+                                                                              "transferSize":  1139,
+                                                                              "encodedBodySize":  839
+                                                                          }
+                                                                      ]
+                    },
+                    {
+                        "variant":  "lazy",
+                        "view":  "map",
+                        "run":  1,
+                        "navigationMs":  1699,
+                        "mapReadyMs":  3447,
+                        "interactionMs":  3670,
+                        "lcp":  {
+                                    "startTime":  1324,
+                                    "tagName":  "P",
+                                    "id":  "",
+                                    "className":  "mt-4 max-w-2xl text-base leading-7 text-ink-muted"
+                                },
+                        "lcpMs":  1324,
+                        "fcpMs":  792,
+                        "ttfbMs":  19.399999856948853,
+                        "javaScriptTransferWithinCollectionWindowBytes":  233415,
+                        "javaScriptTransferByLcpBytes":  112461,
+                        "mapChunks":  [
+                                          {
+                                              "url":  "/_next/static/chunks/333jci-wwhtzn.js",
+                                              "startTime":  2259.5,
+                                              "responseEnd":  2720.399999856949,
+                                              "transferSize":  45551,
+                                              "encodedBodySize":  45251
+                                          }
+                                      ],
+                        "javaScriptResourcesWithinCollectionWindow":  [
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1ckvzn7sfprko.js",
+                                                                              "startTime":  207.79999995231628,
+                                                                              "responseEnd":  456.2999999523163,
+                                                                              "transferSize":  2335,
+                                                                              "encodedBodySize":  2035
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2r4s4h5xul1n-.js",
+                                                                              "startTime":  208,
+                                                                              "responseEnd":  610.3999998569489,
+                                                                              "transferSize":  7924,
+                                                                              "encodedBodySize":  7624
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2gvu8dyrhibpa.js",
+                                                                              "startTime":  208.5,
+                                                                              "responseEnd":  1365,
+                                                                              "transferSize":  72199,
+                                                                              "encodedBodySize":  71899
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2e268anpfvdoc.js",
+                                                                              "startTime":  208.59999990463257,
+                                                                              "responseEnd":  1208.3999998569489,
+                                                                              "transferSize":  46667,
+                                                                              "encodedBodySize":  46367
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+                                                                              "startTime":  208.70000004768372,
+                                                                              "responseEnd":  533.5999999046326,
+                                                                              "transferSize":  4240,
+                                                                              "encodedBodySize":  3940
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0ybgom5vvgouc.js",
+                                                                              "startTime":  208.79999995231628,
+                                                                              "responseEnd":  750.0999999046326,
+                                                                              "transferSize":  8828,
+                                                                              "encodedBodySize":  8528
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3t3ump29bvn01.js",
+                                                                              "startTime":  208.89999985694885,
+                                                                              "responseEnd":  703.5,
+                                                                              "transferSize":  941,
+                                                                              "encodedBodySize":  641
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1y5ddekuenn5e.js",
+                                                                              "startTime":  209.09999990463257,
+                                                                              "responseEnd":  876,
+                                                                              "transferSize":  5787,
+                                                                              "encodedBodySize":  5487
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0d60akptozgk2.js",
+                                                                              "startTime":  209.09999990463257,
+                                                                              "responseEnd":  1287.2000000476837,
+                                                                              "transferSize":  35739,
+                                                                              "encodedBodySize":  35439
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/333jci-wwhtzn.js",
+                                                                              "startTime":  2259.5,
+                                                                              "responseEnd":  2720.399999856949,
+                                                                              "transferSize":  45551,
+                                                                              "encodedBodySize":  45251
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3jwjf313_72lp.js",
+                                                                              "startTime":  2439.7000000476837,
+                                                                              "responseEnd":  2643.2999999523163,
+                                                                              "transferSize":  2065,
+                                                                              "encodedBodySize":  1765
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/05ac_r6pkd5vj.js",
+                                                                              "startTime":  2487.2000000476837,
+                                                                              "responseEnd":  2675.5999999046326,
+                                                                              "transferSize":  1139,
+                                                                              "encodedBodySize":  839
+                                                                          }
+                                                                      ]
+                    },
+                    {
+                        "variant":  "lazy",
+                        "view":  "map",
+                        "run":  2,
+                        "navigationMs":  2601,
+                        "mapReadyMs":  4589,
+                        "interactionMs":  4856,
+                        "lcp":  {
+                                    "startTime":  1840,
+                                    "tagName":  "P",
+                                    "id":  "",
+                                    "className":  "mt-4 max-w-2xl text-base leading-7 text-ink-muted"
+                                },
+                        "lcpMs":  1840,
+                        "fcpMs":  884,
+                        "ttfbMs":  24.90000009536743,
+                        "javaScriptTransferWithinCollectionWindowBytes":  233415,
+                        "javaScriptTransferByLcpBytes":  184660,
+                        "mapChunks":  [
+                                          {
+                                              "url":  "/_next/static/chunks/333jci-wwhtzn.js",
+                                              "startTime":  3488.2999999523163,
+                                              "responseEnd":  3940,
+                                              "transferSize":  45551,
+                                              "encodedBodySize":  45251
+                                          }
+                                      ],
+                        "javaScriptResourcesWithinCollectionWindow":  [
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1ckvzn7sfprko.js",
+                                                                              "startTime":  211.79999995231628,
+                                                                              "responseEnd":  436.7999999523163,
+                                                                              "transferSize":  2335,
+                                                                              "encodedBodySize":  2035
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2r4s4h5xul1n-.js",
+                                                                              "startTime":  211.90000009536743,
+                                                                              "responseEnd":  589.5999999046326,
+                                                                              "transferSize":  7924,
+                                                                              "encodedBodySize":  7624
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2gvu8dyrhibpa.js",
+                                                                              "startTime":  213,
+                                                                              "responseEnd":  1370.5999999046326,
+                                                                              "transferSize":  72199,
+                                                                              "encodedBodySize":  71899
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2e268anpfvdoc.js",
+                                                                              "startTime":  214.79999995231628,
+                                                                              "responseEnd":  1215.0999999046326,
+                                                                              "transferSize":  46667,
+                                                                              "encodedBodySize":  46367
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+                                                                              "startTime":  216.5,
+                                                                              "responseEnd":  528.9000000953674,
+                                                                              "transferSize":  4240,
+                                                                              "encodedBodySize":  3940
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0ybgom5vvgouc.js",
+                                                                              "startTime":  217.5,
+                                                                              "responseEnd":  730.7999999523163,
+                                                                              "transferSize":  8828,
+                                                                              "encodedBodySize":  8528
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3t3ump29bvn01.js",
+                                                                              "startTime":  217.79999995231628,
+                                                                              "responseEnd":  697.2000000476837,
+                                                                              "transferSize":  941,
+                                                                              "encodedBodySize":  641
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1y5ddekuenn5e.js",
+                                                                              "startTime":  218.09999990463257,
+                                                                              "responseEnd":  855.4000000953674,
+                                                                              "transferSize":  5787,
+                                                                              "encodedBodySize":  5487
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0d60akptozgk2.js",
+                                                                              "startTime":  218.40000009536743,
+                                                                              "responseEnd":  1277,
+                                                                              "transferSize":  35739,
+                                                                              "encodedBodySize":  35439
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/333jci-wwhtzn.js",
+                                                                              "startTime":  3488.2999999523163,
+                                                                              "responseEnd":  3940,
+                                                                              "transferSize":  45551,
+                                                                              "encodedBodySize":  45251
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3jwjf313_72lp.js",
+                                                                              "startTime":  3616,
+                                                                              "responseEnd":  3845.2999999523163,
+                                                                              "transferSize":  2065,
+                                                                              "encodedBodySize":  1765
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/05ac_r6pkd5vj.js",
+                                                                              "startTime":  3640.2999999523163,
+                                                                              "responseEnd":  3830.0999999046326,
+                                                                              "transferSize":  1139,
+                                                                              "encodedBodySize":  839
+                                                                          }
+                                                                      ]
+                    },
+                    {
+                        "variant":  "lazy",
+                        "view":  "map",
+                        "run":  3,
+                        "navigationMs":  1637,
+                        "mapReadyMs":  3177,
+                        "interactionMs":  3326,
+                        "lcp":  {
+                                    "startTime":  1288,
+                                    "tagName":  "P",
+                                    "id":  "",
+                                    "className":  "mt-4 max-w-2xl text-base leading-7 text-ink-muted"
+                                },
+                        "lcpMs":  1288,
+                        "fcpMs":  720,
+                        "ttfbMs":  9.5,
+                        "javaScriptTransferWithinCollectionWindowBytes":  233415,
+                        "javaScriptTransferByLcpBytes":  112461,
+                        "mapChunks":  [
+                                          {
+                                              "url":  "/_next/static/chunks/333jci-wwhtzn.js",
+                                              "startTime":  2023.7999999523163,
+                                              "responseEnd":  2512.9000000953674,
+                                              "transferSize":  45551,
+                                              "encodedBodySize":  45251
+                                          }
+                                      ],
+                        "javaScriptResourcesWithinCollectionWindow":  [
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1ckvzn7sfprko.js",
+                                                                              "startTime":  196.79999995231628,
+                                                                              "responseEnd":  419.5,
+                                                                              "transferSize":  2335,
+                                                                              "encodedBodySize":  2035
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2r4s4h5xul1n-.js",
+                                                                              "startTime":  197.40000009536743,
+                                                                              "responseEnd":  574.7000000476837,
+                                                                              "transferSize":  7924,
+                                                                              "encodedBodySize":  7624
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2gvu8dyrhibpa.js",
+                                                                              "startTime":  198.60000014305115,
+                                                                              "responseEnd":  1341.5,
+                                                                              "transferSize":  72199,
+                                                                              "encodedBodySize":  71899
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2e268anpfvdoc.js",
+                                                                              "startTime":  199.40000009536743,
+                                                                              "responseEnd":  1171.1000001430511,
+                                                                              "transferSize":  46667,
+                                                                              "encodedBodySize":  46367
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+                                                                              "startTime":  200.70000004768372,
+                                                                              "responseEnd":  496.10000014305115,
+                                                                              "transferSize":  4240,
+                                                                              "encodedBodySize":  3940
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0ybgom5vvgouc.js",
+                                                                              "startTime":  201.10000014305115,
+                                                                              "responseEnd":  712.7000000476837,
+                                                                              "transferSize":  8828,
+                                                                              "encodedBodySize":  8528
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3t3ump29bvn01.js",
+                                                                              "startTime":  201.5,
+                                                                              "responseEnd":  668.7999999523163,
+                                                                              "transferSize":  941,
+                                                                              "encodedBodySize":  641
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1y5ddekuenn5e.js",
+                                                                              "startTime":  202.10000014305115,
+                                                                              "responseEnd":  838.9000000953674,
+                                                                              "transferSize":  5787,
+                                                                              "encodedBodySize":  5487
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0d60akptozgk2.js",
+                                                                              "startTime":  202.90000009536743,
+                                                                              "responseEnd":  1248.6000001430511,
+                                                                              "transferSize":  35739,
+                                                                              "encodedBodySize":  35439
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/333jci-wwhtzn.js",
+                                                                              "startTime":  2023.7999999523163,
+                                                                              "responseEnd":  2512.9000000953674,
+                                                                              "transferSize":  45551,
+                                                                              "encodedBodySize":  45251
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3jwjf313_72lp.js",
+                                                                              "startTime":  2291.7000000476837,
+                                                                              "responseEnd":  2512.7000000476837,
+                                                                              "transferSize":  2065,
+                                                                              "encodedBodySize":  1765
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/05ac_r6pkd5vj.js",
+                                                                              "startTime":  2312.9000000953674,
+                                                                              "responseEnd":  2498.100000143051,
+                                                                              "transferSize":  1139,
+                                                                              "encodedBodySize":  839
+                                                                          }
+                                                                      ]
+                    },
+                    {
+                        "variant":  "lazy",
+                        "view":  "map",
+                        "run":  4,
+                        "navigationMs":  1605,
+                        "mapReadyMs":  3158,
+                        "interactionMs":  3337,
+                        "lcp":  {
+                                    "startTime":  1300,
+                                    "tagName":  "P",
+                                    "id":  "",
+                                    "className":  "mt-4 max-w-2xl text-base leading-7 text-ink-muted"
+                                },
+                        "lcpMs":  1300,
+                        "fcpMs":  732,
+                        "ttfbMs":  13.699999809265137,
+                        "javaScriptTransferWithinCollectionWindowBytes":  233415,
+                        "javaScriptTransferByLcpBytes":  112461,
+                        "mapChunks":  [
+                                          {
+                                              "url":  "/_next/static/chunks/333jci-wwhtzn.js",
+                                              "startTime":  2010.1999998092651,
+                                              "responseEnd":  2501.7999999523163,
+                                              "transferSize":  45551,
+                                              "encodedBodySize":  45251
+                                          }
+                                      ],
+                        "javaScriptResourcesWithinCollectionWindow":  [
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1ckvzn7sfprko.js",
+                                                                              "startTime":  203.59999990463257,
+                                                                              "responseEnd":  439.89999985694885,
+                                                                              "transferSize":  2335,
+                                                                              "encodedBodySize":  2035
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2r4s4h5xul1n-.js",
+                                                                              "startTime":  203.89999985694885,
+                                                                              "responseEnd":  581.1999998092651,
+                                                                              "transferSize":  7924,
+                                                                              "encodedBodySize":  7624
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2gvu8dyrhibpa.js",
+                                                                              "startTime":  204.39999985694885,
+                                                                              "responseEnd":  1345.1999998092651,
+                                                                              "transferSize":  72199,
+                                                                              "encodedBodySize":  71899
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2e268anpfvdoc.js",
+                                                                              "startTime":  204.69999980926514,
+                                                                              "responseEnd":  1172.6999998092651,
+                                                                              "transferSize":  46667,
+                                                                              "encodedBodySize":  46367
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+                                                                              "startTime":  205.19999980926514,
+                                                                              "responseEnd":  502.59999990463257,
+                                                                              "transferSize":  4240,
+                                                                              "encodedBodySize":  3940
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0ybgom5vvgouc.js",
+                                                                              "startTime":  205.5,
+                                                                              "responseEnd":  737.5999999046326,
+                                                                              "transferSize":  8828,
+                                                                              "encodedBodySize":  8528
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3t3ump29bvn01.js",
+                                                                              "startTime":  205.79999995231628,
+                                                                              "responseEnd":  675.3999998569489,
+                                                                              "transferSize":  941,
+                                                                              "encodedBodySize":  641
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1y5ddekuenn5e.js",
+                                                                              "startTime":  206.29999995231628,
+                                                                              "responseEnd":  846.3999998569489,
+                                                                              "transferSize":  5787,
+                                                                              "encodedBodySize":  5487
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0d60akptozgk2.js",
+                                                                              "startTime":  206.59999990463257,
+                                                                              "responseEnd":  1251.3999998569489,
+                                                                              "transferSize":  35739,
+                                                                              "encodedBodySize":  35439
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/333jci-wwhtzn.js",
+                                                                              "startTime":  2010.1999998092651,
+                                                                              "responseEnd":  2501.7999999523163,
+                                                                              "transferSize":  45551,
+                                                                              "encodedBodySize":  45251
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3jwjf313_72lp.js",
+                                                                              "startTime":  2277.5,
+                                                                              "responseEnd":  2486.2999999523163,
+                                                                              "transferSize":  2065,
+                                                                              "encodedBodySize":  1765
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/05ac_r6pkd5vj.js",
+                                                                              "startTime":  2308.399999856949,
+                                                                              "responseEnd":  2471.399999856949,
+                                                                              "transferSize":  1139,
+                                                                              "encodedBodySize":  839
+                                                                          }
+                                                                      ]
+                    },
+                    {
+                        "variant":  "lazy",
+                        "view":  "map",
+                        "run":  5,
+                        "navigationMs":  1644,
+                        "mapReadyMs":  3318,
+                        "interactionMs":  3577,
+                        "lcp":  {
+                                    "startTime":  1336,
+                                    "tagName":  "P",
+                                    "id":  "",
+                                    "className":  "mt-4 max-w-2xl text-base leading-7 text-ink-muted"
+                                },
+                        "lcpMs":  1336,
+                        "fcpMs":  788,
+                        "ttfbMs":  10.099999904632568,
+                        "javaScriptTransferWithinCollectionWindowBytes":  233415,
+                        "javaScriptTransferByLcpBytes":  112461,
+                        "mapChunks":  [
+                                          {
+                                              "url":  "/_next/static/chunks/333jci-wwhtzn.js",
+                                              "startTime":  2103.7000000476837,
+                                              "responseEnd":  2574,
+                                              "transferSize":  45551,
+                                              "encodedBodySize":  45251
+                                          }
+                                      ],
+                        "javaScriptResourcesWithinCollectionWindow":  [
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1ckvzn7sfprko.js",
+                                                                              "startTime":  206.29999995231628,
+                                                                              "responseEnd":  429.2999999523163,
+                                                                              "transferSize":  2335,
+                                                                              "encodedBodySize":  2035
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2r4s4h5xul1n-.js",
+                                                                              "startTime":  206.70000004768372,
+                                                                              "responseEnd":  583.7000000476837,
+                                                                              "transferSize":  7924,
+                                                                              "encodedBodySize":  7624
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2gvu8dyrhibpa.js",
+                                                                              "startTime":  207.09999990463257,
+                                                                              "responseEnd":  1338.7999999523163,
+                                                                              "transferSize":  72199,
+                                                                              "encodedBodySize":  71899
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/2e268anpfvdoc.js",
+                                                                              "startTime":  207.5,
+                                                                              "responseEnd":  1180.2999999523163,
+                                                                              "transferSize":  46667,
+                                                                              "encodedBodySize":  46367
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+                                                                              "startTime":  207.89999985694885,
+                                                                              "responseEnd":  506.2000000476837,
+                                                                              "transferSize":  4240,
+                                                                              "encodedBodySize":  3940
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0ybgom5vvgouc.js",
+                                                                              "startTime":  208.09999990463257,
+                                                                              "responseEnd":  725,
+                                                                              "transferSize":  8828,
+                                                                              "encodedBodySize":  8528
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3t3ump29bvn01.js",
+                                                                              "startTime":  208.5,
+                                                                              "responseEnd":  678.2999999523163,
+                                                                              "transferSize":  941,
+                                                                              "encodedBodySize":  641
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/1y5ddekuenn5e.js",
+                                                                              "startTime":  209.20000004768372,
+                                                                              "responseEnd":  849.8999998569489,
+                                                                              "transferSize":  5787,
+                                                                              "encodedBodySize":  5487
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/0d60akptozgk2.js",
+                                                                              "startTime":  209.70000004768372,
+                                                                              "responseEnd":  1258.3999998569489,
+                                                                              "transferSize":  35739,
+                                                                              "encodedBodySize":  35439
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/333jci-wwhtzn.js",
+                                                                              "startTime":  2103.7000000476837,
+                                                                              "responseEnd":  2574,
+                                                                              "transferSize":  45551,
+                                                                              "encodedBodySize":  45251
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/3jwjf313_72lp.js",
+                                                                              "startTime":  2403.0999999046326,
+                                                                              "responseEnd":  2589.7999999523163,
+                                                                              "transferSize":  2065,
+                                                                              "encodedBodySize":  1765
+                                                                          },
+                                                                          {
+                                                                              "url":  "/_next/static/chunks/05ac_r6pkd5vj.js",
+                                                                              "startTime":  2422.899999856949,
+                                                                              "responseEnd":  2605.7999999523163,
+                                                                              "transferSize":  1139,
+                                                                              "encodedBodySize":  839
+                                                                          }
+                                                                      ]
+                    }
+                ],
+    "derivedMetricsRecomputedFromNavigationTiming":  true
+}
