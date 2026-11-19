@@ -55,3 +55,39 @@ jobs:
         env:
           TOUR_API_E2E_FIXTURES: "true"
           TOUR_API_SERVICE_KEY: fixture-only-not-a-real-key
+
+  postgres-integration:
+    name: PostgreSQL Integration
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:18.1-alpine
+        env:
+          POSTGRES_DB: tripfinder_test
+          POSTGRES_USER: tripfinder_test
+          POSTGRES_PASSWORD: tripfinder_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U tripfinder_test -d tripfinder_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgres://tripfinder_test:tripfinder_test@127.0.0.1:5432/tripfinder_test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: PostgreSQL integration tests
+        run: npm run test:db
