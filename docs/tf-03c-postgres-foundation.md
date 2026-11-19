@@ -30,6 +30,12 @@ Test runner는 매 실행마다 무작위 test schema를 만들고 끝에 제거
 
 `npm run test:db`는 로컬 전용 host와 정확한 DB 이름 `tripfinder_test`만 허용한다. GitHub Actions는 job 전용 PostgreSQL 18 service를 사용하며 Production URL/secret을 받지 않는다.
 
+### 개발·테스트와 운영 migration 경계
+
+`drizzle.config.ts`는 `DATABASE_URL`이 명시되지 않으면 즉시 실패한다. Drizzle Kit 명령은 PostgreSQL URL의 host가 `localhost`, `127.0.0.1`, `::1` 중 하나이고 DB 이름이 `tripfinder_dev` 또는 `tripfinder_test`인 경우에만 진행한다. 기본 연결 대상은 없으며, 원격·운영 DB URL은 거부된다. 현재 schema가 비어 있어 application migration도 없다.
+
+개발·테스트 migration은 disposable 로컬 또는 CI DB에서만 검토·검증한다. 운영 migration은 이번 기반 작업의 실행 대상이 아니다. 향후 운영 적용이 필요하면 별도 승인된 변경에서 SQL diff를 검토하고, 운영 전용 절차와 자격증명을 사용해 명시적으로 실행해야 한다. 앱 시작이나 배포에서 migration을 자동 실행하지 않으며, 이 작업에서는 운영 DB·Vercel Production 설정을 읽거나 변경하지 않는다.
+
 ## 검증 경계
 
 Docker CLI가 없는 Windows 개발 환경에서는 로컬 실제 DB 테스트를 실행할 수 없다. GitHub Actions의 disposable PostgreSQL 결과는 CI runner의 PostgreSQL 18.1 환경에 대한 증거일 뿐, Neon, Supabase, Vercel pooler 또는 실제 cloud runtime 검증이 아니다. 이번 기반 테스트만으로 travel-list API의 동시성 보장도 주장하지 않는다.
