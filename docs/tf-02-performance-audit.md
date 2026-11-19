@@ -43,7 +43,7 @@ README의 지도 측정 요약(카드 화면 지도 chunk `5/5`→`0/5`)은 2026
 | 네트워크·CPU | CDP `150ms` RTT, down `1,638.4Kbps`, up `675Kbps`, CPU `4×` slowdown |
 | 브라우저 cache | 각 run의 새 browser context, CDP cache disabled |
 | 데이터·외부 요청 | `TOUR_API_E2E_FIXTURES=true`, 성능 이미지 fixture 사용. 외부 origin 요청 차단. 운영 TourAPI·운영 DB·결제 API를 사용하지 않음 |
-| 반복 | TF08: `/`, `/explore` 이미지 enabled 각 5회. TF09: `/explore` grid/map 각 5회 |
+| 반복 | TF08 총 15회: 홈(`/`) 이미지 활성 5회, 탐색(`/explore`) 이미지 활성 5회, 탐색(`/explore`) 이미지 차단 대조군 5회. TF09 총 10회: `/explore` grid/map 각 5회 |
 
 실행한 명령:
 
@@ -127,7 +127,7 @@ TF09의 중앙값은 5개 개별 실행의 중앙값이다. grid와 map 사이�
 | 중복 문서 | 시작 시 `docs/tf-02-performance-audit.md` 없음. 기존 관련 문서와 JSON 확인 후 이 문서 하나를 추가 |
 | `npm ci` | 성공, 468 packages installed; npm audit summary 13 vulnerabilities (10 moderate, 3 high) |
 | `npm.cmd run build` | Next.js `16.4.5` production build 성공 |
-| `npm.cmd run test:e2e -- --config=playwright.tf08.config.ts` | 1 test passed; 홈/탐색·blocked image 시나리오 15회 결과 기록 |
+| `npm.cmd run test:e2e -- --config=playwright.tf08.config.ts` | 1 test passed; 총 15회: 홈 이미지 활성 5회, 탐색 이미지 활성 5회, 탐색 이미지 차단 대조군 5회 |
 | `npm.cmd run test:e2e -- --config=playwright.tf09.config.ts` | 1 test passed; grid/map 총 10회, 지도 chunk·마커 상호작용 확인 |
 | `git diff --check` | 커밋 전 스테이징된 변경에 실행 |
-| GitHub PR / Actions | [PR #8](https://github.com/minjuko/trip-finder/pull/8), commit `5340c8e359d6c114f41540581c7ed2e4a5c5d33b`의 [CI run #83](https://github.com/minjuko/trip-finder/actions/runs/44507873592) 성공. `Quality Check` job의 format, lint, typecheck, unit/coverage, E2E, production build 모두 통과. Vercel status check도 success. Vercel 대상 링크는 확인했으나 Preview 페이지를 직접 열어 브라우저 검증하지는 않음. |
+| GitHub PR / Actions | [PR #8](https://github.com/minjuko/trip-finder/pull/8)의 검증 HEAD `1030430cc3420208d4af97d8901a75f1d1143333`; [Actions run #84](https://github.com/minjuko/trip-finder/actions/runs/44508774531) 성공. `Quality Check` job의 format, lint, typecheck, unit/coverage, E2E, production build 모두 통과. Vercel status check도 success. Vercel 대상 링크는 확인했으나 Preview 페이지를 직접 열어 브라우저 검증하지는 않음. 앞선 커밋 `5340c8e359d6c114f41540581c7ed2e4a5c5d33b`의 [Actions run #83](https://github.com/minjuko/trip-finder/actions/runs/44507873592)도 성공했으며 이력으로 남긴다. |
