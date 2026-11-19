@@ -1,0 +1,1442 @@
+{
+  "generatedAt": "2026-11-19T09:30:17.847Z",
+  "browser": "153.0.8010.12",
+  "conditions": {
+    "viewport": "412x823",
+    "dpr": 1.75,
+    "rttMs": 150,
+    "downloadKbps": 1638.4,
+    "uploadKbps": 675,
+    "cpuSlowdown": 4,
+    "browserCache": "disabled per run"
+  },
+  "results": [
+    {
+      "route": "/",
+      "imageMode": "enabled",
+      "run": 1,
+      "fcp": 1384,
+      "lcp": {
+        "startTime": 1384,
+        "tagName": "H1",
+        "id": "",
+        "className": "max-w-2xl text-pretty text-4xl font-bold leading-[1.12] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-6xl",
+        "src": "",
+        "currentSrc": "",
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      "cls": 0,
+      "ttfb": 15.5,
+      "longTasks": [
+        {
+          "startTime": 697.3999999761581,
+          "duration": 84
+        },
+        {
+          "startTime": 797.7999999523163,
+          "duration": 502
+        },
+        {
+          "startTime": 1371.2000000476837,
+          "duration": 472
+        },
+        {
+          "startTime": 2158.100000023842,
+          "duration": 58
+        }
+      ],
+      "images": [],
+      "resources": [],
+      "imageResponses": []
+    },
+    {
+      "route": "/",
+      "imageMode": "enabled",
+      "run": 2,
+      "fcp": 1404,
+      "lcp": {
+        "startTime": 1404,
+        "tagName": "H1",
+        "id": "",
+        "className": "max-w-2xl text-pretty text-4xl font-bold leading-[1.12] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-6xl",
+        "src": "",
+        "currentSrc": "",
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      "cls": 0,
+      "ttfb": 7,
+      "longTasks": [
+        {
+          "startTime": 1487.7000000476837,
+          "duration": 613
+        },
+        {
+          "startTime": 2327.100000023842,
+          "duration": 55
+        }
+      ],
+      "images": [],
+      "resources": [],
+      "imageResponses": []
+    },
+    {
+      "route": "/",
+      "imageMode": "enabled",
+      "run": 3,
+      "fcp": 1228,
+      "lcp": {
+        "startTime": 1228,
+        "tagName": "H1",
+        "id": "",
+        "className": "max-w-2xl text-pretty text-4xl font-bold leading-[1.12] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-6xl",
+        "src": "",
+        "currentSrc": "",
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      "cls": 0,
+      "ttfb": 5.700000047683716,
+      "longTasks": [
+        {
+          "startTime": 1296.1999999284744,
+          "duration": 475
+        },
+        {
+          "startTime": 2220.2999999523163,
+          "duration": 84
+        },
+        {
+          "startTime": 2325.2999999523163,
+          "duration": 67
+        }
+      ],
+      "images": [],
+      "resources": [],
+      "imageResponses": []
+    },
+    {
+      "route": "/",
+      "imageMode": "enabled",
+      "run": 4,
+      "fcp": 1392,
+      "lcp": {
+        "startTime": 1392,
+        "tagName": "H1",
+        "id": "",
+        "className": "max-w-2xl text-pretty text-4xl font-bold leading-[1.12] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-6xl",
+        "src": "",
+        "currentSrc": "",
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      "cls": 0,
+      "ttfb": 6.200000047683716,
+      "longTasks": [
+        {
+          "startTime": 1449.5,
+          "duration": 695
+        },
+        {
+          "startTime": 2485.7000000476837,
+          "duration": 94
+        },
+        {
+          "startTime": 2613.3000000715256,
+          "duration": 73
+        }
+      ],
+      "images": [],
+      "resources": [],
+      "imageResponses": []
+    },
+    {
+      "route": "/",
+      "imageMode": "enabled",
+      "run": 5,
+      "fcp": 1376,
+      "lcp": {
+        "startTime": 1376,
+        "tagName": "H1",
+        "id": "",
+        "className": "max-w-2xl text-pretty text-4xl font-bold leading-[1.12] tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-6xl",
+        "src": "",
+        "currentSrc": "",
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      "cls": 0,
+      "ttfb": 7.100000023841858,
+      "longTasks": [
+        {
+          "startTime": 1449.1000000238419,
+          "duration": 512
+        }
+      ],
+      "images": [],
+      "resources": [],
+      "imageResponses": []
+    },
+    {
+      "route": "/explore",
+      "imageMode": "enabled",
+      "run": 1,
+      "fcp": 948,
+      "lcp": {
+        "startTime": 1892,
+        "tagName": "IMG",
+        "id": "",
+        "className": "object-cover transition duration-500 group-hover:scale-[1.04]",
+        "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+        "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+        "naturalWidth": 372,
+        "naturalHeight": 279
+      },
+      "cls": 0,
+      "ttfb": 190,
+      "longTasks": [
+        {
+          "startTime": 1919.8999999761581,
+          "duration": 513
+        },
+        {
+          "startTime": 2592.899999976158,
+          "duration": 59
+        },
+        {
+          "startTime": 2673.899999976158,
+          "duration": 78
+        },
+        {
+          "startTime": 2817.6999999284744,
+          "duration": 142
+        }
+      ],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 250.60000002384186,
+          "responseEnd": 731.6000000238419,
+          "transferSize": 10476,
+          "encodedBodySize": 10176,
+          "decodedBodySize": 10176,
+          "duration": 481
+        }
+      ],
+      "imageResponses": [
+        {
+          "url": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "status": 200,
+          "contentType": "image/webp",
+          "contentLength": "10176",
+          "bodyBytes": 10176
+        }
+      ]
+    },
+    {
+      "route": "/explore",
+      "imageMode": "enabled",
+      "run": 2,
+      "fcp": 936,
+      "lcp": {
+        "startTime": 1772,
+        "tagName": "IMG",
+        "id": "",
+        "className": "object-cover transition duration-500 group-hover:scale-[1.04]",
+        "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+        "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+        "naturalWidth": 372,
+        "naturalHeight": 279
+      },
+      "cls": 0,
+      "ttfb": 32.10000002384186,
+      "longTasks": [
+        {
+          "startTime": 1776.7000000476837,
+          "duration": 532
+        },
+        {
+          "startTime": 2685.2000000476837,
+          "duration": 97
+        }
+      ],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 239.20000004768372,
+          "responseEnd": 731.2999999523163,
+          "transferSize": 10476,
+          "encodedBodySize": 10176,
+          "decodedBodySize": 10176,
+          "duration": 492.09999990463257
+        }
+      ],
+      "imageResponses": [
+        {
+          "url": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "status": 200,
+          "contentType": "image/webp",
+          "contentLength": "10176",
+          "bodyBytes": 10176
+        }
+      ]
+    },
+    {
+      "route": "/explore",
+      "imageMode": "enabled",
+      "run": 3,
+      "fcp": 972,
+      "lcp": {
+        "startTime": 2092,
+        "tagName": "IMG",
+        "id": "",
+        "className": "object-cover transition duration-500 group-hover:scale-[1.04]",
+        "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+        "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+        "naturalWidth": 372,
+        "naturalHeight": 279
+      },
+      "cls": 0,
+      "ttfb": 37.800000071525574,
+      "longTasks": [
+        {
+          "startTime": 2132,
+          "duration": 740
+        },
+        {
+          "startTime": 3153,
+          "duration": 87
+        },
+        {
+          "startTime": 3260.5,
+          "duration": 60
+        },
+        {
+          "startTime": 3398.7000000476837,
+          "duration": 173
+        }
+      ],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 236.89999997615814,
+          "responseEnd": 699.2000000476837,
+          "transferSize": 10476,
+          "encodedBodySize": 10176,
+          "decodedBodySize": 10176,
+          "duration": 462.3000000715256
+        }
+      ],
+      "imageResponses": [
+        {
+          "url": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "status": 200,
+          "contentType": "image/webp",
+          "contentLength": "10176",
+          "bodyBytes": 10176
+        }
+      ]
+    },
+    {
+      "route": "/explore",
+      "imageMode": "enabled",
+      "run": 4,
+      "fcp": 972,
+      "lcp": {
+        "startTime": 2164,
+        "tagName": "IMG",
+        "id": "",
+        "className": "object-cover transition duration-500 group-hover:scale-[1.04]",
+        "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+        "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+        "naturalWidth": 372,
+        "naturalHeight": 279
+      },
+      "cls": 0,
+      "ttfb": 42,
+      "longTasks": [
+        {
+          "startTime": 2169.7999999523163,
+          "duration": 597
+        },
+        {
+          "startTime": 2989.600000023842,
+          "duration": 51
+        },
+        {
+          "startTime": 3158.899999976158,
+          "duration": 164
+        },
+        {
+          "startTime": 3575.899999976158,
+          "duration": 78
+        },
+        {
+          "startTime": 3668.1999999284744,
+          "duration": 61
+        }
+      ],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 223.29999995231628,
+          "responseEnd": 688.1999999284744,
+          "transferSize": 10476,
+          "encodedBodySize": 10176,
+          "decodedBodySize": 10176,
+          "duration": 464.89999997615814
+        }
+      ],
+      "imageResponses": [
+        {
+          "url": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "status": 200,
+          "contentType": "image/webp",
+          "contentLength": "10176",
+          "bodyBytes": 10176
+        }
+      ]
+    },
+    {
+      "route": "/explore",
+      "imageMode": "enabled",
+      "run": 5,
+      "fcp": 1156,
+      "lcp": {
+        "startTime": 2116,
+        "tagName": "IMG",
+        "id": "",
+        "className": "object-cover transition duration-500 group-hover:scale-[1.04]",
+        "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+        "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+        "naturalWidth": 372,
+        "naturalHeight": 279
+      },
+      "cls": 0,
+      "ttfb": 41.200000047683716,
+      "longTasks": [
+        {
+          "startTime": 2111,
+          "duration": 494
+        },
+        {
+          "startTime": 2831.899999976158,
+          "duration": 129
+        }
+      ],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 372,
+          "naturalHeight": 279,
+          "complete": true
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 251.10000002384186,
+          "responseEnd": 734.2999999523163,
+          "transferSize": 10476,
+          "encodedBodySize": 10176,
+          "decodedBodySize": 10176,
+          "duration": 483.1999999284744
+        }
+      ],
+      "imageResponses": [
+        {
+          "url": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "status": 200,
+          "contentType": "image/webp",
+          "contentLength": "10176",
+          "bodyBytes": 10176
+        }
+      ]
+    },
+    {
+      "route": "/explore",
+      "imageMode": "blocked-control",
+      "run": 1,
+      "fcp": 820,
+      "lcp": {
+        "startTime": 1656,
+        "tagName": "P",
+        "id": "",
+        "className": "mt-4 max-w-2xl text-base leading-7 text-ink-muted",
+        "src": "",
+        "currentSrc": "",
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      "cls": 0,
+      "ttfb": 29.899999976158142,
+      "longTasks": [
+        {
+          "startTime": 1663.2000000476837,
+          "duration": 544
+        },
+        {
+          "startTime": 2539.100000023842,
+          "duration": 105
+        }
+      ],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 233.39999997615814,
+          "responseEnd": 267.60000002384186,
+          "transferSize": 0,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "duration": 34.200000047683716
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 1628.3999999761581,
+          "responseEnd": 1633.2000000476837,
+          "transferSize": 0,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "duration": 4.800000071525574
+        }
+      ],
+      "imageResponses": []
+    },
+    {
+      "route": "/explore",
+      "imageMode": "blocked-control",
+      "run": 2,
+      "fcp": 840,
+      "lcp": {
+        "startTime": 1740,
+        "tagName": "P",
+        "id": "",
+        "className": "mt-4 max-w-2xl text-base leading-7 text-ink-muted",
+        "src": "",
+        "currentSrc": "",
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      "cls": 0,
+      "ttfb": 30.90000009536743,
+      "longTasks": [
+        {
+          "startTime": 1798.1999999284744,
+          "duration": 547
+        },
+        {
+          "startTime": 2654.2999999523163,
+          "duration": 61
+        },
+        {
+          "startTime": 2912.1999999284744,
+          "duration": 166
+        },
+        {
+          "startTime": 3313.2999999523163,
+          "duration": 52
+        }
+      ],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 217.39999997615814,
+          "responseEnd": 252.59999990463257,
+          "transferSize": 0,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "duration": 35.199999928474426
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 1717.1999999284744,
+          "responseEnd": 1723.0999999046326,
+          "transferSize": 0,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "duration": 5.899999976158142
+        }
+      ],
+      "imageResponses": []
+    },
+    {
+      "route": "/explore",
+      "imageMode": "blocked-control",
+      "run": 3,
+      "fcp": 884,
+      "lcp": {
+        "startTime": 1696,
+        "tagName": "P",
+        "id": "",
+        "className": "mt-4 max-w-2xl text-base leading-7 text-ink-muted",
+        "src": "",
+        "currentSrc": "",
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      "cls": 0,
+      "ttfb": 29.300000071525574,
+      "longTasks": [
+        {
+          "startTime": 1733.8999999761581,
+          "duration": 580
+        },
+        {
+          "startTime": 2571.600000023842,
+          "duration": 57
+        },
+        {
+          "startTime": 2792.7999999523163,
+          "duration": 147
+        }
+      ],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 213.5,
+          "responseEnd": 262.2999999523163,
+          "transferSize": 0,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "duration": 48.799999952316284
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 1685.1999999284744,
+          "responseEnd": 1691.1999999284744,
+          "transferSize": 0,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "duration": 6
+        }
+      ],
+      "imageResponses": []
+    },
+    {
+      "route": "/explore",
+      "imageMode": "blocked-control",
+      "run": 4,
+      "fcp": 904,
+      "lcp": {
+        "startTime": 1696,
+        "tagName": "P",
+        "id": "",
+        "className": "mt-4 max-w-2xl text-base leading-7 text-ink-muted",
+        "src": "",
+        "currentSrc": "",
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      "cls": 0,
+      "ttfb": 34.89999997615814,
+      "longTasks": [
+        {
+          "startTime": 1727.5999999046326,
+          "duration": 606
+        },
+        {
+          "startTime": 2617.5999999046326,
+          "duration": 119
+        },
+        {
+          "startTime": 3084.7999999523163,
+          "duration": 61
+        }
+      ],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 216.69999992847443,
+          "responseEnd": 261,
+          "transferSize": 0,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "duration": 44.300000071525574
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 1679.2999999523163,
+          "responseEnd": 1683.3999999761581,
+          "transferSize": 0,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "duration": 4.100000023841858
+        }
+      ],
+      "imageResponses": []
+    },
+    {
+      "route": "/explore",
+      "imageMode": "blocked-control",
+      "run": 5,
+      "fcp": 800,
+      "lcp": {
+        "startTime": 1748,
+        "tagName": "P",
+        "id": "",
+        "className": "mt-4 max-w-2xl text-base leading-7 text-ink-muted",
+        "src": "",
+        "currentSrc": "",
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      "cls": 0,
+      "ttfb": 23.699999928474426,
+      "longTasks": [
+        {
+          "startTime": 1820.6000000238419,
+          "duration": 856
+        },
+        {
+          "startTime": 3050.600000023842,
+          "duration": 167
+        }
+      ],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": true
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        },
+        {
+          "src": "/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=3840&q=75",
+          "currentSrc": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "complete": false
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 223.89999997615814,
+          "responseEnd": 268.10000002384186,
+          "transferSize": 0,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "duration": 44.200000047683716
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+          "startTime": 1726.7999999523163,
+          "responseEnd": 1731.1000000238419,
+          "transferSize": 0,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "duration": 4.300000071525574
+        }
+      ],
+      "imageResponses": []
+    }
+  ],
+  "externalRequests": [
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2",
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2"
+  ],
+  "locallyBlockedImages": [
+    "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+    "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+    "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+    "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+    "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+    "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+    "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+    "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+    "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+    "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75"
+  ],
+  "imageResponses": [
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "contentLength": "10176",
+      "bodyBytes": 10176
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "contentLength": "10176",
+      "bodyBytes": 10176
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "contentLength": "10176",
+      "bodyBytes": 10176
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "contentLength": "10176",
+      "bodyBytes": 10176
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fperformance-fixtures%2Ftour-card.jpg&w=750&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "contentLength": "10176",
+      "bodyBytes": 10176
+    }
+  ]
+}
