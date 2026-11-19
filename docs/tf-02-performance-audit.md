@@ -130,4 +130,4 @@ TF09의 중앙값은 5개 개별 실행의 중앙값이다. grid와 map 사이�
 | `npm.cmd run test:e2e -- --config=playwright.tf08.config.ts` | 1 test passed; 홈/탐색·blocked image 시나리오 15회 결과 기록 |
 | `npm.cmd run test:e2e -- --config=playwright.tf09.config.ts` | 1 test passed; grid/map 총 10회, 지도 chunk·마커 상호작용 확인 |
 | `git diff --check` | 커밋 전 스테이징된 변경에 실행 |
-| GitHub PR / Actions | PR 생성 후 최신 SHA의 필수 CI 결과 확인 |
+| GitHub PR / Actions | [PR #8](https://github.com/minjuko/trip-finder/pull/8), commit `5340c8e359d6c114f41540581c7ed2e4a5c5d33b`의 [CI run #83](https://github.com/minjuko/trip-finder/actions/runs/44507873592) 성공. `Quality Check` job의 format, lint, typecheck, unit/coverage, E2E, production build 모두 통과. Vercel status check도 success. Vercel 대상 링크는 확인했으나 Preview 페이지를 직접 열어 브라우저 검증하지는 않음. |
