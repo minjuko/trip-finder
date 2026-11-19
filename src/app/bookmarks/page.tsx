@@ -6,6 +6,17 @@ import { Icon } from "@/components/ui/Icon";
 export const metadata: Metadata = {
   title: "관심 여행지",
   description: "TripFinder에서 관심 여행지로 저장한 장소를 다시 확인합니다.",
+  alternates: {
+    canonical: "/bookmarks",
+  },
+  robots: {
+    index: false,
+  },
+  openGraph: {
+    type: "website",
+    siteName: "TripFinder",
+    url: "/bookmarks",
+  },
 };
 
 const BookmarksPage = () => {
