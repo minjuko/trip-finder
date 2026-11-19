@@ -1,9 +1,9 @@
 # TF-03 기술 선택 ADR: 인증·PostgreSQL·ORM·트랜잭션 드라이버
 
-> 상태: **조건부 권장 / 사용자 최종 승인 전 / 구현 전**  
-> 작업: TF-03-ADR, GitHub Issue [#11](https://github.com/minjuko/trip-finder/issues/11)  
-> 기준 코드: `main` SHA `5e6ec0095168dd85b265e207d9feceef7cc4a7bc`  
-> 조사 시점: 2026-11-19  
+> 상태: **조건부 권장 / 사용자 최종 승인 전 / 구현 전**
+> 작업: TF-03-ADR, GitHub Issue [#11](https://github.com/minjuko/trip-finder/issues/11)
+> 기준 코드: `main` SHA `5e6ec0095168dd85b265e207d9feceef7cc4a7bc`
+> 조사 시점: 2026-11-19
 > 범위: 공식 문서와 npm registry metadata를 조사한 문서 결정안. OAuth 설정, 계정·DB 생성, 패키지 설치, 코드 구현, 배포는 하지 않았다.
 
 ## 1. 결정 요약
@@ -218,6 +218,7 @@ Issue #9의 TF-03a가 제안한 TF-03b Auth와 TF-03c DB foundation의 의존성
 
 ## 14. 최종 ADR 상태
 
-**조건부 권장:** Better Auth + Google OAuth, Drizzle, PostgreSQL, Vercel Node.js의 `pg + Pool`; Neon은 host 후보로 유지.  
-**사용자 승인 필요:** 인증 공급자, DB host/region/예산, Preview 격리·과금, 계정 삭제/보존, 실제 package version 및 driver 최종 선택.  
+**조건부 권장:** Better Auth + Google OAuth, Drizzle, PostgreSQL, Vercel Node.js의 `pg + Pool`; Neon은 host 후보로 유지.
+
+**사용자 승인 필요:** 인증 공급자, DB host/region/예산, Preview 격리·과금, 계정 삭제/보존, 실제 package version 및 driver 최종 선택.
 **구현 착수 gate:** 승인된 결정을 기준으로 별도 DB foundation/Auth/API/UI PR을 열고, production과 분리된 실제 PostgreSQL integration test에서 transaction/rollback/race/IDOR 기준을 통과시킨다.
