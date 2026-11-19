@@ -49,8 +49,8 @@
 
 - 공통 응답 `Date`: `Thu, 19 Nov 2026 03:06–03:09 GMT`; 서버 `Vercel`.
 - `/explore` 및 상세 페이지는 `Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate`로 응답했다. query 변형도 동일했다.
-- `/sitemap.xml` 관측 시 `Vercel-Cache: HIT`, `Age: 169`, `Cache-Control: public, max-age=0, must-revalidate`였다. 소스의 `revalidate = 3600`과 1시간 이후 실제 재생성 여부는 기다려 검증하지 않았다.
-- `/`는 `Vercel-Cache: HIT`, `Age: 738987`; 홈은 현재 정적 응답으로 보이나 이 값만으로 stale 여부를 단정하지 않았다.
+- `/sitemap.xml` 관측 시 `X-Vercel-Cache: HIT`, `Age: 169`, `Cache-Control: public, max-age=0, must-revalidate`였다. 소스의 `revalidate = 3600`과 1시간 이후 실제 재생성 여부는 기다려 검증하지 않았다.
+- `/`는 `X-Vercel-Cache: HIT`, `Age: 738987`; 홈은 현재 정적 응답으로 보이나 이 값만으로 stale 여부를 단정하지 않았다.
 - 이번 운영 응답에서 robots의 고정 sitemap URL과 sitemap의 환경변수 기반 URL은 실제로 불일치하지 않았다. 두 경로 모두 `https://trip-finder-mauve.vercel.app` host를 사용했다.
 
 ## 4. 확인된 문제와 위험
