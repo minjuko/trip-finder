@@ -124,21 +124,50 @@ Vercel Node.js runtime 자체는 적합하지만, Vercel의 pooling 권고는 �
 
 ## 8. DB 호스팅 및 환경 분리
 
+### 기술 선택과 무료 운영 원칙은 별도 판단이다
+
+앞 절의 Better Auth, PostgreSQL, Drizzle, `pg + Pool`, Neon 후보는 기술 아키텍처 비교다. 그것만으로 유료 자원이나 외부 계정을 사용할 권한이 생기지 않는다. 현재 프로젝트의 예산 제약은 학습 단계에서 **실제 청구 금액 0원**이며, 불확실할 때는 원격 서비스를 만들지 않는 fail-closed 원칙을 적용한다.
+
+| 단계 | 사용 환경 | 허용 범위와 중단 조건 |
+| --- | --- | --- |
+| 1차 개발 | 로컬 Docker PostgreSQL | 로컬에서 schema, migration, FK/UNIQUE, transaction, row lock 코드를 개발한다. Docker 자체 설치/실행에 별도 유료 기능이 필요해지면 진행하지 않는다. 로컬 PostgreSQL 테스트는 클라우드 DB 검증으로 표현하지 않는다. |
+| CI | GitHub Actions disposable PostgreSQL | job 전용 임시 PostgreSQL service를 사용하고 job 종료 시 폐기한다. 운영 데이터·Production credential을 연결하지 않는다. 여기서 통과한 통합 테스트는 CI의 해당 PostgreSQL 이미지/드라이버 환경에 대한 증거이며 Neon/Vercel 동작 증거가 아니다. |
+| 후속 선택 단계 | 실제 Google OAuth 또는 Neon 등 Cloud 연동 | 원격 계정과 OAuth client/DB 리소스 생성은 별도 단계다. 사용자가 승인하고 공식 가격·무료 한도·리전·결제 설정을 확인하기 전에는 생성·연결하지 않는다. 로컬/CI 테스트로 대체 가능한 동안은 원격 연동을 미룬다. |
+
+**비용 0원 운영 규칙:**
+
+- 유료 요금제, 유료 add-on, 유료 support, 유료 크레딧/무료 체험 종료 후 자동 청구가 발생할 수 있는 설정을 사용하지 않는다.
+- 서비스가 카드 또는 다른 결제 수단 연결을 요구하면 해당 단계에서 중단한다. 무료 사용을 위해 결제수단 등록이 필요하다는 이유로 우회하거나 대신 등록하지 않는다.
+- 무료 사용량 한도 도달, 한도/초과 청구 동작 불명, 자동 업그레이드 위험이 있으면 작업과 원격 요청을 중단한다. 유료 전환·용량 확장 대신 local Docker 및 CI disposable PostgreSQL로 돌아간다.
+- Preview 자동 DB branch 생성은 필수 기능이 아니다. Preview 앱은 DB 없이 빌드하거나, 필요성이 승인된 뒤 제한된 단일 비운영 DB로 검증한다. Preview마다 무제한 branch/project를 생성하지 않는다.
+- 기존 운영 DB 및 Vercel Production 설정, Production 환경 변수·secrets·도메인·Function region은 변경하지 않는다.
+- Neon/Supabase 등 공급자에 가입하거나 프로젝트를 만들기 직전에 해당 날짜의 **공식 가격·무료 한도·branch 정책·자동 과금·결제수단 요구사항**을 재검증한다. 가격 페이지 확인만으로 계정별 billing 상태를 보증할 수 없으면 원격 단계는 보류한다.
+
+단계별 비용 확인 checklist:
+
+1. 실행 대상이 local Docker 또는 CI disposable DB인지 확인한다. 그렇다면 cloud secret/URL 없이 진행한다.
+2. Cloud가 꼭 필요한 별도 승인 작업인지 확인하고, 아니라면 여기서 중단한다.
+3. 공급자의 공식 pricing/limits 문서와 실제 계정의 plan, billing, auto-upgrade, spend cap, card 요구를 확인한다. 무료 조건이 명확하지 않으면 진행하지 않는다.
+4. Preview branch, DB compute, storage, egress, backup, OAuth 관련 유료 add-on이 기본 활성화되지 않는지 확인한다.
+5. 승인된 무료 범위와 hard limit/usage 알림으로 실제 청구 0원을 보장할 수 없으면 클라우드 작업을 취소하고 로컬/CI 범위만 수행한다.
+
+무료 tier의 조건은 가입/사용 시점과 계정 설정에 따라 달라질 수 있다. 따라서 이 ADR의 가격 기록은 비용 보장이나 현재 가입 승인이 아니다.
+
 | 후보 | Vercel 적합성·기능 | 비용/Preview 위험 | 조건부 판단 |
 | --- | --- | --- | --- |
-| Neon | Vercel marketplace 연동과 Postgres pooling/branch 모델을 제공한다. 가까운 Function/DB region을 맞추고 `pg` 또는 WebSocket 연결을 검증한다. | 프로젝트·compute·storage·branch 사용 한도와 Preview 자동 branch의 수명/정리/과금은 계정·현재 상품 정책에 좌우된다. Free를 영구 무료나 자동 격리로 약속하지 않는다. | 우선 조사 후보. 리전, 예산, Preview 정책 승인 필요. |
-| Supabase Postgres | 관리형 Postgres와 Auth·RLS를 묶을 수 있고 Vercel에서 환경변수로 연결할 수 있다. | Free plan 표시는 현재 500 MB/project, 1주 비활성 pause, 2 active projects 및 branching 미포함으로 확인됐다. 공식 가격 페이지에서 Pro 시작가는 월 `$25`로 표시되나 지역·초과 사용·시점에 따라 변경될 수 있다. Auth까지 사용하면 데이터 접근 경로를 RLS와 Route Handler 사이에서 명확히 해야 한다. | 제품에서 관리형 Auth/RLS까지 채택할 경우 재평가. 요금표는 2026-11-19 조사 기록이며 결정 직전 재확인 필요. |
+| Neon | Vercel marketplace 연동과 Postgres pooling/branch 모델을 제공한다. 가까운 Function/DB region을 맞추고 `pg` 또는 WebSocket 연결을 검증한다. | 프로젝트·compute·storage·branch 사용 한도와 Preview 자동 branch의 수명/정리/과금은 계정·현재 상품 정책에 좌우된다. Free를 영구 무료나 자동 격리로 약속하지 않는다. | 실제 가입/연동은 후속 옵션이며 승인 전 생성하지 않는다. 무료 조건이 불명확하거나 결제 수단이 요구되면 중단한다. |
+| Supabase Postgres | 관리형 Postgres와 Auth·RLS를 묶을 수 있고 Vercel에서 환경변수로 연결할 수 있다. | Free plan 표시는 조사 당시 500 MB/project, 1주 비활성 pause, 2 active projects 및 branching 미포함으로 확인됐다. 공식 가격 페이지에서 Pro 시작가는 월 `$25`로 표시됐으나 지역·초과 사용·시점에 따라 달라질 수 있다. Auth까지 사용하면 데이터 접근 경로를 RLS와 Route Handler 사이에서 명확히 해야 한다. | 제품에서 관리형 Auth/RLS까지 채택할 경우에만 재평가. 유료 전환 금지, 무료 조건 불명확/결제 수단 요구 시 중단. 가격은 가입 직전 재검증. |
 
-Neon 공식 게시 문서는 2026-11 기준 Free allowance를 project별 1 GB storage, 월 100 CU-hours 등으로 안내한다. 이는 공개 가격표의 스냅샷일 뿐, 본 프로젝트 예상 요금·Preview branch 자동화의 확정 근거가 아니다. 현재 플랜, 과금 단위, 리전 가용성은 실제 선택 때 확인한다.
+Neon 공식 게시 문서는 2026-11 기준 Free allowance를 project별 1 GB storage, 월 100 CU-hours 등으로 안내한다. 이는 공개 가격표의 스냅샷일 뿐, 본 프로젝트 예상 요금·Preview branch 자동화의 확정 근거가 아니다. 기존 검수 댓글의 공식 자료([Neon free plan](https://neon.com/blog/neon-free-plan-1-gb-per-project), [Vercel integration FAQ](https://github.com/neondatabase/website/blob/main/content/faqs/postgres-nextjs-vercel-integration.md))처럼 Preview branch가 free tier에서 항상 유료 또는 불가능하다고 단정하지 않는다. 다만 Preview 자동 DB branch는 필수에서 제외하며, 실제 필요 시 무료 한도·branch 수명·정리와 계정별 billing을 확인한다.
 
 환경 분리 정책 초안:
 
-- **Local:** 개인 `.env.local`, 비운영 데이터, production credential 재사용 금지.
-- **CI:** 테스트마다 disposable PostgreSQL 서비스/DB, 제한 권한·테스트 값. production secret/DB 접근 금지.
-- **Preview:** 개발 DB 또는 preview branch 전용 DB와 OAuth callback allow-list. Preview deployment마다 DB branch를 자동 생성할지, branch 수명 및 삭제/비용을 사용자 승인한다.
-- **Production:** 별도 DB, 제한된 runtime role, 별도 migration role/절차, 백업·복구 정책, secrets scope. 앱 runtime이 DDL 권한을 갖지 않는다.
+- **Local:** 로컬 Docker PostgreSQL과 개인 `.env.local`, 비운영 데이터만 사용. Production credential 금지.
+- **CI:** 테스트마다 disposable PostgreSQL 서비스/DB, 제한 권한·테스트 값. Production secret/DB 접근 금지.
+- **Preview:** 자동 DB branch는 필수 아님. 이 단계에서 OAuth/DB secret이나 실제 DB 연결을 요구하지 않는다. 원격 Preview DB가 승인된 후에만 비용 없는 격리 방법을 선택한다.
+- **Production:** 현재 설정을 변경하지 않는다. 향후 별도 승인 후 Production DB, 제한된 runtime role, 별도 migration role/절차, 백업·복구 및 secrets scope를 결정한다. 앱 runtime이 DDL 권한을 갖지 않도록 한다.
 
-Vercel Function region과 DB region은 왕복 지연을 줄이도록 같은/가까운 provider region으로 배치하는 안을 우선 검토한다. 구체 리전은 사용자 위치, Vercel plan, provider region 목록/가격과 latency 측정 전에는 지정하지 않는다.
+Vercel Function region과 DB region은 왕복 지연을 줄이도록 같은/가까운 provider region으로 배치하는 안을 우선 검토한다. 구체 리전은 사용자 위치, Vercel plan, provider region 목록/가격과 latency 측정 전에는 지정하지 않는다. 이는 후속 Cloud 검토 사항이며 지금 Vercel Preview/Production 설정을 바꾸지 않는다.
 
 ## 9. 프론트엔드 실무 기준 및 MVP 비목표
 
@@ -160,12 +189,14 @@ Issue #9의 TF-03a가 제안한 TF-03b Auth와 TF-03c DB foundation의 의존성
 
 | 순서 / 작업 | 선행 승인·예상 범위 | 수용 기준 및 테스트 |
 | --- | --- | --- |
-| 0. ADR 승인 / provider·리전·예산 결정 | Better Auth/Drizzle/driver, host, region, Preview DB 비용·격리 승인 | 선택 버전·지원범위 재확인. 계정·유료 리소스 생성 승인은 별도. |
-| 1. TF-03c PostgreSQL foundation | host/driver 결정 후 `src/lib/db/**`, Drizzle config/schema, `drizzle/**`, env example, CI workflow | 로컬·disposable CI PostgreSQL에서 빈 DB migration, FK/UNIQUE 및 rollback 시험. production 자동 migration이 없고 CI에 production secret이 없음. |
-| 2. TF-03b Google Auth/principal | TF-03c DB 및 migration 기반 | Better Auth schema 중복 없음, Google callback sandbox, 서버 session 검증, cookie/CSRF, 2-user IDOR, unauth 401. OAuth secret 없는 CI 테스트는 mock/fixture 사용. |
+| 0. ADR 승인 / 구현 결정 | Better Auth/Drizzle/driver의 조건부 기술 제안 검토. 로컬/CI 0원 범위를 우선 승인 | 기술 선택 승인은 계정 생성/Cloud 연결 승인과 별개. 실제 비용 0원이 확인되지 않으면 local/CI 범위만 수행. |
+| 1. TF-03c PostgreSQL foundation | 우선 로컬 Docker PostgreSQL. 변경 예상 `src/lib/db/**`, Drizzle config/schema, `drizzle/**`, env example, CI workflow | 로컬 Docker 및 disposable CI PostgreSQL에서 빈 DB migration, FK/UNIQUE 및 rollback 시험. CI에는 production secret이 없음. 로컬/CI 성공만으로 Cloud 동작을 주장하지 않음. |
+| 2. TF-03b Google Auth/principal | TF-03c DB/schema 기반 | 먼저 OAuth 처리 코드·mock/fixture 테스트를 분리해 개발. 실제 Google OAuth client/callback은 사용자가 허용하고 무료·결제 정책 확인을 통과한 후 별도 수행. Better Auth schema 중복 없음, 서버 session 검증, cookie/CSRF, 2-user IDOR, unauth 401. |
 | 3. TF-03d 목록 metadata API | Auth + DB | owner-scoped create/list/get/rename/delete, Zod, no-op PATCH/version 계약, pagination 및 404 non-disclosure. PostgreSQL contract tests. |
 | 4. TF-03e item CRUD transaction | TF-03d, TourAPI snapshot 정책 | add/delete/list/read, parent `SELECT FOR UPDATE`, duplicate/no-op, version/stale conflict, rollback/race 테스트 gate. DB 통합 결과를 근거로만 transaction 보장을 보고. |
-| 5. TF-03f Travel list UI | API/auth 계약 안정화 | loading/empty/error/conflict, 키보드·모바일 접근성, bookmark E2E 유지, Preview 확인. |
+| 5. TF-03f Travel list UI | API/auth 계약 안정화 | loading/empty/error/conflict, 키보드·모바일 접근성, bookmark E2E 유지. Preview에서는 현재 운영 설정을 변경하지 않고 정적/fixture 기반 확인을 우선한다. |
+
+로컬 Docker PostgreSQL 및 CI PostgreSQL에서 통합 테스트를 통과해도 실제 Cloud provider, Vercel Node runtime, pooled endpoint, OAuth callback/계정 연동을 검증한 것은 아니다. 이 단계의 보고는 사용한 로컬/CI 엔진 버전과 테스트 결과만 기술하고 Cloud transaction 검증으로 일반화하지 않는다.
 
 각 단계는 별도 Issue/PR로 구현 범위를 좁힌다. Phase 2 reorder/note는 별도 제품 승인 후 DB race/accessibility 테스트와 함께 독립 작업으로 연다.
 
@@ -180,7 +211,9 @@ Issue #9의 TF-03a가 제안한 TF-03b Auth와 TF-03c DB foundation의 의존성
 - DB runtime role과 migration role 분리, backup/restore 주기 및 복구 책임
 - OAuth rate limit/abuse 방어, 로그 보존 및 개인정보 삭제 요구
 
-이 결정들이 승인되기 전 실제 인증·DB 생성·의존성 설치를 시작하지 않는다. 서버 세션이 도입되어도 private API의 owner-scoped SQL, CSRF 방어, `no-store`, 데이터 보존 정책이 별도로 필요하다.
+서비스가 결제 수단 연결을 요구하거나 무료 한도 초과/유료 전환 위험을 명확히 차단할 수 없으면 Cloud 작업을 중단한다. 유료 요금제/add-on으로 이어서 진행하지 않는다. 가격 및 무료 한도는 가입 또는 자원 생성 직전에 공식 문서에서 재검증하고, 불확실성은 사용자 승인을 통해 해소하지 말고 우선 로컬/CI 작업으로 제한한다.
+
+이 결정들이 승인되기 전 실제 인증·DB 생성·의존성 설치를 시작하지 않는다. 운영 DB 및 Vercel Production 설정은 변경하지 않는다. 서버 세션이 도입되어도 private API의 owner-scoped SQL, CSRF 방어, `no-store`, 데이터 보존 정책이 별도로 필요하다.
 
 ## 12. 면접에서 설명 가능한 선택 근거
 
