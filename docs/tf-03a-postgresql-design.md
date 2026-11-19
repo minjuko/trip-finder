@@ -341,7 +341,7 @@ DB client가 필요한 Route Handler는 `runtime = "nodejs"`의 Node runtime으�
 - 실제 감사 기준: branch `design/tf-03a-travel-lists`의 base는 `0e4e20a9d46c5b8348b04331da5587f4c9a57b5f`. 기존 root worktree `fix/tf-01b-bookmarks-seo`와 `trip-finder-tf-02`, 보안 worktree들은 보존했다.
 - 문서 중복 검색에서 `docs/tf-03a-postgresql-design.md`와 기존 travel list/PostgreSQL 상세 설계는 발견되지 않았다.
 - 변경 범위는 이 설계 문서 하나다. 앱 코드, 테스트, package manifest/lockfile, runtime configuration은 건드리지 않았다.
-- DB, npm dependency 설치, unit/E2E/build, 배포, secret 설정은 범위에서 명시적으로 제외했다. 문서 전용 PR의 GitHub Actions 결과는 PR 생성 뒤 확인한다.
+- DB, npm dependency 설치, 로컬 unit/E2E/build, 배포, secret 설정은 범위에서 명시적으로 제외했다. PR의 [GitHub Actions run #87](https://github.com/minjuko/trip-finder/actions/runs/44520853031)은 최초 시도에서 Chromium용 Ubuntu package 설치가 mirror `503 Service Unavailable`로 실패했으나, 코드 변경 없이 job 재실행 후 format, lint, typecheck, unit/coverage, Chromium 설치, E2E, production build가 모두 통과했다. 이 workflow가 앱 단위·E2E·build를 실행한 원격 검증이며, 설계 문서 자체의 로컬 빌드를 실행한 것은 아니다.
 - 남은 결정은 인증·owner identity, DB host/region 및 비용, cross-device synchronization, snapshot freshness, 제한값, list name 정책, public sharing, idempotency, account deletion/retention이다.
 
 **최종 설계 판정:** Route Handler + server-verified principal + owner-scoped PostgreSQL query + disposable Postgres CI를 우선안으로 제안한다. 인증 공급자와 DB host가 승인되기 전에는 TF-03b 이후 구현을 시작하지 않는다. 기존 `trip-finder:bookmarks`, 두 탭 동기화, `/bookmarks` metadata와 UI 동작은 별개로 보존한다.
