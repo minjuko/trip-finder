@@ -44,7 +44,9 @@ test("real session, API, and PostgreSQL travel-list journey", async ({
     .locator("#travel-list-choice")
     .selectOption({ label: "TF-03g renamed trip" });
   await page.getByRole("dialog").getByRole("button").last().click();
-  await expect(page.getByRole("status")).toContainText("TF-03g renamed trip");
+  await expect(page.getByRole("status").last()).toContainText(
+    "TF-03g renamed trip",
+  );
 
   await page.goto(listUrl!);
   await expect(page.getByText(/저장된 장소 1개/)).toBeVisible();
