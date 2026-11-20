@@ -35,7 +35,7 @@ CI PostgreSQL Integration은 job 전용 빈 PostgreSQL 18.1 service에 `db:migra
 - Drizzle migration 생성: 통과. migration SQL은 저장소에서 검토 가능하다.
 - E2E 21개와 production build: 로컬에서 통과했다.
 - Windows 개발 환경에 Docker CLI가 없어 PostgreSQL 통합 검증은 로컬에서 실행하지 않았다.
-- GitHub Actions [run #44700369268](https://github.com/minjuko/trip-finder/actions/runs/44700369268): **Quality Check**와 **PostgreSQL Integration** 성공. PostgreSQL job에서 빈 DB migration, repeat migration, TF-03c 통합 검사 및 Better Auth schema/session/Origin/no-store/사용자 격리 검사가 통과했다. Quality Check에서 format, lint, typecheck, 174 Vitest tests, 21 E2E tests, production build가 통과했다.
+- 최종 HEAD의 GitHub Actions [run #44704327331](https://github.com/minjuko/trip-finder/actions/runs/44704327331): **Quality Check**와 **PostgreSQL Integration** 성공. PostgreSQL job에서 빈 DB migration, repeat migration, TF-03c 통합 검사 및 Better Auth schema/session/Origin/no-store/사용자 격리 검사가 통과했다. Quality Check에서 format, lint, typecheck, 174 Vitest tests, 21 E2E tests, production build가 통과했다.
 - 실제 Google OAuth 로그인·callback·Google credential은 설정하거나 검증하지 않았다. 계정 복구·linking 정책도 범위 밖이다.
 - Neon, Supabase, 유료 서비스, 결제수단, Vercel Production 설정 및 운영 DB는 사용/변경하지 않았다.
 
