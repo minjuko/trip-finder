@@ -14,11 +14,16 @@
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
     "test:db": "node --conditions=react-server --import tsx scripts/verify-postgres.ts",
+    "test:auth-db": "node --conditions=react-server --import tsx scripts/verify-auth-postgres.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
+    "@better-auth/drizzle-adapter": "1.7.26",
     "@types/leaflet": "^1.9.22",
+    "better-auth": "1.7.26",
     "drizzle-orm": "0.45.4",
     "leaflet": "^1.9.4",
     "next": "16.4.5",
