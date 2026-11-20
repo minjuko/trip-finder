@@ -22,7 +22,7 @@ async function handleAuthRequest(request: Request): Promise<Response> {
   }
 
   const handlers = toNextJsHandler(getAuth());
-  const handler = request.method === "GET" ? handlers.GET : handlers.POST;
+  const handler = request.method === "POST" ? handlers.POST : handlers.GET;
   const response = await handler(request);
   const headers = new Headers(response.headers);
   headers.set("Cache-Control", "private, no-store");
