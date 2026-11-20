@@ -98,22 +98,20 @@ export async function listTravelListItems(
     }
     params.push(limit + 1);
     const limitIndex = params.length;
-    const [itemsResult, countResult] = await Promise.all([
-      client.query<TravelListItemRecord>(
-        `SELECT id, content_id, content_type_id, position, title, address,
-                thumbnail_url, created_at
-         FROM travel_list_items
-         WHERE travel_list_id = $1::uuid ${cursorClause}
-         ORDER BY position ASC, id ASC
-         LIMIT $${limitIndex}`,
-        params,
-      ),
-      client.query<{ count: number }>(
-        `SELECT count(*)::integer AS count
-         FROM travel_list_items WHERE travel_list_id = $1::uuid`,
-        [listId],
-      ),
-    ]);
+    const itemsResult = await client.query<TravelListItemRecord>(
+      `SELECT id, content_id, content_type_id, position, title, address,
+              thumbnail_url, created_at
+       FROM travel_list_items
+       WHERE travel_list_id = $1::uuid ${cursorClause}
+       ORDER BY position ASC, id ASC
+       LIMIT $${limitIndex}`,
+      params,
+    );
+    const countResult = await client.query<{ count: number }>(
+      `SELECT count(*)::integer AS count
+       FROM travel_list_items WHERE travel_list_id = $1::uuid`,
+      [listId],
+    );
     const hasMore = itemsResult.rows.length > limit;
     const rows = hasMore ? itemsResult.rows.slice(0, limit) : itemsResult.rows;
     const last = rows.at(-1);
