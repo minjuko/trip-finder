@@ -58,7 +58,7 @@ test("real session, API, and PostgreSQL travel-list journey", async ({
   });
   try {
     const response = await contextB.request.get(
-      `http://127.0.0.1:3000${listUrl}`,
+      `http://127.0.0.1:3000/api/travel-lists/${listUrl!.split("/").at(-1)}`,
     );
     expect(response.status()).toBe(404);
 
