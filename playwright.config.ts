@@ -3,6 +3,7 @@ import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   // 변경: Vitest와 E2E 테스트 디렉터리를 명확히 분리
   testDir: "./e2e",
+  testIgnore: "**/travel-lists-real-db.spec.ts",
 
   fullyParallel: true,
 

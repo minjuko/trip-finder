@@ -62,7 +62,7 @@ jobs:
   postgres-integration:
     name: PostgreSQL Integration
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     services:
       postgres:
         image: postgres:18.1-alpine
@@ -112,3 +112,9 @@ jobs:
 
       - name: Travel-list item PostgreSQL integration tests
         run: npm run test:travel-list-items-db
+
+      - name: Install Chromium for authenticated browser integration
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser to API to PostgreSQL travel-list integration
+        run: npm run test:e2e:travel-lists-db
