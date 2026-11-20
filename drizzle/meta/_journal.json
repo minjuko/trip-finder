@@ -8,6 +8,20 @@
       "when": 1795149495132,
       "tag": "0000_eager_rocket_racer",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795171935623,
+      "tag": "0001_wooden_the_executioner",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795172484088,
+      "tag": "0002_low_luke_cage",
+      "breakpoints": true
     }
   ]
 }

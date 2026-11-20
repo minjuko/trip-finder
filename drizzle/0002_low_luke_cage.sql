@@ -1,0 +1,2 @@
+ALTER TABLE "travel_lists" DROP CONSTRAINT "travel_lists_name_valid_check";--> statement-breakpoint
+ALTER TABLE "travel_lists" ADD CONSTRAINT "travel_lists_name_valid_check" CHECK (char_length("travel_lists"."name") BETWEEN 1 AND 80 AND "travel_lists"."name" = btrim("travel_lists"."name") AND "travel_lists"."name" ~ '[^[:space:]]');
