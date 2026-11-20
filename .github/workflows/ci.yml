@@ -16,6 +16,9 @@ jobs:
     timeout-minutes: 20
     env:
       NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
+      BETTER_AUTH_SECRET: ci-only-secret-not-for-deployment-0123456789abcdef
+      BETTER_AUTH_URL: http://127.0.0.1:3000
+      BETTER_AUTH_TRUSTED_ORIGINS: http://127.0.0.1:3000
 
     steps:
       - name: Checkout repository
@@ -76,6 +79,9 @@ jobs:
           --health-retries 10
     env:
       DATABASE_URL: postgres://tripfinder_test:tripfinder_test@127.0.0.1:5432/tripfinder_test
+      BETTER_AUTH_SECRET: ci-only-secret-not-for-deployment-0123456789abcdef
+      BETTER_AUTH_URL: http://127.0.0.1:3000
+      BETTER_AUTH_TRUSTED_ORIGINS: http://127.0.0.1:3000
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -89,5 +95,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Apply reviewed migrations to empty PostgreSQL
+        run: npm run db:migrate
+
+      - name: Verify migration repeatability
+        run: npm run db:migrate
+
       - name: PostgreSQL integration tests
         run: npm run test:db
+
+      - name: Better Auth PostgreSQL integration tests
+        run: npm run test:auth-db
