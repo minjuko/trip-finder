@@ -20,6 +20,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "test:e2e": "playwright test",
+    "test:e2e:travel-lists-db": "node --conditions=react-server --import tsx scripts/run-travel-list-browser-integration.ts",
     "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
