@@ -24,7 +24,7 @@
 | `PATCH /api/travel-lists/{listId}` body `{ name, expectedVersion }` | 변경 또는 no-op `200`; 이름이 바뀌면 version 증가                          |
 | `DELETE /api/travel-lists/{listId}`                                 | 성공 `204` (body 없음)                                                     |
 
-`itemCount`는 item 테이블이 없어서 응답하지 않는다. 항목 API를 도입할 TF-03e에서 실제 데이터 기반 계약을 확정한다. 페이지네이션은 `updated_at DESC, id DESC` 순서와 limit 1–100 (기본 20)을 사용하며 total count를 제공하지 않는다. cursor는 base64url로 직렬화한 위치값으로, 클라이언트는 opaque token으로 취급해야 한다. 페이지 사이에 목록이 추가·수정되면 조회 결과가 달라질 수 있는 best-effort pagination이다.
+`itemCount`는 item 테이블이 없어서 응답하지 않는다. 항목 API를 도입할 TF-03e에서 실제 데이터 기반 계약을 확정한다. 페이지네이션은 `updated_at DESC, id DESC` 순서와 limit 1–100 (기본 20)을 사용하며 total count를 제공하지 않는다. cursor는 base64url로 직렬화한 위치값으로, 클라이언트는 opaque token으로 취급해야 한다. 커서 전용 timestamp는 PostgreSQL에서 UTC의 6자리 소수 초 문자열로 만들어 SQL 비교까지 그대로 전달하므로, 응답의 공개용 JS `Date`(밀리초 표시)와 내부 keyset 위치를 분리한다. 동일 timestamp는 UUID 내림차순 tie-break를 사용한다. 페이지 사이에 목록이 추가·수정되면 조회 결과가 달라질 수 있는 best-effort pagination이다.
 
 POST 재시도는 같은 이름의 별도 목록을 만들 수 있다. 클라이언트 자동 재시도 및 Idempotency-Key 정책은 정하지 않았고, 중복 생성 가능성을 호출 측에서 고려해야 한다. 사용자별 목록 개수 상한은 임의로 정하지 않았다. 실제 배포 사용량을 관측한 뒤 abuse 방지와 비용 정책을 별도 결정해야 한다.
 

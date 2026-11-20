@@ -12,6 +12,7 @@ export interface TravelListRecord {
   version: number;
   created_at: Date;
   updated_at: Date;
+  cursor_updated_at?: string;
 }
 
 function publicList(row: TravelListRecord) {
@@ -39,7 +40,8 @@ export async function listTravelLists(
   params.push(limit + 1);
   const limitIndex = params.length;
   const result = await getPool().query<TravelListRecord>(
-    `SELECT id, name, version, created_at, updated_at
+    `SELECT id, name, version, created_at, updated_at,
+            to_char(updated_at AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS.US"Z"') AS cursor_updated_at
      FROM travel_lists
      WHERE owner_id = $1 ${cursorClause}
      ORDER BY updated_at DESC, id DESC
@@ -54,7 +56,7 @@ export async function listTravelLists(
     nextCursor:
       hasMore && rows.length > 0
         ? encodeCursor({
-            updatedAt: rows[rows.length - 1].updated_at,
+            updatedAt: rows[rows.length - 1].cursor_updated_at!,
             id: rows[rows.length - 1].id,
           })
         : null,

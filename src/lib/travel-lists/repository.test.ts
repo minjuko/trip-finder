@@ -26,6 +26,7 @@ const row = {
   version: 1,
   created_at: new Date("2026-11-20T00:00:00.000Z"),
   updated_at: new Date("2026-11-20T00:00:00.000Z"),
+  cursor_updated_at: "2026-11-20T00:00:00.123456Z",
 };
 
 describe("travel-list SQL repository", () => {
@@ -45,10 +46,12 @@ describe("travel-list SQL repository", () => {
     expect(mocks.query.mock.calls[0][0]).toContain("updated_at DESC, id DESC");
     expect(page.items).toHaveLength(1);
     expect(page.nextCursor).toBeTruthy();
+    expect(mocks.query.mock.calls[0][0]).toContain("cursor_updated_at");
 
     mocks.query.mockResolvedValueOnce({ rows: [row] });
     const finalPage = await listTravelLists("user-a", 10, page.nextCursor!);
     expect(mocks.query.mock.calls[1][0]).toContain("(updated_at, id) <");
+    expect(mocks.query.mock.calls[1][1][1]).toBe(row.cursor_updated_at);
     expect(finalPage.nextCursor).toBeNull();
   });
 

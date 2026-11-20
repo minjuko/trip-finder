@@ -66,14 +66,11 @@ export function parseCursor(value: string) {
   return parsed.data;
 }
 
-export function encodeCursor(cursor: { updatedAt: Date; id: string }): string {
-  return Buffer.from(
-    JSON.stringify({
-      updatedAt: cursor.updatedAt.toISOString(),
-      id: cursor.id,
-    }),
-    "utf8",
-  ).toString("base64url");
+export function encodeCursor(cursor: {
+  updatedAt: string;
+  id: string;
+}): string {
+  return Buffer.from(JSON.stringify(cursor), "utf8").toString("base64url");
 }
 
 export async function parseJsonBody(request: Request): Promise<unknown> {

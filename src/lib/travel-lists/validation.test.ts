@@ -52,11 +52,11 @@ describe("travel-list request validation", () => {
 
   it("round-trips opaque keyset cursors and rejects malformed cursors and JSON", async () => {
     const cursor = encodeCursor({
-      updatedAt: new Date("2026-11-20T00:00:00.000Z"),
+      updatedAt: "2026-11-20T00:00:00.123456Z",
       id: "d7ca2e31-0b61-4c1e-bc89-7a335aee6893",
     });
     expect(parseCursor(cursor)).toEqual({
-      updatedAt: "2026-11-20T00:00:00.000Z",
+      updatedAt: "2026-11-20T00:00:00.123456Z",
       id: "d7ca2e31-0b61-4c1e-bc89-7a335aee6893",
     });
     expect(() => parseCursor("%%%")).toThrow(TravelListError);

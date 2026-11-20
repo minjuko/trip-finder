@@ -247,6 +247,59 @@ async function main(): Promise<void> {
     const secondPageBody = await secondPage.json();
     assert.notEqual(firstPageBody.items[0].id, secondPageBody.items[0].id);
 
+    const precisionFixtures: { id: string }[] = [];
+    for (let index = 0; index < 5; index += 1) {
+      precisionFixtures.push(await create(`cursor precision ${index}`));
+    }
+    const preciseInstants = [
+      "2099-01-01T00:00:00.123456Z",
+      "2099-01-01T00:00:00.123455Z",
+      "2099-01-01T00:00:00.123454Z",
+      "2099-01-01T00:00:00.123454Z",
+      "2099-01-01T00:00:00.123453Z",
+    ];
+    for (let index = 0; index < precisionFixtures.length; index += 1) {
+      await pool.query(
+        `UPDATE travel_lists SET updated_at = $2::timestamptz WHERE id = $1::uuid AND owner_id = $3`,
+        [precisionFixtures[index].id, preciseInstants[index], userA.id],
+      );
+    }
+
+    const expectedPrecisionOrder = await pool.query<{ id: string }>(
+      `SELECT id FROM travel_lists WHERE owner_id = $1 ORDER BY updated_at DESC, id DESC`,
+      [userA.id],
+    );
+    const traversedIds: string[] = [];
+    let cursor: string | null = null;
+    let pageCount = 0;
+    do {
+      const query = cursor
+        ? `?limit=1&cursor=${encodeURIComponent(cursor)}`
+        : "?limit=1";
+      const pageResponse = await getLists(
+        request(`/api/travel-lists${query}`, { cookie: cookieA1 }),
+      );
+      await assertPrivate(pageResponse);
+      assert.equal(pageResponse.status, 200);
+      const page = await pageResponse.json();
+      traversedIds.push(...page.items.map((item: { id: string }) => item.id));
+      cursor = page.nextCursor;
+      pageCount += 1;
+      assert.ok(pageCount <= expectedPrecisionOrder.rows.length + 1);
+    } while (cursor !== null);
+
+    assert.deepEqual(
+      traversedIds,
+      expectedPrecisionOrder.rows.map(({ id }) => id),
+    );
+    assert.equal(new Set(traversedIds).size, traversedIds.length);
+    assert.equal(
+      traversedIds.filter((id) =>
+        precisionFixtures.some((fixture) => fixture.id === id),
+      ).length,
+      precisionFixtures.length,
+    );
+
     const badCursor = await getLists(
       request("/api/travel-lists?cursor=not-a-cursor", { cookie: cookieA1 }),
     );
@@ -463,6 +516,9 @@ async function main(): Promise<void> {
     console.log("- create/list/detail/rename/no-op/stale version/delete CRUD");
     console.log(
       "- keyset pagination, FK/check constraints, and retained account rows",
+    );
+    console.log(
+      "- limit=1 full pagination preserves microseconds and UUID tie order",
     );
     console.log(
       "- independent-session concurrent PATCH and PATCH/DELETE serialization",
