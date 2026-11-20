@@ -7,6 +7,7 @@ import {
   pgTable,
   text,
   timestamp,
+  unique,
   uuid,
   varchar,
 } from "drizzle-orm/pg-core";
@@ -101,6 +102,57 @@ export const travelLists = pgTable(
       table.ownerId,
       table.updatedAt.desc(),
       table.id.desc(),
+    ),
+  ],
+);
+
+/** TourAPI-backed snapshot rows owned through their parent travel list. */
+export const travelListItems = pgTable(
+  "travel_list_items",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    travelListId: uuid("travel_list_id")
+      .notNull()
+      .references(() => travelLists.id, { onDelete: "cascade" }),
+    contentId: text("content_id").notNull(),
+    contentTypeId: text("content_type_id").notNull(),
+    position: integer("position").notNull(),
+    title: text("title").notNull(),
+    address: text("address"),
+    thumbnailUrl: text("thumbnail_url"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    check(
+      "travel_list_items_position_nonnegative_check",
+      sql`${table.position} >= 0`,
+    ),
+    check(
+      "travel_list_items_content_id_check",
+      sql`${table.contentId} ~ '^[0-9]{1,64}$'`,
+    ),
+    check(
+      "travel_list_items_content_type_id_check",
+      sql`${table.contentTypeId} ~ '^[0-9]{1,8}$'`,
+    ),
+    check(
+      "travel_list_items_title_nonblank_check",
+      sql`char_length(btrim(${table.title})) > 0`,
+    ),
+    unique("travel_list_items_list_content_unique").on(
+      table.travelListId,
+      table.contentId,
+    ),
+    unique("travel_list_items_list_position_unique").on(
+      table.travelListId,
+      table.position,
+    ),
+    index("travel_list_items_list_position_id_idx").on(
+      table.travelListId,
+      table.position,
+      table.id,
     ),
   ],
 );

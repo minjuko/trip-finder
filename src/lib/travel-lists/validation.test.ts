@@ -3,12 +3,17 @@ import { describe, expect, it } from "vitest";
 import { TravelListError } from "./errors.js";
 import {
   createTravelListSchema,
+  addTravelListItemSchema,
+  contentIdSchema,
   encodeCursor,
   listIdSchema,
   parseCursor,
   parseInput,
   parseJsonBody,
   parsePageQuery,
+  parseListVersionMatch,
+  parseTravelListItemsCursor,
+  encodeTravelListItemsCursor,
   updateTravelListSchema,
 } from "./validation.js";
 
@@ -77,5 +82,30 @@ describe("travel-list request validation", () => {
         new Request("http://localhost", { method: "POST", body: "{}" }),
       ),
     ).toEqual({});
+  });
+
+  it("validates item IDs, strict add bodies, ETags, and versioned cursors", () => {
+    expect(contentIdSchema.safeParse("127480").success).toBe(true);
+    expect(contentIdSchema.safeParse("127/480").success).toBe(false);
+    expect(
+      addTravelListItemSchema.safeParse({
+        contentTypeId: "12",
+        expectedVersion: 1,
+        ownerId: "untrusted",
+      }).success,
+    ).toBe(false);
+    expect(parseListVersionMatch('"list-v7"')).toBe(7);
+    expect(() => parseListVersionMatch(null)).toThrow(TravelListError);
+
+    const cursor = encodeTravelListItemsCursor({
+      version: 7,
+      position: 2,
+      id: "d7ca2e31-0b61-4c1e-bc89-7a335aee6893",
+    });
+    expect(parseTravelListItemsCursor(cursor)).toEqual({
+      version: 7,
+      position: 2,
+      id: "d7ca2e31-0b61-4c1e-bc89-7a335aee6893",
+    });
   });
 });

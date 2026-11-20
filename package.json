@@ -16,6 +16,7 @@
     "test:db": "node --conditions=react-server --import tsx scripts/verify-postgres.ts",
     "test:auth-db": "node --conditions=react-server --import tsx scripts/verify-auth-postgres.ts",
     "test:travel-lists-db": "node --conditions=react-server --import tsx scripts/verify-travel-lists-postgres.ts",
+    "test:travel-list-items-db": "node --conditions=react-server --import tsx scripts/verify-travel-list-items-postgres.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "test:e2e": "playwright test",

@@ -13,6 +13,15 @@ export const updateTravelListSchema = z
   })
   .strict();
 
+export const addTravelListItemSchema = z
+  .object({
+    contentTypeId: z.string().regex(/^[0-9]{1,8}$/),
+    expectedVersion: z.number().int().min(1).max(2_147_483_647),
+  })
+  .strict();
+
+export const contentIdSchema = z.string().regex(/^[0-9]{1,64}$/);
+
 export const listIdSchema = z.uuid();
 
 const pageQuerySchema = z
@@ -25,6 +34,14 @@ const pageQuerySchema = z
 export const cursorPayloadSchema = z
   .object({
     updatedAt: z.iso.datetime(),
+    id: z.uuid(),
+  })
+  .strict();
+
+export const travelListItemsCursorSchema = z
+  .object({
+    version: z.number().int().min(1).max(2_147_483_647),
+    position: z.number().int().min(0).max(2_147_483_647),
     id: z.uuid(),
   })
   .strict();
@@ -71,6 +88,51 @@ export function encodeCursor(cursor: {
   id: string;
 }): string {
   return Buffer.from(JSON.stringify(cursor), "utf8").toString("base64url");
+}
+
+export function parseTravelListItemsCursor(value: string) {
+  let decoded: unknown;
+  try {
+    const bytes = Buffer.from(value, "base64url");
+    if (bytes.toString("base64url") !== value)
+      throw new Error("Invalid cursor");
+    decoded = JSON.parse(bytes.toString("utf8"));
+  } catch {
+    throw new TravelListError(400, "VALIDATION_ERROR", "Invalid cursor.");
+  }
+
+  const parsed = travelListItemsCursorSchema.safeParse(decoded);
+  if (!parsed.success) {
+    throw new TravelListError(400, "VALIDATION_ERROR", "Invalid cursor.");
+  }
+  return parsed.data;
+}
+
+export function encodeTravelListItemsCursor(cursor: {
+  version: number;
+  position: number;
+  id: string;
+}): string {
+  return Buffer.from(JSON.stringify(cursor), "utf8").toString("base64url");
+}
+
+export function parseListVersionMatch(value: string | null): number {
+  if (value === null) {
+    throw new TravelListError(
+      428,
+      "PRECONDITION_REQUIRED",
+      "If-Match is required.",
+    );
+  }
+  const match = /^"list-v([1-9][0-9]*)"$/.exec(value);
+  if (!match) {
+    throw new TravelListError(400, "VALIDATION_ERROR", "Invalid If-Match.");
+  }
+  const version = Number(match[1]);
+  if (!Number.isSafeInteger(version) || version > 2_147_483_647) {
+    throw new TravelListError(400, "VALIDATION_ERROR", "Invalid If-Match.");
+  }
+  return version;
 }
 
 export async function parseJsonBody(request: Request): Promise<unknown> {

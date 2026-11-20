@@ -113,8 +113,15 @@ export const getE2eTourApiFixture = (
       if (params.lclsSystm2) return classificationDepth3Fixture;
       if (params.lclsSystm1) return classificationDepth2Fixture;
       return classificationFixture;
-    case "detailCommon2":
-      return detailCommonFixture;
+    case "detailCommon2": {
+      if (String(params.contentId ?? "") === "0") return emptyResponse;
+      const fixture = structuredClone(detailCommonFixture);
+      const items = fixture.response.body.items;
+      if (items !== "") {
+        items.item[0].contentid = String(params.contentId ?? "127480");
+      }
+      return fixture;
+    }
     case "detailImage2":
       return detailImageFixture;
     case "detailIntro2":
