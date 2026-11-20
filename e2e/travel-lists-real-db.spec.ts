@@ -64,7 +64,11 @@ test("real session, API, and PostgreSQL travel-list journey", async ({
 
     const pageB = await contextB.newPage();
     await pageB.goto(listUrl!);
-    await expect(pageB.getByRole("alert")).toBeVisible();
+    await expect(
+      pageB.getByText(
+        "목록을 찾을 수 없습니다. 목록 화면에서 다시 확인해 주세요.",
+      ),
+    ).toBeVisible();
     await expect(pageB.getByText("TF-03g renamed trip")).toHaveCount(0);
   } finally {
     await contextB.close();
