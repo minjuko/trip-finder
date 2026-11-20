@@ -1,6 +1,6 @@
 import { toNextJsHandler } from "better-auth/next-js";
 
-import { isTrustedRequestOrigin } from "@/lib/auth/config";
+import { isAuthConfigured, isTrustedRequestOrigin } from "@/lib/auth/config";
 import { getAuth } from "@/lib/auth";
 
 export const runtime = "nodejs";
@@ -8,6 +8,16 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 async function handleAuthRequest(request: Request): Promise<Response> {
+  if (!isAuthConfigured()) {
+    return Response.json(
+      { message: "Authentication is not configured." },
+      {
+        status: 503,
+        headers: { "Cache-Control": "private, no-store" },
+      },
+    );
+  }
+
   if (
     ["POST", "PUT", "PATCH", "DELETE"].includes(request.method) &&
     !isTrustedRequestOrigin(request.headers.get("origin"))

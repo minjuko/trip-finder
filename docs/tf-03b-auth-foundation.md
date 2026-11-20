@@ -26,6 +26,7 @@ CI PostgreSQL Integration은 job 전용 빈 PostgreSQL 18.1 service에 `db:migra
 - `BETTER_AUTH_SECRET`(32자 이상), origin 형식 `BETTER_AUTH_URL`은 사용 시 필수다. Production에서는 URL이 HTTPS여야 하며 trusted origins는 정확한 HTTP(S) origin allow-list만 받는다. 비밀값에 기본 fallback을 두지 않았다.
 - Better Auth의 기본 `HttpOnly`, `SameSite=Lax`, `/` cookie를 명시하고, URL이 HTTPS이면 Secure cookie를 적용한다. 운영은 HTTPS URL과 강한 secret이 필요하다.
 - `/api/auth/[...all]`은 Node.js runtime에서 공식 Next handler로 연결한다. POST/PUT/PATCH/DELETE에는 Origin이 필요하며 exact trusted origin이 아니면 403으로 거부한다. 모든 auth 응답은 `Cache-Control: private, no-store`다.
+- 필수 `DATABASE_URL`, `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL` 중 하나라도 없으면 auth route는 인증 기능 비활성 상태로 보고 일반 메시지와 `private, no-store`를 포함한 503을 반환한다. Better Auth 초기화와 Origin 검사는 실행하지 않는다. 설정된 환경의 adapter/DB 런타임 예외는 이 비활성 응답으로 변환하지 않는다.
 - `getSessionPrincipal()`은 Better Auth 서버 API로 DB session을 검증하고 만료 시간을 다시 확인한 뒤 `user.id`만 반환한다. 요청의 header/body/query `userId`는 읽지 않는다. `requireSessionPrincipal()`은 세션이 없거나 만료되면 private no-store 401 response를 반환한다.
 - PostgreSQL 통합 검사는 테스트 전용 `testUtils`로 생성한 사용자/session cookie를 실제 production auth instance의 검증 함수에 전달한다. test helper/plugin은 production auth 구성이나 route에 포함되지 않는다.
 

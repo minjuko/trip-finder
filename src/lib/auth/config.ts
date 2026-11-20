@@ -8,6 +8,15 @@ import { drizzleAdapter } from "@better-auth/drizzle-adapter";
 import { authSchema } from "../db/schema";
 import { getDb } from "../db/index";
 
+/** Authentication is disabled until all runtime credentials are explicitly set. */
+export function isAuthConfigured(): boolean {
+  return Boolean(
+    process.env.DATABASE_URL &&
+    process.env.BETTER_AUTH_SECRET &&
+    process.env.BETTER_AUTH_URL,
+  );
+}
+
 function getAuthEnvironment() {
   const secret = process.env.BETTER_AUTH_SECRET;
   if (!secret || secret.length < 32) {
