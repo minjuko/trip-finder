@@ -18,6 +18,12 @@ const NAV_ITEMS = [
     shortLabel: "관심",
     icon: "bookmark",
   },
+  {
+    href: "/travel-lists",
+    label: "여행 목록",
+    shortLabel: "목록",
+    icon: "list",
+  },
 ] as const;
 
 export const Header = () => {
@@ -44,7 +50,9 @@ export const Header = () => {
             {NAV_ITEMS.map((item) => {
               const isActive =
                 pathname === item.href ||
-                (item.href === "/explore" && pathname.startsWith("/places"));
+                (item.href === "/explore" && pathname.startsWith("/places")) ||
+                (item.href === "/travel-lists" &&
+                  pathname.startsWith("/travel-lists/"));
 
               return (
                 <li key={item.href}>
