@@ -106,3 +106,6 @@ jobs:
 
       - name: Better Auth PostgreSQL integration tests
         run: npm run test:auth-db
+
+      - name: Travel-list PostgreSQL integration tests
+        run: npm run test:travel-lists-db

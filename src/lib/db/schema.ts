@@ -1,4 +1,15 @@
-import { boolean, index, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
+import {
+  boolean,
+  check,
+  index,
+  integer,
+  pgTable,
+  text,
+  timestamp,
+  uuid,
+  varchar,
+} from "drizzle-orm/pg-core";
 
 /** Better Auth's canonical core schema. User IDs are text, not UUIDs. */
 export const user = pgTable("user", {
@@ -61,6 +72,37 @@ export const verification = pgTable(
     updatedAt: timestamp("updatedAt").notNull(),
   },
   (table) => [index("verification_identifier_idx").on(table.identifier)],
+);
+
+/** User-owned metadata only; account deletion behavior remains unapproved. */
+export const travelLists = pgTable(
+  "travel_lists",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    ownerId: text("owner_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "no action" }),
+    name: varchar("name", { length: 80 }).notNull(),
+    version: integer("version").notNull().default(1),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    check(
+      "travel_lists_name_valid_check",
+      sql`char_length(${table.name}) BETWEEN 1 AND 80 AND ${table.name} = btrim(${table.name}) AND ${table.name} ~ '[^[:space:]]'`,
+    ),
+    check("travel_lists_version_positive_check", sql`${table.version} > 0`),
+    index("travel_lists_owner_updated_id_idx").on(
+      table.ownerId,
+      table.updatedAt.desc(),
+      table.id.desc(),
+    ),
+  ],
 );
 
 export const authSchema = { user, session, account, verification };
