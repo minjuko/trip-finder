@@ -109,3 +109,6 @@ jobs:
 
       - name: Travel-list PostgreSQL integration tests
         run: npm run test:travel-lists-db
+
+      - name: Travel-list item PostgreSQL integration tests
+        run: npm run test:travel-list-items-db
