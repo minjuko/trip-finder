@@ -7,7 +7,7 @@ The Better Auth `testUtils` plugin runs only in
 route or the normal auth instance. The runner refuses to start unless `CI=true`
 and `DATABASE_URL` targets local `tripfinder_test`. It writes standard signed
 session cookies to a temporary Playwright storage state, runs the browser test,
-then deletes both synthetic users and temporary files. No login endpoint or
+then deletes synthetic travel lists, both users, and temporary files. No login endpoint or
 production auth bypass is added.
 
 ## Verification matrix

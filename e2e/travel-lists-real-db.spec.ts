@@ -24,7 +24,7 @@ test("real session, API, and PostgreSQL travel-list journey", async ({
   const listCard = page.locator("li").filter({ has: listLink });
   await listCard.getByRole("button").first().click();
   await page.locator("#edit-list-name").fill("TF-03g renamed trip");
-  await page.locator('[role="dialog"] button[type="submit"]').click();
+  await page.locator('[role="dialog"] form button').last().click();
   const renamedListLink = page.getByRole("link", {
     name: "TF-03g renamed trip",
   });

@@ -6,7 +6,7 @@ import { join } from "node:path";
 
 import { testUtils, type TestHelpers } from "better-auth/plugins";
 import { createAuth } from "../src/lib/auth/config.js";
-import { closePool } from "../src/lib/db/index.js";
+import { closePool, getPool } from "../src/lib/db/index.js";
 
 const allowedHosts = new Set(["localhost", "127.0.0.1", "::1"]);
 
@@ -92,7 +92,12 @@ async function main(): Promise<void> {
     testExitCode = result.status ?? 1;
   } finally {
     try {
-      for (const userId of userIds) await helpers.deleteUser(userId);
+      for (const userId of userIds) {
+        await getPool().query(`DELETE FROM travel_lists WHERE owner_id = $1`, [
+          userId,
+        ]);
+        await helpers.deleteUser(userId);
+      }
     } finally {
       await closePool();
       await rm(stateDirectory, { recursive: true, force: true });
