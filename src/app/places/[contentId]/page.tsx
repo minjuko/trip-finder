@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { BookmarkButton } from "@/components/bookmark/BookmarkButton";
+import { AddToTravelListButton } from "@/components/travel-lists/AddToTravelListButton";
 import { PlaceShareButton } from "@/components/tour/PlaceShareButton";
 import { CopyAddressButton } from "@/components/tour/CopyAddressButton";
 import { TourDetailGallery } from "@/components/tour/TourDetailGallery";
@@ -169,6 +170,7 @@ const PlaceDetailPage = async ({ params }: PlaceDetailPageProps) => {
               bookmark interaction만 Client Component로 격리 */}
           <div className="flex flex-wrap gap-3">
             <BookmarkButton content={detail} />
+            <AddToTravelListButton content={detail} />
 
             <PlaceShareButton title={detail.title} />
 
