@@ -56,7 +56,7 @@
 
 | 구분        | 기술                                                                           |
 | ----------- | ------------------------------------------------------------------------------ |
-| 화면        | Next.js 16.4.2 App Router, React 19.2.8, TypeScript 5 (strict), Tailwind CSS 4 |
+| 화면        | Next.js 16.4.5 App Router, React 19.2.8, TypeScript 5 (strict), Tailwind CSS 4 |
 | 서버·저장 | Next.js Route Handlers (Node.js 런타임), Better Auth, PostgreSQL, Drizzle ORM |
 | 데이터·지도 | 한국관광공사 TourAPI, Zod 4, Leaflet, OpenStreetMap                            |
 | 검증        | Vitest, React Testing Library, Playwright, axe-core, GitHub Actions            |
@@ -100,9 +100,13 @@ npm run dev
 - **PostgreSQL 통합 검증:** 다른 계정의 목록 접근 제한, 동시 요청, 중복 저장 방지, 실패 시 롤백. [목록 테스트](scripts/verify-travel-lists-postgres.ts) · [목록 항목 테스트](scripts/verify-travel-list-items-postgres.ts)
 - **브라우저–API–DB 통합 검증:** 목록 생성, 장소 저장·삭제 흐름. [GitHub Actions 실행 결과](https://github.com/minjuko/trip-finder/actions/runs/44774026984)
 
-로컬 Lighthouse 실험에서 LCP와 전송량이 감소했지만 TBT는 악화됐습니다. 측정 조건과 한계는 [성능 분석 문서](docs/explore-performance-audit-2026.md)에 기록했습니다.
+2026-10-14 로컬 Lighthouse 실험에서는 LCP와 전송량이 감소했지만 TBT는 악화됐습니다. 이는 아래의 현재 이미지 기준선과 별도인 과거 실험이며, 측정 조건과 한계는 [성능 분석 문서](docs/explore-performance-audit-2026.md)에 기록했습니다.
 
-동일한 production fixture에서 eager preload와 현재 지연 로딩을 각각 5회 비교했습니다. 카드 보기의 4초 내 JS 전송 중앙값은 233,465 bytes에서 187,864 bytes로 줄었고, 지도 45,535-byte 청크 요청은 5/5회에서 0/5회로 바뀌었습니다. 이 실험에서 LCP 개선은 확인되지 않았습니다. [측정 환경·원본 결과·한계](docs/map-lazy-loading-validation.md)
+최신 기준 `ab4f6f5`의 탐색 E2E는 고정 TourAPI fixture·retry 0·5회 반복에서 dev 1 worker 20/20, dev 4 workers 17/20, production 4 workers 20/20 통과했습니다. dev 실패 원인은 확정하지 않았습니다. [실행 조건·trace 요약](docs/explore-origin-main-ab4f6f5-validation.md)
+
+모바일 탐색 이미지 측정은 코드 변경 전 기준선입니다. 로컬 합성 fixture 5회에서 선택된 이미지 후보는 750px, 이미지 전송량 중앙값은 10,476 bytes였고, 공개 배포 관측은 별도 기록했습니다. 두 결과는 개선 효과 비교나 실제 사용자 현장 지표가 아닙니다. [조건·실행별 원시값](docs/explore-origin-main-ab4f6f5-validation.md#모바일-탐색-이미지-기준선과-공개-배포-관측)
+
+별도 지도 지연 로딩 실험에서 production fixture의 eager preload와 현재 지연 로딩을 각각 5회 비교했습니다. 카드 보기의 4초 내 JS 전송 중앙값은 233,465 bytes에서 187,864 bytes로 줄었고, 지도 45,535-byte 청크 요청은 5/5회에서 0/5회로 바뀌었습니다. 이 실험에서 LCP 개선은 확인되지 않았습니다. [측정 환경·원본 결과·한계](docs/map-lazy-loading-validation.md)
 
 ## 관련 문서
 
